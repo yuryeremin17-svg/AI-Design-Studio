@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelius Group — Brand Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   AURELIUS GROUP — BRAND GUIDELINES
+   Package: Business (17 sections)
+   Style: Luxury / Old Money
+   ============================================ */
+
+:root {
+  --navy: #010110;
+  --gold: #BE9A64;
+  --cream: #F5F0E8;
+  --white: #FFFFFF;
+  --gray-100: #F8F7F5;
+  --gray-200: #E8E5E0;
+  --gray-300: #C4BFB6;
+  --gray-500: #8A8580;
+  --gray-700: #4A4640;
+  --font-heading: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--navy);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+/* ---- Page / Section ---- */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 40mm 25mm;
+  position: relative;
+  overflow: hidden;
+}
+
+.page--dark {
+  background: var(--navy);
+  color: var(--cream);
+}
+
+.page--cream {
+  background: var(--cream);
+}
+
+.page--gold-accent {
+  background: var(--white);
+}
+
+/* ---- Double frame (::after pseudo) ---- */
+.frame {
+  position: relative;
+}
+
+.frame::before {
+  content: '';
+  position: absolute;
+  top: 15mm;
+  left: 15mm;
+  right: 15mm;
+  bottom: 15mm;
+  border: 0.5pt solid var(--gold);
+  pointer-events: none;
+}
+
+.frame::after {
+  content: '';
+  position: absolute;
+  top: 18mm;
+  left: 18mm;
+  right: 18mm;
+  bottom: 18mm;
+  border: 0.5pt solid var(--gold);
+  pointer-events: none;
+}
+
+.frame--light::before,
+.frame--light::after {
+  border-color: var(--cream);
+}
+
+/* ---- Typography ---- */
+h1 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 2.8rem;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  max-width: 60ch;
+}
+
+.section-number {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+/* ---- Decorative elements ---- */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 2rem 0;
+}
+
+.divider--center {
+  margin: 2rem auto;
+}
+
+/* ---- Logo embed ---- */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container img {
+  max-width: 280px;
+  height: auto;
+}
+
+/* ---- Utility ---- */
+.text-center { text-align: center; }
+.text-gold { color: var(--gold); }
+.text-cream { color: var(--cream); }
+.text-navy { color: var(--navy); }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 2rem; }
+.mt-4 { margin-top: 3rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 2rem; }
+
+.flex { display: flex; }
+.flex-center { align-items: center; justify-content: center; }
+.flex-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 2rem; }
+
+/* ---- Color swatches ---- */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.swatch {
+  text-align: center;
+}
+
+.swatch__color {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--gray-200);
+}
+
+.swatch__name {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.swatch__hex {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+/* ---- Grid layouts ---- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* ---- Business card ---- */
+.card-preview {
+  background: var(--gray-100);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.business-card {
+  width: 90mm;
+  height: 50mm;
+  position: relative;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.business-card--front {
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8mm;
+}
+
+.business-card--front::before {
+  content: '';
+  position: absolute;
+  top: 4mm;
+  left: 4mm;
+  right: 4mm;
+  bottom: 4mm;
+  border: 0.5pt solid var(--gold);
+}
+
+.business-card--front::after {
+  content: '';
+  position: absolute;
+  top: 5.5mm;
+  left: 5.5mm;
+  right: 5.5mm;
+  bottom: 5.5mm;
+  border: 0.5pt solid var(--gold);
+}
+
+.business-card--front img {
+  max-width: 55mm;
+  height: auto;
+}
+
+.business-card--back {
+  background: var(--cream);
+  padding: 8mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.business-card--back .card-name {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 8pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 1mm;
+}
+
+.business-card--back .card-title {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 5.5pt;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 4mm;
+}
+
+.business-card--back .card-divider {
+  width: 15mm;
+  height: 0.5pt;
+  background: var(--gold);
+  margin-bottom: 4mm;
+}
+
+.business-card--back .card-info {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 5.5pt;
+  line-height: 2;
+  color: var(--gray-700);
+}
+
+/* ---- Letterhead ---- */
+.letterhead {
+  width: 170mm;
+  min-height: 240mm;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 15mm;
+  position: relative;
+  margin: 0 auto;
+}
+
+.letterhead__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 5mm;
+  border-bottom: 0.5pt solid var(--gold);
+  margin-bottom: 1mm;
+}
+
+.letterhead__header-line2 {
+  border-bottom: 0.5pt solid var(--gold);
+  padding-bottom: 5mm;
+  margin-bottom: 15mm;
+}
+
+.letterhead__header img {
+  max-width: 45mm;
+}
+
+.letterhead__contacts {
+  text-align: right;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 6pt;
+  line-height: 2;
+  color: var(--gray-500);
+}
+
+.letterhead__body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 7.5pt;
+  line-height: 2;
+  color: var(--gray-700);
+  min-height: 160mm;
+}
+
+.letterhead__footer {
+  position: absolute;
+  bottom: 15mm;
+  left: 15mm;
+  right: 15mm;
+  border-top: 0.5pt solid var(--gold);
+  padding-top: 3mm;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 5.5pt;
+  color: var(--gray-300);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Do / Don't ---- */
+.do-dont-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.do-dont-item {
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+}
+
+.do-dont-item--do {
+  border-top: 3px solid #2D8A4E;
+}
+
+.do-dont-item--dont {
+  border-top: 3px solid #C0392B;
+}
+
+.do-dont-item__label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.do-dont-item--do .do-dont-item__label { color: #2D8A4E; }
+.do-dont-item--dont .do-dont-item__label { color: #C0392B; }
+
+.do-dont-item__visual {
+  background: var(--gray-100);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+}
+
+.do-dont-item p {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+/* ---- Email signature ---- */
+.email-sig {
+  font-family: var(--font-body);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 20px;
+  max-width: 400px;
+}
+
+.email-sig__name {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: var(--navy);
+}
+
+.email-sig__title {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--gray-500);
+  margin-bottom: 10px;
+}
+
+.email-sig__divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 10px 0;
+}
+
+.email-sig__info {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--gray-700);
+  line-height: 1.8;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 40mm 25mm;
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+
+  .page:first-child {
+    page-break-before: avoid;
+  }
+
+  .page--dark {
+    background: var(--navy) !important;
+    color: var(--cream) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page--cream {
+    background: var(--cream) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .swatch__color,
+  .business-card--front,
+  .business-card--back {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .frame::before,
+  .frame::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+
+<!-- ============================================
+     01. COVER
+     ============================================ -->
+<section class="page page--dark frame" id="cover">
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
+    <div class="logo-container mb-3">
+      <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Aurelius Group">
+    </div>
+    <div class="divider divider--center" style="background: var(--gold); width: 80px;"></div>
+    <p class="subtitle text-gold mt-3" style="letter-spacing: 0.4em;">Brand Guidelines</p>
+    <p class="subtitle mt-2" style="color: var(--gray-300); font-size: 0.65rem; letter-spacing: 0.2em;">Confidential — 2026</p>
+  </div>
+</section>
+
+
+<!-- ============================================
+     02. TABLE OF CONTENTS
+     ============================================ -->
+<section class="page page--cream" id="toc">
+  <span class="section-number">02 &mdash; Contents</span>
+  <h2>Table of Contents</h2>
+  <div class="divider"></div>
+  <nav style="margin-top: 2rem;">
+    <style>
+      .toc-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0.75rem 0;
+        border-bottom: 0.5px solid var(--gray-200);
+        text-decoration: none;
+        color: var(--navy);
+        transition: color 0.2s;
+      }
+      .toc-item:hover { color: var(--gold); }
+      .toc-num {
+        font-family: var(--font-heading);
+        font-weight: 300;
+        font-size: 0.85rem;
+        color: var(--gold);
+        min-width: 3rem;
+      }
+      .toc-title {
+        font-family: var(--font-body);
+        font-weight: 300;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+        flex: 1;
+      }
+      .toc-page {
+        font-family: var(--font-body);
+        font-weight: 300;
+        font-size: 0.75rem;
+        color: var(--gray-300);
+      }
+    </style>
+    <a href="#cover" class="toc-item"><span class="toc-num">01</span><span class="toc-title">Cover</span></a>
+    <a href="#toc" class="toc-item"><span class="toc-num">02</span><span class="toc-title">Table of Contents</span></a>
+    <a href="#about" class="toc-item"><span class="toc-num">03</span><span class="toc-title">About the Brand</span></a>
+    <a href="#logo-primary" class="toc-item"><span class="toc-num">04</span><span class="toc-title">Primary Logo</span></a>
+    <a href="#logo-variations" class="toc-item"><span class="toc-num">05</span><span class="toc-title">Logo Color Variations</span></a>
+    <a href="#clear-space" class="toc-item"><span class="toc-num">06</span><span class="toc-title">Clear Space &amp; Minimum Size</span></a>
+    <a href="#logo-on-backgrounds" class="toc-item"><span class="toc-num">07</span><span class="toc-title">Logo on Backgrounds</span></a>
+    <a href="#typography" class="toc-item"><span class="toc-num">08</span><span class="toc-title">Typography</span></a>
+    <a href="#business-cards" class="toc-item"><span class="toc-num">09</span><span class="toc-title">Business Cards</span></a>
+    <a href="#brand-elements" class="toc-item"><span class="toc-num">10</span><span class="toc-title">Brand Elements</span></a>
+    <a href="#dos-donts" class="toc-item"><span class="toc-num">11</span><span class="toc-title">Do's &amp; Don'ts</span></a>
+    <a href="#tone-of-voice" class="toc-item"><span class="toc-num">12</span><span class="toc-title">Tone of Voice</span></a>
+    <a href="#photography" class="toc-item"><span class="toc-num">13</span><span class="toc-title">Photography Style</span></a>
+    <a href="#letterheads" class="toc-item"><span class="toc-num">14</span><span class="toc-title">Letterheads</span></a>
+    <a href="#presentations" class="toc-item"><span class="toc-num">15</span><span class="toc-title">Presentations &amp; Web</span></a>
+    <a href="#email-signature" class="toc-item"><span class="toc-num">16</span><span class="toc-title">Email Signature</span></a>
+    <a href="#contacts" class="toc-item"><span class="toc-num">17</span><span class="toc-title">Contacts</span></a>
+  </nav>
+</section>
+
+
+<!-- ============================================
+     03. ABOUT THE BRAND
+     ============================================ -->
+<section class="page" id="about">
+  <span class="section-number">03 &mdash; About the Brand</span>
+  <h2>About Aurelius Group</h2>
+  <div class="divider"></div>
+
+  <div class="two-col mt-4">
+    <div>
+      <h3>Mission</h3>
+      <p>To build enduring wealth through disciplined investment strategies, principled stewardship, and an unwavering commitment to our clients' long-term prosperity.</p>
+
+      <h3 class="mt-3">Vision</h3>
+      <p>To be the most trusted name in private investment across the Gulf region — recognized for integrity, discretion, and consistent excellence.</p>
+    </div>
+    <div>
+      <h3>Brand Pillars</h3>
+      <div style="margin-top: 1rem;">
+        <div style="padding: 1rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Heritage</p>
+          <p style="font-size: 0.8rem;">Rooted in time-tested principles of value creation and capital preservation.</p>
+        </div>
+        <div style="padding: 1rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Discretion</p>
+          <p style="font-size: 0.8rem;">Private by nature. We let results speak louder than words.</p>
+        </div>
+        <div style="padding: 1rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Excellence</p>
+          <p style="font-size: 0.8rem;">Uncompromising standards in every decision, every relationship, every outcome.</p>
+        </div>
+        <div style="padding: 1rem 0;">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Integrity</p>
+          <p style="font-size: 0.8rem;">Our word is our bond. Trust is earned through decades, not promises.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     04. PRIMARY LOGO
+     ============================================ -->
+<section class="page" id="logo-primary">
+  <span class="section-number">04 &mdash; Primary Logo</span>
+  <h2>Primary Logo</h2>
+  <div class="divider"></div>
+
+  <div style="background: var(--gray-100); padding: 4rem; margin-top: 2rem; display: flex; align-items: center; justify-content: center;">
+    <img src="../../assets/logos/aurelius-group/logo.svg" alt="Aurelius Group — Primary Logo" style="max-width: 360px;">
+  </div>
+
+  <div class="two-col mt-4">
+    <div>
+      <h3>Construction</h3>
+      <p>The Aurelius Group logo consists of a heraldic shield containing the monogram "A" set in Cormorant Garamond Light, paired with the wordmark "AURELIUS" and the descriptor "GROUP".</p>
+    </div>
+    <div>
+      <h3>Usage</h3>
+      <p>The primary logo should be used wherever possible. It is the preferred mark for all formal communications, corporate documents, and brand touchpoints.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     05. LOGO COLOR VARIATIONS
+     ============================================ -->
+<section class="page" id="logo-variations">
+  <span class="section-number">05 &mdash; Logo Variations</span>
+  <h2>Logo Color Variations</h2>
+  <div class="divider"></div>
+
+  <div class="three-col mt-4">
+    <!-- Dark on light -->
+    <div>
+      <div style="background: var(--white); border: 1px solid var(--gray-200); padding: 2rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo.svg" alt="Dark version" style="max-width: 90%;">
+      </div>
+      <p class="subtitle mt-2" style="font-size: 0.65rem;">Primary — On light</p>
+    </div>
+    <!-- Light on dark -->
+    <div>
+      <div style="background: var(--navy); padding: 2rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Light version" style="max-width: 90%;">
+      </div>
+      <p class="subtitle mt-2" style="font-size: 0.65rem;">Reversed — On dark</p>
+    </div>
+    <!-- On cream -->
+    <div>
+      <div style="background: var(--cream); padding: 2rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo.svg" alt="On cream" style="max-width: 90%;">
+      </div>
+      <p class="subtitle mt-2" style="font-size: 0.65rem;">Primary — On cream</p>
+    </div>
+  </div>
+
+  <div class="three-col mt-3">
+    <!-- On gold -->
+    <div>
+      <div style="background: var(--gold); padding: 2rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="On gold" style="max-width: 90%;">
+      </div>
+      <p class="subtitle mt-2" style="font-size: 0.65rem;">Reversed — On gold</p>
+    </div>
+    <!-- Monochrome dark -->
+    <div>
+      <div style="background: var(--white); border: 1px solid var(--gray-200); padding: 2rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo.svg" alt="Monochrome" style="max-width: 90%; filter: grayscale(100%);">
+      </div>
+      <p class="subtitle mt-2" style="font-size: 0.65rem;">Monochrome</p>
+    </div>
+    <!-- Monochrome reversed -->
+    <div>
+      <div style="background: #333; padding: 2rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Monochrome reversed" style="max-width: 90%; filter: grayscale(100%);">
+      </div>
+      <p class="subtitle mt-2" style="font-size: 0.65rem;">Monochrome — Reversed</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     06. CLEAR SPACE & MINIMUM SIZE
+     ============================================ -->
+<section class="page" id="clear-space">
+  <span class="section-number">06 &mdash; Clear Space</span>
+  <h2>Clear Space &amp; Minimum Size</h2>
+  <div class="divider"></div>
+
+  <div class="two-col mt-4">
+    <div>
+      <h3>Clear Space</h3>
+      <p>The minimum clear space around the logo is defined by the height of the shield element "A". This space must be maintained on all sides to ensure legibility and visual impact.</p>
+
+      <div style="background: var(--gray-100); padding: 3rem; margin-top: 2rem; position: relative; display: flex; align-items: center; justify-content: center;">
+        <div style="border: 1px dashed var(--gold); padding: 2rem; display: inline-block;">
+          <img src="../../assets/logos/aurelius-group/logo.svg" alt="Clear space" style="max-width: 200px;">
+        </div>
+        <span style="position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.1em;">X</span>
+        <span style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.1em;">X</span>
+      </div>
+    </div>
+    <div>
+      <h3>Minimum Size</h3>
+      <p>To ensure legibility, the logo should never be reproduced smaller than the minimum sizes specified below.</p>
+
+      <div style="margin-top: 2rem;">
+        <div style="padding: 1.5rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Print</p>
+          <p style="font-size: 0.8rem;">Minimum width: 30mm</p>
+        </div>
+        <div style="padding: 1.5rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Digital</p>
+          <p style="font-size: 0.8rem;">Minimum width: 120px</p>
+        </div>
+        <div style="padding: 1.5rem 0;">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Favicon / App Icon</p>
+          <p style="font-size: 0.8rem;">Use shield monogram only at sizes below 25mm / 100px</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     07. LOGO ON BACKGROUNDS
+     ============================================ -->
+<section class="page" id="logo-on-backgrounds">
+  <span class="section-number">07 &mdash; Logo on Backgrounds</span>
+  <h2>Logo on Backgrounds</h2>
+  <div class="divider"></div>
+
+  <p class="mt-3 mb-3">The logo must maintain contrast and legibility on all backgrounds. Below are approved and prohibited placements.</p>
+
+  <h3 class="text-gold mt-4">Approved</h3>
+  <div class="three-col mt-2">
+    <div>
+      <div style="background: var(--white); border: 1px solid var(--gray-200); padding: 1.5rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 85%;" alt="">
+      </div>
+      <p style="font-size: 0.7rem; color: var(--gray-500); margin-top: 0.5rem;">White background</p>
+    </div>
+    <div>
+      <div style="background: var(--navy); padding: 1.5rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo-light.svg" style="max-width: 85%;" alt="">
+      </div>
+      <p style="font-size: 0.7rem; color: var(--gray-500); margin-top: 0.5rem;">Navy background</p>
+    </div>
+    <div>
+      <div style="background: var(--cream); padding: 1.5rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10;">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 85%;" alt="">
+      </div>
+      <p style="font-size: 0.7rem; color: var(--gray-500); margin-top: 0.5rem;">Cream background</p>
+    </div>
+  </div>
+
+  <h3 style="color: #C0392B; margin-top: 2rem;">Prohibited</h3>
+  <div class="three-col mt-2">
+    <div>
+      <div style="background: linear-gradient(135deg, #BE9A64, #F5F0E8); padding: 1.5rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10; position: relative;">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 85%; opacity: 0.5;" alt="">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 2rem; color: #C0392B; font-weight: 300;">&#10005;</span>
+        </div>
+      </div>
+      <p style="font-size: 0.7rem; color: var(--gray-500); margin-top: 0.5rem;">On gradients</p>
+    </div>
+    <div>
+      <div style="background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22><rect width=%2220%22 height=%2220%22 fill=%22%23ddd%22/><rect width=%2210%22 height=%2210%22 fill=%22%23ccc%22/><rect x=%2210%22 y=%2210%22 width=%2210%22 height=%2210%22 fill=%22%23ccc%22/></svg>'); padding: 1.5rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10; position: relative;">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 85%; opacity: 0.5;" alt="">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 2rem; color: #C0392B; font-weight: 300;">&#10005;</span>
+        </div>
+      </div>
+      <p style="font-size: 0.7rem; color: var(--gray-500); margin-top: 0.5rem;">On busy patterns</p>
+    </div>
+    <div>
+      <div style="background: #888; padding: 1.5rem; display: flex; align-items: center; justify-content: center; aspect-ratio: 16/10; position: relative;">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 85%; opacity: 0.5;" alt="">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 2rem; color: #C0392B; font-weight: 300;">&#10005;</span>
+        </div>
+      </div>
+      <p style="font-size: 0.7rem; color: var(--gray-500); margin-top: 0.5rem;">Low contrast</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     08. TYPOGRAPHY
+     ============================================ -->
+<section class="page" id="typography">
+  <span class="section-number">08 &mdash; Typography</span>
+  <h2>Typography</h2>
+  <div class="divider"></div>
+
+  <div class="two-col mt-4">
+    <div>
+      <h3>Primary — Cormorant Garamond</h3>
+      <p style="font-size: 0.75rem; color: var(--gray-500); margin-bottom: 1.5rem;">Headings, titles, logo wordmark</p>
+
+      <div style="margin-bottom: 1rem;">
+        <p style="font-family: var(--font-heading); font-weight: 300; font-size: 2.5rem; line-height: 1.2;">Light 300</p>
+        <p style="font-family: var(--font-heading); font-weight: 300; font-size: 1rem; color: var(--gray-500); line-height: 1.6;">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm<br>Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br>0123456789</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p style="font-family: var(--font-heading); font-weight: 400; font-size: 2.5rem; line-height: 1.2;">Regular 400</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p style="font-family: var(--font-heading); font-weight: 600; font-size: 2.5rem; line-height: 1.2;">Semibold 600</p>
+      </div>
+    </div>
+    <div>
+      <h3>Secondary — DM Sans</h3>
+      <p style="font-size: 0.75rem; color: var(--gray-500); margin-bottom: 1.5rem;">Body text, captions, UI elements</p>
+
+      <div style="margin-bottom: 1rem;">
+        <p style="font-family: var(--font-body); font-weight: 300; font-size: 2rem; line-height: 1.2;">Light 300</p>
+        <p style="font-family: var(--font-body); font-weight: 300; font-size: 1rem; color: var(--gray-500); line-height: 1.6;">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm<br>Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br>0123456789</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p style="font-family: var(--font-body); font-weight: 400; font-size: 2rem; line-height: 1.2;">Regular 400</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p style="font-family: var(--font-body); font-weight: 700; font-size: 2rem; line-height: 1.2;">Bold 700</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 2rem; padding: 1.5rem; background: var(--gray-100);">
+    <h3 style="margin-bottom: 1rem;">Type Scale</h3>
+    <div style="display: grid; grid-template-columns: 100px 1fr; gap: 0.75rem; align-items: baseline;">
+      <span style="font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em;">H1 — 2.8rem</span>
+      <span style="font-family: var(--font-heading); font-weight: 300; font-size: 2.2rem; letter-spacing: 0.1em;">Aurelius Group</span>
+
+      <span style="font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em;">H2 — 2rem</span>
+      <span style="font-family: var(--font-heading); font-weight: 400; font-size: 1.6rem; letter-spacing: 0.08em;">Brand Guidelines</span>
+
+      <span style="font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em;">H3 — 1.4rem</span>
+      <span style="font-family: var(--font-heading); font-weight: 500; font-size: 1.2rem;">Section Title</span>
+
+      <span style="font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em;">Body — 0.9rem</span>
+      <span style="font-family: var(--font-body); font-weight: 300; font-size: 0.9rem;">The quick brown fox jumps over the lazy dog.</span>
+
+      <span style="font-size: 0.7rem; color: var(--gold); letter-spacing: 0.1em;">Caption — 0.75rem</span>
+      <span style="font-family: var(--font-body); font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;">Subtitle or label text</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     09. BUSINESS CARDS
+     ============================================ -->
+<section class="page" id="business-cards">
+  <span class="section-number">09 &mdash; Business Cards</span>
+  <h2>Business Cards</h2>
+  <div class="divider"></div>
+  <p>Standard European format: 90 &times; 50 mm. Two color variants.</p>
+
+  <!-- Variant 1: Navy + Cream -->
+  <h3 class="mt-4">Variant 1 — Navy &amp; Cream</h3>
+  <div style="display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap;">
+    <div class="card-preview">
+      <div class="business-card business-card--front">
+        <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Front" style="max-width: 55mm;">
+      </div>
+    </div>
+    <div class="card-preview">
+      <div class="business-card business-card--back">
+        <div class="card-name">Alexander Hartwell</div>
+        <div class="card-title">Managing Partner</div>
+        <div class="card-divider"></div>
+        <div class="card-info">
+          +971 4 123 4567<br>
+          a.hartwell@aureliusgroup.com<br>
+          DIFC, Gate Building, Level 15<br>
+          Dubai, United Arab Emirates
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variant 2: Cream + Navy -->
+  <h3 class="mt-4">Variant 2 — Cream &amp; Navy</h3>
+  <div style="display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap;">
+    <div class="card-preview">
+      <div class="business-card" style="background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 8mm; position: relative;">
+        <div style="position: absolute; top: 4mm; left: 4mm; right: 4mm; bottom: 4mm; border: 0.5pt solid var(--gold);"></div>
+        <div style="position: absolute; top: 5.5mm; left: 5.5mm; right: 5.5mm; bottom: 5.5mm; border: 0.5pt solid var(--gold);"></div>
+        <img src="../../assets/logos/aurelius-group/logo.svg" alt="Front" style="max-width: 55mm;">
+      </div>
+    </div>
+    <div class="card-preview">
+      <div class="business-card" style="background: var(--navy); padding: 8mm; display: flex; flex-direction: column; justify-content: center;">
+        <div class="card-name" style="color: var(--cream);">Alexander Hartwell</div>
+        <div class="card-title" style="color: var(--gray-300);">Managing Partner</div>
+        <div class="card-divider"></div>
+        <div class="card-info" style="color: var(--gray-300);">
+          +971 4 123 4567<br>
+          a.hartwell@aureliusgroup.com<br>
+          DIFC, Gate Building, Level 15<br>
+          Dubai, United Arab Emirates
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     10. BRAND ELEMENTS
+     ============================================ -->
+<section class="page" id="brand-elements">
+  <span class="section-number">10 &mdash; Brand Elements</span>
+  <h2>Brand Elements</h2>
+  <div class="divider"></div>
+
+  <div class="two-col mt-4">
+    <div>
+      <h3>Color Palette</h3>
+      <div class="swatch-grid" style="grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+        <div class="swatch">
+          <div class="swatch__color" style="background: var(--navy);"></div>
+          <div class="swatch__name">Navy</div>
+          <div class="swatch__hex">#010110</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: var(--gold);"></div>
+          <div class="swatch__name">Gold</div>
+          <div class="swatch__hex">#BE9A64</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: var(--cream); border: 1px solid var(--gray-200);"></div>
+          <div class="swatch__name">Cream</div>
+          <div class="swatch__hex">#F5F0E8</div>
+        </div>
+      </div>
+
+      <h3 class="mt-3">Supporting Colors</h3>
+      <div class="swatch-grid" style="grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+        <div class="swatch">
+          <div class="swatch__color" style="background: var(--gray-100); border: 1px solid var(--gray-200);"></div>
+          <div class="swatch__name">Light Gray</div>
+          <div class="swatch__hex">#F8F7F5</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: var(--gray-500);"></div>
+          <div class="swatch__name">Mid Gray</div>
+          <div class="swatch__hex">#8A8580</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch__color" style="background: var(--gray-700);"></div>
+          <div class="swatch__name">Dark Gray</div>
+          <div class="swatch__hex">#4A4640</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Double Frame</h3>
+      <p style="font-size: 0.8rem; margin-bottom: 1rem;">The signature double frame is a core element of the Aurelius Group identity. It is used on business cards, covers, and formal documents.</p>
+      <div style="background: var(--navy); padding: 3rem; position: relative;">
+        <div style="position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px; border: 0.5pt solid var(--gold);"></div>
+        <div style="position: absolute; top: 18px; left: 18px; right: 18px; bottom: 18px; border: 0.5pt solid var(--gold);"></div>
+        <p style="text-align: center; color: var(--gold); font-family: var(--font-heading); font-weight: 300; font-size: 1rem; letter-spacing: 0.2em; padding: 1.5rem;">DOUBLE FRAME</p>
+      </div>
+      <p style="font-size: 0.7rem; color: var(--gray-500); margin-top: 0.75rem;">Specifications: 0.5pt lines, 3pt gap, no border-radius. Implemented via CSS ::after pseudo-element.</p>
+
+      <h3 class="mt-3">Decorative Line</h3>
+      <p style="font-size: 0.8rem; margin-bottom: 1rem;">A single gold rule used as a divider between content sections.</p>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 60px; height: 1px; background: var(--gold);"></div>
+        <span style="font-size: 0.7rem; color: var(--gray-500);">60px, 1px, #BE9A64</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     11. DO'S & DON'TS
+     ============================================ -->
+<section class="page" id="dos-donts">
+  <span class="section-number">11 &mdash; Do's &amp; Don'ts</span>
+  <h2>Do's &amp; Don'ts</h2>
+  <div class="divider"></div>
+
+  <div class="do-dont-grid">
+    <div class="do-dont-item do-dont-item--do">
+      <div class="do-dont-item__label">Do</div>
+      <div class="do-dont-item__visual">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 150px;" alt="">
+      </div>
+      <p>Use the logo at the correct proportions with adequate clear space.</p>
+    </div>
+    <div class="do-dont-item do-dont-item--dont">
+      <div class="do-dont-item__label">Don't</div>
+      <div class="do-dont-item__visual">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 150px; transform: scaleX(1.5);" alt="">
+      </div>
+      <p>Do not stretch, skew, or distort the logo in any way.</p>
+    </div>
+
+    <div class="do-dont-item do-dont-item--do">
+      <div class="do-dont-item__label">Do</div>
+      <div class="do-dont-item__visual" style="background: var(--navy);">
+        <img src="../../assets/logos/aurelius-group/logo-light.svg" style="max-width: 150px;" alt="">
+      </div>
+      <p>Use the reversed version on dark backgrounds for proper contrast.</p>
+    </div>
+    <div class="do-dont-item do-dont-item--dont">
+      <div class="do-dont-item__label">Don't</div>
+      <div class="do-dont-item__visual" style="background: var(--navy);">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 150px; opacity: 0.4;" alt="">
+      </div>
+      <p>Do not use the dark logo on dark backgrounds.</p>
+    </div>
+
+    <div class="do-dont-item do-dont-item--do">
+      <div class="do-dont-item__label">Do</div>
+      <div class="do-dont-item__visual">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 150px;" alt="">
+      </div>
+      <p>Use only approved brand colors for the logo.</p>
+    </div>
+    <div class="do-dont-item do-dont-item--dont">
+      <div class="do-dont-item__label">Don't</div>
+      <div class="do-dont-item__visual">
+        <img src="../../assets/logos/aurelius-group/logo.svg" style="max-width: 150px; filter: hue-rotate(180deg) saturate(2);" alt="">
+      </div>
+      <p>Do not change the logo colors or apply filters.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     12. TONE OF VOICE
+     ============================================ -->
+<section class="page" id="tone-of-voice">
+  <span class="section-number">12 &mdash; Tone of Voice</span>
+  <h2>Tone of Voice</h2>
+  <div class="divider"></div>
+
+  <div class="two-col mt-4">
+    <div>
+      <h3>Voice Attributes</h3>
+      <div style="margin-top: 1rem;">
+        <div style="padding: 1.25rem; background: var(--gray-100); margin-bottom: 0.75rem;">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Authoritative</p>
+          <p style="font-size: 0.8rem;">We speak with confidence born from expertise, never arrogance.</p>
+        </div>
+        <div style="padding: 1.25rem; background: var(--gray-100); margin-bottom: 0.75rem;">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Measured</p>
+          <p style="font-size: 0.8rem;">Every word is intentional. We favor precision over volume.</p>
+        </div>
+        <div style="padding: 1.25rem; background: var(--gray-100); margin-bottom: 0.75rem;">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Warm</p>
+          <p style="font-size: 0.8rem;">Professional yet approachable. We build relationships, not transactions.</p>
+        </div>
+        <div style="padding: 1.25rem; background: var(--gray-100);">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Discreet</p>
+          <p style="font-size: 0.8rem;">We suggest rather than shout. Understatement is our signature.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>Writing Examples</h3>
+      <div style="margin-top: 1rem;">
+        <div style="padding: 1.25rem; border-left: 2px solid #2D8A4E; margin-bottom: 1.5rem;">
+          <p class="subtitle" style="color: #2D8A4E; margin-bottom: 0.5rem;">Correct</p>
+          <p style="font-size: 0.85rem; font-style: italic; font-family: var(--font-heading);">"We partner with families to preserve and grow wealth across generations."</p>
+        </div>
+        <div style="padding: 1.25rem; border-left: 2px solid #C0392B; margin-bottom: 1.5rem;">
+          <p class="subtitle" style="color: #C0392B; margin-bottom: 0.5rem;">Incorrect</p>
+          <p style="font-size: 0.85rem; font-style: italic; font-family: var(--font-heading);">"We're the BEST investment firm and will make you RICH fast!!!"</p>
+        </div>
+        <div style="padding: 1.25rem; border-left: 2px solid #2D8A4E; margin-bottom: 1.5rem;">
+          <p class="subtitle" style="color: #2D8A4E; margin-bottom: 0.5rem;">Correct</p>
+          <p style="font-size: 0.85rem; font-style: italic; font-family: var(--font-heading);">"Your legacy deserves the same care that built it."</p>
+        </div>
+        <div style="padding: 1.25rem; border-left: 2px solid #C0392B;">
+          <p class="subtitle" style="color: #C0392B; margin-bottom: 0.5rem;">Incorrect</p>
+          <p style="font-size: 0.85rem; font-style: italic; font-family: var(--font-heading);">"Don't miss out on this incredible opportunity! Limited spots available!"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     13. PHOTOGRAPHY STYLE
+     ============================================ -->
+<section class="page page--dark" id="photography">
+  <span class="section-number" style="color: var(--gold);">13 &mdash; Photography</span>
+  <h2 style="color: var(--cream);">Photography Style</h2>
+  <div class="divider"></div>
+
+  <div class="two-col mt-4">
+    <div>
+      <h3 style="color: var(--cream);">Mood &amp; Atmosphere</h3>
+      <p style="color: var(--gray-300); margin-bottom: 1.5rem;">Photography should evoke timelessness, quiet luxury, and substance. Avoid trend-driven aesthetics.</p>
+
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Lighting</p>
+        <p style="font-size: 0.8rem; color: var(--gray-300);">Natural light preferred. Warm tones, soft shadows. Golden hour quality. Avoid harsh flash or clinical lighting.</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Composition</p>
+        <p style="font-size: 0.8rem; color: var(--gray-300);">Generous negative space. Rule of thirds. Shallow depth of field for portraiture. Architectural symmetry for spaces.</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Color Treatment</p>
+        <p style="font-size: 0.8rem; color: var(--gray-300);">Desaturated warm palette. Muted golds, deep blues, warm grays. No oversaturated colors or heavy filters.</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="color: var(--cream);">Subject Guidelines</h3>
+      <div style="margin-top: 1rem;">
+        <div style="padding: 1.25rem; border: 0.5px solid var(--gold); margin-bottom: 1rem;">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">People</p>
+          <p style="font-size: 0.8rem; color: var(--gray-300);">Candid moments over posed shots. Confidence without ostentation. Diverse, sophisticated professionals.</p>
+        </div>
+        <div style="padding: 1.25rem; border: 0.5px solid var(--gold); margin-bottom: 1rem;">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Spaces</p>
+          <p style="font-size: 0.8rem; color: var(--gray-300);">Clean architecture, premium materials (marble, leather, dark wood). Dubai skyline as context, not spectacle.</p>
+        </div>
+        <div style="padding: 1.25rem; border: 0.5px solid var(--gold); margin-bottom: 1rem;">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Details</p>
+          <p style="font-size: 0.8rem; color: var(--gray-300);">Textured surfaces, fine craftsmanship, quality materials. Close-ups that suggest rather than show.</p>
+        </div>
+        <div style="padding: 1.25rem; border: 0.5px solid var(--gold);">
+          <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Avoid</p>
+          <p style="font-size: 0.8rem; color: var(--gray-300);">Stock photo cliches (handshakes, skylines), ostentatious wealth displays, overly casual settings.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     14. LETTERHEADS
+     ============================================ -->
+<section class="page" id="letterheads">
+  <span class="section-number">14 &mdash; Letterheads</span>
+  <h2>Letterheads</h2>
+  <div class="divider"></div>
+
+  <h3 class="mt-3">Variant 1 — Standard</h3>
+  <div style="margin-top: 1rem; transform: scale(0.85); transform-origin: top left;">
+    <div class="letterhead">
+      <div class="letterhead__header">
+        <img src="../../assets/logos/aurelius-group/logo.svg" alt="Aurelius Group">
+        <div class="letterhead__contacts">
+          DIFC, Gate Building, Level 15<br>
+          Dubai, United Arab Emirates<br>
+          +971 4 123 4567<br>
+          info@aureliusgroup.com
+        </div>
+      </div>
+      <div class="letterhead__header-line2"></div>
+      <div class="letterhead__body">
+        <p style="color: var(--gray-300); font-style: italic;">Letter content area</p>
+      </div>
+      <div class="letterhead__footer">
+        &copy; 2026 Aurelius Group. All rights reserved. &nbsp;&middot;&nbsp; DIFC, Gate Building, Level 15, Dubai, UAE
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     15. PRESENTATIONS & WEB
+     ============================================ -->
+<section class="page page--cream" id="presentations">
+  <span class="section-number">15 &mdash; Presentations</span>
+  <h2>Presentations &amp; Web</h2>
+  <div class="divider"></div>
+
+  <div class="two-col mt-4">
+    <div>
+      <h3>Presentation Slides</h3>
+      <p style="font-size: 0.8rem; margin-bottom: 1.5rem;">All presentations follow a consistent template with these principles:</p>
+
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Title Slides</p>
+        <p style="font-size: 0.8rem;">Navy background, centered logo with double frame, gold typography.</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Content Slides</p>
+        <p style="font-size: 0.8rem;">White or cream background. Left-aligned content. Logo watermark at 5% opacity bottom-right.</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Data Slides</p>
+        <p style="font-size: 0.8rem;">Charts use brand palette only: navy, gold, grays. No 3D effects. Minimal grid lines.</p>
+      </div>
+      <div>
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Closing Slides</p>
+        <p style="font-size: 0.8rem;">Navy background with contact information and logo. Double frame optional.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>Website Guidelines</h3>
+      <p style="font-size: 0.8rem; margin-bottom: 1.5rem;">The website should reflect the brand's premium positioning:</p>
+
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Layout</p>
+        <p style="font-size: 0.8rem;">Generous whitespace. Max content width: 1200px. No sidebar clutter. Single-column hero sections.</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Navigation</p>
+        <p style="font-size: 0.8rem;">Minimal top nav in DM Sans. No mega-menus. Sticky header with logo, transparent on scroll.</p>
+      </div>
+      <div style="margin-bottom: 1rem;">
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">Interactions</p>
+        <p style="font-size: 0.8rem;">Subtle transitions (300ms ease). Fade-in on scroll. No parallax or aggressive animations.</p>
+      </div>
+      <div>
+        <p class="subtitle" style="color: var(--gold); margin-bottom: 0.5rem;">CTAs</p>
+        <p style="font-size: 0.8rem;">Gold outline buttons on light backgrounds. Cream outline on dark. DM Sans uppercase, 0.2em tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     16. EMAIL SIGNATURE
+     ============================================ -->
+<section class="page" id="email-signature">
+  <span class="section-number">16 &mdash; Email Signature</span>
+  <h2>Email Signature</h2>
+  <div class="divider"></div>
+
+  <p class="mt-3 mb-3">Standardized HTML email signature for all team members. Copy the HTML template below for implementation.</p>
+
+  <div style="display: flex; gap: 3rem; align-items: flex-start; margin-top: 2rem; flex-wrap: wrap;">
+    <div>
+      <h3 style="margin-bottom: 1rem;">Preview</h3>
+      <div class="email-sig">
+        <div class="email-sig__name">Alexander Hartwell</div>
+        <div class="email-sig__title">Managing Partner</div>
+        <div class="email-sig__divider"></div>
+        <div class="email-sig__info">
+          <strong style="color: var(--navy); font-weight: 500;">Aurelius Group</strong><br>
+          +971 4 123 4567 &nbsp;|&nbsp; +971 50 987 6543<br>
+          a.hartwell@aureliusgroup.com<br>
+          DIFC, Gate Building, Level 15, Dubai, UAE<br>
+          <span style="color: var(--gold);">aureliusgroup.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex: 1; min-width: 300px;">
+      <h3 style="margin-bottom: 1rem;">Specifications</h3>
+      <div style="font-size: 0.8rem;">
+        <div style="padding: 0.75rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <strong>Name:</strong> Cormorant Garamond Medium, 14px, Navy
+        </div>
+        <div style="padding: 0.75rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <strong>Title:</strong> DM Sans Light, 11px, Gray #8A8580
+        </div>
+        <div style="padding: 0.75rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <strong>Divider:</strong> 40px wide, 1px, Gold #BE9A64
+        </div>
+        <div style="padding: 0.75rem 0; border-bottom: 0.5px solid var(--gray-200);">
+          <strong>Contact:</strong> DM Sans Light, 10px, Dark Gray #4A4640
+        </div>
+        <div style="padding: 0.75rem 0;">
+          <strong>URL:</strong> Gold #BE9A64, no underline
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================
+     17. CONTACTS
+     ============================================ -->
+<section class="page page--dark frame" id="contacts">
+  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
+    <div class="logo-container mb-3">
+      <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Aurelius Group" style="max-width: 240px;">
+    </div>
+    <div class="divider divider--center" style="background: var(--gold); width: 80px;"></div>
+
+    <div style="margin-top: 2rem;">
+      <p style="font-family: var(--font-body); font-weight: 300; font-size: 0.8rem; color: var(--gray-300); line-height: 2.2; letter-spacing: 0.05em;">
+        DIFC, Gate Building, Level 15<br>
+        Dubai, United Arab Emirates
+      </p>
+      <p style="margin-top: 1.5rem; font-family: var(--font-body); font-weight: 300; font-size: 0.8rem; color: var(--gray-300); line-height: 2.2; letter-spacing: 0.05em;">
+        +971 4 123 4567<br>
+        info@aureliusgroup.com
+      </p>
+      <p style="margin-top: 1.5rem;">
+        <span style="font-family: var(--font-body); font-weight: 300; font-size: 0.8rem; color: var(--gold); letter-spacing: 0.1em;">aureliusgroup.com</span>
+      </p>
+    </div>
+
+    <p style="position: absolute; bottom: 25mm; font-family: var(--font-body); font-weight: 300; font-size: 0.6rem; color: var(--gray-500); letter-spacing: 0.1em;">&copy; 2026 Aurelius Group. All rights reserved.</p>
+  </div>
+</section>
+
+
+</body>
+</html>

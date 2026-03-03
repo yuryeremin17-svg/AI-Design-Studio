@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&amp;family=DM+Sans:wght@300;400&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Shield icon -->
+  <g transform="translate(20, 10)">
+    <path d="M40 5 L75 20 L75 55 C75 75 55 95 40 100 C25 95 5 75 5 55 L5 20 Z"
+          fill="none" stroke="#BE9A64" stroke-width="1.5"/>
+    <path d="M40 15 L67 27 L67 53 C67 69 52 85 40 90 C28 85 13 69 13 53 L13 27 Z"
+          fill="none" stroke="#BE9A64" stroke-width="0.75"/>
+    <text x="40" y="62" font-family="Cormorant Garamond, serif" font-size="36" font-weight="300"
+          fill="#BE9A64" text-anchor="middle" dominant-baseline="middle">A</text>
+  </g>
+  <!-- Company name -->
+  <text x="110" y="52" font-family="Cormorant Garamond, serif" font-size="32" font-weight="300"
+        fill="#010110" letter-spacing="6">AURELIUS</text>
+  <text x="110" y="78" font-family="DM Sans, sans-serif" font-size="12" font-weight="300"
+        fill="#010110" letter-spacing="8">G R O U P</text>
+  <!-- Decorative line -->
+  <line x1="110" y1="88" x2="320" y2="88" stroke="#BE9A64" stroke-width="0.5"/>
+</svg>

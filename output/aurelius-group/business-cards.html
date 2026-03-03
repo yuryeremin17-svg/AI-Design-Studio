@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelius Group — Business Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #010110;
+  --gold: #BE9A64;
+  --cream: #F5F0E8;
+  --white: #FFFFFF;
+  --gray-300: #C4BFB6;
+  --gray-500: #8A8580;
+  --gray-700: #4A4640;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  background: #f0efed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 60px;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-align: center;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.card-pair {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-label {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ---- Card dimensions: 90mm x 50mm ---- */
+.card {
+  width: 340px; /* ~90mm at screen */
+  height: 189px; /* ~50mm at screen */
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+/* ==== VARIANT 1: Navy front + Cream back ==== */
+.v1-front {
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.v1-front::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 0.5px solid var(--gold);
+}
+
+.v1-front::after {
+  content: '';
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  right: 21px;
+  bottom: 21px;
+  border: 0.5px solid var(--gold);
+}
+
+.v1-front img {
+  max-width: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.v1-back {
+  background: var(--cream);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.v1-back .name {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.v1-back .title {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 7.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 14px;
+}
+
+.v1-back .divider {
+  width: 30px;
+  height: 0.5px;
+  background: var(--gold);
+  margin-bottom: 14px;
+}
+
+.v1-back .info {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 7.5px;
+  line-height: 2;
+  color: var(--gray-700);
+}
+
+/* ==== VARIANT 2: Cream front + Navy back ==== */
+.v2-front {
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.v2-front::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 0.5px solid var(--gold);
+}
+
+.v2-front::after {
+  content: '';
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  right: 21px;
+  bottom: 21px;
+  border: 0.5px solid var(--gold);
+}
+
+.v2-front img {
+  max-width: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.v2-back {
+  background: var(--navy);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.v2-back .name {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 2px;
+}
+
+.v2-back .title {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 7.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  margin-bottom: 14px;
+}
+
+.v2-back .divider {
+  width: 30px;
+  height: 0.5px;
+  background: var(--gold);
+  margin-bottom: 14px;
+}
+
+.v2-back .info {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 7.5px;
+  line-height: 2;
+  color: var(--gray-300);
+}
+
+/* ==== PRINT ==== */
+@media print {
+  body {
+    background: white;
+    padding: 10mm;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 0.5px solid #ddd;
+    width: 90mm;
+    height: 50mm;
+    page-break-inside: avoid;
+  }
+
+  .v1-front, .v2-front, .v2-back {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  h2, .subtitle { page-break-after: avoid; }
+
+  .variant-section {
+    page-break-before: always;
+  }
+
+  .variant-section:first-of-type {
+    page-break-before: avoid;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 15mm;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Variant 1 -->
+<div class="variant-section">
+  <h2>Variant 1</h2>
+  <p class="subtitle">Navy &amp; Cream</p>
+</div>
+
+<div class="card-pair">
+  <div>
+    <div class="card v1-front">
+      <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Aurelius Group">
+    </div>
+    <div class="card-label">Front</div>
+  </div>
+  <div>
+    <div class="card v1-back">
+      <div class="name">Alexander Hartwell</div>
+      <div class="title">Managing Partner</div>
+      <div class="divider"></div>
+      <div class="info">
+        +971 4 123 4567<br>
+        +971 50 987 6543<br>
+        a.hartwell@aureliusgroup.com<br>
+        DIFC, Gate Building, Level 15<br>
+        Dubai, United Arab Emirates
+      </div>
+    </div>
+    <div class="card-label">Back</div>
+  </div>
+</div>
+
+<!-- Variant 2 -->
+<div class="variant-section" style="margin-top: 20px;">
+  <h2>Variant 2</h2>
+  <p class="subtitle">Cream &amp; Navy</p>
+</div>
+
+<div class="card-pair">
+  <div>
+    <div class="card v2-front">
+      <img src="../../assets/logos/aurelius-group/logo.svg" alt="Aurelius Group">
+    </div>
+    <div class="card-label">Front</div>
+  </div>
+  <div>
+    <div class="card v2-back">
+      <div class="name">Alexander Hartwell</div>
+      <div class="title">Managing Partner</div>
+      <div class="divider"></div>
+      <div class="info">
+        +971 4 123 4567<br>
+        +971 50 987 6543<br>
+        a.hartwell@aureliusgroup.com<br>
+        DIFC, Gate Building, Level 15<br>
+        Dubai, United Arab Emirates
+      </div>
+    </div>
+    <div class="card-label">Back</div>
+  </div>
+</div>
+
+</body>
+</html>
