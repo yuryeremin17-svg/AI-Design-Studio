@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Cards — [CLIENT NAME]</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================
+           CSS Variables — Quick Customization
+           ========================================== */
+        :root {
+            --primary: #010110;
+            --accent: #BE9A64;
+            --text: #2D2D2D;
+            --bg: #FFFFFF;
+            --bg-alt: #F5F0E8;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'DM Sans', sans-serif;
+
+            /* Card dimensions: European standard 90×50mm */
+            --card-w: 90mm;
+            --card-h: 50mm;
+            --card-scale: 1.2; /* scale for screen preview */
+
+            /* Double frame */
+            --frame-color: var(--accent);
+            --frame-width: 0.5pt;
+            --frame-gap: 3pt;
+        }
+
+        /* ==========================================
+           Reset & Base
+           ========================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background: #e8e8e8;
+            padding: 40px 20px;
+        }
+
+        /* ==========================================
+           Page Layout (screen preview)
+           ========================================== */
+        .preview-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .variant-label {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 0.75rem;
+            margin-top: 2.5rem;
+        }
+
+        .card-pair {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .card-side-label {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #aaa;
+            margin-bottom: 6px;
+        }
+
+        /* ==========================================
+           Card Base
+           ========================================== */
+        .card {
+            width: var(--card-w);
+            height: var(--card-h);
+            position: relative;
+            overflow: hidden;
+            transform: scale(var(--card-scale));
+            transform-origin: top left;
+            margin-bottom: calc(var(--card-h) * (var(--card-scale) - 1) + 10px);
+            margin-right: calc(var(--card-w) * (var(--card-scale) - 1) + 10px);
+        }
+
+        /* Screen shadow */
+        @media screen {
+            .card {
+                box-shadow:
+                    0 2px 8px rgba(0, 0, 0, 0.12),
+                    0 4px 16px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        /* ==========================================
+           Double Frame (pseudo-element — print-safe)
+           ========================================== */
+        .card-frame {
+            position: absolute;
+            inset: 5mm;
+            border: var(--frame-width) solid var(--frame-color);
+        }
+
+        .card-frame::after {
+            content: '';
+            position: absolute;
+            inset: var(--frame-gap);
+            border: var(--frame-width) solid var(--frame-color);
+            pointer-events: none;
+        }
+
+        /* ==========================================
+           VARIANT 1 — Dark Front / Light Back
+           ========================================== */
+
+        /* Front: dark bg, logo + company name */
+        .v1-front {
+            background: var(--primary);
+        }
+
+        .v1-front .card-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 5mm;
+        }
+
+        .v1-front .card-logo {
+            width: 18mm;
+            height: 18mm;
+            object-fit: contain;
+        }
+
+        .v1-front .card-logo-placeholder {
+            width: 18mm;
+            height: 18mm;
+            border: 0.5pt dashed var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5pt;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .v1-front .company-name {
+            font-family: var(--font-display);
+            font-size: 7pt;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bg);
+            margin-top: 3mm;
+        }
+
+        /* Back: light bg, contact details */
+        .v1-back {
+            background: var(--bg);
+        }
+
+        .v1-back .card-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 7mm 8mm;
+        }
+
+        .v1-back .person-name {
+            font-family: var(--font-display);
+            font-size: 8pt;
+            font-weight: 500;
+            color: var(--text);
+            letter-spacing: 0.04em;
+        }
+
+        .v1-back .person-title {
+            font-family: var(--font-body);
+            font-size: 5.5pt;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 1mm;
+        }
+
+        .v1-back .divider {
+            width: 12mm;
+            height: 0.5pt;
+            background: var(--accent);
+            margin: 3mm 0;
+        }
+
+        .v1-back .contact-line {
+            font-family: var(--font-body);
+            font-size: 5.5pt;
+            color: #666;
+            line-height: 2;
+        }
+
+        /* ==========================================
+           VARIANT 2 — Accent Front / Dark Back
+           ========================================== */
+
+        /* Front: cream/accent bg */
+        .v2-front {
+            background: var(--bg-alt);
+        }
+
+        .v2-front .card-frame {
+            border-color: var(--primary);
+        }
+
+        .v2-front .card-frame::after {
+            border-color: var(--primary);
+        }
+
+        .v2-front .card-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 5mm;
+        }
+
+        .v2-front .card-logo {
+            width: 18mm;
+            height: 18mm;
+            object-fit: contain;
+        }
+
+        .v2-front .card-logo-placeholder {
+            width: 18mm;
+            height: 18mm;
+            border: 0.5pt dashed var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5pt;
+            color: var(--primary);
+            letter-spacing: 0.1em;
+        }
+
+        .v2-front .company-name {
+            font-family: var(--font-display);
+            font-size: 7pt;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-top: 3mm;
+        }
+
+        /* Back: dark bg, light text */
+        .v2-back {
+            background: var(--primary);
+        }
+
+        .v2-back .card-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            padding: 7mm 8mm;
+        }
+
+        .v2-back .person-name {
+            font-family: var(--font-display);
+            font-size: 8pt;
+            font-weight: 500;
+            color: var(--bg);
+            letter-spacing: 0.04em;
+        }
+
+        .v2-back .person-title {
+            font-family: var(--font-body);
+            font-size: 5.5pt;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 1mm;
+        }
+
+        .v2-back .divider {
+            width: 12mm;
+            height: 0.5pt;
+            background: var(--accent);
+            margin: 3mm 0;
+        }
+
+        .v2-back .contact-line {
+            font-family: var(--font-body);
+            font-size: 5.5pt;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 2;
+        }
+
+        /* ==========================================
+           Specs Table
+           ========================================== */
+        .specs {
+            margin-top: 3rem;
+            border-top: 1px solid #ddd;
+            padding-top: 1.5rem;
+        }
+
+        .specs-title {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 4px 20px;
+            font-size: 0.8rem;
+        }
+
+        .specs-grid dt {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .specs-grid dd {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            color: var(--text);
+        }
+
+        /* ==========================================
+           Print Styles
+           ========================================== */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+
+            .preview-section {
+                max-width: none;
+            }
+
+            .card {
+                transform: scale(1);
+                margin: 5mm auto;
+                box-shadow: none;
+                border: 0.25pt solid #ccc;
+            }
+
+            .variant-label,
+            .card-side-label {
+                color: #666;
+            }
+
+            .specs {
+                page-break-before: always;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 15mm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preview-section">
+
+        <h1 class="section-title">[Client Name]</h1>
+        <p class="section-subtitle">Business Cards / Визитные карточки</p>
+
+        <!-- ==========================================
+             VARIANT 1 — Dark / Light
+             ========================================== -->
+        <p class="variant-label" style="margin-top: 0;">Variant 1 — Classic Dark</p>
+
+        <div class="card-pair">
+            <div>
+                <p class="card-side-label">Front / Лицо</p>
+                <div class="card v1-front">
+                    <div class="card-frame">
+                        <div class="card-inner">
+                            <!-- Replace with: <img src="../../assets/logos/[client]/logo-light.svg" class="card-logo" alt="Logo"> -->
+                            <div class="card-logo-placeholder">LOGO</div>
+                            <p class="company-name">[Client Name]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <p class="card-side-label">Back / Оборот</p>
+                <div class="card v1-back">
+                    <div class="card-inner">
+                        <p class="person-name">[Full Name]</p>
+                        <p class="person-title">[Position / Должность]</p>
+                        <div class="divider"></div>
+                        <p class="contact-line">+971 XX XXX XXXX</p>
+                        <p class="contact-line">email@company.com</p>
+                        <p class="contact-line">www.company.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             VARIANT 2 — Cream / Dark
+             ========================================== -->
+        <p class="variant-label">Variant 2 — Warm Contrast</p>
+
+        <div class="card-pair">
+            <div>
+                <p class="card-side-label">Front / Лицо</p>
+                <div class="card v2-front">
+                    <div class="card-frame">
+                        <div class="card-inner">
+                            <!-- Replace with: <img src="../../assets/logos/[client]/logo-dark.svg" class="card-logo" alt="Logo"> -->
+                            <div class="card-logo-placeholder">LOGO</div>
+                            <p class="company-name">[Client Name]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <p class="card-side-label">Back / Оборот</p>
+                <div class="card v2-back">
+                    <div class="card-inner">
+                        <p class="person-name">[Full Name]</p>
+                        <p class="person-title">[Position / Должность]</p>
+                        <div class="divider"></div>
+                        <p class="contact-line">+971 XX XXX XXXX</p>
+                        <p class="contact-line">email@company.com</p>
+                        <p class="contact-line">www.company.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             Specifications
+             ========================================== -->
+        <div class="specs">
+            <p class="specs-title">Specifications / Спецификации</p>
+            <dl class="specs-grid">
+                <dt>Size / Размер</dt>
+                <dd>90 × 50 mm (European standard)</dd>
+                <dt>Paper / Бумага</dt>
+                <dd>350 gsm matte or soft-touch lamination</dd>
+                <dt>Fonts / Шрифты</dt>
+                <dd>Cormorant Garamond + DM Sans</dd>
+                <dt>Colors / Цвета</dt>
+                <dd>CMYK — see brandbook for values</dd>
+                <dt>Bleed / Вылет</dt>
+                <dd>3 mm on all sides</dd>
+                <dt>Safe zone</dt>
+                <dd>3 mm from trim edge</dd>
+            </dl>
+        </div>
+
+    </div>
+
+</body>
+</html>

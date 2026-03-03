@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letterhead — [CLIENT NAME]</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================
+           CSS Variables — Quick Customization
+           ========================================== */
+        :root {
+            --primary: #010110;
+            --accent: #BE9A64;
+            --text: #2D2D2D;
+            --bg: #FFFFFF;
+            --bg-alt: #F5F0E8;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'DM Sans', sans-serif;
+
+            /* A4 dimensions */
+            --page-w: 210mm;
+            --page-h: 297mm;
+            --page-padding-top: 20mm;
+            --page-padding-right: 20mm;
+            --page-padding-bottom: 15mm;
+            --page-padding-left: 20mm;
+
+            /* Double line */
+            --line-color: var(--accent);
+            --line-width: 0.5pt;
+            --line-gap: 2pt;
+        }
+
+        /* ==========================================
+           Reset & Base
+           ========================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background: #e8e8e8;
+            padding: 20px;
+        }
+
+        /* ==========================================
+           Variant Label
+           ========================================== */
+        .variant-label {
+            max-width: var(--page-w);
+            margin: 0 auto 10px;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* ==========================================
+           A4 Sheet
+           ========================================== */
+        .sheet {
+            width: var(--page-w);
+            height: var(--page-h);
+            margin: 0 auto 30px;
+            background: var(--bg);
+            position: relative;
+            padding: var(--page-padding-top) var(--page-padding-right) var(--page-padding-bottom) var(--page-padding-left);
+            overflow: hidden;
+        }
+
+        @media screen {
+            .sheet {
+                box-shadow:
+                    0 2px 8px rgba(0, 0, 0, 0.1),
+                    0 8px 32px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        /* ==========================================
+           Header
+           ========================================== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 8mm;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 4mm;
+        }
+
+        .header-logo {
+            width: 15mm;
+            height: 15mm;
+            object-fit: contain;
+        }
+
+        .header-logo-placeholder {
+            width: 15mm;
+            height: 15mm;
+            border: 0.5pt dashed var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5pt;
+            color: #999;
+            letter-spacing: 0.1em;
+        }
+
+        .header-company {
+            font-family: var(--font-display);
+            font-size: 10pt;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .header-right {
+            text-align: right;
+            font-family: var(--font-body);
+            font-size: 7pt;
+            color: #777;
+            line-height: 1.8;
+        }
+
+        /* Double line under header */
+        .header-line {
+            border: none;
+            border-top: var(--line-width) solid var(--line-color);
+            margin: 0;
+        }
+
+        .header-line-second {
+            border: none;
+            border-top: var(--line-width) solid var(--line-color);
+            margin-top: var(--line-gap);
+        }
+
+        /* ==========================================
+           Content Area
+           ========================================== */
+        .content {
+            padding: 15mm 0;
+            min-height: 200mm;
+        }
+
+        .content-placeholder {
+            font-family: var(--font-body);
+            font-size: 9.5pt;
+            color: #bbb;
+            line-height: 2;
+        }
+
+        .content-placeholder .line {
+            height: 5pt;
+            background: #f0f0f0;
+            margin-bottom: 10pt;
+            border-radius: 1pt;
+        }
+
+        .content-placeholder .line-80 { width: 80%; }
+        .content-placeholder .line-95 { width: 95%; }
+        .content-placeholder .line-70 { width: 70%; }
+        .content-placeholder .line-90 { width: 90%; }
+        .content-placeholder .line-60 { width: 60%; }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        .footer {
+            position: absolute;
+            bottom: var(--page-padding-bottom);
+            left: var(--page-padding-left);
+            right: var(--page-padding-right);
+        }
+
+        .footer-line {
+            border: none;
+            border-top: var(--line-width) solid #ccc;
+            margin-bottom: 3mm;
+        }
+
+        .footer-text {
+            font-family: var(--font-body);
+            font-size: 6pt;
+            color: #aaa;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================
+           Variant 2: Watermark
+           ========================================== */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .watermark img {
+            width: 120mm;
+            height: 120mm;
+            object-fit: contain;
+        }
+
+        .watermark-placeholder {
+            width: 120mm;
+            height: 120mm;
+            border: 1px dashed rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8pt;
+            color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* ==========================================
+           Print Styles
+           ========================================== */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+
+            .variant-label {
+                display: none;
+            }
+
+            .sheet {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            .sheet:last-child {
+                page-break-after: auto;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         VARIANT 1 — Standard Letterhead
+         ========================================== -->
+    <p class="variant-label">Variant 1 — Standard / Стандартный</p>
+
+    <div class="sheet">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <!-- Replace with: <img src="../../assets/logos/[client]/logo.svg" class="header-logo" alt="Logo"> -->
+                <div class="header-logo-placeholder">LOGO</div>
+                <span class="header-company">[Client Name]</span>
+            </div>
+            <div class="header-right">
+                +971 XX XXX XXXX<br>
+                email@company.com<br>
+                www.company.com<br>
+                Dubai, UAE
+            </div>
+        </div>
+        <hr class="header-line">
+        <hr class="header-line-second">
+
+        <!-- Content -->
+        <div class="content">
+            <div class="content-placeholder">
+                <div class="line line-95"></div>
+                <div class="line line-90"></div>
+                <div class="line line-80"></div>
+                <div class="line line-95"></div>
+                <div class="line line-70"></div>
+                <div class="line line-90"></div>
+                <div class="line line-60"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <hr class="footer-line">
+            <p class="footer-text">&copy; 2026 [Client Name]. All rights reserved. | License No. [XXXXX]</p>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         VARIANT 2 — Watermark Letterhead
+         ========================================== -->
+    <p class="variant-label">Variant 2 — Watermark / С водяным знаком</p>
+
+    <div class="sheet">
+        <!-- Watermark -->
+        <div class="watermark">
+            <!-- Replace with: <img src="../../assets/logos/[client]/logo.svg" alt="Watermark"> -->
+            <div class="watermark-placeholder">WATERMARK LOGO</div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <!-- Replace with: <img src="../../assets/logos/[client]/logo.svg" class="header-logo" alt="Logo"> -->
+                <div class="header-logo-placeholder">LOGO</div>
+                <span class="header-company">[Client Name]</span>
+            </div>
+            <div class="header-right">
+                +971 XX XXX XXXX<br>
+                email@company.com<br>
+                www.company.com<br>
+                Dubai, UAE
+            </div>
+        </div>
+        <hr class="header-line">
+        <hr class="header-line-second">
+
+        <!-- Content -->
+        <div class="content" style="position: relative; z-index: 1;">
+            <div class="content-placeholder">
+                <div class="line line-95"></div>
+                <div class="line line-90"></div>
+                <div class="line line-80"></div>
+                <div class="line line-95"></div>
+                <div class="line line-70"></div>
+                <div class="line line-90"></div>
+                <div class="line line-60"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <hr class="footer-line">
+            <p class="footer-text">&copy; 2026 [Client Name]. All rights reserved. | License No. [XXXXX]</p>
+        </div>
+    </div>
+
+</body>
+</html>

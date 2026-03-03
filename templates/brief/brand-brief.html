@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Brief — AI Design Studio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #010110;
+            --accent: #BE9A64;
+            --text: #2D2D2D;
+            --bg: #FAFAF8;
+            --white: #FFFFFF;
+            --light: #F5F0E8;
+            --error: #C0392B;
+            --success: #27AE60;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+        }
+
+        /* ==========================================
+           Header
+           ========================================== */
+        .site-header {
+            background: var(--primary);
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-header h1 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.5);
+            padding: 4px 12px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ==========================================
+           Progress Bar
+           ========================================== */
+        .progress-bar {
+            background: var(--white);
+            padding: 20px 40px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            position: relative;
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: calc(50% + 14px);
+            width: calc(100% - 28px);
+            height: 1px;
+            background: #ddd;
+        }
+
+        .progress-step:last-child::after { display: none; }
+
+        .progress-step.active::after,
+        .progress-step.done::after {
+            background: var(--accent);
+        }
+
+        .step-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #aaa;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .progress-step.active .step-dot {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .progress-step.done .step-dot {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .step-label {
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+
+        .progress-step.active .step-label,
+        .progress-step.done .step-label {
+            color: var(--text);
+        }
+
+        /* ==========================================
+           Form Container
+           ========================================== */
+        .form-container {
+            max-width: 680px;
+            margin: 40px auto;
+            padding: 0 20px 60px;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-header {
+            margin-bottom: 2rem;
+        }
+
+        .step-header h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+
+        .step-header p {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        /* ==========================================
+           Form Fields
+           ========================================== */
+        .field {
+            margin-bottom: 1.5rem;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .field label .hint {
+            font-weight: 400;
+            color: #aaa;
+            font-size: 0.7rem;
+        }
+
+        .field input[type="text"],
+        .field input[type="email"],
+        .field input[type="tel"],
+        .field input[type="url"],
+        .field input[type="number"],
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text);
+            background: var(--white);
+            transition: border-color 0.2s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .field textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Checkboxes */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.8rem;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--accent);
+        }
+
+        .checkbox-item input {
+            display: none;
+        }
+
+        .checkbox-item.checked {
+            border-color: var(--accent);
+            background: rgba(190, 154, 100, 0.08);
+            color: var(--primary);
+        }
+
+        /* Slider / Scale */
+        .scale-field {
+            margin-bottom: 1.5rem;
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        .scale-field input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 3px;
+            background: #ddd;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .scale-field input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            border: 2px solid var(--white);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+
+        /* ==========================================
+           Navigation Buttons
+           ========================================== */
+        .form-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .btn {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 12px 28px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-back {
+            background: none;
+            color: #888;
+            padding-left: 0;
+        }
+
+        .btn-back:hover { color: var(--text); }
+
+        .btn-next {
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 4px;
+        }
+
+        .btn-next:hover { background: #1a1a2e; }
+
+        .btn-submit {
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 4px;
+        }
+
+        .btn-submit:hover { background: #a88a58; }
+
+        /* ==========================================
+           Success Screen
+           ========================================== */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .success-screen.active { display: block; }
+
+        .success-screen h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .success-screen p {
+            font-size: 0.9rem;
+            color: #888;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           Print Styles
+           ========================================== */
+        @media print {
+            .progress-bar, .lang-switch, .form-nav { display: none; }
+            .form-step { display: block !important; page-break-after: always; }
+            body { background: white; }
+            @page { size: A4; margin: 15mm; }
+        }
+
+        /* ==========================================
+           Mobile
+           ========================================== */
+        @media (max-width: 600px) {
+            .site-header { padding: 20px; }
+            .field-row { grid-template-columns: 1fr; }
+            .progress-bar { padding: 15px 20px; }
+            .step-label { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <h1 data-en="Brand Brief" data-ru="Бренд-бриф">Brand Brief</h1>
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        </div>
+    </header>
+
+    <!-- Progress -->
+    <div class="progress-bar">
+        <div class="progress-steps">
+            <div class="progress-step active" data-step="1">
+                <div class="step-dot">1</div>
+                <span class="step-label" data-en="Contact" data-ru="Контакт">Contact</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-dot">2</div>
+                <span class="step-label" data-en="Audience" data-ru="Аудитория">Audience</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-dot">3</div>
+                <span class="step-label" data-en="Personality" data-ru="Характер">Personality</span>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="step-dot">4</div>
+                <span class="step-label" data-en="Visual" data-ru="Визуал">Visual</span>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="step-dot">5</div>
+                <span class="step-label" data-en="Project" data-ru="Проект">Project</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-container">
+
+        <!-- ==========================================
+             STEP 1: Contact + Company
+             ========================================== -->
+        <div class="form-step active" data-step="1">
+            <div class="step-header">
+                <h2 data-en="About You & Your Company" data-ru="О вас и вашей компании">About You & Your Company</h2>
+                <p data-en="Let's start with the basics" data-ru="Начнём с основного">Let's start with the basics</p>
+            </div>
+
+            <div class="field-row">
+                <div class="field">
+                    <label data-en="Full Name" data-ru="Полное имя">Full Name</label>
+                    <input type="text" name="contact_name" required>
+                </div>
+                <div class="field">
+                    <label data-en="Company Name" data-ru="Название компании">Company Name</label>
+                    <input type="text" name="company_name" required>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="field">
+                    <label>WhatsApp / Phone</label>
+                    <input type="tel" name="phone">
+                </div>
+            </div>
+
+            <div class="field">
+                <label data-en="What does your company do?" data-ru="Чем занимается ваша компания?">What does your company do?</label>
+                <textarea name="company_description" placeholder="" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+                <label data-en="Company stage" data-ru="Стадия компании">Company stage</label>
+                <select name="company_stage">
+                    <option value="" data-en="Select..." data-ru="Выберите...">Select...</option>
+                    <option value="startup" data-en="Startup / New business" data-ru="Стартап / Новый бизнес">Startup / New business</option>
+                    <option value="growth" data-en="Growth phase" data-ru="Стадия роста">Growth phase</option>
+                    <option value="established" data-en="Established business" data-ru="Зрелый бизнес">Established business</option>
+                    <option value="rebrand" data-en="Rebranding" data-ru="Ребрендинг">Rebranding</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label data-en="Mission & Values" data-ru="Миссия и ценности">Mission & Values</label>
+                <textarea name="mission" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+                <label data-en="Countries / Regions of operation" data-ru="Страны / Регионы работы">Countries / Regions of operation</label>
+                <input type="text" name="regions">
+            </div>
+
+            <div class="form-nav">
+                <div></div>
+                <button class="btn btn-next" onclick="nextStep()" data-en="Next" data-ru="Далее">Next</button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             STEP 2: Audience + Competitors
+             ========================================== -->
+        <div class="form-step" data-step="2">
+            <div class="step-header">
+                <h2 data-en="Audience & Competition" data-ru="Аудитория и конкуренты">Audience & Competition</h2>
+                <p data-en="Who are your clients and competitors?" data-ru="Кто ваши клиенты и конкуренты?">Who are your clients and competitors?</p>
+            </div>
+
+            <div class="field">
+                <label data-en="Describe your ideal client" data-ru="Опишите вашего идеального клиента">Describe your ideal client</label>
+                <textarea name="ideal_client" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+                <label data-en="What problem do you solve for the client?" data-ru="Какую проблему клиента вы решаете?">What problem do you solve for the client?</label>
+                <textarea name="client_problem" rows="2"></textarea>
+            </div>
+
+            <div class="field">
+                <label data-en="How should the client feel after interacting with your brand?" data-ru="Как клиент должен себя чувствовать после взаимодействия с вашим брендом?">How should the client feel after interacting with your brand?</label>
+                <input type="text" name="client_feeling">
+            </div>
+
+            <div class="field">
+                <label data-en="3-4 direct competitors (with websites)" data-ru="3-4 прямых конкурента (с сайтами)">3-4 direct competitors (with websites)</label>
+                <textarea name="competitors" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+                <label data-en="What makes you different from competitors?" data-ru="Чем вы отличаетесь от конкурентов?">What makes you different from competitors?</label>
+                <textarea name="differentiator" rows="2"></textarea>
+            </div>
+
+            <div class="field">
+                <label data-en="Brands you admire (from any industry)" data-ru="Бренды, которыми восхищаетесь (из любой отрасли)">Brands you admire (from any industry)</label>
+                <input type="text" name="admired_brands">
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-back" onclick="prevStep()" data-en="&larr; Back" data-ru="&larr; Назад">&larr; Back</button>
+                <button class="btn btn-next" onclick="nextStep()" data-en="Next" data-ru="Далее">Next</button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             STEP 3: Brand Personality
+             ========================================== -->
+        <div class="form-step" data-step="3">
+            <div class="step-header">
+                <h2 data-en="Brand Personality" data-ru="Личность бренда">Brand Personality</h2>
+                <p data-en="If your brand were a person..." data-ru="Если бы ваш бренд был человеком...">If your brand were a person...</p>
+            </div>
+
+            <div class="field">
+                <label data-en="Describe your brand as a person — character, style, manner of speech" data-ru="Опишите ваш бренд как человека — характер, стиль, манера речи">Describe your brand as a person — character, style, manner of speech</label>
+                <textarea name="brand_person" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+                <label data-en="5 words that describe your brand" data-ru="5 слов, описывающих ваш бренд">5 words that describe your brand</label>
+                <input type="text" name="brand_words">
+            </div>
+
+            <div class="field">
+                <label data-en="What emotions should the brand evoke?" data-ru="Какие эмоции должен вызывать бренд?">What emotions should the brand evoke?</label>
+                <input type="text" name="brand_emotions">
+            </div>
+
+            <div class="scale-field">
+                <label data-en="Modern vs Classic" data-ru="Современный vs Классический">Modern vs Classic</label>
+                <div class="scale-labels">
+                    <span data-en="Modern" data-ru="Современный">Modern</span>
+                    <span data-en="Classic" data-ru="Классический">Classic</span>
+                </div>
+                <input type="range" name="scale_modern" min="1" max="5" value="3">
+            </div>
+
+            <div class="scale-field">
+                <label data-en="Playful vs Serious" data-ru="Игривый vs Серьёзный">Playful vs Serious</label>
+                <div class="scale-labels">
+                    <span data-en="Playful" data-ru="Игривый">Playful</span>
+                    <span data-en="Serious" data-ru="Серьёзный">Serious</span>
+                </div>
+                <input type="range" name="scale_playful" min="1" max="5" value="3">
+            </div>
+
+            <div class="scale-field">
+                <label data-en="Accessible vs Luxury" data-ru="Доступный vs Люксовый">Accessible vs Luxury</label>
+                <div class="scale-labels">
+                    <span data-en="Accessible" data-ru="Доступный">Accessible</span>
+                    <span data-en="Luxury" data-ru="Люксовый">Luxury</span>
+                </div>
+                <input type="range" name="scale_luxury" min="1" max="5" value="3">
+            </div>
+
+            <div class="scale-field">
+                <label data-en="Masculine vs Feminine" data-ru="Мужской vs Женский">Masculine vs Feminine</label>
+                <div class="scale-labels">
+                    <span data-en="Masculine" data-ru="Мужской">Masculine</span>
+                    <span data-en="Feminine" data-ru="Женский">Feminine</span>
+                </div>
+                <input type="range" name="scale_gender" min="1" max="5" value="3">
+            </div>
+
+            <div class="field">
+                <label data-en="Tone of voice" data-ru="Тон коммуникации">Tone of voice</label>
+                <select name="tone">
+                    <option value="" data-en="Select..." data-ru="Выберите...">Select...</option>
+                    <option value="formal" data-en="Formal & Professional" data-ru="Формальный и профессиональный">Formal & Professional</option>
+                    <option value="friendly" data-en="Friendly & Approachable" data-ru="Дружелюбный и открытый">Friendly & Approachable</option>
+                    <option value="expert" data-en="Expert & Authoritative" data-ru="Экспертный и авторитетный">Expert & Authoritative</option>
+                    <option value="bold" data-en="Bold & Provocative" data-ru="Смелый и провокационный">Bold & Provocative</option>
+                </select>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-back" onclick="prevStep()" data-en="&larr; Back" data-ru="&larr; Назад">&larr; Back</button>
+                <button class="btn btn-next" onclick="nextStep()" data-en="Next" data-ru="Далее">Next</button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             STEP 4: Visual Preferences
+             ========================================== -->
+        <div class="form-step" data-step="4">
+            <div class="step-header">
+                <h2 data-en="Visual Preferences" data-ru="Визуальные предпочтения">Visual Preferences</h2>
+                <p data-en="Help us understand your taste" data-ru="Помогите нам понять ваш вкус">Help us understand your taste</p>
+            </div>
+
+            <div class="field">
+                <label data-en="2-3 logos you like (describe or link)" data-ru="2-3 логотипа, которые вам нравятся (опишите или дайте ссылки)">2-3 logos you like (describe or link)</label>
+                <textarea name="liked_logos" rows="3"></textarea>
+            </div>
+
+            <div class="field">
+                <label data-en="Preferred colors" data-ru="Предпочтительные цвета">Preferred colors <span class="hint" data-en="or 'no preference'" data-ru="или 'нет предпочтений'">or 'no preference'</span></label>
+                <input type="text" name="preferred_colors">
+            </div>
+
+            <div class="field">
+                <label data-en="Colors to avoid" data-ru="Цвета, которые исключить">Colors to avoid</label>
+                <input type="text" name="avoid_colors">
+            </div>
+
+            <div class="field">
+                <label data-en="Visual style" data-ru="Визуальный стиль">Visual style</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="style[]" value="minimalism">
+                        <span data-en="Minimalism" data-ru="Минимализм">Minimalism</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="style[]" value="luxury">
+                        <span data-en="Luxury" data-ru="Роскошь">Luxury</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="style[]" value="bold">
+                        <span data-en="Bold & Modern" data-ru="Яркий и современный">Bold & Modern</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="style[]" value="classic">
+                        <span data-en="Classic & Elegant" data-ru="Классический и элегантный">Classic & Elegant</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="style[]" value="organic">
+                        <span data-en="Organic & Natural" data-ru="Натуральный и органический">Organic & Natural</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label data-en="Do you have an existing logo or brand materials?" data-ru="Есть ли у вас текущий логотип или бренд-материалы?">Do you have an existing logo or brand materials?</label>
+                <select name="has_existing">
+                    <option value="" data-en="Select..." data-ru="Выберите...">Select...</option>
+                    <option value="no" data-en="No, starting from scratch" data-ru="Нет, начинаем с нуля">No, starting from scratch</option>
+                    <option value="logo_only" data-en="Yes, have a logo" data-ru="Да, есть логотип">Yes, have a logo</option>
+                    <option value="full" data-en="Yes, have full brand identity" data-ru="Да, есть полная айдентика">Yes, have full brand identity</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label data-en="What you don't like about current brand (if exists)" data-ru="Что не устраивает в текущем бренде (если есть)">What you don't like about current brand (if exists)</label>
+                <textarea name="current_issues" rows="2"></textarea>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-back" onclick="prevStep()" data-en="&larr; Back" data-ru="&larr; Назад">&larr; Back</button>
+                <button class="btn btn-next" onclick="nextStep()" data-en="Next" data-ru="Далее">Next</button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             STEP 5: Project Scope + Budget
+             ========================================== -->
+        <div class="form-step" data-step="5">
+            <div class="step-header">
+                <h2 data-en="Project Details" data-ru="Детали проекта">Project Details</h2>
+                <p data-en="What do you need and when?" data-ru="Что нужно и когда?">What do you need and when?</p>
+            </div>
+
+            <div class="field">
+                <label data-en="What do you need?" data-ru="Что нужно создать?">What do you need?</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="deliverables[]" value="logo">
+                        <span data-en="Logo" data-ru="Логотип">Logo</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="deliverables[]" value="brandbook">
+                        <span data-en="Brand Book" data-ru="Брендбук">Brand Book</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="deliverables[]" value="cards">
+                        <span data-en="Business Cards" data-ru="Визитки">Business Cards</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="deliverables[]" value="letterhead">
+                        <span data-en="Letterhead" data-ru="Бланк">Letterhead</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="deliverables[]" value="presentation">
+                        <span data-en="Presentation" data-ru="Презентация">Presentation</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="deliverables[]" value="social">
+                        <span data-en="Social Media" data-ru="Соцсети">Social Media</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label data-en="Languages for brand materials" data-ru="Языки для бренд-материалов">Languages for brand materials</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="languages[]" value="en">
+                        <span>English</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="languages[]" value="ar">
+                        <span>Arabic / العربية</span>
+                    </label>
+                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                        <input type="checkbox" name="languages[]" value="ru">
+                        <span>Russian / Русский</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field">
+                    <label data-en="Budget (AED)" data-ru="Бюджет (AED)">Budget (AED)</label>
+                    <select name="budget">
+                        <option value="" data-en="Select range..." data-ru="Выберите диапазон...">Select range...</option>
+                        <option value="5-8k">5,000 — 8,000 AED</option>
+                        <option value="8-15k">8,000 — 15,000 AED</option>
+                        <option value="15-25k">15,000 — 25,000 AED</option>
+                        <option value="25k+">25,000+ AED</option>
+                        <option value="discuss" data-en="Let's discuss" data-ru="Обсудим">Let's discuss</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label data-en="Desired deadline" data-ru="Желаемый срок">Desired deadline</label>
+                    <input type="text" name="deadline">
+                </div>
+            </div>
+
+            <div class="field">
+                <label data-en="How do you prefer to give feedback?" data-ru="Как предпочитаете давать обратную связь?">How do you prefer to give feedback?</label>
+                <select name="feedback_method">
+                    <option value="" data-en="Select..." data-ru="Выберите...">Select...</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="email">Email</option>
+                    <option value="call" data-en="Video / Phone call" data-ru="Видео / Телефон">Video / Phone call</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label data-en="Anything else we should know?" data-ru="Что-нибудь ещё, что нам стоит знать?">Anything else we should know?</label>
+                <textarea name="notes" rows="3"></textarea>
+            </div>
+
+            <div class="form-nav">
+                <button class="btn btn-back" onclick="prevStep()" data-en="&larr; Back" data-ru="&larr; Назад">&larr; Back</button>
+                <button class="btn btn-submit" onclick="submitBrief()" data-en="Submit Brief" data-ru="Отправить бриф">Submit Brief</button>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             Success Screen
+             ========================================== -->
+        <div class="success-screen" id="successScreen">
+            <h2 data-en="Thank You" data-ru="Спасибо">Thank You</h2>
+            <p data-en="We've received your brief and will get back to you within 24 hours." data-ru="Мы получили ваш бриф и свяжемся с вами в течение 24 часов.">We've received your brief and will get back to you within 24 hours.</p>
+        </div>
+
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        let currentLang = 'en';
+
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                setStep(currentStep + 1);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                setStep(currentStep - 1);
+            }
+        }
+
+        function setStep(step) {
+            // Hide current
+            document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+            document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.remove('active');
+            document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.add('done');
+
+            // Show new
+            currentStep = step;
+            document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+
+            // Update progress
+            document.querySelectorAll('.progress-step').forEach(el => {
+                const s = parseInt(el.dataset.step);
+                el.classList.remove('active', 'done');
+                if (s < currentStep) el.classList.add('done');
+                if (s === currentStep) el.classList.add('active');
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+                el.innerHTML = el.getAttribute('data-' + lang);
+            });
+        }
+
+        function submitBrief() {
+            // Collect all form data
+            const data = {};
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.type === 'checkbox') {
+                    if (!data[el.name]) data[el.name] = [];
+                    if (el.parentElement.classList.contains('checked')) {
+                        data[el.name].push(el.value);
+                    }
+                } else if (el.type === 'range') {
+                    data[el.name] = el.value;
+                } else {
+                    data[el.name] = el.value;
+                }
+            });
+
+            // Save to localStorage
+            const briefId = 'brief_' + Date.now();
+            localStorage.setItem(briefId, JSON.stringify(data));
+
+            // Show JSON in console for export
+            console.log('Brief data:', JSON.stringify(data, null, 2));
+
+            // Show success
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('successScreen').classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
