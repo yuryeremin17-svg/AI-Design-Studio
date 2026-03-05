@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>РубИИльник — Визитные карточки</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep-blue: #0F2B4C;
+  --copper: #C46B2A;
+  --copper-light: #D4813E;
+  --warm-sand: #C4A87C;
+  --light: #FAF7F2;
+  --white: #FFFFFF;
+  --gray: #6B7A8D;
+  --gray-light: #E8E4DE;
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  background: #f0efed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 60px;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--deep-blue);
+  text-align: center;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.variant { text-align: center; }
+.variant-label {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  margin-bottom: 20px;
+}
+
+.cards-row {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Card base: 90x50mm at 3.78px/mm = 340x189 */
+.card {
+  width: 340px;
+  height: 189px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(15,43,76,0.15);
+}
+
+/* Dark front */
+.front-dark {
+  background: var(--deep-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.front-dark .logo-icon { margin-bottom: 10px; }
+.front-dark .brand-name {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--light);
+  letter-spacing: 1px;
+}
+.front-dark .brand-name .ii { color: var(--copper); }
+.front-dark .tagline {
+  font-family: var(--font-body);
+  font-size: 6px;
+  color: var(--warm-sand);
+  letter-spacing: 2.5px;
+  margin-top: 5px;
+}
+.front-dark .border-frame {
+  position: absolute;
+  inset: 8px;
+  border: 0.5px solid rgba(196,168,124,0.2);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Light front */
+.front-light {
+  background: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.front-light .brand-name {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--deep-blue);
+  letter-spacing: 1px;
+}
+.front-light .brand-name .ii { color: var(--copper); }
+.front-light .tagline {
+  font-family: var(--font-body);
+  font-size: 6px;
+  color: var(--warm-sand);
+  letter-spacing: 2.5px;
+  margin-top: 5px;
+}
+.front-light .border-frame {
+  position: absolute;
+  inset: 8px;
+  border: 0.5px solid rgba(15,43,76,0.1);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Back */
+.back-dark {
+  background: var(--deep-blue);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.back-dark .icon-watermark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  opacity: 0.08;
+}
+.back-dark .name {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--light);
+  margin-bottom: 2px;
+}
+.back-dark .title {
+  font-family: var(--font-body);
+  font-size: 7px;
+  font-weight: 400;
+  color: var(--copper);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.back-dark .contact-line {
+  font-family: var(--font-body);
+  font-size: 7px;
+  font-weight: 300;
+  color: var(--warm-sand);
+  line-height: 1.8;
+}
+.back-dark .accent-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--copper);
+}
+
+.back-light {
+  background: var(--light);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.back-light .icon-watermark {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  opacity: 0.06;
+}
+.back-light .name {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--deep-blue);
+  margin-bottom: 2px;
+}
+.back-light .title {
+  font-family: var(--font-body);
+  font-size: 7px;
+  font-weight: 400;
+  color: var(--copper);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.back-light .contact-line {
+  font-family: var(--font-body);
+  font-size: 7px;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.8;
+}
+.back-light .accent-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--copper);
+}
+
+.specs {
+  max-width: 720px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--gray);
+  line-height: 1.8;
+}
+.specs strong { color: var(--deep-blue); }
+
+@media print {
+  body { background: white; gap: 30px; padding: 20px; }
+  .card { box-shadow: none; border: 0.5px solid #ddd; }
+}
+</style>
+</head>
+<body>
+
+<div>
+  <h2>Руб<span style="color: var(--copper);">ИИ</span>льник</h2>
+  <div class="subtitle">Визитные карточки &middot; 90 x 50 мм</div>
+</div>
+
+<!-- Variant 1: Dark -->
+<div class="variant">
+  <div class="variant-label">ВАРИАНТ 1 — ТЁМНЫЙ</div>
+  <div class="cards-row">
+    <div class="card front-dark">
+      <div class="border-frame"></div>
+      <div class="logo-icon">
+        <svg viewBox="0 0 80 80" width="36" height="36">
+          <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+          <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="brand-name">Руб<span class="ii">ИИ</span>льник</div>
+      <div class="tagline">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</div>
+    </div>
+    <div class="card back-dark">
+      <div class="icon-watermark">
+        <svg viewBox="0 0 80 80" width="28" height="28">
+          <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="4" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+          <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="name">Юрий Еремин</div>
+      <div class="title">Founder & AI Strategist</div>
+      <div class="contact-line">
+        @eremin_plus &middot; Instagram<br>
+        РубИИльник &middot; Telegram<br>
+        rubelnick.ai@gmail.com<br>
+        Dubai, UAE
+      </div>
+      <div class="accent-line"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Variant 2: Light -->
+<div class="variant">
+  <div class="variant-label">ВАРИАНТ 2 — СВЕТЛЫЙ</div>
+  <div class="cards-row">
+    <div class="card front-light">
+      <div class="border-frame"></div>
+      <div class="logo-icon">
+        <svg viewBox="0 0 80 80" width="36" height="36">
+          <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+          <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="brand-name">Руб<span class="ii">ИИ</span>льник</div>
+      <div class="tagline">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</div>
+    </div>
+    <div class="card back-light">
+      <div class="icon-watermark">
+        <svg viewBox="0 0 80 80" width="28" height="28">
+          <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="4" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+          <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="name">Юрий Еремин</div>
+      <div class="title">Founder & AI Strategist</div>
+      <div class="contact-line">
+        @eremin_plus &middot; Instagram<br>
+        РубИИльник &middot; Telegram<br>
+        rubelnick.ai@gmail.com<br>
+        Dubai, UAE
+      </div>
+      <div class="accent-line"></div>
+    </div>
+  </div>
+</div>
+
+<div class="specs">
+  <strong>Формат:</strong> 90 x 50 мм (европейский стандарт)<br>
+  <strong>Шрифты:</strong> Manrope 600 (имя), Inter 400/300 (должность, контакты)<br>
+  <strong>Печать:</strong> 350 г/м&sup2; матовая бумага, soft-touch ламинация рекомендуется<br>
+  <strong>Углы:</strong> прямые или скругление 2 мм
+</div>
+
+</body>
+</html>

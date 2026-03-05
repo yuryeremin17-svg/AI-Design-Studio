@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelius Group — Presentation Template</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #010110;
+  --gold: #BE9A64;
+  --cream: #F5F0E8;
+  --white: #FFFFFF;
+  --gray-100: #F8F7F5;
+  --gray-200: #E8E5E0;
+  --gray-300: #C4BFB6;
+  --gray-500: #8A8580;
+  --gray-700: #4A4640;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  background: #d4d0ca;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 40px;
+}
+
+/* ---- Slide ---- */
+.slide {
+  width: 960px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+}
+
+.slide-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+/* ---- Slide 1: Title ---- */
+.slide-title {
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.slide-title::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 0.5px solid var(--gold);
+}
+
+.slide-title::after {
+  content: '';
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  right: 26px;
+  bottom: 26px;
+  border: 0.5px solid var(--gold);
+}
+
+.slide-title__content {
+  position: relative;
+  z-index: 1;
+}
+
+.slide-title__content img {
+  max-width: 220px;
+  margin-bottom: 30px;
+}
+
+.slide-title__content .divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 20px;
+}
+
+.slide-title__content h1 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 1.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+.slide-title__content p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+/* ---- Slide 2: Section Divider ---- */
+.slide-section {
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  padding: 0 100px;
+}
+
+.slide-section__number {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.3;
+  margin-right: 40px;
+  line-height: 1;
+}
+
+.slide-section__text h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.slide-section__text p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.slide-section .corner-logo {
+  position: absolute;
+  bottom: 25px;
+  right: 30px;
+  opacity: 0.06;
+  width: 100px;
+}
+
+/* ---- Slide 3: Content ---- */
+.slide-content {
+  background: var(--white);
+  padding: 50px 70px;
+}
+
+.slide-content__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 0.5px solid var(--gold);
+}
+
+.slide-content__header h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+}
+
+.slide-content__header img {
+  max-width: 80px;
+  opacity: 0.5;
+}
+
+.slide-content__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.content-block h4 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.content-block p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: var(--gray-700);
+}
+
+.slide-content .slide-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 70px;
+  right: 70px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.55rem;
+  color: var(--gray-300);
+  letter-spacing: 0.05em;
+}
+
+/* ---- Slide 4: Data / Chart ---- */
+.slide-data {
+  background: var(--white);
+  padding: 50px 70px;
+}
+
+.slide-data__header {
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 0.5px solid var(--gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.slide-data__header h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+}
+
+.slide-data__header img {
+  max-width: 80px;
+  opacity: 0.5;
+}
+
+.chart-placeholder {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: flex-end;
+  height: 280px;
+  padding: 30px 40px 0;
+}
+
+.chart-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.chart-bar__fill {
+  width: 50px;
+  background: var(--navy);
+  margin-bottom: 10px;
+}
+
+.chart-bar:nth-child(2) .chart-bar__fill { background: var(--gold); }
+.chart-bar:nth-child(4) .chart-bar__fill { background: var(--gold); }
+
+.chart-bar__label {
+  font-size: 0.65rem;
+  color: var(--gray-500);
+  letter-spacing: 0.05em;
+}
+
+.chart-bar__value {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.slide-data .slide-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 70px;
+  right: 70px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.55rem;
+  color: var(--gray-300);
+}
+
+/* ---- Slide 5: Closing ---- */
+.slide-closing {
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.slide-closing::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 0.5px solid var(--gold);
+}
+
+.slide-closing__content {
+  position: relative;
+  z-index: 1;
+}
+
+.slide-closing__content img {
+  max-width: 180px;
+  margin-bottom: 25px;
+}
+
+.slide-closing__content .divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 20px;
+}
+
+.slide-closing__content .contact-line {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--gray-300);
+  line-height: 2.2;
+}
+
+.slide-closing__content .url {
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  margin-top: 10px;
+  display: block;
+}
+
+/* ---- Print ---- */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+    gap: 0;
+  }
+
+  .slide {
+    box-shadow: none;
+    page-break-after: always;
+    width: 270mm;
+    height: 152mm;
+  }
+
+  .slide-label { display: none; }
+
+  .slide-title, .slide-section, .slide-closing, .chart-bar__fill {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: 270mm 152mm landscape;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide slide-title">
+  <div class="slide-title__content">
+    <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Aurelius Group">
+    <div class="divider"></div>
+    <h1>Investment Strategy</h1>
+    <p>Q1 2026 &nbsp;&middot;&nbsp; Confidential</p>
+  </div>
+</div>
+<div class="slide-label">Title Slide</div>
+
+<!-- Slide 2: Section Divider -->
+<div class="slide slide-section">
+  <div class="slide-section__number">01</div>
+  <div class="slide-section__text">
+    <h2>Market Overview</h2>
+    <p>Regional investment landscape and macro trends</p>
+  </div>
+  <img class="corner-logo" src="../../assets/logos/aurelius-group/logo.svg" alt="">
+</div>
+<div class="slide-label">Section Divider</div>
+
+<!-- Slide 3: Content -->
+<div class="slide slide-content">
+  <div class="slide-content__header">
+    <h3>Investment Philosophy</h3>
+    <img src="../../assets/logos/aurelius-group/logo.svg" alt="">
+  </div>
+  <div class="slide-content__body">
+    <div class="content-block">
+      <h4>Capital Preservation</h4>
+      <p>Our primary objective is the protection of principal through diversified allocation across uncorrelated asset classes and geographies.</p>
+    </div>
+    <div class="content-block">
+      <h4>Long-Term Growth</h4>
+      <p>We seek sustainable, risk-adjusted returns through disciplined selection of opportunities with fundamental value drivers.</p>
+    </div>
+    <div class="content-block">
+      <h4>Active Stewardship</h4>
+      <p>We maintain active governance roles in portfolio companies, ensuring alignment with our values and performance standards.</p>
+    </div>
+    <div class="content-block">
+      <h4>Transparent Reporting</h4>
+      <p>Quarterly performance reviews, audited financials, and direct access to the investment team at all times.</p>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Aurelius Group &nbsp;&middot;&nbsp; Confidential</span>
+    <span>3</span>
+  </div>
+</div>
+<div class="slide-label">Content Slide</div>
+
+<!-- Slide 4: Data -->
+<div class="slide slide-data">
+  <div class="slide-data__header">
+    <h3>Portfolio Performance</h3>
+    <img src="../../assets/logos/aurelius-group/logo.svg" alt="">
+  </div>
+  <div class="chart-placeholder">
+    <div class="chart-bar">
+      <div class="chart-bar__value">12.4%</div>
+      <div class="chart-bar__fill" style="height: 55%;"></div>
+      <div class="chart-bar__label">Q1 2025</div>
+    </div>
+    <div class="chart-bar">
+      <div class="chart-bar__value">15.8%</div>
+      <div class="chart-bar__fill" style="height: 70%;"></div>
+      <div class="chart-bar__label">Q2 2025</div>
+    </div>
+    <div class="chart-bar">
+      <div class="chart-bar__value">11.2%</div>
+      <div class="chart-bar__fill" style="height: 50%;"></div>
+      <div class="chart-bar__label">Q3 2025</div>
+    </div>
+    <div class="chart-bar">
+      <div class="chart-bar__value">18.3%</div>
+      <div class="chart-bar__fill" style="height: 82%;"></div>
+      <div class="chart-bar__label">Q4 2025</div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Aurelius Group &nbsp;&middot;&nbsp; Confidential</span>
+    <span>4</span>
+  </div>
+</div>
+<div class="slide-label">Data Slide</div>
+
+<!-- Slide 5: Closing -->
+<div class="slide slide-closing">
+  <div class="slide-closing__content">
+    <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Aurelius Group">
+    <div class="divider"></div>
+    <div class="contact-line">
+      DIFC, Gate Building, Level 15, Dubai, UAE<br>
+      +971 4 123 4567 &nbsp;&middot;&nbsp; info@aureliusgroup.com
+    </div>
+    <span class="url">aureliusgroup.com</span>
+  </div>
+</div>
+<div class="slide-label">Closing Slide</div>
+
+</body>
+</html>

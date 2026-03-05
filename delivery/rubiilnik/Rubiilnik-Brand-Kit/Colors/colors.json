@@ -1,0 +1,31 @@
+{
+  "brand": "РубИИльник",
+  "style": "Tech Premium / Warm Minimalism",
+  "palette": {
+    "Deep Blue (Primary)": {
+      "hex": "#0F2B4C",
+      "rgb": "15, 43, 76",
+      "usage": "Backgrounds, primary text"
+    },
+    "Copper Electric (Accent)": {
+      "hex": "#C46B2A",
+      "rgb": "196, 107, 42",
+      "usage": "Accents, CTA, \"ИИ\" highlight"
+    },
+    "Warm Sand (Secondary)": {
+      "hex": "#C4A87C",
+      "rgb": "196, 168, 124",
+      "usage": "Decorations, tagline, frames"
+    },
+    "Warm White (Light)": {
+      "hex": "#FAF7F2",
+      "rgb": "250, 247, 242",
+      "usage": "Light backgrounds, paper"
+    }
+  },
+  "fonts": {
+    "heading": "Manrope (400, 500, 600, 700)",
+    "body": "Inter (300, 400, 500, 600)",
+    "source": "Google Fonts"
+  }
+}

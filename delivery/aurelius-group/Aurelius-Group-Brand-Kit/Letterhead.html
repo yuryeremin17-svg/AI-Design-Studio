@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelius Group — Letterhead</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #010110;
+  --gold: #BE9A64;
+  --cream: #F5F0E8;
+  --white: #FFFFFF;
+  --gray-200: #E8E5E0;
+  --gray-300: #C4BFB6;
+  --gray-500: #8A8580;
+  --gray-700: #4A4640;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  background: #e8e5e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 60px;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-align: center;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- A4 Letterhead ---- */
+.letterhead {
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--white);
+  padding: 20mm 25mm;
+  position: relative;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+}
+
+/* Header */
+.lh-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 8mm;
+}
+
+.lh-header img {
+  max-width: 50mm;
+  height: auto;
+}
+
+.lh-contacts {
+  text-align: right;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 7pt;
+  line-height: 2;
+  color: var(--gray-500);
+}
+
+.lh-line1 {
+  border-bottom: 0.5px solid var(--gold);
+  margin-bottom: 2mm;
+}
+
+.lh-line2 {
+  border-bottom: 0.5px solid var(--gold);
+  margin-bottom: 20mm;
+}
+
+/* Body */
+.lh-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 9pt;
+  line-height: 2;
+  color: var(--gray-700);
+  min-height: 190mm;
+}
+
+.lh-body .date {
+  margin-bottom: 8mm;
+  color: var(--gray-500);
+  font-size: 8pt;
+}
+
+.lh-body .greeting {
+  margin-bottom: 5mm;
+}
+
+.lh-body .paragraph {
+  margin-bottom: 5mm;
+}
+
+.lh-body .closing {
+  margin-top: 10mm;
+}
+
+.lh-body .signature-space {
+  height: 15mm;
+}
+
+.lh-body .signer-name {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 10pt;
+  color: var(--navy);
+  letter-spacing: 0.05em;
+}
+
+.lh-body .signer-title {
+  font-size: 7.5pt;
+  color: var(--gray-500);
+}
+
+/* Footer */
+.lh-footer {
+  position: absolute;
+  bottom: 20mm;
+  left: 25mm;
+  right: 25mm;
+  border-top: 0.5px solid var(--gold);
+  padding-top: 3mm;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 6pt;
+  color: var(--gray-300);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Watermark variant ---- */
+.watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.watermark img {
+  width: 120mm;
+  height: auto;
+}
+
+/* ---- Print ---- */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+    gap: 0;
+  }
+
+  h2, .subtitle { display: none; }
+
+  .letterhead {
+    box-shadow: none;
+    page-break-after: always;
+    width: 210mm;
+    min-height: 297mm;
+  }
+
+  .watermark {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================
+     VARIANT 1: Standard
+     ========================================== -->
+<h2>Variant 1</h2>
+<p class="subtitle">Standard Letterhead</p>
+
+<div class="letterhead">
+  <div class="lh-header">
+    <img src="../../assets/logos/aurelius-group/logo.svg" alt="Aurelius Group">
+    <div class="lh-contacts">
+      DIFC, Gate Building, Level 15<br>
+      Dubai, United Arab Emirates<br>
+      +971 4 123 4567<br>
+      info@aureliusgroup.com
+    </div>
+  </div>
+  <div class="lh-line1"></div>
+  <div class="lh-line2"></div>
+
+  <div class="lh-body">
+    <div class="date">March 3, 2026</div>
+    <div class="greeting">Dear Mr. Richardson,</div>
+    <div class="paragraph">
+      Thank you for your interest in Aurelius Group. We are pleased to present our investment strategy proposal for your family office, tailored to your long-term wealth preservation objectives.
+    </div>
+    <div class="paragraph">
+      Our approach combines time-tested principles of capital preservation with carefully selected opportunities across the Gulf region. We believe that disciplined stewardship and transparent communication form the foundation of any successful partnership.
+    </div>
+    <div class="paragraph">
+      We look forward to discussing this proposal in detail at your earliest convenience. Please do not hesitate to reach out should you have any questions.
+    </div>
+    <div class="closing">Yours sincerely,</div>
+    <div class="signature-space"></div>
+    <div class="signer-name">Alexander Hartwell</div>
+    <div class="signer-title">Managing Partner</div>
+  </div>
+
+  <div class="lh-footer">
+    &copy; 2026 Aurelius Group. All rights reserved. &nbsp;&middot;&nbsp; DIFC, Gate Building, Level 15, Dubai, UAE &nbsp;&middot;&nbsp; aureliusgroup.com
+  </div>
+</div>
+
+
+<!-- ==========================================
+     VARIANT 2: With Watermark
+     ========================================== -->
+<h2>Variant 2</h2>
+<p class="subtitle">With Watermark</p>
+
+<div class="letterhead">
+  <div class="watermark">
+    <img src="../../assets/logos/aurelius-group/logo.svg" alt="">
+  </div>
+
+  <div class="lh-header" style="position: relative; z-index: 1;">
+    <img src="../../assets/logos/aurelius-group/logo.svg" alt="Aurelius Group">
+    <div class="lh-contacts">
+      DIFC, Gate Building, Level 15<br>
+      Dubai, United Arab Emirates<br>
+      +971 4 123 4567<br>
+      info@aureliusgroup.com
+    </div>
+  </div>
+  <div class="lh-line1" style="position: relative; z-index: 1;"></div>
+  <div class="lh-line2" style="position: relative; z-index: 1;"></div>
+
+  <div class="lh-body" style="position: relative; z-index: 1;">
+    <div class="date">March 3, 2026</div>
+    <div class="greeting">Dear Mr. Richardson,</div>
+    <div class="paragraph">
+      Thank you for your interest in Aurelius Group. We are pleased to present our investment strategy proposal for your family office, tailored to your long-term wealth preservation objectives.
+    </div>
+    <div class="paragraph">
+      Our approach combines time-tested principles of capital preservation with carefully selected opportunities across the Gulf region. We believe that disciplined stewardship and transparent communication form the foundation of any successful partnership.
+    </div>
+    <div class="paragraph">
+      We look forward to discussing this proposal in detail at your earliest convenience. Please do not hesitate to reach out should you have any questions.
+    </div>
+    <div class="closing">Yours sincerely,</div>
+    <div class="signature-space"></div>
+    <div class="signer-name">Alexander Hartwell</div>
+    <div class="signer-title">Managing Partner</div>
+  </div>
+
+  <div class="lh-footer" style="position: relative; z-index: 1;">
+    &copy; 2026 Aurelius Group. All rights reserved. &nbsp;&middot;&nbsp; DIFC, Gate Building, Level 15, Dubai, UAE &nbsp;&middot;&nbsp; aureliusgroup.com
+  </div>
+</div>
+
+</body>
+</html>

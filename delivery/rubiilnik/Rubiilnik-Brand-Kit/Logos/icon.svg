@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <!-- Compact icon: power switch only — for avatars, favicons -->
+  <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+  <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+</svg>

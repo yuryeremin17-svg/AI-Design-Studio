@@ -146,56 +146,31 @@ function exportWithPlaywright(svgPath, pngPath, width) {
   const aspectRatio = viewBoxMatch ? parseInt(viewBoxMatch[4]) / parseInt(viewBoxMatch[3]) : 0.3;
   const height = Math.round(width * aspectRatio);
 
-  const html = `<html><body style="margin:0;padding:0;background:transparent">
-    <img src="file://${svgPath}" width="${width}" height="${height}">
-  </body></html>`;
-  const tmpHtml = path.join('/tmp', 'svg-export.html');
-  fs.writeFileSync(tmpHtml, html);
-
-  execSync(
-    `HOME=/tmp npx playwright@latest screenshot --viewport-size="${width},${height}" "file://${tmpHtml}" "${pngPath}" 2>/dev/null`,
-    { stdio: 'pipe', timeout: 30000 }
-  );
+  // Use Node Playwright API for transparent background (omitBackground)
+  const scriptPath = path.join('/tmp', 'svg-to-png.js');
+  const script = `
+const { chromium } = require('/tmp/node_modules/playwright-core');
+(async () => {
+  const browser = await chromium.launch({
+    executablePath: '/tmp/Library/Caches/ms-playwright/chromium-1208/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing'
+  });
+  const page = await browser.newPage({ viewport: { width: ${width}, height: ${height} } });
+  await page.goto('file://${svgPath}', { waitUntil: 'load' });
+  await page.waitForTimeout(300);
+  await page.screenshot({ path: '${pngPath}', omitBackground: true, timeout: 10000 });
+  await browser.close();
+})();
+`;
+  fs.writeFileSync(scriptPath, script);
+  execSync(`node "${scriptPath}"`, { stdio: 'pipe', timeout: 30000 });
 }
 
 function extractColors(clientName) {
-  // Client-specific color data
-  const clientColors = {
-    'aurelius-group': {
-      brand: 'Aurelius Group',
-      style: 'Luxury / Old Money',
-      palette: {
-        'Navy (Primary)': { hex: '#010110', rgb: '1, 1, 16', usage: 'Backgrounds, primary text' },
-        'Gold (Accent)': { hex: '#BE9A64', rgb: '190, 154, 100', usage: 'Accent elements, decorations, logo' },
-        'Cream (Light)': { hex: '#F5F0E8', rgb: '245, 240, 232', usage: 'Light backgrounds, paper' },
-        'White': { hex: '#FFFFFF', rgb: '255, 255, 255', usage: 'Text on dark backgrounds' },
-        'Warm Gray': { hex: '#8A8A8A', rgb: '138, 138, 138', usage: 'Secondary text, captions' },
-      },
-      fonts: {
-        heading: 'Cormorant Garamond (300, 400, 600)',
-        body: 'DM Sans (300, 400)',
-        source: 'Google Fonts'
-      }
-    },
-    'rubiilnik': {
-      brand: 'РубИИльник',
-      style: 'Tech Premium / Warm Minimalism',
-      palette: {
-        'Deep Blue (Primary)': { hex: '#0F2B4C', rgb: '15, 43, 76', usage: 'Backgrounds, primary text' },
-        'Copper Electric (Accent)': { hex: '#C46B2A', rgb: '196, 107, 42', usage: 'Accents, CTA, "ИИ" highlight' },
-        'Warm Sand (Secondary)': { hex: '#C4A87C', rgb: '196, 168, 124', usage: 'Decorations, tagline, frames' },
-        'Warm White (Light)': { hex: '#FAF7F2', rgb: '250, 247, 242', usage: 'Light backgrounds, paper' },
-      },
-      fonts: {
-        heading: 'Space Grotesk (400, 500, 600, 700)',
-        body: 'Inter (300, 400, 500, 600)',
-        source: 'Google Fonts'
-      }
-    }
-  };
-
-  if (clientColors[clientName]) {
-    return clientColors[clientName];
+  // Read from brand.json if available
+  const brandJsonPath = path.join(ROOT, 'output', clientName, 'brand.json');
+  if (fs.existsSync(brandJsonPath)) {
+    const data = JSON.parse(fs.readFileSync(brandJsonPath, 'utf8'));
+    return data;
   }
 
   // Fallback: try to parse from brandbook HTML
