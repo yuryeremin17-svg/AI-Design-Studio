@@ -9,10 +9,11 @@
 - Кейсы кликабельные: карточки ведут на `output/*/brandbook.html`
 - Визуальная проверка Playwright — OK
 
-### B3. Deploy лендинга (DONE)
+### B3. Deploy лендинга (ЧАСТИЧНО)
 - Репо сделан публичным (`gh repo edit --visibility public`)
-- GitHub Pages включён: **https://yuryeremin17-svg.github.io/AI-Design-Studio/**
-- Source: master branch, root `/`
+- GitHub Pages включён, но **legacy build зависает** (duration: 0)
+- **Блокер:** токен без `workflow` scope — не пушится `.github/workflows/pages.yml`
+- **Решение:** обновить токен (Settings > Tokens > добавить workflow scope) или настроить Pages вручную в Settings репо
 
 ### Исправления визиток РубИИльник
 - `business-cards.html`: добавлен телефон `+971 58 517 7230` и email на оборот обоих вариантов
