@@ -1,132 +1,118 @@
 # HANDOFF — AI Design Studio
-> Дата: 2026-03-05 | Сессия: #5
+> Дата: 2026-03-05 | Сессия: #5 (часть 2)
 
-## Аудит сессии #5: почему проект буксовал
+## Что сделано в этой сессии
 
-### Корневые причины (сессии #1-4)
-1. **Копирование вместо создания** — Aurelius = клон LH-brand (та же палитра, шрифт, структура)
-2. **Технические кроличьи норы** — сессия #4 убита на PDF-экспорт (3 подхода, все провалились). PDF — последний шаг, не первый
-3. **Украшения вместо фундамента** — нет дизайн-системы (случайные отступы, нет типографической шкалы)
-4. **Визуал не проверялся** — 1 transition на 2052 строки. Статичный HTML уровня 2018 года
-5. **Нет системы доставки** — клиент не может получить ZIP, PNG логотипов, PDF, онлайн-ссылку
+### 1. Аудит и диагностика (часть 1)
+- Полный аудит 4 предыдущих сессий — найдены корневые причины буксования
+- Aurelius v2 = клон LH-brand визуально (та же палитра, шрифт, структура)
+- 1 transition на 2052 строки — визуал уровня 2018 года
+- PDF-экспорт убил сессию #4 (3 подхода, все провалились)
+- Нет системы доставки клиенту (ZIP, PNG, PDF, онлайн-ссылка)
 
-### Что уже сделано и работает
-- Структура проекта (папки, шаблоны, команды)
-- Aurelius v2.0 — 18 секций, inline SVG, 76 KB (технически сильнее LH)
-- Playwright MCP работает
-- Шаблоны: brandbook, businesscard, letterhead, brief
-- Логотипы SVG: dark + light
-- export-pdf.js — работает, но качество плохое
+### 2. Брендбук v3.0 создан — `output/aurelius-group/brandbook-v3.html`
+**Дизайн-система:**
+- Типографическая шкала Perfect Fourth (1.333): 0.75rem → 3.157rem
+- Модульные отступы 8px grid (--sp-1 через --sp-16)
+- Система теней (--shadow-sm/md/lg/xl/gold)
+- CSS-переменные для всего (цвета, шрифты, размеры, отступы)
+- Easing curve: cubic-bezier(0.16, 1, 0.3, 1)
 
-### Что студия МОЖЕТ без дизайнера (85-90% от топовой студии)
-- Типографика (Google Fonts = те же шрифты что у студий)
-- Цвет, градиенты, контраст — всё в CSS
-- Сетка и пропорции — CSS Grid, математические отступы
-- Интерактивность — scroll-анимации, hover, copy-to-clipboard
-- Стилизованные мокапы — CSS perspective + shadow (не фотореалистичные)
-- Print-ready вёрстка — @media print, page-break
-- Разнообразие стилей — CSS-переменные, разные палитры/шрифты
+**Интерактивность:**
+- IntersectionObserver — fade-in секций при скролле
+- Прогресс-бар чтения (gold, fixed top)
+- Copy HEX по клику на палитре (toast уведомление)
+- Smooth scroll из оглавления
+- Hover transitions на ВСЕХ элементах (карточки, свотчи, пилларсы, таблицы)
+- TOC ссылки: translateX(8px) при hover
+- 3D perspective на визитках: rotateY(-5deg) rotateX(3deg) при hover
 
-### Что НЕ МОЖЕТ (честно)
-- Фотореалистичные 3D мокапы (нужен Photoshop/Blender)
-- Кастомные иллюстрации
-- CMYK PDF для типографии (браузеры = RGB)
+**Визуальные улучшения:**
+- Radial glow на обложке и контактной странице
+- Multi-layer box-shadow на карточках, мокапах, бланках
+- Цветные browser dots (red/yellow/green) в веб-мокапе
+- Скругления border-radius: 4px на карточках
+- Градиентные placeholder'ы для фотостиля (вместо пустоты)
+- Photo grid 2x2 с gradient фонами и подписями
 
-## План: 7 шагов
+**Визуально проверено (Playwright):**
+- Обложка — OK
+- Визитки (3 в ряд) — OK
+- Brand Elements (палитра + double frame) — OK
+- Photography (тёмная тема + фото-placeholder'ы) — OK
+- Contacts (двойная рамка + glow) — OK
 
-### Шаг 1: Дизайн-система
-- Типографическая шкала (Perfect Fourth: 1.0 → 1.333 → 1.777 → 2.369 → 3.157)
-- Модульные отступы (8px grid — все margin/padding кратны 8)
-- Цветовой баланс 60/30/10
-- Вертикальный ритм
-- CSS-переменные для быстрой смены стиля
+### 3. Что НЕ сделано (перенос на следующую сессию)
+- [ ] Заменить brandbook-v3.html → brandbook.html (после одобрения Юрием)
+- [ ] Удалить временные скриншоты (v3-*.png)
+- [ ] Система доставки (deliver.js, ZIP, PNG логотипов, colors.json, deploy)
+- [ ] Второй клиент (другой стиль — Modern/Tech/Fashion)
+- [ ] Починить бриф-форму (setLang баг, Web3Forms)
+- [ ] Обновить slash-команды (.claude/commands/*.md — устарели)
+- [ ] Портфолио-лендинг
+- [ ] PDF-экспорт (попробовать Paged.js или print-optimized HTML)
 
-### Шаг 2: Переделать Aurelius — премиальный визуал
-- Применить дизайн-систему
-- Разнообразные layouts (не "заголовок + текст" на каждой странице)
-- Воздух и пропорции
-- Глубина (multi-layer box-shadow, subtle gradients)
-- CSS perspective мокапы визиток
-- Реальные фото через URL (раздел "фотостиль")
+## Сравнение v2 vs v3
 
-### Шаг 3: Интерактивность
-- IntersectionObserver: fade-in секций при скролле
-- Smooth scroll навигация из оглавления
-- Hover-transitions на всех интерактивных элементах
-- Copy HEX по клику на палитре
-- Прогресс-бар чтения (опционально)
+| Аспект | v2 | v3 |
+|--------|----|----|
+| Строк | 2052 | ~2400 |
+| Анимации | 1 transition | IntersectionObserver + @keyframes + 30+ transitions |
+| Тени | 1 box-shadow | 5 уровней теней (sm/md/lg/xl/gold) |
+| Типографика | Случайные размеры | Perfect Fourth шкала |
+| Отступы | Произвольные | 8px grid система |
+| Hover | Только TOC | ВСЁ интерактивное |
+| Мокапы визиток | Плоские | 3D perspective |
+| Фото-секция | Только текст | Gradient placeholder'ы 2x2 |
+| Обложка | Статичная | Radial glow + анимации появления |
+| Copy HEX | Нет | Клик на палитре → clipboard + toast |
+| Прогресс-бар | Нет | Gold bar вверху |
+| Print | Базовый | + .reveal forced visible |
 
-### Шаг 4: Система доставки
-- deliver.js — скрипт сборки:
-  - ZIP-пакет (Brandbook/ + Logos/ + Production/ + Digital/ + README)
-  - PNG логотипов из SVG (через Playwright, 500/1000/2000px)
-  - colors.json (палитра + шрифты для разработчиков)
-  - Print-версия HTML (без JS/анимаций) → PDF
-- deploy.sh — публикация на GitHub Pages / Netlify
-- Клиент получает: ссылку + ZIP
+## План: 7 шагов (актуальный)
 
-### Шаг 5: Второй клиент (другой стиль)
-- Tech/Modern или Fashion — доказать универсальность
-- Другая палитра, шрифты, настроение
-- Та же дизайн-система, другие значения переменных
-
-### Шаг 6: Пайплайн
-- Починить бриф-форму (setLang баг, Web3Forms)
-- Обновить slash-команды (brandbook.md устарел — "13 разделов")
-- scripts/new-client.js — создание папки из брифа
-- Протестировать Paged.js как альтернативу для PDF
-
-### Шаг 7: Портфолио-лендинг
-- Одностраничный сайт с 2 кейсами
-- Форма заявки
-- Деплой
+1. ~~Дизайн-система~~ — DONE
+2. ~~Премиальный визуал Aurelius~~ — DONE (v3)
+3. ~~Интерактивность~~ — DONE (встроено в v3)
+4. **Система доставки** — NEXT
+5. **Второй клиент**
+6. **Пайплайн** (бриф, команды, автоматизация)
+7. **Портфолио-лендинг**
 
 ## Технические заметки
 
-### Playwright CLI
+### Playwright screenshots
 ```bash
-HOME=/tmp npx playwright@latest screenshot --full-page "file:///path" output.png
+# Установка (если новая версия):
+HOME=/tmp npx playwright@latest install chromium
+
+# Full-page screenshot:
+HOME=/tmp npx playwright@latest screenshot --full-page --wait-for-timeout=3000 "file:///path" output.png
+
+# Секции через Node API (reveal forced visible):
+# scripts/screenshot-sections.js
 ```
 
-### Неиспользуемые CSS-возможности (добавить)
-- @keyframes (fade-in, slide-up)
-- IntersectionObserver + CSS классы
-- box-shadow multi-layer
-- CSS gradient (subtle фоны между секциями)
-- CSS perspective + rotateY (мокапы)
-- backdrop-filter: blur() — только для tech-стилей, НЕ для luxury
-
-### Отменённые идеи
-- Glassmorphism — тренд, не премиум. Не подходит для luxury
-- Фотореалистичные 3D мокапы — нереалистично без Photoshop
-- PDF через page.pdf() с @media print — 3 попытки провалились
+### Важно для скриншотов
+`.reveal` элементы имеют `opacity: 0` по умолчанию. Для headless-скриншотов нужно:
+```js
+await page.evaluate(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')));
+```
 
 ## Структура файлов
 ```
 AI-Design-Studio/
-├── .mcp.json
-├── .gitignore              ← node_modules/ добавлен
-├── package.json            ← playwright ^1.58.2
-├── CLAUDE.md
-├── HANDOFF.md              ← этот файл
-├── assets/logos/aurelius-group/
-│   ├── logo.svg            ← тёмный
-│   └── logo-light.svg      ← светлый
-├── templates/
-│   ├── brief/brand-brief.html
-│   ├── brandbook/starter.html
-│   ├── businesscard/starter.html
-│   └── letterhead/starter.html
-├── scripts/
-│   └── export-pdf.js       ← рабочий, качество плохое
 ├── output/aurelius-group/
-│   ├── brandbook.html      ← v2.0 (2052 строк, 18 секций)
+│   ├── brandbook.html          ← v2.0 (старый)
+│   ├── brandbook-v3.html       ← v3.0 (НОВЫЙ, текущий)
+│   ├── v3-*.png                ← временные скриншоты (удалить после проверки)
 │   ├── business-cards.html
 │   ├── letterhead.html
 │   ├── presentation.html
 │   ├── email-signature.html
-│   └── print/              ← черновые PDF
-└── .claude/
-    ├── commands/            ← brandbook, businesscard, letterhead, deliver, new-client
-    └── rules/quality-check.md
+│   └── print/
+├── scripts/
+│   ├── export-pdf.js
+│   └── screenshot-sections.js  ← НОВЫЙ
+└── ...
 ```
