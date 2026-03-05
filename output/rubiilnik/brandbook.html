@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>РубИИльник — Brand Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN SYSTEM — РубИИльник
+   ============================================ */
+
+/* --- Design Tokens --- */
+:root {
+  /* Colors */
+  --deep-blue: #0F2B4C;
+  --warm-sand: #C4A87C;
+  --copper: #C46B2A;
+  --copper-light: #D4813E;
+  --copper-glow: rgba(196, 107, 42, 0.15);
+  --light: #FAF7F2;
+  --white: #FFFFFF;
+  --gray: #6B7A8D;
+  --gray-light: #E8E4DE;
+  --dark-text: #1A1A2E;
+
+  /* Typography — Major Third (1.25) */
+  --fs-xs: 0.64rem;
+  --fs-sm: 0.8rem;
+  --fs-base: 1rem;
+  --fs-md: 1.25rem;
+  --fs-lg: 1.563rem;
+  --fs-xl: 1.953rem;
+  --fs-2xl: 2.441rem;
+  --fs-3xl: 3.052rem;
+
+  /* Spacing — 8px grid */
+  --sp-1: 0.5rem; --sp-2: 1rem; --sp-3: 1.5rem; --sp-4: 2rem;
+  --sp-6: 3rem; --sp-8: 4rem; --sp-12: 6rem; --sp-16: 8rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(15,43,76,0.08);
+  --shadow-md: 0 4px 12px rgba(15,43,76,0.1);
+  --shadow-lg: 0 8px 30px rgba(15,43,76,0.12);
+  --shadow-xl: 0 16px 50px rgba(15,43,76,0.16);
+  --shadow-copper: 0 4px 20px rgba(196,107,42,0.2);
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 0.5s;
+
+  /* Fonts */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--dark-text);
+  background: var(--light);
+}
+
+/* --- Progress Bar --- */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--copper);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* --- Section Base --- */
+section {
+  min-height: 100vh;
+  padding: var(--sp-12) var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+section.dark {
+  background: var(--deep-blue);
+  color: var(--light);
+}
+
+section.light {
+  background: var(--light);
+  color: var(--dark-text);
+}
+
+section.sand {
+  background: var(--warm-sand);
+  color: var(--deep-blue);
+}
+
+/* --- Reveal Animation --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.2; }
+h1 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-2xl); margin-bottom: var(--sp-4); }
+h3 { font-size: var(--fs-lg); margin-bottom: var(--sp-2); }
+p { max-width: 680px; margin-bottom: var(--sp-2); }
+
+.section-number {
+  font-family: var(--font-heading);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--copper);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+}
+
+.accent { color: var(--copper); }
+.sand-text { color: var(--warm-sand); }
+
+/* --- Inner Container --- */
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* --- Cards --- */
+.card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: var(--sp-4);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-dark {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: var(--sp-4);
+  transition: all var(--duration) var(--ease);
+}
+.card-dark:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--copper);
+}
+
+/* --- Grid --- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--sp-4); }
+
+/* ============================================
+   01. COVER
+   ============================================ */
+#cover {
+  position: relative;
+  text-align: center;
+}
+#cover::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--copper-glow) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cover-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto var(--sp-4);
+}
+.cover-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cover-title {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: var(--sp-2);
+}
+
+.cover-tagline {
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  color: var(--warm-sand);
+  letter-spacing: 4px;
+  margin-bottom: var(--sp-8);
+}
+
+.cover-label {
+  font-size: var(--fs-sm);
+  color: var(--gray);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   02. TABLE OF CONTENTS
+   ============================================ */
+.toc-list {
+  list-style: none;
+  max-width: 500px;
+}
+.toc-list li {
+  border-bottom: 1px solid var(--gray-light);
+}
+.toc-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-2) 0;
+  text-decoration: none;
+  color: var(--dark-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  transition: all 0.3s var(--ease);
+}
+.toc-list a:hover {
+  color: var(--copper);
+  transform: translateX(8px);
+}
+.toc-num {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--copper);
+  min-width: 30px;
+}
+
+/* ============================================
+   03. BRAND STORY
+   ============================================ */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+.pillar {
+  text-align: center;
+  padding: var(--sp-4) var(--sp-3);
+}
+.pillar-icon {
+  font-size: 2rem;
+  margin-bottom: var(--sp-2);
+  color: var(--copper);
+}
+.pillar h4 {
+  font-size: var(--fs-md);
+  margin-bottom: var(--sp-1);
+}
+.pillar p {
+  font-size: var(--fs-sm);
+  color: var(--gray);
+  margin: 0 auto;
+}
+
+/* ============================================
+   04-06. LOGO
+   ============================================ */
+.logo-showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: var(--sp-8);
+  border-radius: 8px;
+  margin-bottom: var(--sp-4);
+}
+.logo-showcase svg {
+  max-width: 380px;
+  width: 100%;
+}
+
+.logo-variants {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+.logo-variant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-6) var(--sp-4);
+  border-radius: 8px;
+  transition: all var(--duration) var(--ease);
+}
+.logo-variant:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+.logo-variant svg { max-width: 300px; width: 100%; }
+.logo-variant.on-light { background: var(--light); border: 1px solid var(--gray-light); }
+.logo-variant.on-dark { background: var(--deep-blue); }
+.logo-variant.on-sand { background: var(--warm-sand); }
+.logo-variant.on-copper { background: var(--copper); }
+
+.clearspace-box {
+  position: relative;
+  display: inline-block;
+  padding: var(--sp-8);
+  border: 2px dashed var(--copper);
+  border-radius: 8px;
+  margin: var(--sp-4) 0;
+}
+.clearspace-label {
+  position: absolute;
+  font-size: var(--fs-xs);
+  color: var(--copper);
+  font-family: var(--font-heading);
+}
+.clearspace-label.top { top: var(--sp-1); left: 50%; transform: translateX(-50%); }
+.clearspace-label.bottom { bottom: var(--sp-1); left: 50%; transform: translateX(-50%); }
+.clearspace-label.left { left: var(--sp-1); top: 50%; transform: translateY(-50%) rotate(-90deg); }
+.clearspace-label.right { right: var(--sp-1); top: 50%; transform: translateY(-50%) rotate(90deg); }
+
+/* ============================================
+   07. COLORS
+   ============================================ */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+.color-swatch {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--duration) var(--ease);
+}
+.color-swatch:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-copper);
+}
+.swatch-color {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--sp-2);
+}
+.swatch-info {
+  padding: var(--sp-2);
+  background: var(--white);
+}
+.swatch-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  margin-bottom: 4px;
+}
+.swatch-hex {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xs);
+  color: var(--gray);
+}
+.swatch-usage {
+  font-size: var(--fs-xs);
+  color: var(--gray);
+  margin-top: 4px;
+}
+
+.color-combos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+.color-combo {
+  padding: var(--sp-4);
+  border-radius: 8px;
+  text-align: center;
+  transition: transform var(--duration) var(--ease);
+}
+.color-combo:hover { transform: scale(1.03); }
+.color-combo h4 {
+  font-size: var(--fs-md);
+  margin-bottom: var(--sp-1);
+}
+.color-combo p { font-size: var(--fs-sm); margin: 0 auto; }
+
+/* ============================================
+   08. TYPOGRAPHY
+   ============================================ */
+.type-specimen {
+  margin: var(--sp-4) 0;
+}
+.type-heading-demo {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: var(--sp-3);
+}
+.type-body-demo {
+  font-family: var(--font-body);
+  line-height: 1.7;
+  max-width: 600px;
+}
+.type-scale {
+  margin-top: var(--sp-4);
+}
+.type-scale-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding: var(--sp-2) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.type-scale-label {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xs);
+  color: var(--warm-sand);
+  min-width: 80px;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   09. BUSINESS CARD
+   ============================================ */
+.cards-showcase {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+.bcard {
+  width: 100%;
+  aspect-ratio: 90/50;
+  border-radius: 4px;
+  padding: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--duration) var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.bcard:hover {
+  transform: perspective(800px) rotateY(-3deg) rotateX(2deg);
+  box-shadow: var(--shadow-xl);
+}
+
+.bcard-front-dark {
+  background: var(--deep-blue);
+  align-items: center;
+  text-align: center;
+}
+.bcard-front-dark svg { max-width: 200px; margin-bottom: var(--sp-2); }
+
+.bcard-back {
+  background: var(--light);
+  border: 1px solid var(--gray-light);
+  justify-content: flex-end;
+}
+.bcard-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--deep-blue);
+}
+.bcard-title {
+  font-size: var(--fs-xs);
+  color: var(--copper);
+  margin-bottom: var(--sp-2);
+}
+.bcard-contact {
+  font-size: 0.6rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+.bcard-front-light {
+  background: var(--light);
+  border: 2px solid var(--copper);
+  align-items: center;
+  text-align: center;
+}
+
+/* ============================================
+   10. CONTACT
+   ============================================ */
+#contact::before {
+  content: '';
+  position: absolute;
+  bottom: -200px; right: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, var(--copper-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  margin-top: var(--sp-4);
+}
+.contact-item {
+  margin-bottom: var(--sp-3);
+}
+.contact-label {
+  font-size: var(--fs-xs);
+  color: var(--warm-sand);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.contact-value {
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+}
+.contact-value a {
+  color: var(--light);
+  text-decoration: none;
+  border-bottom: 1px solid var(--copper);
+  transition: color 0.3s var(--ease);
+}
+.contact-value a:hover { color: var(--copper); }
+
+/* --- Toast --- */
+.toast {
+  position: fixed;
+  bottom: var(--sp-4);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--deep-blue);
+  color: var(--light);
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: 100px;
+  font-family: var(--font-heading);
+  font-size: var(--fs-sm);
+  box-shadow: var(--shadow-xl);
+  transition: transform 0.4s var(--ease);
+  z-index: 999;
+  pointer-events: none;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================
+   PRINT
+   ============================================ */
+@media print {
+  .progress-bar, .toast { display: none; }
+  section { min-height: auto; page-break-before: always; padding: 2cm; }
+  section:first-child { page-break-before: avoid; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .card:hover, .bcard:hover, .color-swatch:hover { transform: none; }
+  body { font-size: 10pt; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  section { padding: var(--sp-6) var(--sp-3); }
+  .grid-2, .grid-3, .color-grid, .pillars, .cards-showcase, .color-combos, .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .cover-title { font-size: var(--fs-2xl); }
+  h2 { font-size: var(--fs-xl); }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="toast" id="toast">HEX скопирован</div>
+
+<!-- ==========================================
+     01. COVER
+     ========================================== -->
+<section id="cover" class="dark">
+  <div class="inner reveal" style="text-align: center;">
+    <div class="cover-icon">
+      <svg viewBox="0 0 80 80">
+        <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="2.5" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+        <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="cover-title">
+      Руб<span class="accent">ИИ</span>льник
+    </div>
+    <div class="cover-tagline">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</div>
+    <div class="cover-label">Brand Guidelines 2026</div>
+  </div>
+</section>
+
+<!-- ==========================================
+     02. TABLE OF CONTENTS
+     ========================================== -->
+<section id="toc" class="light">
+  <div class="inner reveal">
+    <div class="section-number">Содержание</div>
+    <h2>Оглавление</h2>
+    <ol class="toc-list">
+      <li><a href="#brand"><span class="toc-num">03</span> О бренде <span>&rarr;</span></a></li>
+      <li><a href="#logo"><span class="toc-num">04</span> Основной логотип <span>&rarr;</span></a></li>
+      <li><a href="#logo-variants"><span class="toc-num">05</span> Варианты логотипа <span>&rarr;</span></a></li>
+      <li><a href="#clearspace"><span class="toc-num">06</span> Охранное поле <span>&rarr;</span></a></li>
+      <li><a href="#colors"><span class="toc-num">07</span> Цветовая палитра <span>&rarr;</span></a></li>
+      <li><a href="#typography"><span class="toc-num">08</span> Типографика <span>&rarr;</span></a></li>
+      <li><a href="#cards"><span class="toc-num">09</span> Визитная карточка <span>&rarr;</span></a></li>
+      <li><a href="#contact"><span class="toc-num">10</span> Контакты <span>&rarr;</span></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==========================================
+     03. BRAND STORY
+     ========================================== -->
+<section id="brand" class="dark">
+  <div class="inner reveal">
+    <div class="section-number">03 — О бренде</div>
+    <h2>Включи <span class="accent">ИИ</span>. Выключи рутину.</h2>
+    <p style="color: var(--warm-sand); font-size: var(--fs-md); margin-bottom: var(--sp-6);">
+      РубИИльник — проект Юрия Еремина для руководителей, которые хотят встроить ИИ в свою работу. Не теория, а реальный опыт: 35+ лет в управлении, теперь — управление ИИ-агентами.
+    </p>
+
+    <div class="pillars">
+      <div class="card-dark pillar">
+        <div class="pillar-icon">&#9889;</div>
+        <h4>Опыт</h4>
+        <p>35 лет управления на высшем уровне. Армия, банки, лизинг, международные холдинги.</p>
+      </div>
+      <div class="card-dark pillar">
+        <div class="pillar-icon">&#9881;</div>
+        <h4>Технология</h4>
+        <p>Рабочая система ИИ-агентов, построенная своими руками. Не курсы — продукт.</p>
+      </div>
+      <div class="card-dark pillar">
+        <div class="pillar-icon">&#10004;</div>
+        <h4>Честность</h4>
+        <p>#антиихайп. Без обещаний, с результатами. Показываем что работает, а что — нет.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     04. PRIMARY LOGO
+     ========================================== -->
+<section id="logo" class="light">
+  <div class="inner reveal">
+    <div class="section-number">04 — Основной логотип</div>
+    <h2>Логотип</h2>
+    <p>Логотип состоит из иконки power switch (символ включения) и названия, где «ИИ» выделено акцентным цветом Copper Electric.</p>
+
+    <div class="logo-showcase" style="background: var(--deep-blue); border-radius: 12px;">
+      <svg viewBox="0 0 400 100" width="380">
+        <g transform="translate(20, 12)">
+          <circle cx="38" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+          <line x1="38" y1="14" x2="38" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <text x="100" y="58" font-family="Space Grotesk, sans-serif" font-size="38" font-weight="600" letter-spacing="1">
+          <tspan fill="#FAF7F2">Руб</tspan><tspan fill="#C46B2A">ИИ</tspan><tspan fill="#FAF7F2">льник</tspan>
+        </text>
+        <text x="100" y="78" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="400" fill="#C4A87C" letter-spacing="3">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</text>
+      </svg>
+    </div>
+
+    <div class="grid-2" style="margin-top: var(--sp-4);">
+      <div class="card">
+        <h4 style="margin-bottom: var(--sp-1);">Иконка Power Switch</h4>
+        <p style="font-size: var(--fs-sm); color: var(--gray);">Универсальный символ включения. Медный цвет — метафора электрического контакта. Разрыв в окружности указывает вверх — направление роста.</p>
+      </div>
+      <div class="card">
+        <h4 style="margin-bottom: var(--sp-1);">Типографика логотипа</h4>
+        <p style="font-size: var(--fs-sm); color: var(--gray);">Space Grotesk 600. «ИИ» в цвете Copper Electric (#C46B2A) — визуально встраивает искусственный интеллект в ДНК названия.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     05. LOGO VARIANTS
+     ========================================== -->
+<section id="logo-variants" class="dark">
+  <div class="inner reveal">
+    <div class="section-number">05 — Варианты логотипа</div>
+    <h2>Цветовые варианты</h2>
+
+    <div class="logo-variants">
+      <!-- On Light -->
+      <div class="logo-variant on-light">
+        <svg viewBox="0 0 400 100">
+          <g transform="translate(20, 12)">
+            <circle cx="38" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+            <line x1="38" y1="14" x2="38" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <text x="100" y="58" font-family="Space Grotesk, sans-serif" font-size="38" font-weight="600" letter-spacing="1">
+            <tspan fill="#0F2B4C">Руб</tspan><tspan fill="#C46B2A">ИИ</tspan><tspan fill="#0F2B4C">льник</tspan>
+          </text>
+          <text x="100" y="78" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="400" fill="#C4A87C" letter-spacing="3">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</text>
+        </svg>
+      </div>
+      <!-- On Dark -->
+      <div class="logo-variant on-dark">
+        <svg viewBox="0 0 400 100">
+          <g transform="translate(20, 12)">
+            <circle cx="38" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+            <line x1="38" y1="14" x2="38" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <text x="100" y="58" font-family="Space Grotesk, sans-serif" font-size="38" font-weight="600" letter-spacing="1">
+            <tspan fill="#FAF7F2">Руб</tspan><tspan fill="#C46B2A">ИИ</tspan><tspan fill="#FAF7F2">льник</tspan>
+          </text>
+          <text x="100" y="78" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="400" fill="#C4A87C" letter-spacing="3">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</text>
+        </svg>
+      </div>
+      <!-- On Sand -->
+      <div class="logo-variant on-sand">
+        <svg viewBox="0 0 400 100">
+          <g transform="translate(20, 12)">
+            <circle cx="38" cy="42" r="28" fill="none" stroke="#0F2B4C" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+            <line x1="38" y1="14" x2="38" y2="38" stroke="#0F2B4C" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <text x="100" y="58" font-family="Space Grotesk, sans-serif" font-size="38" font-weight="600" letter-spacing="1">
+            <tspan fill="#0F2B4C">Руб</tspan><tspan fill="#0F2B4C">ИИ</tspan><tspan fill="#0F2B4C">льник</tspan>
+          </text>
+          <text x="100" y="78" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="400" fill="#0F2B4C" letter-spacing="3">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</text>
+        </svg>
+      </div>
+      <!-- On Copper -->
+      <div class="logo-variant on-copper">
+        <svg viewBox="0 0 400 100">
+          <g transform="translate(20, 12)">
+            <circle cx="38" cy="42" r="28" fill="none" stroke="#FAF7F2" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+            <line x1="38" y1="14" x2="38" y2="38" stroke="#FAF7F2" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <text x="100" y="58" font-family="Space Grotesk, sans-serif" font-size="38" font-weight="600" letter-spacing="1">
+            <tspan fill="#FAF7F2">Руб</tspan><tspan fill="#0F2B4C">ИИ</tspan><tspan fill="#FAF7F2">льник</tspan>
+          </text>
+          <text x="100" y="78" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="400" fill="#0F2B4C" letter-spacing="3">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</text>
+        </svg>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--sp-4); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); text-align: center;">
+      <div style="font-size: var(--fs-xs); color: var(--warm-sand);">На светлом фоне</div>
+      <div style="font-size: var(--fs-xs); color: var(--warm-sand);">На тёмном фоне</div>
+      <div style="font-size: var(--fs-xs); color: var(--warm-sand);">На песочном фоне</div>
+      <div style="font-size: var(--fs-xs); color: var(--warm-sand);">На медном фоне</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     06. CLEARSPACE
+     ========================================== -->
+<section id="clearspace" class="light">
+  <div class="inner reveal">
+    <div class="section-number">06 — Охранное поле</div>
+    <h2>Защитная зона</h2>
+    <p>Минимальное расстояние от логотипа до любого другого элемента — высота иконки power switch (единица X).</p>
+
+    <div style="text-align: center; margin: var(--sp-6) 0;">
+      <div class="clearspace-box">
+        <span class="clearspace-label top">X</span>
+        <span class="clearspace-label bottom">X</span>
+        <span class="clearspace-label left">X</span>
+        <span class="clearspace-label right">X</span>
+        <svg viewBox="0 0 400 100" width="340">
+          <g transform="translate(20, 12)">
+            <circle cx="38" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+            <line x1="38" y1="14" x2="38" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <text x="100" y="58" font-family="Space Grotesk, sans-serif" font-size="38" font-weight="600" letter-spacing="1">
+            <tspan fill="#0F2B4C">Руб</tspan><tspan fill="#C46B2A">ИИ</tspan><tspan fill="#0F2B4C">льник</tspan>
+          </text>
+          <text x="100" y="78" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="400" fill="#C4A87C" letter-spacing="3">ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Минимальный размер</h4>
+        <p style="font-size: var(--fs-sm); color: var(--gray);">Цифровой: 120px по ширине. Печать: 30mm по ширине. Иконка отдельно: 24px / 8mm.</p>
+      </div>
+      <div class="card">
+        <h4>Запрещено</h4>
+        <p style="font-size: var(--fs-sm); color: var(--gray);">Не растягивать, не менять пропорции, не менять цвета произвольно, не добавлять эффекты (тень, свечение, обводка).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     07. COLORS
+     ========================================== -->
+<section id="colors" class="dark">
+  <div class="inner reveal">
+    <div class="section-number">07 — Цветовая палитра</div>
+    <h2>Цвета бренда</h2>
+
+    <div class="color-grid">
+      <div class="color-swatch" data-hex="#0F2B4C" onclick="copyHex(this)">
+        <div class="swatch-color" style="background: #0F2B4C; border: 1px solid rgba(255,255,255,0.1);">
+          <span style="color: var(--light); font-size: var(--fs-xs); font-family: var(--font-heading);">PRIMARY</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Deep Blue</div>
+          <div class="swatch-hex">#0F2B4C · RGB 15, 43, 76</div>
+          <div class="swatch-usage">Фон, текст, основа</div>
+        </div>
+      </div>
+
+      <div class="color-swatch" data-hex="#C46B2A" onclick="copyHex(this)">
+        <div class="swatch-color" style="background: #C46B2A;">
+          <span style="color: var(--light); font-size: var(--fs-xs); font-family: var(--font-heading);">ACCENT</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Copper Electric</div>
+          <div class="swatch-hex">#C46B2A · RGB 196, 107, 42</div>
+          <div class="swatch-usage">Акценты, CTA, «ИИ»</div>
+        </div>
+      </div>
+
+      <div class="color-swatch" data-hex="#C4A87C" onclick="copyHex(this)">
+        <div class="swatch-color" style="background: #C4A87C;">
+          <span style="color: var(--deep-blue); font-size: var(--fs-xs); font-family: var(--font-heading);">SECONDARY</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm Sand</div>
+          <div class="swatch-hex">#C4A87C · RGB 196, 168, 124</div>
+          <div class="swatch-usage">Декор, тагло, рамки</div>
+        </div>
+      </div>
+
+      <div class="color-swatch" data-hex="#FAF7F2" onclick="copyHex(this)">
+        <div class="swatch-color" style="background: #FAF7F2; border: 1px solid #E8E4DE;">
+          <span style="color: var(--gray); font-size: var(--fs-xs); font-family: var(--font-heading);">LIGHT</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm White</div>
+          <div class="swatch-hex">#FAF7F2 · RGB 250, 247, 242</div>
+          <div class="swatch-usage">Фон, бумага, свет</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: var(--sp-8); color: var(--warm-sand);">Утверждённые комбинации</h3>
+    <div class="color-combos">
+      <div class="color-combo" style="background: var(--deep-blue); border: 1px solid rgba(255,255,255,0.1);">
+        <h4 style="color: var(--light);">Тёмная тема</h4>
+        <p style="color: var(--warm-sand);">Основной: <span style="color: var(--copper);">Copper</span> на Deep Blue</p>
+      </div>
+      <div class="color-combo" style="background: var(--light);">
+        <h4 style="color: var(--deep-blue);">Светлая тема</h4>
+        <p style="color: var(--gray);">Deep Blue текст, <span style="color: var(--copper);">Copper</span> акценты</p>
+      </div>
+      <div class="color-combo" style="background: linear-gradient(135deg, var(--deep-blue) 50%, var(--copper) 50%);">
+        <h4 style="color: var(--light);">Диагональ</h4>
+        <p style="color: var(--warm-sand);">Для stories, баннеров</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     08. TYPOGRAPHY
+     ========================================== -->
+<section id="typography" class="light">
+  <div class="inner reveal">
+    <div class="section-number">08 — Типографика</div>
+    <h2>Шрифтовая пара</h2>
+
+    <div class="grid-2" style="margin: var(--sp-6) 0;">
+      <div>
+        <h3 style="color: var(--copper);">Space Grotesk</h3>
+        <p style="font-size: var(--fs-sm); color: var(--gray); margin-bottom: var(--sp-3);">Заголовки, навигация, акценты. Геометрический гротеск с характером — технологичный, но не холодный.</p>
+        <div class="type-specimen">
+          <div class="type-heading-demo" style="font-size: var(--fs-3xl); color: var(--deep-blue);">Включи ИИ</div>
+          <div class="type-heading-demo" style="font-size: var(--fs-2xl); font-weight: 500; color: var(--deep-blue);">Выключи рутину</div>
+          <div class="type-heading-demo" style="font-size: var(--fs-lg); font-weight: 400; color: var(--gray);">Aa Бб Вв Гг 0123456789</div>
+        </div>
+      </div>
+      <div>
+        <h3 style="color: var(--copper);">Inter</h3>
+        <p style="font-size: var(--fs-sm); color: var(--gray); margin-bottom: var(--sp-3);">Основной текст, описания, интерфейс. Нейтральный, читаемый на любом экране и в печати.</p>
+        <div class="type-specimen">
+          <div class="type-body-demo" style="font-size: var(--fs-md); margin-bottom: var(--sp-2);">
+            РубИИльник — проект для руководителей, которые хотят встроить ИИ в свою ежедневную работу.
+          </div>
+          <div class="type-body-demo" style="font-size: var(--fs-base); color: var(--gray);">
+            Inter 400 — для длинных текстов, постов в Telegram и описаний. Inter 500 — для подзаголовков и выделений. Inter 600 — для кнопок и навигации.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Шкала размеров — Major Third (1.25)</h3>
+    <div style="background: var(--deep-blue); border-radius: 8px; padding: var(--sp-4); margin-top: var(--sp-3);">
+      <div class="type-scale">
+        <div class="type-scale-row">
+          <span class="type-scale-label">3XL</span>
+          <span style="font-family: var(--font-heading); font-size: var(--fs-3xl); font-weight: 600; color: var(--light);">3.052rem</span>
+        </div>
+        <div class="type-scale-row">
+          <span class="type-scale-label">2XL</span>
+          <span style="font-family: var(--font-heading); font-size: var(--fs-2xl); font-weight: 600; color: var(--light);">2.441rem</span>
+        </div>
+        <div class="type-scale-row">
+          <span class="type-scale-label">XL</span>
+          <span style="font-family: var(--font-heading); font-size: var(--fs-xl); font-weight: 600; color: var(--light);">1.953rem</span>
+        </div>
+        <div class="type-scale-row">
+          <span class="type-scale-label">LG</span>
+          <span style="font-family: var(--font-heading); font-size: var(--fs-lg); font-weight: 500; color: var(--light);">1.563rem</span>
+        </div>
+        <div class="type-scale-row">
+          <span class="type-scale-label">MD</span>
+          <span style="font-family: var(--font-body); font-size: var(--fs-md); color: var(--light);">1.25rem</span>
+        </div>
+        <div class="type-scale-row">
+          <span class="type-scale-label">BASE</span>
+          <span style="font-family: var(--font-body); font-size: var(--fs-base); color: var(--light);">1rem (16px)</span>
+        </div>
+        <div class="type-scale-row">
+          <span class="type-scale-label">SM</span>
+          <span style="font-family: var(--font-body); font-size: var(--fs-sm); color: var(--warm-sand);">0.8rem</span>
+        </div>
+        <div class="type-scale-row" style="border: none;">
+          <span class="type-scale-label">XS</span>
+          <span style="font-family: var(--font-body); font-size: var(--fs-xs); color: var(--warm-sand);">0.64rem</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     09. BUSINESS CARD
+     ========================================== -->
+<section id="cards" class="dark">
+  <div class="inner reveal">
+    <div class="section-number">09 — Визитная карточка</div>
+    <h2>Визитка для нетворкинга</h2>
+    <p style="color: var(--warm-sand);">Европейский стандарт 90×50 мм. Два варианта: тёмный и светлый.</p>
+
+    <div class="cards-showcase">
+      <!-- Front Dark -->
+      <div class="bcard bcard-front-dark">
+        <svg viewBox="0 0 80 80" width="48" height="48" style="margin-bottom: 12px;">
+          <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+          <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div style="font-family: var(--font-heading); font-size: var(--fs-sm); font-weight: 600; color: var(--light); letter-spacing: 1px;">
+          Руб<span style="color: var(--copper);">ИИ</span>льник
+        </div>
+        <div style="font-family: var(--font-body); font-size: 0.5rem; color: var(--warm-sand); letter-spacing: 2px; margin-top: 4px;">
+          ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.
+        </div>
+      </div>
+
+      <!-- Back -->
+      <div class="bcard bcard-back">
+        <div style="position: absolute; top: 12px; right: 12px;">
+          <svg viewBox="0 0 80 80" width="20" height="20" opacity="0.2">
+            <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="4" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+            <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="bcard-name">Юрий Еремин</div>
+        <div class="bcard-title">Founder & AI Strategist</div>
+        <div class="bcard-contact">
+          @eremin_plus · Instagram<br>
+          РубИИльник · Telegram<br>
+          Dubai, UAE
+        </div>
+      </div>
+
+      <!-- Front Light -->
+      <div class="bcard bcard-front-light">
+        <svg viewBox="0 0 80 80" width="48" height="48" style="margin-bottom: 12px;">
+          <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+          <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div style="font-family: var(--font-heading); font-size: var(--fs-sm); font-weight: 600; color: var(--deep-blue); letter-spacing: 1px;">
+          Руб<span style="color: var(--copper);">ИИ</span>льник
+        </div>
+        <div style="font-family: var(--font-body); font-size: 0.5rem; color: var(--warm-sand); letter-spacing: 2px; margin-top: 4px;">
+          ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     10. CONTACT
+     ========================================== -->
+<section id="contact" class="dark">
+  <div class="inner reveal">
+    <div class="section-number">10 — Контакты</div>
+    <h2>Связаться</h2>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <div class="contact-label">Основатель</div>
+          <div class="contact-value">Юрий Еремин</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Telegram</div>
+          <div class="contact-value"><a href="#">РубИИльник</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value"><a href="#">@eremin_plus</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-item">
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value"><a href="#">Yuri Eremin</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Локация</div>
+          <div class="contact-value">Dubai, UAE</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Хэштег</div>
+          <div class="contact-value" style="color: var(--copper);">#антиихайп</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--sp-8); padding-top: var(--sp-4); border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
+      <div style="font-family: var(--font-heading); font-size: var(--fs-lg); color: var(--light);">
+        Руб<span class="accent">ИИ</span>льник
+      </div>
+      <div style="font-size: var(--fs-xs); color: var(--warm-sand); letter-spacing: 3px; margin-top: var(--sp-1);">
+        ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.
+      </div>
+      <div style="font-size: var(--fs-xs); color: var(--gray); margin-top: var(--sp-2);">
+        Brand Guidelines 2026 · by Юрий Еремин
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SCRIPTS
+     ============================================ -->
+<script>
+// Progress bar
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress = (scrollTop / scrollHeight) * 100;
+  progressBar.style.width = progress + '%';
+});
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+// Copy HEX
+function copyHex(el) {
+  const hex = el.dataset.hex;
+  navigator.clipboard.writeText(hex).then(() => {
+    const toast = document.getElementById('toast');
+    toast.textContent = `${hex} скопирован`;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
+</body>
+</html>

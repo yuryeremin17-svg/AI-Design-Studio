@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Power switch icon -->
+  <g transform="translate(20, 12)">
+    <!-- Circle (off state ring) -->
+    <circle cx="38" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+    <!-- Power line (vertical bar) -->
+    <line x1="38" y1="14" x2="38" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <!-- Brand name -->
+  <text x="100" y="58" font-family="Space Grotesk, sans-serif" font-size="38" font-weight="600" letter-spacing="1">
+    <tspan fill="#0F2B4C">Руб</tspan><tspan fill="#C46B2A">ИИ</tspan><tspan fill="#0F2B4C">льник</tspan>
+  </text>
+  <!-- Tagline -->
+  <text x="100" y="78" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="400" fill="#C4A87C" letter-spacing="3">
+    ВКЛЮЧИ ИИ. ВЫКЛЮЧИ РУТИНУ.
+  </text>
+</svg>
