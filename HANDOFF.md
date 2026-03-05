@@ -1,110 +1,89 @@
 # HANDOFF — AI Design Studio
-> Дата: 2026-03-05 | Сессия: #6
+> Дата: 2026-03-05 | Сессия: #7
 
-## Что сделано в этой сессии
+## Что сделано в этой сессии (#7) — Аудит качества
 
-### Step 4: Система доставки
-- `scripts/deliver.js` — одна команда собирает ZIP для клиента
-- Внутри: HTML файлы, логотипы SVG + PNG (3 размера), colors.json, README.txt
-- Использование: `node scripts/deliver.js <client-name>`
-- Slash-команда `/deliver` обновлена
-- Aurelius ZIP: 142 KB, РубИИльник ZIP: 178 KB
+### A1. SVG логотипы -> outline (DONE)
+- Все 4 SVG (aurelius logo/logo-light, rubiilnik logo/logo-light) — текст конвертирован в `<path>`
+- Убран `@import url('https://fonts.googleapis.com/...')` — SVG полностью автономны
+- **Открытие:** Space Grotesk НЕ поддерживает кириллицу (Latin/Vietnamese only)
+- **Решение:** шрифт РубИИльник заменён на **Manrope** (геометрический, кириллица, 104 chars)
+- Конвертация через fonttools (Python) + opentype.js (Node), шрифты скачаны с google/fonts GitHub
 
-### Step 5: Второй клиент — РубИИльник
-- **Клиент:** РубИИльник — проект Юрия Еремина, AI для руководителей 40-60
-- **Стиль:** Tech Premium / Warm Minimalism (контраст с luxury Aurelius)
-- **Палитра:** Deep Blue #0F2B4C + Copper Electric #C46B2A + Warm Sand #C4A87C + Light #FAF7F2
-- **Шрифты:** Space Grotesk + Inter
-- **Акцентный цвет:** выбран через "консилиум" из 3 экспертов (бренд-стратег, психолог цвета, digital-дизайнер) — все сошлись на меди/copper
-- **Логотип:** power switch icon + "Руб**ИИ**льник" с медным выделением (3 файла: logo, logo-light, icon)
-- **Брендбук:** 10 секций (Старт), дизайн-система v3, визуально проверен
-- **Визитка:** встроена в брендбук (секция 09), тёмный и светлый варианты
-- **Доставка:** ZIP 178 KB в delivery/rubiilnik/
+### A2. PNG transparent background (DONE)
+- `deliver.js` переписан: Playwright с `omitBackground: true` вместо CLI screenshot
+- PNG теперь RGBA (4 канала) — прозрачный фон
+- Оба ZIP пересобраны (Aurelius 89 KB, РубИИльник 95 KB)
 
-### Step 6: Пайплайн
-- `/new-client` — полный пайплайн от структуры до ZIP (7 шагов)
-- `/brandbook` — с требованиями дизайн-системы v3
-- `/deliver` — автоматическая сборка ZIP
+### A3. Брендбук РубИИльник расширен (DONE)
+- 10 → 12 секций:
+  - **03 О бренде** — расширена: миссия, аудитория, 5 столпов (было 3)
+  - **07 Логотип на палитрах** (НОВАЯ) — 3 утверждённых + 4 запрещённых фона
+  - **10 Do's & Don'ts** (НОВАЯ) — 4 do + 4 don't с наглядными карточками
+  - **11 Визитная карточка** — номер сдвинут
+  - **12 Контакты** — номер сдвинут
+- **business-cards.html** — отдельный файл, 2 варианта (тёмный/светлый), спецификации печати
+- Все `Space Grotesk` заменены на `Manrope` (CSS variable, @import, inline SVG font-family)
+- TOC обновлён
 
-### Step 7: Портфолио-лендинг
-- `index.html` (корень проекта) — одностраничник студии
-- Тёмная тема, nav с blur, copper акценты
-- 2 кейса: Aurelius Group (luxury) + РубИИльник (tech premium)
-- Секции: Hero, Portfolio, Services (3 пакета с ценами), Process (4 шага), Contact
-- Reveal-анимации, responsive, визуально проверен
+### B1. brand.json (DONE)
+- `output/aurelius-group/brand.json` и `output/rubiilnik/brand.json`
+- `deliver.js` читает brand.json вместо хардкода — новые клиенты не требуют правки скрипта
 
-## План: 7 шагов — ВСЕ ВЫПОЛНЕНЫ
+## Что осталось (следующая сессия)
 
-1. ~~Дизайн-система~~ — DONE (сессия #5)
-2. ~~Премиальный визуал Aurelius~~ — DONE (v3, сессия #5)
-3. ~~Интерактивность~~ — DONE (сессия #5)
-4. ~~Система доставки~~ — DONE (deliver.js + ZIP)
-5. ~~Второй клиент~~ — DONE (РубИИльник)
-6. ~~Пайплайн~~ — DONE (slash-команды)
-7. ~~Портфолио-лендинг~~ — DONE (index.html)
+### B. Важные (не начаты)
+- [ ] **B2. Лендинг — рабочие данные** — email, телефон, OG-теги, кликабельные кейсы
+- [ ] **B3. Deploy лендинга** — GitHub Pages
 
-## Часть 1: Доработки по аудиту (следующая сессия)
+### Глобальный план (без изменений)
 
-Технический долг — без этого нельзя отдавать работу реальному клиенту.
+#### Фаза 1: Готовность к клиентам
+- [ ] Бриф-форма (Web3Forms)
+- [ ] PDF-экспорт (Paged.js)
+- [ ] Шаблон КП
 
-### A. Критичные (качество продукта)
-- [ ] **A1. SVG логотипы -> outline** — текст в path, убрать @import Google Fonts. Без этого типография получит битый логотип
-- [ ] **A2. PNG transparent background** — logo-light на белом фоне = невидимый. Исправить deliver.js, пересобрать ZIP
-- [ ] **A3. Брендбук РубИИльник — расширить** — секция "О бренде" (биография, 5 столпов), "Логотип на палитрах" (утверждённые/запрещённые фоны), базовый "Do's & Don'ts", отдельный business-cards.html
+#### Фаза 2: Первые клиенты
+- [ ] Реальный клиент #1
+- [ ] RTL-адаптация (арабский)
+- [ ] Кейс-стади
 
-### B. Важные (масштабирование)
-- [ ] **B1. brand.json** — каждый клиент хранит палитру/шрифты/контакты в output/<client>/brand.json. deliver.js читает оттуда, не из хардкода
-- [ ] **B2. Лендинг — рабочие данные** — email: rubelnick.ai@gmail.com, тел: +971 58 517 7230, OG-теги для соцсетей, кейсы кликабельны
-- [ ] **B3. Deploy лендинга** — Netlify или GitHub Pages
+#### Фаза 3: Масштаб
+- [ ] Шаблоны соцсетей
+- [ ] Автоматизация (бриф → брендбук)
+- [ ] Ценообразование по рынку
+- [ ] Интеграция с AI Office
 
-## Часть 2: Глобальный план развития студии
-
-Стратегические шаги — от тестовых кейсов к реальному бизнесу.
-
-### Фаза 1: Готовность к клиентам
-- [ ] **Бриф-форма** — Web3Forms (нужен API key), встроить в лендинг или отдельная страница
-- [ ] **PDF-экспорт** — Paged.js или print-optimized HTML. Клиенты просят PDF, не HTML
-- [ ] **Шаблон договора/КП** — коммерческое предложение в HTML (3 пакета, цены, сроки)
-
-### Фаза 2: Первые клиенты
-- [ ] **Реальный клиент #1** — через нетворкинг в Дубае или через РубИИльник-аудиторию
-- [ ] **RTL-адаптация (арабский)** — для ОАЭ-клиентов обязательно, расширяет рынок x3
-- [ ] **Кейс-стади** — после первого клиента: до/после, процесс, результат. Добавить в лендинг
-
-### Фаза 3: Масштаб
-- [ ] **Шаблоны соцсетей** — Instagram/LinkedIn карусели как часть пакета Бизнес/Премиум
-- [ ] **Автоматизация** — бриф -> палитра -> шрифты -> скелет брендбука (один prompt)
-- [ ] **Ценообразование по рынку** — валидация цен через 3-5 реальных клиентов
-- [ ] **Интеграция с AI Office** — студия как один из сервисов экосистемы Юрия
-
-## Структура файлов
+## Структура файлов (обновлена)
 ```
 AI-Design-Studio/
 ├── index.html                      <- Портфолио-лендинг
 ├── scripts/
-│   ├── deliver.js                  <- Система доставки (ZIP)
+│   ├── deliver.js                  <- Обновлён (brand.json, transparent PNG)
 │   ├── export-pdf.js
 │   └── screenshot-sections.js
 ├── assets/logos/
-│   ├── aurelius-group/ (logo.svg, logo-light.svg)
-│   └── rubiilnik/ (logo.svg, logo-light.svg, icon.svg)
+│   ├── aurelius-group/ (logo.svg, logo-light.svg) — outlined, no @import
+│   └── rubiilnik/ (logo.svg, logo-light.svg, icon.svg) — Manrope outlined
 ├── output/
 │   ├── aurelius-group/
-│   │   ├── brandbook.html          <- v3.0 (основной)
+│   │   ├── brand.json              <- NEW
+│   │   ├── brandbook.html
 │   │   ├── business-cards.html
 │   │   ├── letterhead.html
 │   │   ├── presentation.html
 │   │   ├── email-signature.html
-│   │   └── archive/ (v2, скриншоты)
+│   │   └── archive/
 │   └── rubiilnik/
-│       └── brandbook.html          <- v1.0, 10 секций
+│       ├── brand.json              <- NEW
+│       ├── brandbook.html          <- v1.1, 12 секций, Manrope
+│       └── business-cards.html     <- NEW
 ├── delivery/
-│   ├── aurelius-group/ (ZIP 142KB)
-│   └── rubiilnik/ (ZIP 178KB)
+│   ├── aurelius-group/ (ZIP 89KB)
+│   └── rubiilnik/ (ZIP 95KB)
 └── .claude/commands/
-    ├── new-client.md               <- Обновлён (полный пайплайн)
-    ├── brandbook.md                <- Обновлён (v3 стандарт)
-    ├── businesscard.md
-    ├── letterhead.md
-    └── deliver.md                  <- Обновлён
 ```
+
+## Ключевое решение сессии
+
+**Space Grotesk → Manrope** для РубИИльник. Space Grotesk не имеет кириллицы в Google Fonts (confirmed via fonttools + Google Fonts CSS API). Manrope — ближайший геометрический sans-serif с полной кириллицей (104 chars). Обновлено: логотипы SVG, брендбук, deliver.js colors.json, brand.json.
