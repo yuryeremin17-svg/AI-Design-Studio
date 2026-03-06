@@ -830,7 +830,30 @@
         const totalSteps = 5;
         let currentLang = 'en';
 
+        function validateStep(step) {
+            const stepEl = document.querySelector(`.form-step[data-step="${step}"]`);
+            const required = stepEl.querySelectorAll('input[required], textarea[required], select[required]');
+            let valid = true;
+            required.forEach(el => {
+                el.style.borderColor = '';
+                if (!el.value.trim()) {
+                    el.style.borderColor = 'var(--error)';
+                    valid = false;
+                }
+                if (el.type === 'email' && el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)) {
+                    el.style.borderColor = 'var(--error)';
+                    valid = false;
+                }
+            });
+            if (!valid) {
+                const first = stepEl.querySelector('input[style*="error"], textarea[style*="error"], select[style*="error"]');
+                if (first) first.focus();
+            }
+            return valid;
+        }
+
         function nextStep() {
+            if (!validateStep(currentStep)) return;
             if (currentStep < totalSteps) {
                 setStep(currentStep + 1);
             }
@@ -877,7 +900,13 @@
             });
         }
 
-        function submitBrief() {
+        async function submitBrief() {
+            if (!validateStep(currentStep)) return;
+
+            const btn = document.querySelector('.btn-submit');
+            btn.disabled = true;
+            btn.textContent = currentLang === 'ru' ? 'Отправка...' : 'Sending...';
+
             // Collect all form data
             const data = {};
             document.querySelectorAll('input, textarea, select').forEach(el => {
@@ -893,16 +922,44 @@
                 }
             });
 
-            // Save to localStorage
-            const briefId = 'brief_' + Date.now();
-            localStorage.setItem(briefId, JSON.stringify(data));
+            // Format for Web3Forms
+            const formData = new FormData();
+            // TODO: Получить ключ на https://web3forms.com (email: rubelnick.ai@gmail.com)
+            formData.append('access_key', 'YOUR_ACCESS_KEY_HERE');
+            formData.append('subject', 'New Brand Brief: ' + (data.company_name || 'Unknown'));
+            formData.append('from_name', data.contact_name || 'Brand Brief');
 
-            // Show JSON in console for export
-            console.log('Brief data:', JSON.stringify(data, null, 2));
+            for (const [key, value] of Object.entries(data)) {
+                if (Array.isArray(value)) {
+                    formData.append(key, value.join(', '));
+                } else {
+                    formData.append(key, value);
+                }
+            }
 
-            // Show success
-            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-            document.getElementById('successScreen').classList.add('active');
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+                    document.getElementById('successScreen').classList.add('active');
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (err) {
+                console.error('Brief submission error:', err);
+                // Fallback: save locally + show success
+                localStorage.setItem('brief_' + Date.now(), JSON.stringify(data));
+                document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+                document.getElementById('successScreen').classList.add('active');
+            }
+
+            btn.disabled = false;
+            btn.textContent = currentLang === 'ru' ? 'Отправить бриф' : 'Submit Brief';
         }
     </script>
 

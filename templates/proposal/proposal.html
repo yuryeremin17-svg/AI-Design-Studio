@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal — AI Design Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --surface: #FFFFFF;
+  --border: #E8E5E0;
+  --text: #1A1A1A;
+  --text-dim: #6B6B80;
+  --accent: #C46B2A;
+  --accent-light: rgba(196,107,42,0.08);
+  --dark: #0A0A0F;
+  --font-h: 'Space Grotesk', sans-serif;
+  --font-b: 'Inter', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: var(--font-b); color: var(--text); background: var(--bg); }
+
+.page {
+  max-width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  background: var(--surface);
+  padding: 50px 60px;
+  position: relative;
+}
+
+/* --- Cover --- */
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 297mm;
+  background: var(--dark);
+  color: #fff;
+  padding: 80px 60px;
+}
+.cover .studio-label {
+  font-family: var(--font-h);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 3rem;
+}
+.cover h1 {
+  font-family: var(--font-h);
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.cover h1 span { color: var(--accent); }
+.cover .meta {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+}
+.cover .meta strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+.cover-footer {
+  margin-top: auto;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* --- Section headers --- */
+.section-num {
+  font-family: var(--font-h);
+  font-size: 0.7rem;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+h2 {
+  font-family: var(--font-h);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+h3 {
+  font-family: var(--font-h);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+p { font-size: 0.9rem; line-height: 1.7; color: var(--text-dim); margin-bottom: 1rem; }
+
+/* --- Package table --- */
+.packages {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+.packages th {
+  font-family: var(--font-h);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--text);
+  color: var(--text);
+}
+.packages td {
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-dim);
+  vertical-align: top;
+}
+.packages tr.recommended {
+  background: var(--accent-light);
+}
+.packages tr.recommended td {
+  color: var(--text);
+  font-weight: 500;
+}
+.badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.price {
+  font-family: var(--font-h);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+/* --- Deliverables list --- */
+.deliverables {
+  list-style: none;
+  margin: 1.5rem 0;
+}
+.deliverables li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.deliverables li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* --- Timeline --- */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.timeline-step {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.timeline-step .step-label {
+  font-family: var(--font-h);
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.timeline-step h4 {
+  font-family: var(--font-h);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.timeline-step p {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+
+/* --- Terms --- */
+.terms {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+}
+.terms h3 { font-size: 0.95rem; margin-bottom: 1rem; }
+.terms ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.terms li {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  padding: 4px 0;
+  line-height: 1.6;
+}
+
+/* --- CTA block --- */
+.cta-block {
+  text-align: center;
+  padding: 3rem 2rem;
+  margin: 2rem 0;
+  background: var(--dark);
+  border-radius: 12px;
+  color: #fff;
+}
+.cta-block h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.cta-block p {
+  color: rgba(255,255,255,0.6);
+  max-width: 400px;
+  margin: 0 auto 2rem;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-h);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+/* --- Footer --- */
+.page-footer {
+  position: absolute;
+  bottom: 30px;
+  left: 60px;
+  right: 60px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #bbb;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+/* --- Print --- */
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; padding: 40px 50px; }
+  .cover { padding: 60px 50px; }
+  .page-break { page-break-before: always; }
+  @page { size: A4; margin: 0; }
+}
+
+/* --- Screen shadow --- */
+@media screen {
+  .page { box-shadow: 0 2px 20px rgba(0,0,0,0.08); margin-bottom: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================
+     PAGE 1: Cover
+     ========================================== -->
+<div class="page cover">
+  <div class="studio-label">AI Design Studio</div>
+  <h1>Brand Identity<br><span>Proposal</span></h1>
+  <div class="meta">
+    <strong>Prepared for:</strong> {{CLIENT_NAME}}<br>
+    <strong>Date:</strong> {{DATE}}<br>
+    <strong>Valid until:</strong> {{VALID_UNTIL}}
+  </div>
+  <div class="cover-footer">
+    <span>AI Design Studio, Dubai, UAE</span>
+    <span>rubelnick.ai@gmail.com | +971 58 517 7230</span>
+  </div>
+</div>
+
+<!-- ==========================================
+     PAGE 2: About + Understanding
+     ========================================== -->
+<div class="page page-break">
+  <div class="section-num">01 — About Us</div>
+  <h2>Who we are</h2>
+  <p>AI Design Studio is a Dubai-based brand agency that combines premium design with AI-powered efficiency. We deliver complete brand identities — from logo to brandbook — in days, not weeks.</p>
+  <p>Every deliverable is a self-contained HTML file with embedded SVG logos, verified fonts, and print-ready layouts. No Photoshop files, no broken links — just clean, scalable brand assets that work everywhere.</p>
+
+  <div style="margin-top: 3rem;">
+    <div class="section-num">02 — Your Brief</div>
+    <h2>Understanding your needs</h2>
+    <p>{{BRIEF_SUMMARY}}</p>
+    <p>Based on your brief, we recommend the <strong>{{RECOMMENDED_PACKAGE}}</strong> package. Here's what it includes and how we'll deliver it.</p>
+  </div>
+
+  <div class="page-footer">
+    <span>AI Design Studio</span>
+    <span>{{CLIENT_NAME}} — Brand Proposal</span>
+    <span>Page 2</span>
+  </div>
+</div>
+
+<!-- ==========================================
+     PAGE 3: Packages
+     ========================================== -->
+<div class="page page-break">
+  <div class="section-num">03 — Packages</div>
+  <h2>Service packages</h2>
+
+  <table class="packages">
+    <thead>
+      <tr>
+        <th>Deliverable</th>
+        <th>Start</th>
+        <th>Business</th>
+        <th>Premium</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Logo + variants</td>
+        <td>1 variant</td>
+        <td>2 variants</td>
+        <td>3+ variants</td>
+      </tr>
+      <tr>
+        <td>Color palette</td>
+        <td>Primary + accent</td>
+        <td>Full palette</td>
+        <td>Full + extended</td>
+      </tr>
+      <tr>
+        <td>Typography</td>
+        <td>1 font pair</td>
+        <td>1 font pair + scale</td>
+        <td>2 pairs + RTL</td>
+      </tr>
+      <tr>
+        <td>Brandbook</td>
+        <td>10 sections</td>
+        <td>17 sections</td>
+        <td>20+ sections</td>
+      </tr>
+      <tr>
+        <td>Business cards</td>
+        <td>1 design</td>
+        <td>2 designs</td>
+        <td>3 designs</td>
+      </tr>
+      <tr>
+        <td>Letterhead</td>
+        <td>--</td>
+        <td>2 variants</td>
+        <td>2 variants</td>
+      </tr>
+      <tr>
+        <td>Presentation</td>
+        <td>--</td>
+        <td>Template</td>
+        <td>Template</td>
+      </tr>
+      <tr>
+        <td>Email signature</td>
+        <td>--</td>
+        <td>HTML template</td>
+        <td>HTML template</td>
+      </tr>
+      <tr>
+        <td>Tone of Voice</td>
+        <td>--</td>
+        <td>Guide</td>
+        <td>Guide</td>
+      </tr>
+      <tr>
+        <td>Social media templates</td>
+        <td>--</td>
+        <td>--</td>
+        <td>3-5 templates</td>
+      </tr>
+      <tr>
+        <td>Iconography</td>
+        <td>--</td>
+        <td>--</td>
+        <td>10-20 icons</td>
+      </tr>
+      <tr>
+        <td>RTL / Arabic</td>
+        <td>--</td>
+        <td>--</td>
+        <td>Full support</td>
+      </tr>
+      <tr>
+        <td>Revision rounds</td>
+        <td>2</td>
+        <td>3</td>
+        <td>3 + final review</td>
+      </tr>
+      <tr>
+        <td>Timeline</td>
+        <td>5-7 days</td>
+        <td>10-14 days</td>
+        <td>14-21 days</td>
+      </tr>
+      <tr>
+        <td><strong>Investment</strong></td>
+        <td class="price">5,000 - 8,000 AED</td>
+        <td class="price">10,000 - 18,000 AED</td>
+        <td class="price">18,000 - 35,000 AED</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>AI Design Studio</span>
+    <span>{{CLIENT_NAME}} — Brand Proposal</span>
+    <span>Page 3</span>
+  </div>
+</div>
+
+<!-- ==========================================
+     PAGE 4: Recommended + Deliverables
+     ========================================== -->
+<div class="page page-break">
+  <div class="section-num">04 — Recommendation</div>
+  <h2>{{RECOMMENDED_PACKAGE}} package <span class="badge">Recommended</span></h2>
+  <p>Based on your goals and scope, this is the optimal package for your brand. Here's what you'll receive:</p>
+
+  <ul class="deliverables">
+    <!-- Adjust list per package -->
+    <li>Logo in SVG, PNG (transparent), and color variants (dark/light/monochrome)</li>
+    <li>Complete brandbook (HTML, print-ready) with all sections</li>
+    <li>Color palette with HEX, RGB, CMYK values</li>
+    <li>Typography system with tested font pairs</li>
+    <li>Business cards (front + back, print-ready)</li>
+    <li>Letterhead (A4, 2 variants)</li>
+    <li>Brand guidelines for correct/incorrect logo usage</li>
+    <li>ZIP delivery: HTML + SVG + PNG + colors.json + README</li>
+  </ul>
+
+  <div style="margin-top: 2.5rem;">
+    <div class="section-num">05 — Timeline</div>
+    <h2>How we'll deliver</h2>
+
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="step-label">Days 1-2</div>
+        <h4>Discovery</h4>
+        <p>Brief review, style direction, mood board approval</p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-label">Days 3-5</div>
+        <h4>Logo + Core</h4>
+        <p>Logo concepts, color palette, typography selection</p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-label">Days 6-10</div>
+        <h4>Build</h4>
+        <p>Full brandbook, business cards, stationery</p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-label">Days 11-14</div>
+        <h4>Review + Deliver</h4>
+        <p>Revisions, final check, ZIP delivery</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AI Design Studio</span>
+    <span>{{CLIENT_NAME}} — Brand Proposal</span>
+    <span>Page 4</span>
+  </div>
+</div>
+
+<!-- ==========================================
+     PAGE 5: Terms + CTA
+     ========================================== -->
+<div class="page page-break">
+  <div class="section-num">06 — Terms</div>
+  <h2>Working together</h2>
+
+  <div class="terms">
+    <h3>Payment</h3>
+    <ul>
+      <li>50% upfront to start the project</li>
+      <li>50% upon delivery of final files</li>
+      <li>Bank transfer (UAE) or Wise</li>
+    </ul>
+  </div>
+
+  <div class="terms">
+    <h3>What's included</h3>
+    <ul>
+      <li>All source files (HTML, SVG, PNG) with full ownership</li>
+      <li>Google Fonts only — no license fees, ever</li>
+      <li>Revision rounds as per selected package</li>
+      <li>WhatsApp/Email support during the project</li>
+    </ul>
+  </div>
+
+  <div class="terms">
+    <h3>What's not included</h3>
+    <ul>
+      <li>Photography, stock images, or illustration</li>
+      <li>Website development (can be quoted separately)</li>
+      <li>Print production / physical printing</li>
+      <li>Additional deliverables beyond the selected package scope</li>
+    </ul>
+  </div>
+
+  <div class="cta-block">
+    <h2>Ready to start?</h2>
+    <p>Reply to this proposal or contact us directly. We'll begin within 24 hours of confirmation.</p>
+    <a href="mailto:rubelnick.ai@gmail.com" class="cta-btn">Confirm & Start</a>
+    <div style="margin-top: 1.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.4);">
+      +971 58 517 7230 &nbsp;|&nbsp; WhatsApp &nbsp;|&nbsp; Telegram: @eremin_plus
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AI Design Studio</span>
+    <span>{{CLIENT_NAME}} — Brand Proposal</span>
+    <span>Page 5</span>
+  </div>
+</div>
+
+</body>
+</html>

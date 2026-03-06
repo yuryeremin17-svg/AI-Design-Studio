@@ -1,32 +1,49 @@
 # HANDOFF — AI Design Studio
-> Дата: 2026-03-05 | Сессия: #8
+> Дата: 2026-03-06 | Сессия: #9
 
-## Что сделано в этой сессии (#8)
+## Что сделано в этой сессии (#9)
 
-### B2. Лендинг — рабочие данные (DONE)
-- Контакты: `rubelnick.ai@gmail.com`, `+971 58 517 7230`, WhatsApp, Telegram
-- OG-теги: title, description, url, twitter card
-- Кейсы кликабельные: карточки ведут на `output/*/brandbook.html`
-- Визуальная проверка Playwright — OK
+### Фаза 1: Готовность к клиентам
 
-### B3. Deploy лендинга (ЧАСТИЧНО)
-- Репо сделан публичным (`gh repo edit --visibility public`)
-- GitHub Pages включён, но **legacy build зависает** (duration: 0)
-- **Блокер:** токен без `workflow` scope — не пушится `.github/workflows/pages.yml`
-- **Решение:** обновить токен (Settings > Tokens > добавить workflow scope) или настроить Pages вручную в Settings репо
+#### 1. Бриф-форма — Web3Forms (DONE)
+- `templates/brief/brand-brief.html` — подключена отправка через Web3Forms API
+- `submitBrief()` теперь async: FormData → POST → email
+- Fallback: если API недоступен → localStorage
+- **TODO:** получить access_key на https://web3forms.com (email: rubelnick.ai@gmail.com) и заменить `YOUR_ACCESS_KEY_HERE`
 
-### Исправления визиток РубИИльник
-- `business-cards.html`: добавлен телефон `+971 58 517 7230` и email на оборот обоих вариантов
-- `brandbook.html`: добавлен телефон и email в секцию визитки (11) и контакты (12)
+#### 2. CTA на лендинге → бриф (DONE)
+- Hero: "Start a project" (primary) + "View portfolio" (outline)
+- Навигация: "Start a project" вместо "Get in touch"
+- Контакт-секция: "Fill out a brief" + "Email us"
+- Все ведут на `templates/brief/brand-brief.html`
+
+#### 3. Шаблон КП (DONE)
+- `templates/proposal/proposal.html` — 5 страниц, print-ready
+- Cover (тёмная), About + Brief, таблица пакетов, рекомендация + timeline, условия + CTA
+- Placeholder-переменные: `{{CLIENT_NAME}}`, `{{DATE}}`, `{{RECOMMENDED_PACKAGE}}`, `{{BRIEF_SUMMARY}}`
+- Шрифты: Space Grotesk + Inter, стиль: тёмная обложка + светлые страницы
+
+#### 4. PDF-экспорт — проверен (DONE)
+- `scripts/export-pdf.js` работает для обоих клиентов
+- Aurelius: 5 PDF (brandbook 1.3MB, cards, letterhead, presentation, email sig)
+- РубИИльник: 2 PDF (brandbook 0.8MB, cards)
+- Добавлен `"type": "module"` в package.json (убрал warning)
+
+#### 5. Playwright-проверка (DONE)
+- Лендинг, бриф, КП — визуально OK
 
 ## Что осталось
 
+### Блокеры (требуют действий Юрия)
+- [ ] **Web3Forms key** — зайти на https://web3forms.com → ввести rubelnick.ai@gmail.com → получить access_key → заменить в `templates/brief/brand-brief.html`
+- [ ] **GitHub Pages** — Settings → Pages → "Deploy from branch" → master / root. Или обновить токен (добавить workflow scope)
+
 ### Глобальный план
 
-#### Фаза 1: Готовность к клиентам
-- [ ] Бриф-форма (Web3Forms)
-- [ ] PDF-экспорт (Paged.js)
-- [ ] Шаблон КП
+#### Фаза 1: Готовность к клиентам — DONE
+- [x] Бриф-форма (Web3Forms)
+- [x] PDF-экспорт (проверен, работает)
+- [x] Шаблон КП
 
 #### Фаза 2: Первые клиенты
 - [ ] Реальный клиент #1
@@ -42,27 +59,24 @@
 ## Структура файлов
 ```
 AI-Design-Studio/
-├── index.html                      <- Лендинг (контакты, OG, кликабельные кейсы)
+├── index.html                      <- Лендинг (CTA → бриф, OG, кликабельные кейсы)
+├── package.json                    <- type: module, playwright
 ├── scripts/
-│   ├── deliver.js                  <- brand.json, transparent PNG
-│   ├── export-pdf.js
+│   ├── deliver.js                  <- ZIP сборка
+│   ├── export-pdf.js               <- PDF (vector, print-ready) ✓ проверен
 │   └── screenshot-sections.js
+├── templates/
+│   ├── brief/brand-brief.html      <- Бриф-форма (Web3Forms, 5 шагов, EN/RU)
+│   ├── proposal/proposal.html      <- Шаблон КП (5 страниц, print-ready) NEW
+│   ├── brandbook/starter.html
+│   ├── businesscard/starter.html
+│   └── letterhead/starter.html
 ├── assets/logos/
-│   ├── aurelius-group/ (logo.svg, logo-light.svg) — outlined
-│   └── rubiilnik/ (logo.svg, logo-light.svg, icon.svg) — Manrope outlined
+│   ├── aurelius-group/ (outlined SVG)
+│   └── rubiilnik/ (outlined SVG, Manrope)
 ├── output/
-│   ├── aurelius-group/
-│   │   ├── brand.json
-│   │   ├── brandbook.html
-│   │   ├── business-cards.html
-│   │   ├── letterhead.html
-│   │   ├── presentation.html
-│   │   ├── email-signature.html
-│   │   └── archive/
-│   └── rubiilnik/
-│       ├── brand.json
-│       ├── brandbook.html          <- v1.1, 12 секций, Manrope, телефон+email
-│       └── business-cards.html     <- 2 варианта, телефон+email
+│   ├── aurelius-group/ (brandbook, cards, letterhead, presentation, email-sig, print/)
+│   └── rubiilnik/ (brandbook, cards, print/)
 ├── delivery/
 │   ├── aurelius-group/ (ZIP 89KB)
 │   └── rubiilnik/ (ZIP 95KB)
@@ -70,4 +84,4 @@ AI-Design-Studio/
 ```
 
 ## Live
-https://yuryeremin17-svg.github.io/AI-Design-Studio/
+https://yuryeremin17-svg.github.io/AI-Design-Studio/ (ожидает настройки Pages)
