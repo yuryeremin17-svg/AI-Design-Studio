@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Templates — РубИИльник</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F2B4C;
+            --accent: #C46B2A;
+            --sand: #C4A87C;
+            --light: #FAF7F2;
+            --white: #FFFFFF;
+            --gray: #8A8A8A;
+
+            --font-heading: 'Manrope', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: #E8E8E8;
+            padding: 40px;
+            color: #333;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 48px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .templates-grid {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .template-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .template-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+
+        .template-size {
+            font-size: 10px;
+            color: #AAA;
+            margin-top: 8px;
+        }
+
+        /* ===== INSTAGRAM POST (1080x1080) — scaled to 360px ===== */
+        .ig-post {
+            width: 360px;
+            height: 360px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ig-post.dark { background: var(--primary); }
+        .ig-post.light { background: var(--light); }
+
+        .ig-post .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: var(--accent);
+        }
+
+        .ig-post .content {
+            text-align: left;
+            z-index: 1;
+            padding: 48px;
+            width: 100%;
+        }
+
+        .ig-post .logo-area {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+        }
+
+        .ig-post .logo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ig-post .headline {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .ig-post.dark .headline { color: var(--white); }
+        .ig-post.light .headline { color: var(--primary); }
+
+        .ig-post .accent-line {
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .ig-post .body-text {
+            font-family: var(--font-body);
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--gray);
+        }
+
+        .ig-post .tag {
+            position: absolute;
+            bottom: 24px;
+            left: 48px;
+            font-family: var(--font-body);
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .ig-post .corner-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 24px;
+            width: 32px;
+            height: 32px;
+            opacity: 0.15;
+        }
+
+        .ig-post .corner-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* ===== INSTAGRAM STORY (1080x1920) — scaled to 270x480 ===== */
+        .ig-story {
+            width: 270px;
+            height: 480px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ig-story.dark { background: var(--primary); }
+        .ig-story.light { background: var(--light); }
+
+        .ig-story .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent);
+        }
+
+        .ig-story .content {
+            text-align: left;
+            z-index: 1;
+            padding: 36px;
+        }
+
+        .ig-story .logo-area {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 28px;
+        }
+
+        .ig-story .logo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ig-story .headline {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+
+        .ig-story.dark .headline { color: var(--white); }
+        .ig-story.light .headline { color: var(--primary); }
+
+        .ig-story .accent-line {
+            width: 32px;
+            height: 2px;
+            background: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .ig-story .body-text {
+            font-family: var(--font-body);
+            font-size: 11px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .ig-story .cta {
+            margin-top: 28px;
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--accent);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 2px;
+        }
+
+        .ig-story .tag {
+            position: absolute;
+            bottom: 24px;
+            left: 36px;
+            font-size: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* ===== LINKEDIN POST (1200x627) — scaled to 400x209 ===== */
+        .li-post {
+            width: 400px;
+            height: 209px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .li-post.dark { background: var(--primary); }
+        .li-post.light { background: var(--light); }
+
+        .li-post .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent);
+        }
+
+        .li-post .content {
+            padding: 28px 24px 28px 32px;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .li-post .logo-area {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 14px;
+        }
+
+        .li-post .logo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .li-post .headline {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .li-post.dark .headline { color: var(--white); }
+        .li-post.light .headline { color: var(--primary); }
+
+        .li-post .body-text {
+            font-family: var(--font-body);
+            font-size: 10px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .li-post .right-block {
+            width: 140px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .li-post.dark .right-block { background: var(--accent); }
+        .li-post.light .right-block { background: var(--primary); }
+
+        .li-post .right-block .stat {
+            text-align: center;
+        }
+
+        .li-post .right-block .stat-number {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 36px;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .li-post .right-block .stat-label {
+            font-family: var(--font-body);
+            font-size: 9px;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* ===== SECTION DIVIDER ===== */
+        .variant-divider {
+            width: 100%;
+            text-align: center;
+            margin: 48px 0 24px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .safe-zone-note {
+            font-size: 9px;
+            color: #BBB;
+            text-align: center;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        @media print {
+            body { background: white; padding: 20px; }
+            .templates-grid { gap: 24px; }
+            .variant-divider { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Social Media Templates</h1>
+    <p class="subtitle">РубИИльник</p>
+
+    <!-- ===== DARK VARIANT ===== -->
+    <div class="variant-divider">Dark Variant</div>
+
+    <div class="templates-grid">
+
+        <!-- Instagram Post Dark -->
+        <div class="template-group">
+            <div class="template-label">Instagram Post</div>
+            <div class="ig-post dark">
+                <div class="accent-bar"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/rubiilnik/logo-light.svg" alt="РубИИльник">
+                    </div>
+                    <div class="headline">Включи ИИ.<br>Выключи рутину.</div>
+                    <div class="accent-line"></div>
+                    <div class="body-text">Искусственный интеллект для<br>руководителей, которые ценят время</div>
+                </div>
+                <div class="tag">rubiilnik.ai</div>
+                <div class="corner-icon">
+                    <img src="../../assets/logos/rubiilnik/icon.svg" alt="">
+                </div>
+            </div>
+            <div class="template-size">1080 &times; 1080 px</div>
+        </div>
+
+        <!-- Instagram Story Dark -->
+        <div class="template-group">
+            <div class="template-label">Instagram Story</div>
+            <div class="ig-story dark">
+                <div class="accent-bar"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/rubiilnik/logo-light.svg" alt="РубИИльник">
+                    </div>
+                    <div class="headline">80% рутины<br>можно убрать<br>за 2 недели</div>
+                    <div class="accent-line"></div>
+                    <div class="body-text">ИИ-ассистент берёт на себя<br>отчёты, письма, аналитику —<br>вы занимаетесь стратегией</div>
+                    <div class="cta">Узнать больше</div>
+                </div>
+                <div class="tag">rubiilnik.ai</div>
+            </div>
+            <div class="template-size">1080 &times; 1920 px</div>
+        </div>
+
+        <!-- LinkedIn Post Dark -->
+        <div class="template-group">
+            <div class="template-label">LinkedIn Post</div>
+            <div class="li-post dark">
+                <div class="accent-bar"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/rubiilnik/logo-light.svg" alt="РубИИльник">
+                    </div>
+                    <div class="headline">ИИ — не замена<br>руководителю.<br>Это его усилитель.</div>
+                    <div class="body-text">Автоматизация для тех, кому 40+<br>и кто управляет, а не кодит</div>
+                </div>
+                <div class="right-block">
+                    <div class="stat">
+                        <div class="stat-number">10x</div>
+                        <div class="stat-label">быстрее</div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-size">1200 &times; 627 px</div>
+        </div>
+
+    </div>
+
+    <!-- ===== LIGHT VARIANT ===== -->
+    <div class="variant-divider">Light Variant</div>
+
+    <div class="templates-grid">
+
+        <!-- Instagram Post Light -->
+        <div class="template-group">
+            <div class="template-label">Instagram Post</div>
+            <div class="ig-post light">
+                <div class="accent-bar"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/rubiilnik/logo.svg" alt="РубИИльник">
+                    </div>
+                    <div class="headline">Делегируй рутину.<br>Управляй стратегией.</div>
+                    <div class="accent-line"></div>
+                    <div class="body-text">ИИ-решения для руководителей<br>с 20+ годами опыта</div>
+                </div>
+                <div class="tag">rubiilnik.ai</div>
+                <div class="corner-icon">
+                    <img src="../../assets/logos/rubiilnik/icon.svg" alt="">
+                </div>
+            </div>
+            <div class="template-size">1080 &times; 1080 px</div>
+        </div>
+
+        <!-- Instagram Story Light -->
+        <div class="template-group">
+            <div class="template-label">Instagram Story</div>
+            <div class="ig-story light">
+                <div class="accent-bar"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/rubiilnik/logo.svg" alt="РубИИльник">
+                    </div>
+                    <div class="headline">Не нужно<br>разбираться в IT.<br>Нужно нажать<br>рубильник.</div>
+                    <div class="accent-line"></div>
+                    <div class="body-text">Простые ИИ-инструменты<br>для сложных бизнес-задач</div>
+                    <div class="cta">Попробовать</div>
+                </div>
+                <div class="tag">rubiilnik.ai</div>
+            </div>
+            <div class="template-size">1080 &times; 1920 px</div>
+        </div>
+
+        <!-- LinkedIn Post Light -->
+        <div class="template-group">
+            <div class="template-label">LinkedIn Post</div>
+            <div class="li-post light">
+                <div class="accent-bar"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/rubiilnik/logo.svg" alt="РубИИльник">
+                    </div>
+                    <div class="headline">Три часа отчётов?<br>ИИ сделает за 15 минут.</div>
+                    <div class="body-text">РубИИльник — AI-автоматизация<br>для руководителей в ОАЭ и СНГ</div>
+                </div>
+                <div class="right-block">
+                    <div class="stat">
+                        <div class="stat-number">3ч→15'</div>
+                        <div class="stat-label">экономия</div>
+                    </div>
+                </div>
+            </div>
+            <div class="template-size">1200 &times; 627 px</div>
+        </div>
+
+    </div>
+
+    <p class="safe-zone-note" style="margin-top: 32px;">
+        Safe zones: 80px from edges (Instagram), 60px (LinkedIn). Keep text and logos within safe zones.
+    </p>
+
+</body>
+</html>

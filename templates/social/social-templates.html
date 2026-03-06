@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Templates — Brand Kit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand Colors — replace per client */
+            --primary: #010110;
+            --accent: #BE9A64;
+            --light: #F5F0E8;
+            --white: #FFFFFF;
+            --gray: #8A8A8A;
+
+            /* Fonts — replace per client */
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background: #E8E8E8;
+            padding: 40px;
+            color: #333;
+        }
+
+        h1 {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 48px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .templates-grid {
+            display: flex;
+            gap: 48px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .template-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .template-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+
+        .template-size {
+            font-size: 10px;
+            color: #AAA;
+            margin-top: 8px;
+        }
+
+        /* ===== INSTAGRAM POST (1080x1080) — scaled to 360px ===== */
+        .ig-post {
+            width: 360px;
+            height: 360px;
+            background: var(--primary);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ig-post .frame {
+            position: absolute;
+            inset: 16px;
+            border: 0.5px solid var(--accent);
+        }
+
+        .ig-post .frame::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 0.5px solid var(--accent);
+        }
+
+        .ig-post .content {
+            text-align: center;
+            z-index: 1;
+            padding: 40px;
+        }
+
+        .ig-post .logo-area {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            opacity: 0.9;
+        }
+
+        .ig-post .logo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ig-post .headline {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 22px;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .ig-post .accent-line {
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto 12px;
+        }
+
+        .ig-post .body-text {
+            font-family: var(--font-body);
+            font-size: 11px;
+            color: var(--gray);
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+
+        .ig-post .tag {
+            position: absolute;
+            bottom: 28px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 8px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+
+        /* ===== INSTAGRAM STORY (1080x1920) — scaled to 270x480 ===== */
+        .ig-story {
+            width: 270px;
+            height: 480px;
+            background: var(--primary);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ig-story .frame {
+            position: absolute;
+            inset: 12px;
+            border: 0.5px solid var(--accent);
+        }
+
+        .ig-story .frame::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 0.5px solid var(--accent);
+        }
+
+        .ig-story .content {
+            text-align: center;
+            z-index: 1;
+            padding: 32px;
+        }
+
+        .ig-story .logo-area {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 24px;
+            opacity: 0.9;
+        }
+
+        .ig-story .logo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ig-story .headline {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 20px;
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .ig-story .accent-line {
+            width: 32px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto 16px;
+        }
+
+        .ig-story .body-text {
+            font-family: var(--font-body);
+            font-size: 10px;
+            color: var(--gray);
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+        }
+
+        .ig-story .cta {
+            margin-top: 28px;
+            padding: 10px 28px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: var(--font-body);
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: transparent;
+        }
+
+        .ig-story .tag {
+            position: absolute;
+            bottom: 24px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 7px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            opacity: 0.6;
+        }
+
+        /* ===== LINKEDIN POST (1200x627) — scaled to 400x209 ===== */
+        .li-post {
+            width: 400px;
+            height: 209px;
+            background: var(--light);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .li-post .left-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--accent);
+        }
+
+        .li-post .content {
+            padding: 28px 32px 28px 36px;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .li-post .logo-area {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 14px;
+            opacity: 0.85;
+        }
+
+        .li-post .logo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .li-post .headline {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 18px;
+            color: var(--primary);
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .li-post .body-text {
+            font-family: var(--font-body);
+            font-size: 10px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .li-post .right-block {
+            width: 140px;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .li-post .right-block .accent-text {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 28px;
+            color: var(--accent);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* ===== VARIANT LIGHT VERSIONS ===== */
+        .variant-light .ig-post,
+        .variant-light .ig-story {
+            background: var(--light);
+        }
+
+        .variant-light .ig-post .headline,
+        .variant-light .ig-story .headline {
+            color: var(--primary);
+        }
+
+        .variant-light .ig-post .body-text,
+        .variant-light .ig-story .body-text {
+            color: var(--gray);
+        }
+
+        .variant-light .li-post {
+            background: var(--primary);
+        }
+
+        .variant-light .li-post .headline {
+            color: var(--white);
+        }
+
+        .variant-light .li-post .body-text {
+            color: var(--gray);
+        }
+
+        .variant-light .li-post .right-block {
+            background: var(--accent);
+        }
+
+        .variant-light .li-post .right-block .accent-text {
+            color: var(--white);
+        }
+
+        /* ===== SECTION DIVIDER ===== */
+        .variant-divider {
+            width: 100%;
+            text-align: center;
+            margin: 48px 0 24px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* ===== SAFE ZONE INDICATORS ===== */
+        .safe-zone-note {
+            font-size: 9px;
+            color: #BBB;
+            text-align: center;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            body { background: white; padding: 20px; }
+            .templates-grid { gap: 24px; }
+            .variant-divider { page-break-before: always; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Social Media Templates</h1>
+    <p class="subtitle">Aurelius Group</p>
+
+    <!-- ===== DARK VARIANT ===== -->
+    <div class="variant-divider">Dark Variant</div>
+
+    <div class="templates-grid">
+
+        <!-- Instagram Post -->
+        <div class="template-group">
+            <div class="template-label">Instagram Post</div>
+            <div class="ig-post">
+                <div class="frame"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Logo">
+                    </div>
+                    <div class="headline">Building Legacy<br>Through Vision</div>
+                    <div class="accent-line"></div>
+                    <div class="body-text">Strategic investments that stand<br>the test of time</div>
+                </div>
+                <div class="tag">aureliusgroup.com</div>
+            </div>
+            <div class="template-size">1080 &times; 1080 px</div>
+        </div>
+
+        <!-- Instagram Story -->
+        <div class="template-group">
+            <div class="template-label">Instagram Story</div>
+            <div class="ig-story">
+                <div class="frame"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Logo">
+                    </div>
+                    <div class="headline">Your Investment.<br>Our Expertise.</div>
+                    <div class="accent-line"></div>
+                    <div class="body-text">Decades of experience in<br>building sustainable wealth<br>across global markets</div>
+                    <div class="cta">Learn More</div>
+                </div>
+                <div class="tag">aureliusgroup.com</div>
+            </div>
+            <div class="template-size">1080 &times; 1920 px</div>
+        </div>
+
+        <!-- LinkedIn Post -->
+        <div class="template-group">
+            <div class="template-label">LinkedIn Post</div>
+            <div class="li-post">
+                <div class="left-bar"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/aurelius-group/logo.svg" alt="Logo">
+                    </div>
+                    <div class="headline">Investing in Tomorrow's<br>Market Leaders</div>
+                    <div class="body-text">We identify and nurture businesses with<br>exceptional potential for long-term growth</div>
+                </div>
+                <div class="right-block">
+                    <div class="accent-text">Est.<br>2024</div>
+                </div>
+            </div>
+            <div class="template-size">1200 &times; 627 px</div>
+        </div>
+
+    </div>
+
+    <!-- ===== LIGHT VARIANT ===== -->
+    <div class="variant-divider">Light Variant</div>
+
+    <div class="templates-grid variant-light">
+
+        <!-- Instagram Post Light -->
+        <div class="template-group">
+            <div class="template-label">Instagram Post</div>
+            <div class="ig-post">
+                <div class="frame"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/aurelius-group/logo.svg" alt="Logo">
+                    </div>
+                    <div class="headline">Tradition Meets<br>Innovation</div>
+                    <div class="accent-line"></div>
+                    <div class="body-text">Where classical values drive<br>modern investment strategies</div>
+                </div>
+                <div class="tag">aureliusgroup.com</div>
+            </div>
+            <div class="template-size">1080 &times; 1080 px</div>
+        </div>
+
+        <!-- Instagram Story Light -->
+        <div class="template-group">
+            <div class="template-label">Instagram Story</div>
+            <div class="ig-story">
+                <div class="frame"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/aurelius-group/logo.svg" alt="Logo">
+                    </div>
+                    <div class="headline">Strategic Growth.<br>Lasting Value.</div>
+                    <div class="accent-line"></div>
+                    <div class="body-text">Partnering with visionary<br>entrepreneurs to build<br>enduring enterprises</div>
+                    <div class="cta">Discover More</div>
+                </div>
+                <div class="tag">aureliusgroup.com</div>
+            </div>
+            <div class="template-size">1080 &times; 1920 px</div>
+        </div>
+
+        <!-- LinkedIn Post Light -->
+        <div class="template-group">
+            <div class="template-label">LinkedIn Post</div>
+            <div class="li-post">
+                <div class="left-bar"></div>
+                <div class="content">
+                    <div class="logo-area">
+                        <img src="../../assets/logos/aurelius-group/logo-light.svg" alt="Logo">
+                    </div>
+                    <div class="headline">Building Portfolios<br>That Endure</div>
+                    <div class="body-text">A disciplined approach to investment<br>management, rooted in decades of expertise</div>
+                </div>
+                <div class="right-block">
+                    <div class="accent-text">Est.<br>2024</div>
+                </div>
+            </div>
+            <div class="template-size">1200 &times; 627 px</div>
+        </div>
+
+    </div>
+
+    <p class="safe-zone-note" style="margin-top: 32px;">
+        Safe zones: 80px from edges (Instagram), 60px (LinkedIn). Keep text and logos within safe zones.
+    </p>
+
+</body>
+</html>
