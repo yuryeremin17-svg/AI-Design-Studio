@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloshka DELUXE — Palette Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: #F8F4F0; color: #3D2B35; }
+
+.page { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2.8rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  color: #5C3A4E;
+}
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  color: #B8929B;
+}
+.subtitle {
+  font-size: 0.85rem;
+  color: #B8929B;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Colors */
+.colors {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+.swatch {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(92,58,78,0.1);
+}
+.swatch-color {
+  height: 120px;
+}
+.swatch-info {
+  background: #fff;
+  padding: 12px 16px;
+}
+.swatch-info .name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.swatch-info .hex {
+  font-size: 0.75rem;
+  color: #B8929B;
+}
+
+/* Typography */
+.type-section { margin: 3rem 0; }
+.type-heading {
+  font-family: 'Cormorant Garamond', serif;
+  color: #5C3A4E;
+}
+.type-body {
+  font-family: 'DM Sans', sans-serif;
+  color: #3D2B35;
+}
+.type-sample { margin: 1rem 0; line-height: 1.6; }
+
+/* Logo concepts */
+.logo-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+.logo-box {
+  border-radius: 16px;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.logo-dark { background: #5C3A4E; color: #F8F4F0; }
+.logo-light { background: #fff; color: #5C3A4E; border: 1px solid rgba(92,58,78,0.1); }
+.logo-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.logo-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-top: 8px;
+  opacity: 0.7;
+}
+.logo-accent { color: #C5A882; }
+.divider {
+  width: 60px;
+  height: 1px;
+  margin: 12px auto;
+}
+.divider-gold { background: #C5A882; }
+.divider-plum { background: #5C3A4E; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="subtitle">Bloshka DELUXE / Brand Preview</div>
+  <h1>Cormorant Garamond + DM Sans</h1>
+  <h2>Classic Luxury / Vintage Elegance</h2>
+
+  <div class="colors">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#5C3A4E;"></div>
+      <div class="swatch-info"><div class="name">Dusty Plum</div><div class="hex">#5C3A4E</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#C5A882;"></div>
+      <div class="swatch-info"><div class="name">Champagne Gold</div><div class="hex">#C5A882</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#B8929B;"></div>
+      <div class="swatch-info"><div class="name">Muted Rose</div><div class="hex">#B8929B</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F8F4F0;"></div>
+      <div class="swatch-info"><div class="name">Warm Ivory</div><div class="hex">#F8F4F0</div></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#3D2B35;"></div>
+      <div class="swatch-info"><div class="name">Deep Mauve</div><div class="hex">#3D2B35</div></div>
+    </div>
+  </div>
+
+  <div class="type-section">
+    <div class="subtitle">Typography</div>
+    <div class="type-sample type-heading" style="font-size:2.5rem;font-weight:300;">Bloshka DELUXE</div>
+    <div class="type-sample type-heading" style="font-size:1.8rem;font-weight:400;">Красота в старинных вещах</div>
+    <div class="type-sample type-heading" style="font-size:1.3rem;font-weight:500;">Винтаж и антиквариат, посуда, предметы сервировки</div>
+    <div class="type-sample type-body" style="font-size:0.95rem;max-width:600px;margin-top:1.5rem;">
+      Мы видим красоту в старинных вещах и даём им вторую жизнь. Каждый предмет в нашей коллекции — это история, качество и утончённый вкус. Посуда царской и советской России, предметы сервировки для ценителей.
+    </div>
+  </div>
+
+  <div class="subtitle" style="margin-top:3rem;">Logo Concept</div>
+  <div class="logo-area">
+    <div class="logo-box logo-dark">
+      <div class="logo-name">Bloshka</div>
+      <div class="divider divider-gold"></div>
+      <div class="logo-sub logo-accent">D E L U X E</div>
+    </div>
+    <div class="logo-box logo-light">
+      <div class="logo-name" style="color:#5C3A4E;">Bloshka</div>
+      <div class="divider divider-plum"></div>
+      <div class="logo-sub" style="color:#C5A882;">D E L U X E</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

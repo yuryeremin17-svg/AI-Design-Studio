@@ -1,0 +1,39 @@
+{
+  "name": "Bloshka DELUXE",
+  "tagline": "Beauty in vintage",
+  "description": "Vintage and antique tableware, serving pieces. Giving beautiful old things a second life.",
+  "description_ru": "Винтаж и антиквариат: посуда, предметы сервировки. Даём красивым старинным вещам вторую жизнь.",
+  "package": "start",
+  "version": "1.0",
+  "style": "Classic Luxury",
+  "fonts": {
+    "heading": "Cormorant Garamond",
+    "headingWeights": [300, 400, 500, 600],
+    "body": "DM Sans",
+    "bodyWeights": [300, 400, 500]
+  },
+  "colors": {
+    "primary": "#5C3A4E",
+    "primaryName": "Dusty Plum",
+    "accent": "#C5A882",
+    "accentName": "Champagne Gold",
+    "secondary": "#B8929B",
+    "secondaryName": "Muted Rose",
+    "light": "#F8F4F0",
+    "lightName": "Warm Ivory",
+    "text": "#3D2B35",
+    "textName": "Deep Mauve"
+  },
+  "contact": {
+    "name": "Larisa Vlasova",
+    "name_ru": "Лариса Власова",
+    "email": "lvlasova2016@yandex.ru",
+    "phone": "+79037221134",
+    "whatsapp": "+79037221134",
+    "location": "Russia / CIS",
+    "location_ru": "Россия / СНГ"
+  },
+  "social": {
+    "instagram": "bloshka_deluxe"
+  }
+}
