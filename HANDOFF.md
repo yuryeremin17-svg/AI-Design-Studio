@@ -1,5 +1,37 @@
 # HANDOFF — AI Design Studio
-> Дата: 2026-03-07 | Сессия: #11
+> Дата: 2026-03-07 | Сессия: #12
+
+## Что сделано в сессии #12
+
+### Кейс-стади РубИИльник на лендинг
+- 4 скриншота брендбука через Playwright: обложка, логотип, палитра, визитки
+- Сохранены в `assets/portfolio/rubiilnik/` (284 KB суммарно, `loading="lazy"`)
+- Новая секция Case Study в `index.html` — под карточками портфолио
+- Содержит: галерея 2x2, описание клиента/deliverables/стиль, CTA на интерактивный брендбук
+- Карточка РубИИльник ведёт якорем на кейс-стади (smooth scroll)
+- Остальные секции (Hero, Services, Process, Contact, Footer) не тронуты
+
+### Фикс бриф-формы — Cloudflare блокировал отправку
+- **Проблема:** Web3Forms включил Cloudflare protection. `fetch()` получал HTML challenge вместо JSON → catch показывал ложное "спасибо" → письмо не уходило
+- **Решение:** `fetch()` заменён на обычный `form.submit()` (HTML form POST). Cloudflare пропускает нативные form POST через challenge прозрачно для пользователя
+- **Redirect:** Web3Forms поле `redirect` возвращает на `?sent=1` → JS показывает successScreen → `history.replaceState` чистит URL
+- **Fallback:** `localStorage` бэкап перед отправкой + экран ошибки с WhatsApp/Telegram/Email (хотя при form POST он практически недостижим)
+- **Тест:** localhost HTTP → Playwright → реальный POST → 3 письма дошли на rubelnick.ai@gmail.com
+
+### Что НЕ тронуто
+- deliver-v2.js, export-pdf.js — не тронуты
+- output/ — только чтение для скриншотов
+- templates/ (кроме brand-brief.html) — не тронуты
+
+---
+
+## Следующие шаги
+- [ ] Первый реальный клиент (Старт 5000 AED или бесплатно за отзыв)
+- [ ] Кейс-стади Aurelius (аналогично, когда будет второй клиент — для социального доказательства)
+- [ ] RTL-адаптация (когда будет арабоязычный клиент)
+- [ ] Спринт 3 deliver-v2.js — мокапы, PowerPoint, One-Pager (когда клиент на Премиум)
+
+---
 
 ## Что сделано в сессии #11
 
