@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-/* ========== CSS Variables / Design System ========== */
 :root {
   --primary: #5C3A4E;
   --accent: #C5A882;
@@ -15,45 +14,27 @@
   --light: #F8F4F0;
   --text: #3D2B35;
   --white: #FFFFFF;
-
   --font-heading: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
-
   --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
   --sp-6: 48px; --sp-8: 64px; --sp-10: 80px; --sp-12: 96px;
-  --sp-16: 128px;
-
-  --fs-xs: 0.75rem; --fs-sm: 0.875rem; --fs-base: 1rem;
-  --fs-lg: 1.125rem; --fs-xl: 1.333rem; --fs-2xl: 1.777rem;
-  --fs-3xl: 2.369rem; --fs-4xl: 3.157rem; --fs-5xl: 4.209rem;
-
-  --shadow-sm: 0 1px 3px rgba(61,43,53,0.08);
-  --shadow-md: 0 4px 12px rgba(61,43,53,0.1);
-
-  --page-w: 210mm;
-  --page-h: 297mm;
+  --page-w: 210mm; --page-h: 297mm;
 }
 
-/* ========== Reset & Base ========== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { font-size: 16px; scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
   color: var(--text);
-  background: #E8E2DC;
+  background: #D8D0C8;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ========== Progress Bar ========== */
-.progress-bar {
-  position: fixed; top: 0; left: 0; height: 3px;
-  background: var(--accent); z-index: 1000;
-  transition: width 0.3s ease;
-}
+/* Progress */
+.progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 1000; transition: width .3s; }
 
-/* ========== Page Layout ========== */
+/* Page */
 .page {
   width: var(--page-w);
   min-height: var(--page-h);
@@ -61,445 +42,199 @@ body {
   background: var(--light);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 40px rgba(61,43,53,0.12), 0 2px 8px rgba(61,43,53,0.06);
 }
-.page-inner {
-  padding: var(--sp-8) var(--sp-8) var(--sp-6);
-  min-height: var(--page-h);
-  display: flex;
-  flex-direction: column;
-}
+.page-inner { padding: var(--sp-8); min-height: var(--page-h); display: flex; flex-direction: column; }
 
-/* ========== Section Numbers ========== */
-.section-num {
-  font-family: var(--font-heading);
-  font-weight: 300;
-  font-size: var(--fs-xs);
-  color: var(--accent);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: var(--sp-2);
-}
-
-/* ========== Typography ========== */
-h1, h2, h3 { font-family: var(--font-heading); font-weight: 300; color: var(--text); }
-h1 { font-size: var(--fs-5xl); line-height: 1.1; letter-spacing: -0.02em; }
-h2 { font-size: var(--fs-3xl); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: var(--sp-4); }
-h3 { font-size: var(--fs-2xl); line-height: 1.3; margin-bottom: var(--sp-3); }
-p { font-size: var(--fs-base); line-height: 1.7; margin-bottom: var(--sp-2); font-weight: 300; }
-.subtitle {
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  font-weight: 300;
-  color: var(--secondary);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-/* ========== Decorative Line ========== */
-.divider {
-  width: 50px; height: 1px;
-  background: var(--accent);
-  margin: var(--sp-3) 0;
-}
-
-/* ========== Double Frame ========== */
-.double-frame {
-  position: relative;
-  border: 0.5pt solid var(--accent);
-}
-.double-frame::after {
+/* Subtle paper texture */
+.page::before {
   content: '';
-  position: absolute;
-  top: 3pt; left: 3pt; right: 3pt; bottom: 3pt;
-  border: 0.5pt solid var(--accent);
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
   pointer-events: none;
+  z-index: 0;
+}
+.page > * { position: relative; z-index: 1; }
+
+/* Typography */
+h1, h2, h3 { font-family: var(--font-heading); font-weight: 300; color: var(--text); }
+h2 { font-size: 2.8rem; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: var(--sp-3); }
+h3 { font-size: 1.6rem; line-height: 1.3; margin-bottom: var(--sp-2); }
+p { font-size: 0.95rem; line-height: 1.7; margin-bottom: var(--sp-2); font-weight: 300; }
+
+.section-num {
+  font-family: var(--font-body); font-weight: 300; font-size: 0.7rem;
+  color: var(--accent); letter-spacing: 0.25em; text-transform: uppercase;
+  margin-bottom: var(--sp-3);
+}
+.subtitle {
+  font-family: var(--font-body); font-size: 0.75rem; font-weight: 300;
+  color: var(--secondary); letter-spacing: 0.25em; text-transform: uppercase;
+}
+.divider { width: 50px; height: 1px; background: var(--accent); margin: var(--sp-3) 0; }
+.divider-wide { width: 100%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); margin: var(--sp-4) 0; }
+
+/* Double Frame */
+.double-frame { position: relative; border: 0.5pt solid var(--accent); }
+.double-frame::after {
+  content: ''; position: absolute; top: 4pt; left: 4pt; right: 4pt; bottom: 4pt;
+  border: 0.5pt solid var(--accent); pointer-events: none;
 }
 
-/* ========== Cover Page ========== */
+/* Footer */
+.page-footer {
+  margin-top: auto; padding-top: var(--sp-3);
+  border-top: 1px solid rgba(92,58,78,0.08);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.7rem; color: var(--secondary); font-weight: 300;
+}
+
+/* ========== COVER ========== */
 .cover {
   background: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: var(--page-h);
-  padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  min-height: var(--page-h); padding: 0;
+  background-image:
+    radial-gradient(ellipse at 30% 20%, rgba(197,168,130,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(184,146,155,0.06) 0%, transparent 50%);
 }
-.cover-content {
-  text-align: center;
-  padding: var(--sp-10);
-  width: 70%;
+.cover-frame {
+  width: 65%; padding: 60px 50px; text-align: center;
 }
-.cover-logo { margin-bottom: var(--sp-6); }
-.cover-logo svg { width: 280px; height: auto; }
+.cover-logo svg { width: 320px; height: auto; }
 .cover h1 {
-  font-family: var(--font-heading);
-  font-weight: 300;
-  font-size: var(--fs-2xl);
-  color: var(--light);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-top: var(--sp-6);
-}
-.cover .subtitle {
-  color: var(--accent);
-  margin-top: var(--sp-2);
+  font-size: 1.4rem; color: var(--light); letter-spacing: 0.2em;
+  text-transform: uppercase; margin-top: var(--sp-6); font-weight: 300;
 }
 .cover-year {
-  font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  color: var(--secondary);
-  letter-spacing: 0.3em;
-  margin-top: var(--sp-8);
+  font-family: var(--font-body); font-size: 0.65rem;
+  color: var(--secondary); letter-spacing: 0.4em; margin-top: var(--sp-8);
 }
 
 /* ========== TOC ========== */
-.toc-list { list-style: none; }
+.toc-list { list-style: none; margin-top: var(--sp-4); }
 .toc-list li {
-  display: flex;
-  align-items: baseline;
-  padding: var(--sp-2) 0;
-  border-bottom: 1px solid rgba(92,58,78,0.08);
+  display: flex; align-items: baseline; padding: 14px 0;
+  border-bottom: 1px solid rgba(92,58,78,0.06);
 }
 .toc-list li:last-child { border-bottom: none; }
-.toc-num {
-  font-family: var(--font-heading);
-  font-weight: 300;
-  color: var(--accent);
-  width: 40px;
-  flex-shrink: 0;
-  font-size: var(--fs-lg);
-}
-.toc-title {
-  font-family: var(--font-heading);
-  font-weight: 400;
-  font-size: var(--fs-lg);
-  color: var(--text);
-}
-.toc-title a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.toc-num { font-family: var(--font-heading); font-weight: 300; color: var(--accent); width: 44px; flex-shrink: 0; font-size: 1.1rem; }
+.toc-title { font-family: var(--font-heading); font-weight: 400; font-size: 1.05rem; }
+.toc-title a { color: inherit; text-decoration: none; }
 .toc-title a:hover { color: var(--accent); }
-.toc-dots {
-  flex: 1;
-  border-bottom: 1px dotted var(--secondary);
-  margin: 0 var(--sp-2);
-  min-width: 30px;
-  position: relative;
-  top: -4px;
-}
-.toc-page {
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  color: var(--secondary);
-  font-weight: 300;
-}
+.toc-dots { flex: 1; border-bottom: 1px dotted rgba(184,146,155,0.4); margin: 0 var(--sp-2); position: relative; top: -4px; }
+.toc-page { font-family: var(--font-body); font-size: 0.8rem; color: var(--secondary); }
 
-/* ========== Logo Display ========== */
+/* ========== Logo Displays ========== */
 .logo-display {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--sp-8);
-  border-radius: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--sp-8) var(--sp-6); min-height: 200px;
 }
 .logo-display svg { max-width: 300px; width: 100%; height: auto; }
 
-.logo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-4);
-  margin: var(--sp-4) 0;
-}
+.logo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--sp-3); margin: var(--sp-4) 0; }
 .logo-card {
-  padding: var(--sp-6) var(--sp-4);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-2);
+  padding: var(--sp-6) var(--sp-4); display: flex; flex-direction: column;
+  align-items: center; gap: var(--sp-1); transition: transform .2s;
 }
-.logo-card svg { max-width: 200px; width: 100%; height: auto; }
-.logo-card-label {
-  font-size: var(--fs-xs);
-  color: var(--secondary);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 400;
-  margin-top: var(--sp-1);
-}
-
-/* ========== Clear Zone ========== */
-.clearzone-demo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--sp-8);
-  margin: var(--sp-4) 0;
-  background: var(--light);
-}
-.clearzone-box {
-  position: relative;
-  display: inline-block;
-  padding: var(--sp-6);
-}
-.clearzone-box svg { width: 200px; height: auto; }
-.clearzone-border {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border: 1px dashed var(--accent);
-  opacity: 0.6;
-}
-.clearzone-label {
-  position: absolute;
-  font-size: 10px;
-  color: var(--accent);
-  font-family: var(--font-body);
-  letter-spacing: 0.1em;
-}
-.clearzone-label.top { top: 4px; left: 50%; transform: translateX(-50%); }
-.clearzone-label.bottom { bottom: 4px; left: 50%; transform: translateX(-50%); }
-.clearzone-label.left { top: 50%; left: 4px; transform: translateY(-50%) rotate(-90deg); }
-.clearzone-label.right { top: 50%; right: 4px; transform: translateY(-50%) rotate(90deg); }
+.logo-card:hover { transform: scale(1.02); }
+.logo-card svg { max-width: 160px; width: 100%; height: auto; }
+.logo-card-label { font-size: 0.65rem; color: var(--secondary); letter-spacing: 0.15em; text-transform: uppercase; margin-top: var(--sp-1); }
 
 /* ========== Color Swatches ========== */
-.color-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: var(--sp-3);
-  margin: var(--sp-4) 0;
-}
-.color-swatch {
-  text-align: center;
-  cursor: pointer;
-}
-.color-circle {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  margin: 0 auto var(--sp-2);
-  border: 1px solid rgba(61,43,53,0.1);
-  transition: transform 0.2s;
-}
-.color-circle:hover { transform: scale(1.08); }
-.color-name {
-  font-family: var(--font-heading);
-  font-size: var(--fs-sm);
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 2px;
-}
-.color-hex {
-  font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  color: var(--secondary);
-  font-weight: 300;
-  letter-spacing: 0.05em;
-}
-
-/* ========== Logo on Palettes ========== */
-.palette-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--sp-3);
-  margin: var(--sp-4) 0;
-}
-.palette-card {
-  padding: var(--sp-4);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 4/3;
+.color-bars { display: flex; gap: 0; margin: var(--sp-4) 0; height: 240px; overflow: hidden; }
+.color-bar {
+  flex: 1; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 16px 12px; cursor: pointer; transition: flex .3s;
   position: relative;
 }
-.palette-card svg { max-width: 140px; width: 100%; height: auto; }
-.palette-card .badge {
-  position: absolute;
-  bottom: var(--sp-1);
-  right: var(--sp-1);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 2px;
+.color-bar:hover { flex: 1.5; }
+.color-bar-name { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 400; margin-bottom: 2px; }
+.color-bar-hex { font-family: var(--font-body); font-size: 0.65rem; font-weight: 300; opacity: 0.7; letter-spacing: 0.05em; }
+
+/* ========== Palette Cards ========== */
+.palette-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--sp-2); margin: var(--sp-3) 0; }
+.palette-card {
+  padding: var(--sp-4); display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 4/3; position: relative;
 }
+.palette-card svg { max-width: 130px; width: 100%; height: auto; }
+.badge { position: absolute; bottom: 6px; right: 6px; font-size: 0.5rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
 .badge-ok { background: rgba(92,58,78,0.1); color: var(--primary); }
 .badge-no { background: rgba(220,50,50,0.1); color: #c33; }
 
-/* ========== Typography Section ========== */
-.type-specimen {
-  margin: var(--sp-4) 0;
-}
+/* ========== Typography ========== */
 .type-row {
-  display: flex;
-  align-items: baseline;
-  padding: var(--sp-2) 0;
-  border-bottom: 1px solid rgba(92,58,78,0.06);
+  display: flex; align-items: baseline; padding: 14px 0;
+  border-bottom: 1px solid rgba(92,58,78,0.04);
 }
-.type-label {
-  width: 120px;
-  font-size: var(--fs-xs);
-  color: var(--secondary);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  flex-shrink: 0;
-  font-weight: 400;
-}
+.type-label { width: 90px; font-size: 0.65rem; color: var(--secondary); letter-spacing: 0.1em; text-transform: uppercase; flex-shrink: 0; }
 .type-sample { flex: 1; }
-.type-meta {
-  font-size: var(--fs-xs);
-  color: var(--secondary);
-  width: 100px;
-  text-align: right;
-  flex-shrink: 0;
-  font-weight: 300;
-}
+.type-meta { font-size: 0.65rem; color: var(--secondary); width: 80px; text-align: right; flex-shrink: 0; }
 
 /* ========== Business Cards ========== */
-.card-preview {
-  display: flex;
-  gap: var(--sp-4);
-  margin: var(--sp-4) 0;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.bcard {
-  width: 90mm; height: 50mm;
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
+.card-pair { display: flex; gap: var(--sp-3); justify-content: center; margin: var(--sp-3) 0; }
+.bcard { width: 90mm; height: 50mm; position: relative; overflow: hidden; flex-shrink: 0; }
 .bcard-inner {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 6mm;
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 6mm; position: relative;
+}
+.bcard-back {
+  width: 100%; height: 100%; padding: 7mm 8mm;
+  display: flex; flex-direction: column; justify-content: center;
   position: relative;
 }
-.bcard .double-frame::after {
-  top: 2pt; left: 2pt; right: 2pt; bottom: 2pt;
+.bcard-watermark {
+  position: absolute; right: 8mm; top: 50%; transform: translateY(-50%); opacity: 0.06;
 }
-.bcard-logo svg { width: 120px; height: auto; }
-.bcard-name {
-  font-family: var(--font-heading);
-  font-size: 9pt;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  margin-bottom: 2mm;
-}
-.bcard-title {
-  font-family: var(--font-body);
-  font-size: 6pt;
-  font-weight: 300;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 3mm;
-}
-.bcard-contact {
-  font-family: var(--font-body);
-  font-size: 5.5pt;
-  font-weight: 300;
-  line-height: 1.8;
-  text-align: center;
-}
+.bcard-watermark svg { width: 32mm; height: 50mm; }
+.bcard-name { font-family: var(--font-heading); font-size: 11pt; font-weight: 400; margin-bottom: 1mm; }
+.bcard-title { font-family: var(--font-body); font-size: 6pt; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3mm; }
+.bcard-line { width: 20mm; height: 0.5pt; margin-bottom: 3mm; }
+.bcard-contact { font-family: var(--font-body); font-size: 5.5pt; font-weight: 300; line-height: 2.2; }
 
-/* ========== Contact Section ========== */
-.contact-block {
-  margin: var(--sp-4) 0;
-}
-.contact-row {
-  display: flex;
-  align-items: center;
-  padding: var(--sp-2) 0;
-  border-bottom: 1px solid rgba(92,58,78,0.06);
-}
-.contact-label {
-  width: 120px;
-  font-size: var(--fs-xs);
-  color: var(--secondary);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  flex-shrink: 0;
-  font-weight: 400;
-}
-.contact-value {
-  font-size: var(--fs-base);
-  font-weight: 300;
-  color: var(--text);
-}
+/* ========== Social Media ========== */
+.social-preview { display: flex; gap: 16px; flex-wrap: wrap; }
+.social-frame { overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.ig-post-mini { width: 100px; height: 100px; }
+.ig-story-mini { width: 60px; height: 107px; }
+.tiktok-mini { width: 60px; height: 107px; }
+.social-card { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 12px; }
+.social-card .tagline { font-family: var(--font-heading); font-size: 7px; font-weight: 300; margin-top: 6px; letter-spacing: 0.1em; }
+.social-frame-label { font-size: 0.6rem; color: var(--secondary); text-align: center; margin-top: 6px; }
 
-/* ========== Toast ========== */
+/* ========== Contacts ========== */
+.contact-row { display: flex; padding: 12px 0; border-bottom: 1px solid rgba(92,58,78,0.06); }
+.contact-label { width: 120px; font-size: 0.7rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; flex-shrink: 0; }
+.contact-value { font-size: 0.9rem; font-weight: 300; }
+
+/* Toast */
 .toast {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: var(--text);
-  color: var(--light);
-  padding: var(--sp-1) var(--sp-3);
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  border-radius: 4px;
-  opacity: 0;
-  transition: all 0.3s ease;
-  z-index: 9999;
-  pointer-events: none;
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--text); color: var(--light); padding: 10px 24px;
+  font-size: 0.8rem; border-radius: 4px; opacity: 0; transition: all .3s; z-index: 1001;
 }
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-/* ========== Reveal Animation ========== */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s, transform .5s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ========== Footer ========== */
-.page-footer {
-  margin-top: auto;
-  padding-top: var(--sp-4);
-  border-top: 1px solid rgba(92,58,78,0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: var(--fs-xs);
-  color: var(--secondary);
-  font-weight: 300;
-}
-
-/* ========== Responsive ========== */
+/* Responsive */
 @media (max-width: 800px) {
   .page { width: 100%; min-height: auto; margin: 0; }
   .page-inner { padding: var(--sp-4); }
-  .logo-grid { grid-template-columns: 1fr; }
-  .color-grid { grid-template-columns: repeat(3, 1fr); }
-  .palette-grid { grid-template-columns: 1fr 1fr; }
-  .card-preview { flex-direction: column; align-items: center; }
+  .logo-grid, .palette-grid { grid-template-columns: 1fr 1fr; }
+  .color-bars { height: 180px; }
+  .card-pair { flex-direction: column; align-items: center; }
+  .social-preview { flex-wrap: wrap; }
 }
 
-/* ========== Print ========== */
+/* Print */
 @media print {
   body { background: white; }
   .progress-bar, .toast { display: none; }
-  .page {
-    width: var(--page-w);
-    min-height: var(--page-h);
-    margin: 0;
-    box-shadow: none;
-    page-break-before: always;
-  }
+  .page { width: var(--page-w); min-height: var(--page-h); margin: 0; box-shadow: none; page-break-before: always; }
   .page:first-child { page-break-before: auto; }
   .reveal { opacity: 1; transform: none; }
   @page { size: A4; margin: 0; }
@@ -508,723 +243,436 @@ p { font-size: var(--fs-base); line-height: 1.7; margin-bottom: var(--sp-2); fon
 </head>
 <body>
 
-<!-- Progress Bar -->
-<div class="progress-bar" id="progressBar" style="width: 0%"></div>
-
-<!-- Toast -->
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
 <div class="toast" id="toast"></div>
 
 <!-- SVG Symbols -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <!-- Logo on dark (light fill) -->
   <symbol id="logo-light" viewBox="0 0 359 118">
-    <g transform="translate(20.0, 72)" fill="#F8F4F0">
-      <path d="M298 344 309 353Q366 353 409.0 331.0Q452 309 475.5 271.0Q499 233 499 185Q499 131 474.0 88.0Q449 45 405.5 20.5Q362 -4 308 -4Q275 -4 235.0 -1.0Q195 2 160 2Q128 2 98.0 1.0Q68 0 44 0Q42 0 42.0 6.0Q42 12 44 12Q82 12 101.5 17.0Q121 22 128.0 37.0Q135 52 135 81V544Q135 573 128.5 587.5Q122 602 103.0 607.5Q84 613 46 613Q43 613 43.0 619.0Q43 625 46 625Q69 625 98.5 623.5Q128 622 160 622Q186 622 220.5 625.0Q255 628 277 628Q336 628 371.5 609.5Q407 591 423.0 561.0Q439 531 439 495Q439 438 398.5 399.0Q358 360 298 344ZM254 615Q230 615 215.0 611.5Q200 608 193.5 593.0Q187 578 187 542V346L157 354Q189 352 210.0 351.5Q231 351 234 351Q317 351 351.0 390.5Q385 430 385 488Q385 522 372.5 551.0Q360 580 331.5 597.5Q303 615 254 615ZM294 12Q370 12 405.5 51.5Q441 91 441 160Q441 235 395.0 283.0Q349 331 269 332Q241 333 214.0 332.0Q187 331 160 327L187 338V81Q187 56 195.0 40.5Q203 25 226.0 18.5Q249 12 294 12Z" transform="translate(0.0, 0) scale(0.072000, -0.072000)"/>
-      <path d="M178 543V85Q178 57 184.5 43.0Q191 29 209.5 24.0Q228 19 264 19H392Q445 19 473.0 54.0Q501 89 509 146Q509 149 514.5 148.5Q520 148 520 145Q517 119 514.0 82.5Q511 46 511 15Q511 0 496 0H36Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.0 17.0Q112 22 118.5 37.0Q125 52 125 81V544Q125 573 118.5 587.5Q112 602 93.0 607.5Q74 613 36 613Q34 613 34.0 619.0Q34 625 36 625Q60 625 89.5 623.5Q119 622 151 622Q185 622 214.5 623.5Q244 625 267 625Q269 625 269.0 619.0Q269 613 267 613Q229 613 210.0 607.5Q191 602 184.5 587.0Q178 572 178 543Z" transform="translate(39.5, 0) scale(0.072000, -0.072000)"/>
-      <path d="M366 -12Q294 -12 235.5 13.5Q177 39 135.5 84.0Q94 129 71.5 187.5Q49 246 49 312Q49 393 80.5 454.0Q112 515 164.0 555.5Q216 596 278.0 616.0Q340 636 401 636Q475 636 533.5 609.5Q592 583 633.0 538.0Q674 493 695.5 436.0Q717 379 717 319Q717 249 689.0 189.0Q661 129 612.5 84.0Q564 39 500.5 13.5Q437 -12 366 -12ZM402 8Q472 8 529.0 40.5Q586 73 619.5 136.5Q653 200 653 291Q653 386 616.5 458.5Q580 531 514.0 572.5Q448 614 359 614Q243 614 178.0 542.0Q113 470 113 346Q113 276 133.5 214.5Q154 153 192.5 106.5Q231 60 284.0 34.0Q337 8 402 8Z" transform="translate(77.7, 0) scale(0.072000, -0.072000)"/>
-      <path d="M138 504Q138 462 158.5 432.5Q179 403 211.5 381.0Q244 359 280 338Q317 317 351.0 293.5Q385 270 407.5 237.5Q430 205 430 157Q430 111 407.5 72.5Q385 34 340.0 11.0Q295 -12 227 -12Q205 -12 183.5 -9.0Q162 -6 139.5 1.5Q117 9 91 22Q86 25 84.5 29.5Q83 34 82 41L67 171Q66 176 71.5 176.5Q77 177 78 173Q82 143 94.0 113.0Q106 83 126.5 58.0Q147 33 177.5 17.5Q208 2 249 2Q280 2 309.0 13.5Q338 25 356.5 51.0Q375 77 375 122Q375 171 353.5 203.5Q332 236 299.0 259.5Q266 283 229 304Q194 325 161.0 348.0Q128 371 107.5 402.5Q87 434 87 481Q87 533 113.0 567.5Q139 602 180.5 619.0Q222 636 267 636Q293 636 321.5 630.5Q350 625 381 612Q389 609 392.5 604.5Q396 600 396 595L405 489Q405 485 399.5 485.0Q394 485 393 489Q391 511 382.5 534.5Q374 558 357.5 578.0Q341 598 315.5 610.5Q290 623 254 623Q211 623 185.5 605.0Q160 587 149.0 560.0Q138 533 138 504Z" transform="translate(132.8, 0) scale(0.072000, -0.072000)"/>
-      <path d="M578 542Q578 571 572.0 586.0Q566 601 547.0 607.0Q528 613 489 613Q486 613 486.0 619.0Q486 625 489 625Q512 625 541.5 623.5Q571 622 605 622Q637 622 667.0 623.5Q697 625 720 625Q723 625 723.0 619.0Q723 613 720 613Q682 613 662.5 607.5Q643 602 636.5 587.5Q630 573 630 544V81Q630 52 636.5 37.0Q643 22 662.5 17.0Q682 12 720 12Q723 12 723.0 6.0Q723 0 720 0Q697 0 667.0 1.0Q637 2 605 2Q571 2 541.5 1.0Q512 0 489 0Q486 0 486.0 6.0Q486 12 489 12Q528 12 547.0 17.0Q566 22 572.0 37.0Q578 52 578 81ZM150 316V335H600V316ZM126 81V544Q126 573 119.5 587.5Q113 602 94.0 607.5Q75 613 37 613Q35 613 35.0 619.0Q35 625 37 625Q61 625 90.5 623.5Q120 622 152 622Q187 622 216.0 623.5Q245 625 268 625Q270 625 270.0 619.0Q270 613 268 613Q230 613 211.0 607.0Q192 601 185.5 586.0Q179 571 179 542V81Q179 52 185.0 37.0Q191 22 210.5 17.0Q230 12 268 12Q270 12 270.0 6.0Q270 0 268 0Q244 0 215.5 1.0Q187 2 152 2Q120 2 90.0 1.0Q60 0 36 0Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.5 17.0Q113 22 119.5 37.0Q126 52 126 81Z" transform="translate(167.8, 0) scale(0.072000, -0.072000)"/>
-      <path d="M126 81V544Q126 573 119.5 587.5Q113 602 94.0 607.5Q75 613 37 613Q35 613 35.0 619.0Q35 625 37 625Q61 625 90.5 623.5Q120 622 152 622Q187 622 216.0 623.5Q245 625 268 625Q270 625 270.0 619.0Q270 613 268 613Q230 613 211.0 607.0Q192 601 185.5 586.0Q179 571 179 542V81Q179 52 185.0 37.0Q191 22 210.5 17.0Q230 12 268 12Q270 12 270.0 6.0Q270 0 268 0Q244 0 215.5 1.0Q187 2 152 2Q120 2 90.0 1.0Q60 0 36 0Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.5 17.0Q113 22 119.5 37.0Q126 52 126 81ZM373 145 209 349 251 379 395 198Q442 139 474.5 102.5Q507 66 529.0 47.0Q551 28 568.0 20.5Q585 13 600.5 12.5Q616 12 635 12Q638 12 638.0 6.0Q638 0 635 0Q590 0 563.0 0.0Q536 0 523 0Q516 0 511.5 -0.5Q507 -1 502 -1Q488 -1 480.0 4.0Q472 9 461.5 24.0Q451 39 431.0 68.0Q411 97 373 145ZM142 294 399 550Q437 588 432.5 600.5Q428 613 375 613Q373 613 373.0 619.0Q373 625 375 625Q399 625 423.5 623.5Q448 622 488 622Q525 622 546.5 623.5Q568 625 588 625Q591 625 591.0 619.0Q591 613 588 613Q554 613 509.0 599.0Q464 585 422 544L166 295Z" transform="translate(222.3, 0) scale(0.072000, -0.072000)"/>
-      <path d="M200 287 209 305H468L475 287ZM694 12Q698 12 698.0 6.0Q698 0 694 0Q666 0 636.5 2.0Q607 4 580 4Q549 4 526.5 2.0Q504 0 477 0Q473 0 473.0 6.0Q473 12 477 12Q533 12 547.5 27.0Q562 42 543 84L317 570L336 587L143 123Q118 62 139.0 37.0Q160 12 228 12Q233 12 233.0 6.0Q233 0 228 0Q198 0 173.0 2.0Q148 4 110 4Q75 4 53.5 2.0Q32 0 2 0Q-2 0 -2.0 6.0Q-2 12 2 12Q29 12 49.0 22.0Q69 32 86.5 58.0Q104 84 124 132L333 635Q335 638 339.5 638.0Q344 638 345 635L577 137Q600 87 618.0 59.5Q636 32 654.0 22.0Q672 12 694 12Z" transform="translate(269.1, 0) scale(0.072000, -0.072000)"/>
-    </g>
+    <g transform="translate(20.0, 72)" fill="#F8F4F0"><path d="M298 344 309 353Q366 353 409.0 331.0Q452 309 475.5 271.0Q499 233 499 185Q499 131 474.0 88.0Q449 45 405.5 20.5Q362 -4 308 -4Q275 -4 235.0 -1.0Q195 2 160 2Q128 2 98.0 1.0Q68 0 44 0Q42 0 42.0 6.0Q42 12 44 12Q82 12 101.5 17.0Q121 22 128.0 37.0Q135 52 135 81V544Q135 573 128.5 587.5Q122 602 103.0 607.5Q84 613 46 613Q43 613 43.0 619.0Q43 625 46 625Q69 625 98.5 623.5Q128 622 160 622Q186 622 220.5 625.0Q255 628 277 628Q336 628 371.5 609.5Q407 591 423.0 561.0Q439 531 439 495Q439 438 398.5 399.0Q358 360 298 344ZM254 615Q230 615 215.0 611.5Q200 608 193.5 593.0Q187 578 187 542V346L157 354Q189 352 210.0 351.5Q231 351 234 351Q317 351 351.0 390.5Q385 430 385 488Q385 522 372.5 551.0Q360 580 331.5 597.5Q303 615 254 615ZM294 12Q370 12 405.5 51.5Q441 91 441 160Q441 235 395.0 283.0Q349 331 269 332Q241 333 214.0 332.0Q187 331 160 327L187 338V81Q187 56 195.0 40.5Q203 25 226.0 18.5Q249 12 294 12Z" transform="translate(0.0, 0) scale(0.072000, -0.072000)"/><path d="M178 543V85Q178 57 184.5 43.0Q191 29 209.5 24.0Q228 19 264 19H392Q445 19 473.0 54.0Q501 89 509 146Q509 149 514.5 148.5Q520 148 520 145Q517 119 514.0 82.5Q511 46 511 15Q511 0 496 0H36Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.0 17.0Q112 22 118.5 37.0Q125 52 125 81V544Q125 573 118.5 587.5Q112 602 93.0 607.5Q74 613 36 613Q34 613 34.0 619.0Q34 625 36 625Q60 625 89.5 623.5Q119 622 151 622Q185 622 214.5 623.5Q244 625 267 625Q269 625 269.0 619.0Q269 613 267 613Q229 613 210.0 607.5Q191 602 184.5 587.0Q178 572 178 543Z" transform="translate(39.5, 0) scale(0.072000, -0.072000)"/><path d="M366 -12Q294 -12 235.5 13.5Q177 39 135.5 84.0Q94 129 71.5 187.5Q49 246 49 312Q49 393 80.5 454.0Q112 515 164.0 555.5Q216 596 278.0 616.0Q340 636 401 636Q475 636 533.5 609.5Q592 583 633.0 538.0Q674 493 695.5 436.0Q717 379 717 319Q717 249 689.0 189.0Q661 129 612.5 84.0Q564 39 500.5 13.5Q437 -12 366 -12ZM402 8Q472 8 529.0 40.5Q586 73 619.5 136.5Q653 200 653 291Q653 386 616.5 458.5Q580 531 514.0 572.5Q448 614 359 614Q243 614 178.0 542.0Q113 470 113 346Q113 276 133.5 214.5Q154 153 192.5 106.5Q231 60 284.0 34.0Q337 8 402 8Z" transform="translate(77.7, 0) scale(0.072000, -0.072000)"/><path d="M138 504Q138 462 158.5 432.5Q179 403 211.5 381.0Q244 359 280 338Q317 317 351.0 293.5Q385 270 407.5 237.5Q430 205 430 157Q430 111 407.5 72.5Q385 34 340.0 11.0Q295 -12 227 -12Q205 -12 183.5 -9.0Q162 -6 139.5 1.5Q117 9 91 22Q86 25 84.5 29.5Q83 34 82 41L67 171Q66 176 71.5 176.5Q77 177 78 173Q82 143 94.0 113.0Q106 83 126.5 58.0Q147 33 177.5 17.5Q208 2 249 2Q280 2 309.0 13.5Q338 25 356.5 51.0Q375 77 375 122Q375 171 353.5 203.5Q332 236 299.0 259.5Q266 283 229 304Q194 325 161.0 348.0Q128 371 107.5 402.5Q87 434 87 481Q87 533 113.0 567.5Q139 602 180.5 619.0Q222 636 267 636Q293 636 321.5 630.5Q350 625 381 612Q389 609 392.5 604.5Q396 600 396 595L405 489Q405 485 399.5 485.0Q394 485 393 489Q391 511 382.5 534.5Q374 558 357.5 578.0Q341 598 315.5 610.5Q290 623 254 623Q211 623 185.5 605.0Q160 587 149.0 560.0Q138 533 138 504Z" transform="translate(132.8, 0) scale(0.072000, -0.072000)"/><path d="M578 542Q578 571 572.0 586.0Q566 601 547.0 607.0Q528 613 489 613Q486 613 486.0 619.0Q486 625 489 625Q512 625 541.5 623.5Q571 622 605 622Q637 622 667.0 623.5Q697 625 720 625Q723 625 723.0 619.0Q723 613 720 613Q682 613 662.5 607.5Q643 602 636.5 587.5Q630 573 630 544V81Q630 52 636.5 37.0Q643 22 662.5 17.0Q682 12 720 12Q723 12 723.0 6.0Q723 0 720 0Q697 0 667.0 1.0Q637 2 605 2Q571 2 541.5 1.0Q512 0 489 0Q486 0 486.0 6.0Q486 12 489 12Q528 12 547.0 17.0Q566 22 572.0 37.0Q578 52 578 81ZM150 316V335H600V316ZM126 81V544Q126 573 119.5 587.5Q113 602 94.0 607.5Q75 613 37 613Q35 613 35.0 619.0Q35 625 37 625Q61 625 90.5 623.5Q120 622 152 622Q187 622 216.0 623.5Q245 625 268 625Q270 625 270.0 619.0Q270 613 268 613Q230 613 211.0 607.0Q192 601 185.5 586.0Q179 571 179 542V81Q179 52 185.0 37.0Q191 22 210.5 17.0Q230 12 268 12Q270 12 270.0 6.0Q270 0 268 0Q244 0 215.5 1.0Q187 2 152 2Q120 2 90.0 1.0Q60 0 36 0Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.5 17.0Q113 22 119.5 37.0Q126 52 126 81Z" transform="translate(167.8, 0) scale(0.072000, -0.072000)"/><path d="M126 81V544Q126 573 119.5 587.5Q113 602 94.0 607.5Q75 613 37 613Q35 613 35.0 619.0Q35 625 37 625Q61 625 90.5 623.5Q120 622 152 622Q187 622 216.0 623.5Q245 625 268 625Q270 625 270.0 619.0Q270 613 268 613Q230 613 211.0 607.0Q192 601 185.5 586.0Q179 571 179 542V81Q179 52 185.0 37.0Q191 22 210.5 17.0Q230 12 268 12Q270 12 270.0 6.0Q270 0 268 0Q244 0 215.5 1.0Q187 2 152 2Q120 2 90.0 1.0Q60 0 36 0Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.5 17.0Q113 22 119.5 37.0Q126 52 126 81ZM373 145 209 349 251 379 395 198Q442 139 474.5 102.5Q507 66 529.0 47.0Q551 28 568.0 20.5Q585 13 600.5 12.5Q616 12 635 12Q638 12 638.0 6.0Q638 0 635 0Q590 0 563.0 0.0Q536 0 523 0Q516 0 511.5 -0.5Q507 -1 502 -1Q488 -1 480.0 4.0Q472 9 461.5 24.0Q451 39 431.0 68.0Q411 97 373 145ZM142 294 399 550Q437 588 432.5 600.5Q428 613 375 613Q373 613 373.0 619.0Q373 625 375 625Q399 625 423.5 623.5Q448 622 488 622Q525 622 546.5 623.5Q568 625 588 625Q591 625 591.0 619.0Q591 613 588 613Q554 613 509.0 599.0Q464 585 422 544L166 295Z" transform="translate(222.3, 0) scale(0.072000, -0.072000)"/><path d="M200 287 209 305H468L475 287ZM694 12Q698 12 698.0 6.0Q698 0 694 0Q666 0 636.5 2.0Q607 4 580 4Q549 4 526.5 2.0Q504 0 477 0Q473 0 473.0 6.0Q473 12 477 12Q533 12 547.5 27.0Q562 42 543 84L317 570L336 587L143 123Q118 62 139.0 37.0Q160 12 228 12Q233 12 233.0 6.0Q233 0 228 0Q198 0 173.0 2.0Q148 4 110 4Q75 4 53.5 2.0Q32 0 2 0Q-2 0 -2.0 6.0Q-2 12 2 12Q29 12 49.0 22.0Q69 32 86.5 58.0Q104 84 124 132L333 635Q335 638 339.5 638.0Q344 638 345 635L577 137Q600 87 618.0 59.5Q636 32 654.0 22.0Q672 12 694 12Z" transform="translate(269.1, 0) scale(0.072000, -0.072000)"/></g>
     <line x1="154.7" y1="88" x2="204.7" y2="88" stroke="#C5A882" stroke-width="0.8"/>
-    <g transform="translate(142.0, 108)" fill="#C5A882">
-      <path d="M77 0V700H257Q379 700 458.5 657.5Q538 615 576.5 536.5Q615 458 615 348Q615 240 576.5 162.0Q538 84 458.5 42.0Q379 0 257 0ZM161 70H255Q356 70 416.0 103.5Q476 137 502.0 199.5Q528 262 528 348Q528 436 502.0 499.0Q476 562 416.0 596.0Q356 630 255 630H161Z" transform="translate(0.0, 0) scale(0.014000, -0.014000)"/>
-      <path d="M77 0V700H510V631H161V387H480V319H161V69H510V0Z" transform="translate(14.3, 0) scale(0.014000, -0.014000)"/>
-      <path d="M77 0V700H161V67H487V0Z" transform="translate(27.3, 0) scale(0.014000, -0.014000)"/>
-      <path d="M326 -12Q254 -12 195.5 17.0Q137 46 102.0 105.5Q67 165 67 258V700H151V257Q151 189 173.5 146.0Q196 103 236.0 83.0Q276 63 328 63Q381 63 420.0 83.0Q459 103 481.0 146.0Q503 189 503 257V700H587V258Q587 165 552.0 105.5Q517 46 458.0 17.0Q399 -12 326 -12Z" transform="translate(39.7, 0) scale(0.014000, -0.014000)"/>
-      <path d="M39 0 253 353 39 700H134L306 421L470 700H564L350 350L565 0H470L297 282L134 0Z" transform="translate(53.9, 0) scale(0.014000, -0.014000)"/>
-      <path d="M77 0V700H510V631H161V387H480V319H161V69H510V0Z" transform="translate(67.3, 0) scale(0.014000, -0.014000)"/>
-    </g>
+    <g transform="translate(142.0, 108)" fill="#C5A882"><path d="M77 0V700H257Q379 700 458.5 657.5Q538 615 576.5 536.5Q615 458 615 348Q615 240 576.5 162.0Q538 84 458.5 42.0Q379 0 257 0ZM161 70H255Q356 70 416.0 103.5Q476 137 502.0 199.5Q528 262 528 348Q528 436 502.0 499.0Q476 562 416.0 596.0Q356 630 255 630H161Z" transform="translate(0.0, 0) scale(0.014000, -0.014000)"/><path d="M77 0V700H510V631H161V387H480V319H161V69H510V0Z" transform="translate(14.3, 0) scale(0.014000, -0.014000)"/><path d="M77 0V700H161V67H487V0Z" transform="translate(27.3, 0) scale(0.014000, -0.014000)"/><path d="M326 -12Q254 -12 195.5 17.0Q137 46 102.0 105.5Q67 165 67 258V700H151V257Q151 189 173.5 146.0Q196 103 236.0 83.0Q276 63 328 63Q381 63 420.0 83.0Q459 103 481.0 146.0Q503 189 503 257V700H587V258Q587 165 552.0 105.5Q517 46 458.0 17.0Q399 -12 326 -12Z" transform="translate(39.7, 0) scale(0.014000, -0.014000)"/><path d="M39 0 253 353 39 700H134L306 421L470 700H564L350 350L565 0H470L297 282L134 0Z" transform="translate(53.9, 0) scale(0.014000, -0.014000)"/><path d="M77 0V700H510V631H161V387H480V319H161V69H510V0Z" transform="translate(67.3, 0) scale(0.014000, -0.014000)"/></g>
   </symbol>
-
-  <!-- Logo on light (dark fill) -->
   <symbol id="logo-dark" viewBox="0 0 359 118">
-    <g transform="translate(20.0, 72)" fill="#5C3A4E">
-      <path d="M298 344 309 353Q366 353 409.0 331.0Q452 309 475.5 271.0Q499 233 499 185Q499 131 474.0 88.0Q449 45 405.5 20.5Q362 -4 308 -4Q275 -4 235.0 -1.0Q195 2 160 2Q128 2 98.0 1.0Q68 0 44 0Q42 0 42.0 6.0Q42 12 44 12Q82 12 101.5 17.0Q121 22 128.0 37.0Q135 52 135 81V544Q135 573 128.5 587.5Q122 602 103.0 607.5Q84 613 46 613Q43 613 43.0 619.0Q43 625 46 625Q69 625 98.5 623.5Q128 622 160 622Q186 622 220.5 625.0Q255 628 277 628Q336 628 371.5 609.5Q407 591 423.0 561.0Q439 531 439 495Q439 438 398.5 399.0Q358 360 298 344ZM254 615Q230 615 215.0 611.5Q200 608 193.5 593.0Q187 578 187 542V346L157 354Q189 352 210.0 351.5Q231 351 234 351Q317 351 351.0 390.5Q385 430 385 488Q385 522 372.5 551.0Q360 580 331.5 597.5Q303 615 254 615ZM294 12Q370 12 405.5 51.5Q441 91 441 160Q441 235 395.0 283.0Q349 331 269 332Q241 333 214.0 332.0Q187 331 160 327L187 338V81Q187 56 195.0 40.5Q203 25 226.0 18.5Q249 12 294 12Z" transform="translate(0.0, 0) scale(0.072000, -0.072000)"/>
-      <path d="M178 543V85Q178 57 184.5 43.0Q191 29 209.5 24.0Q228 19 264 19H392Q445 19 473.0 54.0Q501 89 509 146Q509 149 514.5 148.5Q520 148 520 145Q517 119 514.0 82.5Q511 46 511 15Q511 0 496 0H36Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.0 17.0Q112 22 118.5 37.0Q125 52 125 81V544Q125 573 118.5 587.5Q112 602 93.0 607.5Q74 613 36 613Q34 613 34.0 619.0Q34 625 36 625Q60 625 89.5 623.5Q119 622 151 622Q185 622 214.5 623.5Q244 625 267 625Q269 625 269.0 619.0Q269 613 267 613Q229 613 210.0 607.5Q191 602 184.5 587.0Q178 572 178 543Z" transform="translate(39.5, 0) scale(0.072000, -0.072000)"/>
-      <path d="M366 -12Q294 -12 235.5 13.5Q177 39 135.5 84.0Q94 129 71.5 187.5Q49 246 49 312Q49 393 80.5 454.0Q112 515 164.0 555.5Q216 596 278.0 616.0Q340 636 401 636Q475 636 533.5 609.5Q592 583 633.0 538.0Q674 493 695.5 436.0Q717 379 717 319Q717 249 689.0 189.0Q661 129 612.5 84.0Q564 39 500.5 13.5Q437 -12 366 -12ZM402 8Q472 8 529.0 40.5Q586 73 619.5 136.5Q653 200 653 291Q653 386 616.5 458.5Q580 531 514.0 572.5Q448 614 359 614Q243 614 178.0 542.0Q113 470 113 346Q113 276 133.5 214.5Q154 153 192.5 106.5Q231 60 284.0 34.0Q337 8 402 8Z" transform="translate(77.7, 0) scale(0.072000, -0.072000)"/>
-      <path d="M138 504Q138 462 158.5 432.5Q179 403 211.5 381.0Q244 359 280 338Q317 317 351.0 293.5Q385 270 407.5 237.5Q430 205 430 157Q430 111 407.5 72.5Q385 34 340.0 11.0Q295 -12 227 -12Q205 -12 183.5 -9.0Q162 -6 139.5 1.5Q117 9 91 22Q86 25 84.5 29.5Q83 34 82 41L67 171Q66 176 71.5 176.5Q77 177 78 173Q82 143 94.0 113.0Q106 83 126.5 58.0Q147 33 177.5 17.5Q208 2 249 2Q280 2 309.0 13.5Q338 25 356.5 51.0Q375 77 375 122Q375 171 353.5 203.5Q332 236 299.0 259.5Q266 283 229 304Q194 325 161.0 348.0Q128 371 107.5 402.5Q87 434 87 481Q87 533 113.0 567.5Q139 602 180.5 619.0Q222 636 267 636Q293 636 321.5 630.5Q350 625 381 612Q389 609 392.5 604.5Q396 600 396 595L405 489Q405 485 399.5 485.0Q394 485 393 489Q391 511 382.5 534.5Q374 558 357.5 578.0Q341 598 315.5 610.5Q290 623 254 623Q211 623 185.5 605.0Q160 587 149.0 560.0Q138 533 138 504Z" transform="translate(132.8, 0) scale(0.072000, -0.072000)"/>
-      <path d="M578 542Q578 571 572.0 586.0Q566 601 547.0 607.0Q528 613 489 613Q486 613 486.0 619.0Q486 625 489 625Q512 625 541.5 623.5Q571 622 605 622Q637 622 667.0 623.5Q697 625 720 625Q723 625 723.0 619.0Q723 613 720 613Q682 613 662.5 607.5Q643 602 636.5 587.5Q630 573 630 544V81Q630 52 636.5 37.0Q643 22 662.5 17.0Q682 12 720 12Q723 12 723.0 6.0Q723 0 720 0Q697 0 667.0 1.0Q637 2 605 2Q571 2 541.5 1.0Q512 0 489 0Q486 0 486.0 6.0Q486 12 489 12Q528 12 547.0 17.0Q566 22 572.0 37.0Q578 52 578 81ZM150 316V335H600V316ZM126 81V544Q126 573 119.5 587.5Q113 602 94.0 607.5Q75 613 37 613Q35 613 35.0 619.0Q35 625 37 625Q61 625 90.5 623.5Q120 622 152 622Q187 622 216.0 623.5Q245 625 268 625Q270 625 270.0 619.0Q270 613 268 613Q230 613 211.0 607.0Q192 601 185.5 586.0Q179 571 179 542V81Q179 52 185.0 37.0Q191 22 210.5 17.0Q230 12 268 12Q270 12 270.0 6.0Q270 0 268 0Q244 0 215.5 1.0Q187 2 152 2Q120 2 90.0 1.0Q60 0 36 0Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.5 17.0Q113 22 119.5 37.0Q126 52 126 81Z" transform="translate(167.8, 0) scale(0.072000, -0.072000)"/>
-      <path d="M126 81V544Q126 573 119.5 587.5Q113 602 94.0 607.5Q75 613 37 613Q35 613 35.0 619.0Q35 625 37 625Q61 625 90.5 623.5Q120 622 152 622Q187 622 216.0 623.5Q245 625 268 625Q270 625 270.0 619.0Q270 613 268 613Q230 613 211.0 607.0Q192 601 185.5 586.0Q179 571 179 542V81Q179 52 185.0 37.0Q191 22 210.5 17.0Q230 12 268 12Q270 12 270.0 6.0Q270 0 268 0Q244 0 215.5 1.0Q187 2 152 2Q120 2 90.0 1.0Q60 0 36 0Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.5 17.0Q113 22 119.5 37.0Q126 52 126 81ZM373 145 209 349 251 379 395 198Q442 139 474.5 102.5Q507 66 529.0 47.0Q551 28 568.0 20.5Q585 13 600.5 12.5Q616 12 635 12Q638 12 638.0 6.0Q638 0 635 0Q590 0 563.0 0.0Q536 0 523 0Q516 0 511.5 -0.5Q507 -1 502 -1Q488 -1 480.0 4.0Q472 9 461.5 24.0Q451 39 431.0 68.0Q411 97 373 145ZM142 294 399 550Q437 588 432.5 600.5Q428 613 375 613Q373 613 373.0 619.0Q373 625 375 625Q399 625 423.5 623.5Q448 622 488 622Q525 622 546.5 623.5Q568 625 588 625Q591 625 591.0 619.0Q591 613 588 613Q554 613 509.0 599.0Q464 585 422 544L166 295Z" transform="translate(222.3, 0) scale(0.072000, -0.072000)"/>
-      <path d="M200 287 209 305H468L475 287ZM694 12Q698 12 698.0 6.0Q698 0 694 0Q666 0 636.5 2.0Q607 4 580 4Q549 4 526.5 2.0Q504 0 477 0Q473 0 473.0 6.0Q473 12 477 12Q533 12 547.5 27.0Q562 42 543 84L317 570L336 587L143 123Q118 62 139.0 37.0Q160 12 228 12Q233 12 233.0 6.0Q233 0 228 0Q198 0 173.0 2.0Q148 4 110 4Q75 4 53.5 2.0Q32 0 2 0Q-2 0 -2.0 6.0Q-2 12 2 12Q29 12 49.0 22.0Q69 32 86.5 58.0Q104 84 124 132L333 635Q335 638 339.5 638.0Q344 638 345 635L577 137Q600 87 618.0 59.5Q636 32 654.0 22.0Q672 12 694 12Z" transform="translate(269.1, 0) scale(0.072000, -0.072000)"/>
-    </g>
+    <g transform="translate(20.0, 72)" fill="#5C3A4E"><path d="M298 344 309 353Q366 353 409.0 331.0Q452 309 475.5 271.0Q499 233 499 185Q499 131 474.0 88.0Q449 45 405.5 20.5Q362 -4 308 -4Q275 -4 235.0 -1.0Q195 2 160 2Q128 2 98.0 1.0Q68 0 44 0Q42 0 42.0 6.0Q42 12 44 12Q82 12 101.5 17.0Q121 22 128.0 37.0Q135 52 135 81V544Q135 573 128.5 587.5Q122 602 103.0 607.5Q84 613 46 613Q43 613 43.0 619.0Q43 625 46 625Q69 625 98.5 623.5Q128 622 160 622Q186 622 220.5 625.0Q255 628 277 628Q336 628 371.5 609.5Q407 591 423.0 561.0Q439 531 439 495Q439 438 398.5 399.0Q358 360 298 344ZM254 615Q230 615 215.0 611.5Q200 608 193.5 593.0Q187 578 187 542V346L157 354Q189 352 210.0 351.5Q231 351 234 351Q317 351 351.0 390.5Q385 430 385 488Q385 522 372.5 551.0Q360 580 331.5 597.5Q303 615 254 615ZM294 12Q370 12 405.5 51.5Q441 91 441 160Q441 235 395.0 283.0Q349 331 269 332Q241 333 214.0 332.0Q187 331 160 327L187 338V81Q187 56 195.0 40.5Q203 25 226.0 18.5Q249 12 294 12Z" transform="translate(0.0, 0) scale(0.072000, -0.072000)"/><path d="M178 543V85Q178 57 184.5 43.0Q191 29 209.5 24.0Q228 19 264 19H392Q445 19 473.0 54.0Q501 89 509 146Q509 149 514.5 148.5Q520 148 520 145Q517 119 514.0 82.5Q511 46 511 15Q511 0 496 0H36Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.0 17.0Q112 22 118.5 37.0Q125 52 125 81V544Q125 573 118.5 587.5Q112 602 93.0 607.5Q74 613 36 613Q34 613 34.0 619.0Q34 625 36 625Q60 625 89.5 623.5Q119 622 151 622Q185 622 214.5 623.5Q244 625 267 625Q269 625 269.0 619.0Q269 613 267 613Q229 613 210.0 607.5Q191 602 184.5 587.0Q178 572 178 543Z" transform="translate(39.5, 0) scale(0.072000, -0.072000)"/><path d="M366 -12Q294 -12 235.5 13.5Q177 39 135.5 84.0Q94 129 71.5 187.5Q49 246 49 312Q49 393 80.5 454.0Q112 515 164.0 555.5Q216 596 278.0 616.0Q340 636 401 636Q475 636 533.5 609.5Q592 583 633.0 538.0Q674 493 695.5 436.0Q717 379 717 319Q717 249 689.0 189.0Q661 129 612.5 84.0Q564 39 500.5 13.5Q437 -12 366 -12ZM402 8Q472 8 529.0 40.5Q586 73 619.5 136.5Q653 200 653 291Q653 386 616.5 458.5Q580 531 514.0 572.5Q448 614 359 614Q243 614 178.0 542.0Q113 470 113 346Q113 276 133.5 214.5Q154 153 192.5 106.5Q231 60 284.0 34.0Q337 8 402 8Z" transform="translate(77.7, 0) scale(0.072000, -0.072000)"/><path d="M138 504Q138 462 158.5 432.5Q179 403 211.5 381.0Q244 359 280 338Q317 317 351.0 293.5Q385 270 407.5 237.5Q430 205 430 157Q430 111 407.5 72.5Q385 34 340.0 11.0Q295 -12 227 -12Q205 -12 183.5 -9.0Q162 -6 139.5 1.5Q117 9 91 22Q86 25 84.5 29.5Q83 34 82 41L67 171Q66 176 71.5 176.5Q77 177 78 173Q82 143 94.0 113.0Q106 83 126.5 58.0Q147 33 177.5 17.5Q208 2 249 2Q280 2 309.0 13.5Q338 25 356.5 51.0Q375 77 375 122Q375 171 353.5 203.5Q332 236 299.0 259.5Q266 283 229 304Q194 325 161.0 348.0Q128 371 107.5 402.5Q87 434 87 481Q87 533 113.0 567.5Q139 602 180.5 619.0Q222 636 267 636Q293 636 321.5 630.5Q350 625 381 612Q389 609 392.5 604.5Q396 600 396 595L405 489Q405 485 399.5 485.0Q394 485 393 489Q391 511 382.5 534.5Q374 558 357.5 578.0Q341 598 315.5 610.5Q290 623 254 623Q211 623 185.5 605.0Q160 587 149.0 560.0Q138 533 138 504Z" transform="translate(132.8, 0) scale(0.072000, -0.072000)"/><path d="M578 542Q578 571 572.0 586.0Q566 601 547.0 607.0Q528 613 489 613Q486 613 486.0 619.0Q486 625 489 625Q512 625 541.5 623.5Q571 622 605 622Q637 622 667.0 623.5Q697 625 720 625Q723 625 723.0 619.0Q723 613 720 613Q682 613 662.5 607.5Q643 602 636.5 587.5Q630 573 630 544V81Q630 52 636.5 37.0Q643 22 662.5 17.0Q682 12 720 12Q723 12 723.0 6.0Q723 0 720 0Q697 0 667.0 1.0Q637 2 605 2Q571 2 541.5 1.0Q512 0 489 0Q486 0 486.0 6.0Q486 12 489 12Q528 12 547.0 17.0Q566 22 572.0 37.0Q578 52 578 81ZM150 316V335H600V316ZM126 81V544Q126 573 119.5 587.5Q113 602 94.0 607.5Q75 613 37 613Q35 613 35.0 619.0Q35 625 37 625Q61 625 90.5 623.5Q120 622 152 622Q187 622 216.0 623.5Q245 625 268 625Q270 625 270.0 619.0Q270 613 268 613Q230 613 211.0 607.0Q192 601 185.5 586.0Q179 571 179 542V81Q179 52 185.0 37.0Q191 22 210.5 17.0Q230 12 268 12Q270 12 270.0 6.0Q270 0 268 0Q244 0 215.5 1.0Q187 2 152 2Q120 2 90.0 1.0Q60 0 36 0Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.5 17.0Q113 22 119.5 37.0Q126 52 126 81Z" transform="translate(167.8, 0) scale(0.072000, -0.072000)"/><path d="M126 81V544Q126 573 119.5 587.5Q113 602 94.0 607.5Q75 613 37 613Q35 613 35.0 619.0Q35 625 37 625Q61 625 90.5 623.5Q120 622 152 622Q187 622 216.0 623.5Q245 625 268 625Q270 625 270.0 619.0Q270 613 268 613Q230 613 211.0 607.0Q192 601 185.5 586.0Q179 571 179 542V81Q179 52 185.0 37.0Q191 22 210.5 17.0Q230 12 268 12Q270 12 270.0 6.0Q270 0 268 0Q244 0 215.5 1.0Q187 2 152 2Q120 2 90.0 1.0Q60 0 36 0Q34 0 34.0 6.0Q34 12 36 12Q74 12 93.5 17.0Q113 22 119.5 37.0Q126 52 126 81ZM373 145 209 349 251 379 395 198Q442 139 474.5 102.5Q507 66 529.0 47.0Q551 28 568.0 20.5Q585 13 600.5 12.5Q616 12 635 12Q638 12 638.0 6.0Q638 0 635 0Q590 0 563.0 0.0Q536 0 523 0Q516 0 511.5 -0.5Q507 -1 502 -1Q488 -1 480.0 4.0Q472 9 461.5 24.0Q451 39 431.0 68.0Q411 97 373 145ZM142 294 399 550Q437 588 432.5 600.5Q428 613 375 613Q373 613 373.0 619.0Q373 625 375 625Q399 625 423.5 623.5Q448 622 488 622Q525 622 546.5 623.5Q568 625 588 625Q591 625 591.0 619.0Q591 613 588 613Q554 613 509.0 599.0Q464 585 422 544L166 295Z" transform="translate(222.3, 0) scale(0.072000, -0.072000)"/><path d="M200 287 209 305H468L475 287ZM694 12Q698 12 698.0 6.0Q698 0 694 0Q666 0 636.5 2.0Q607 4 580 4Q549 4 526.5 2.0Q504 0 477 0Q473 0 473.0 6.0Q473 12 477 12Q533 12 547.5 27.0Q562 42 543 84L317 570L336 587L143 123Q118 62 139.0 37.0Q160 12 228 12Q233 12 233.0 6.0Q233 0 228 0Q198 0 173.0 2.0Q148 4 110 4Q75 4 53.5 2.0Q32 0 2 0Q-2 0 -2.0 6.0Q-2 12 2 12Q29 12 49.0 22.0Q69 32 86.5 58.0Q104 84 124 132L333 635Q335 638 339.5 638.0Q344 638 345 635L577 137Q600 87 618.0 59.5Q636 32 654.0 22.0Q672 12 694 12Z" transform="translate(269.1, 0) scale(0.072000, -0.072000)"/></g>
     <line x1="154.7" y1="88" x2="204.7" y2="88" stroke="#C5A882" stroke-width="0.8"/>
-    <g transform="translate(142.0, 108)" fill="#C5A882">
-      <path d="M77 0V700H257Q379 700 458.5 657.5Q538 615 576.5 536.5Q615 458 615 348Q615 240 576.5 162.0Q538 84 458.5 42.0Q379 0 257 0ZM161 70H255Q356 70 416.0 103.5Q476 137 502.0 199.5Q528 262 528 348Q528 436 502.0 499.0Q476 562 416.0 596.0Q356 630 255 630H161Z" transform="translate(0.0, 0) scale(0.014000, -0.014000)"/>
-      <path d="M77 0V700H510V631H161V387H480V319H161V69H510V0Z" transform="translate(14.3, 0) scale(0.014000, -0.014000)"/>
-      <path d="M77 0V700H161V67H487V0Z" transform="translate(27.3, 0) scale(0.014000, -0.014000)"/>
-      <path d="M326 -12Q254 -12 195.5 17.0Q137 46 102.0 105.5Q67 165 67 258V700H151V257Q151 189 173.5 146.0Q196 103 236.0 83.0Q276 63 328 63Q381 63 420.0 83.0Q459 103 481.0 146.0Q503 189 503 257V700H587V258Q587 165 552.0 105.5Q517 46 458.0 17.0Q399 -12 326 -12Z" transform="translate(39.7, 0) scale(0.014000, -0.014000)"/>
-      <path d="M39 0 253 353 39 700H134L306 421L470 700H564L350 350L565 0H470L297 282L134 0Z" transform="translate(53.9, 0) scale(0.014000, -0.014000)"/>
-      <path d="M77 0V700H510V631H161V387H480V319H161V69H510V0Z" transform="translate(67.3, 0) scale(0.014000, -0.014000)"/>
-    </g>
+    <g transform="translate(142.0, 108)" fill="#C5A882"><path d="M77 0V700H257Q379 700 458.5 657.5Q538 615 576.5 536.5Q615 458 615 348Q615 240 576.5 162.0Q538 84 458.5 42.0Q379 0 257 0ZM161 70H255Q356 70 416.0 103.5Q476 137 502.0 199.5Q528 262 528 348Q528 436 502.0 499.0Q476 562 416.0 596.0Q356 630 255 630H161Z" transform="translate(0.0, 0) scale(0.014000, -0.014000)"/><path d="M77 0V700H510V631H161V387H480V319H161V69H510V0Z" transform="translate(14.3, 0) scale(0.014000, -0.014000)"/><path d="M77 0V700H161V67H487V0Z" transform="translate(27.3, 0) scale(0.014000, -0.014000)"/><path d="M326 -12Q254 -12 195.5 17.0Q137 46 102.0 105.5Q67 165 67 258V700H151V257Q151 189 173.5 146.0Q196 103 236.0 83.0Q276 63 328 63Q381 63 420.0 83.0Q459 103 481.0 146.0Q503 189 503 257V700H587V258Q587 165 552.0 105.5Q517 46 458.0 17.0Q399 -12 326 -12Z" transform="translate(39.7, 0) scale(0.014000, -0.014000)"/><path d="M39 0 253 353 39 700H134L306 421L470 700H564L350 350L565 0H470L297 282L134 0Z" transform="translate(53.9, 0) scale(0.014000, -0.014000)"/><path d="M77 0V700H510V631H161V387H480V319H161V69H510V0Z" transform="translate(67.3, 0) scale(0.014000, -0.014000)"/></g>
   </symbol>
-
-  <!-- Icon (B mark) -->
   <symbol id="icon" viewBox="0 0 64 100">
-    <g transform="translate(10.0, 80)" fill="currentColor">
-      <path d="M298 344 309 353Q366 353 409.0 331.0Q452 309 475.5 271.0Q499 233 499 185Q499 131 474.0 88.0Q449 45 405.5 20.5Q362 -4 308 -4Q275 -4 235.0 -1.0Q195 2 160 2Q128 2 98.0 1.0Q68 0 44 0Q42 0 42.0 6.0Q42 12 44 12Q82 12 101.5 17.0Q121 22 128.0 37.0Q135 52 135 81V544Q135 573 128.5 587.5Q122 602 103.0 607.5Q84 613 46 613Q43 613 43.0 619.0Q43 625 46 625Q69 625 98.5 623.5Q128 622 160 622Q186 622 220.5 625.0Q255 628 277 628Q336 628 371.5 609.5Q407 591 423.0 561.0Q439 531 439 495Q439 438 398.5 399.0Q358 360 298 344ZM254 615Q230 615 215.0 611.5Q200 608 193.5 593.0Q187 578 187 542V346L157 354Q189 352 210.0 351.5Q231 351 234 351Q317 351 351.0 390.5Q385 430 385 488Q385 522 372.5 551.0Q360 580 331.5 597.5Q303 615 254 615ZM294 12Q370 12 405.5 51.5Q441 91 441 160Q441 235 395.0 283.0Q349 331 269 332Q241 333 214.0 332.0Q187 331 160 327L187 338V81Q187 56 195.0 40.5Q203 25 226.0 18.5Q249 12 294 12Z" transform="translate(0.0, 0) scale(0.080000, -0.080000)"/>
-    </g>
+    <g transform="translate(10.0, 80)" fill="currentColor"><path d="M298 344 309 353Q366 353 409.0 331.0Q452 309 475.5 271.0Q499 233 499 185Q499 131 474.0 88.0Q449 45 405.5 20.5Q362 -4 308 -4Q275 -4 235.0 -1.0Q195 2 160 2Q128 2 98.0 1.0Q68 0 44 0Q42 0 42.0 6.0Q42 12 44 12Q82 12 101.5 17.0Q121 22 128.0 37.0Q135 52 135 81V544Q135 573 128.5 587.5Q122 602 103.0 607.5Q84 613 46 613Q43 613 43.0 619.0Q43 625 46 625Q69 625 98.5 623.5Q128 622 160 622Q186 622 220.5 625.0Q255 628 277 628Q336 628 371.5 609.5Q407 591 423.0 561.0Q439 531 439 495Q439 438 398.5 399.0Q358 360 298 344ZM254 615Q230 615 215.0 611.5Q200 608 193.5 593.0Q187 578 187 542V346L157 354Q189 352 210.0 351.5Q231 351 234 351Q317 351 351.0 390.5Q385 430 385 488Q385 522 372.5 551.0Q360 580 331.5 597.5Q303 615 254 615ZM294 12Q370 12 405.5 51.5Q441 91 441 160Q441 235 395.0 283.0Q349 331 269 332Q241 333 214.0 332.0Q187 331 160 327L187 338V81Q187 56 195.0 40.5Q203 25 226.0 18.5Q249 12 294 12Z" transform="translate(0.0, 0) scale(0.080000, -0.080000)"/></g>
   </symbol>
 </svg>
 
-
-<!-- ============================================== -->
 <!-- 01. COVER -->
-<!-- ============================================== -->
 <section class="page cover" id="cover">
-  <div class="double-frame" style="width: 75%; padding: 60px 40px; text-align: center;">
-    <div class="cover-logo">
-      <svg width="280" height="92"><use href="#logo-light"/></svg>
-    </div>
-    <div class="divider" style="margin: 32px auto;"></div>
-    <h1>Brand Guidelines</h1>
-    <p class="subtitle" style="margin-top: 16px;">Vintage &amp; Antique Treasures</p>
-    <p class="cover-year">2026</p>
+  <div class="cover-frame double-frame">
+    <div class="cover-logo"><svg width="320" height="106"><use href="#logo-light"/></svg></div>
+    <div class="divider" style="margin:40px auto"></div>
+    <h1>Руководство по бренду</h1>
+    <p class="subtitle" style="color:var(--accent);margin-top:12px">Винтаж и антиквариат с душой</p>
+    <p class="cover-year">2 0 2 6</p>
   </div>
 </section>
 
-
-<!-- ============================================== -->
-<!-- 02. TABLE OF CONTENTS -->
-<!-- ============================================== -->
+<!-- 02. CONTENTS -->
 <section class="page" id="toc">
   <div class="page-inner">
-    <div class="section-num reveal">Section 02</div>
-    <h2 class="reveal">Contents</h2>
-    <div class="divider reveal"></div>
-
-    <ol class="toc-list reveal" style="margin-top: 32px;">
-      <li>
-        <span class="toc-num">01</span>
-        <span class="toc-title"><a href="#cover">Cover / Обложка</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">01</span>
-      </li>
-      <li>
-        <span class="toc-num">02</span>
-        <span class="toc-title"><a href="#toc">Contents / Содержание</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">02</span>
-      </li>
-      <li>
-        <span class="toc-num">03</span>
-        <span class="toc-title"><a href="#about">About the Brand / О бренде</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">03</span>
-      </li>
-      <li>
-        <span class="toc-num">04</span>
-        <span class="toc-title"><a href="#logo-main">Primary Logo / Основной логотип</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">04</span>
-      </li>
-      <li>
-        <span class="toc-num">05</span>
-        <span class="toc-title"><a href="#logo-variants">Logo Variants / Варианты логотипа</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">05</span>
-      </li>
-      <li>
-        <span class="toc-num">06</span>
-        <span class="toc-title"><a href="#clearzone">Clear Space / Охранное поле</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">06</span>
-      </li>
-      <li>
-        <span class="toc-num">07</span>
-        <span class="toc-title"><a href="#logo-palette">Logo on Palettes / Логотип на палитрах</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">07</span>
-      </li>
-      <li>
-        <span class="toc-num">08</span>
-        <span class="toc-title"><a href="#colors">Color Palette / Цветовая палитра</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">08</span>
-      </li>
-      <li>
-        <span class="toc-num">09</span>
-        <span class="toc-title"><a href="#typography">Typography / Типографика</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">09</span>
-      </li>
-      <li>
-        <span class="toc-num">10</span>
-        <span class="toc-title"><a href="#cards">Business Cards / Визитные карточки</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">10</span>
-      </li>
-      <li>
-        <span class="toc-num">11</span>
-        <span class="toc-title"><a href="#contacts">Contacts / Контакты</a></span>
-        <span class="toc-dots"></span>
-        <span class="toc-page">11</span>
-      </li>
+    <div class="section-num reveal">Раздел 02</div>
+    <h2 class="reveal" style="font-size:2.4rem">Содержание</h2>
+    <div class="divider-wide reveal"></div>
+    <ol class="toc-list reveal">
+      <li><span class="toc-num">01</span><span class="toc-title"><a href="#cover">Обложка</a></span><span class="toc-dots"></span><span class="toc-page">01</span></li>
+      <li><span class="toc-num">02</span><span class="toc-title"><a href="#toc">Содержание</a></span><span class="toc-dots"></span><span class="toc-page">02</span></li>
+      <li><span class="toc-num">03</span><span class="toc-title"><a href="#about">О бренде</a></span><span class="toc-dots"></span><span class="toc-page">03</span></li>
+      <li><span class="toc-num">04</span><span class="toc-title"><a href="#logo-main">Основной логотип</a></span><span class="toc-dots"></span><span class="toc-page">04</span></li>
+      <li><span class="toc-num">05</span><span class="toc-title"><a href="#logo-variants">Варианты логотипа</a></span><span class="toc-dots"></span><span class="toc-page">05</span></li>
+      <li><span class="toc-num">06</span><span class="toc-title"><a href="#clearzone">Охранное поле</a></span><span class="toc-dots"></span><span class="toc-page">06</span></li>
+      <li><span class="toc-num">07</span><span class="toc-title"><a href="#logo-palette">Логотип на фонах</a></span><span class="toc-dots"></span><span class="toc-page">07</span></li>
+      <li><span class="toc-num">08</span><span class="toc-title"><a href="#colors">Цветовая палитра</a></span><span class="toc-dots"></span><span class="toc-page">08</span></li>
+      <li><span class="toc-num">09</span><span class="toc-title"><a href="#typography">Типографика</a></span><span class="toc-dots"></span><span class="toc-page">09</span></li>
+      <li><span class="toc-num">10</span><span class="toc-title"><a href="#cards">Визитные карточки</a></span><span class="toc-dots"></span><span class="toc-page">10</span></li>
+      <li><span class="toc-num">11</span><span class="toc-title"><a href="#social">Социальные сети</a></span><span class="toc-dots"></span><span class="toc-page">11</span></li>
+      <li><span class="toc-num">12</span><span class="toc-title"><a href="#contacts">Контакты</a></span><span class="toc-dots"></span><span class="toc-page">12</span></li>
     </ol>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>Brand Guidelines 2026</span>
-    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>Руководство по бренду 2026</span></div>
   </div>
 </section>
 
-
-<!-- ============================================== -->
-<!-- 03. ABOUT THE BRAND -->
-<!-- ============================================== -->
+<!-- 03. ABOUT -->
 <section class="page" id="about">
   <div class="page-inner">
-    <div class="section-num reveal">Section 03</div>
-    <h2 class="reveal">About the Brand<br><span style="font-size: var(--fs-xl); color: var(--secondary);">О бренде</span></h2>
-    <div class="divider reveal"></div>
-
-    <div class="reveal" style="margin-top: 32px;">
-      <h3 style="font-size: var(--fs-xl); margin-bottom: 16px;">Mission / Миссия</h3>
-      <p>We see beauty in vintage things and give them a second life. Each piece in our collection carries a story, an era, and the craftsmanship of past masters.</p>
-      <p style="color: var(--secondary); font-style: italic;">Мы видим красоту в старинных вещах и даём им вторую жизнь. Каждый предмет нашей коллекции несёт историю, эпоху и мастерство прошлых эпох.</p>
-    </div>
-
-    <div class="reveal" style="margin-top: 40px;">
-      <h3 style="font-size: var(--fs-xl); margin-bottom: 16px;">Values / Ценности</h3>
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-top: 24px;">
-        <div>
-          <div style="font-family: var(--font-heading); font-size: var(--fs-3xl); color: var(--accent); font-weight: 300; margin-bottom: 8px;">01</div>
-          <p style="font-weight: 400; margin-bottom: 4px;">Authenticity</p>
-          <p style="font-size: var(--fs-sm); color: var(--secondary);">Подлинность</p>
-          <p style="font-size: var(--fs-sm);">Every item is verified and carries genuine historical value.</p>
-        </div>
-        <div>
-          <div style="font-family: var(--font-heading); font-size: var(--fs-3xl); color: var(--accent); font-weight: 300; margin-bottom: 8px;">02</div>
-          <p style="font-weight: 400; margin-bottom: 4px;">Elegance</p>
-          <p style="font-size: var(--fs-sm); color: var(--secondary);">Элегантность</p>
-          <p style="font-size: var(--fs-sm);">Beauty that transcends time. Classic forms, noble materials.</p>
-        </div>
-        <div>
-          <div style="font-family: var(--font-heading); font-size: var(--fs-3xl); color: var(--accent); font-weight: 300; margin-bottom: 8px;">03</div>
-          <p style="font-weight: 400; margin-bottom: 4px;">Curation</p>
-          <p style="font-size: var(--fs-sm); color: var(--secondary);">Кураторство</p>
-          <p style="font-size: var(--fs-sm);">A personal approach to each item and each client.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>03</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================== -->
-<!-- 04. PRIMARY LOGO -->
-<!-- ============================================== -->
-<section class="page" id="logo-main">
-  <div class="page-inner">
-    <div class="section-num reveal">Section 04</div>
-    <h2 class="reveal">Primary Logo<br><span style="font-size: var(--fs-xl); color: var(--secondary);">Основной логотип</span></h2>
-    <div class="divider reveal"></div>
-
-    <div class="reveal" style="margin-top: 24px;">
-      <p>The primary logo consists of the brand name "Bloshka" set in Cormorant Garamond Light with the sub-mark "DELUXE" in DM Sans beneath a decorative gold line. The classic serif conveys timelessness; the gold accent adds luxury.</p>
-      <p style="color: var(--secondary); font-style: italic;">Основной логотип состоит из названия бренда «Bloshka», набранного Cormorant Garamond Light, и подписи «DELUXE» шрифтом DM Sans под декоративной золотой линией.</p>
-    </div>
-
-    <div class="logo-display reveal" style="background: var(--primary); margin-top: 32px; min-height: 200px;">
-      <svg width="300" height="100"><use href="#logo-light"/></svg>
-    </div>
-    <p style="text-align: center; font-size: var(--fs-xs); color: var(--secondary); margin-top: 8px;">Primary logo on dark background / На тёмном фоне</p>
-
-    <div class="logo-display reveal" style="background: var(--light); margin-top: 24px; border: 1px solid rgba(92,58,78,0.1); min-height: 200px;">
-      <svg width="300" height="100"><use href="#logo-dark"/></svg>
-    </div>
-    <p style="text-align: center; font-size: var(--fs-xs); color: var(--secondary); margin-top: 8px;">Primary logo on light background / На светлом фоне</p>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>04</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================== -->
-<!-- 05. LOGO VARIANTS -->
-<!-- ============================================== -->
-<section class="page" id="logo-variants">
-  <div class="page-inner">
-    <div class="section-num reveal">Section 05</div>
-    <h2 class="reveal">Logo Variants<br><span style="font-size: var(--fs-xl); color: var(--secondary);">Варианты логотипа</span></h2>
-    <div class="divider reveal"></div>
-
-    <div class="logo-grid reveal" style="margin-top: 24px;">
-      <!-- Full logo on Plum -->
-      <div class="logo-card" style="background: var(--primary);">
-        <svg width="200" height="66"><use href="#logo-light"/></svg>
-        <span class="logo-card-label" style="color: var(--light);">On Dusty Plum</span>
-      </div>
-      <!-- Full logo on Ivory -->
-      <div class="logo-card" style="background: var(--light); border: 1px solid rgba(92,58,78,0.1);">
-        <svg width="200" height="66"><use href="#logo-dark"/></svg>
-        <span class="logo-card-label">On Warm Ivory</span>
-      </div>
-      <!-- Full logo on white -->
-      <div class="logo-card" style="background: #FFFFFF; border: 1px solid rgba(92,58,78,0.1);">
-        <svg width="200" height="66"><use href="#logo-dark"/></svg>
-        <span class="logo-card-label">On White</span>
-      </div>
-      <!-- Icon mark on Plum -->
-      <div class="logo-card" style="background: var(--primary);">
-        <svg width="50" height="78" style="color: var(--light);"><use href="#icon"/></svg>
-        <span class="logo-card-label" style="color: var(--light);">Icon Mark</span>
-      </div>
-      <!-- Icon on Gold -->
-      <div class="logo-card" style="background: var(--accent);">
-        <svg width="50" height="78" style="color: var(--light);"><use href="#icon"/></svg>
-        <span class="logo-card-label" style="color: var(--light);">On Champagne Gold</span>
-      </div>
-      <!-- Full logo on Deep Mauve -->
-      <div class="logo-card" style="background: var(--text);">
-        <svg width="200" height="66"><use href="#logo-light"/></svg>
-        <span class="logo-card-label" style="color: var(--light);">On Deep Mauve</span>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>05</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================== -->
-<!-- 06. CLEAR SPACE -->
-<!-- ============================================== -->
-<section class="page" id="clearzone">
-  <div class="page-inner">
-    <div class="section-num reveal">Section 06</div>
-    <h2 class="reveal">Clear Space<br><span style="font-size: var(--fs-xl); color: var(--secondary);">Охранное поле</span></h2>
-    <div class="divider reveal"></div>
-
-    <div class="reveal" style="margin-top: 24px;">
-      <p>The minimum clear space around the logo equals the height of the "DELUXE" sub-mark (X). No text, graphics, or other elements may appear within this zone.</p>
-      <p style="color: var(--secondary); font-style: italic;">Минимальное охранное поле вокруг логотипа равно высоте надписи «DELUXE» (X). В этой зоне не должно быть текста, графики или других элементов.</p>
-    </div>
-
-    <div class="clearzone-demo reveal" style="margin-top: 32px;">
-      <div class="clearzone-box">
-        <div class="clearzone-border"></div>
-        <span class="clearzone-label top">X</span>
-        <span class="clearzone-label bottom">X</span>
-        <span class="clearzone-label left">X</span>
-        <span class="clearzone-label right">X</span>
-        <svg width="200" height="66"><use href="#logo-dark"/></svg>
-      </div>
-    </div>
-
-    <div class="reveal" style="margin-top: 40px;">
-      <h3 style="font-size: var(--fs-xl); margin-bottom: 16px;">Minimum Size / Минимальный размер</h3>
-      <p>Print: minimum width 35mm. Digital: minimum width 120px.</p>
-      <div style="display: flex; align-items: flex-end; gap: 40px; margin-top: 24px;">
-        <div style="text-align: center;">
-          <svg width="120" height="40"><use href="#logo-dark"/></svg>
-          <p style="font-size: var(--fs-xs); color: var(--secondary); margin-top: 8px;">120px / 35mm</p>
-        </div>
-        <div style="text-align: center;">
-          <svg width="200" height="66"><use href="#logo-dark"/></svg>
-          <p style="font-size: var(--fs-xs); color: var(--secondary); margin-top: 8px;">Recommended / Рекомендуемый</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>06</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================== -->
-<!-- 07. LOGO ON PALETTES -->
-<!-- ============================================== -->
-<section class="page" id="logo-palette">
-  <div class="page-inner">
-    <div class="section-num reveal">Section 07</div>
-    <h2 class="reveal">Logo on Palettes<br><span style="font-size: var(--fs-xl); color: var(--secondary);">Логотип на палитрах</span></h2>
-    <div class="divider reveal"></div>
-
-    <div class="reveal" style="margin-top: 16px;">
-      <h3 style="font-size: var(--fs-lg); margin-bottom: 8px;">Approved / Утверждённые</h3>
-    </div>
-    <div class="palette-grid reveal">
-      <div class="palette-card" style="background: var(--primary);">
-        <svg width="140" height="46"><use href="#logo-light"/></svg>
-        <span class="badge badge-ok" style="color: var(--light); background: rgba(248,244,240,0.15);">Approved</span>
-      </div>
-      <div class="palette-card" style="background: var(--text);">
-        <svg width="140" height="46"><use href="#logo-light"/></svg>
-        <span class="badge badge-ok" style="color: var(--light); background: rgba(248,244,240,0.15);">Approved</span>
-      </div>
-      <div class="palette-card" style="background: var(--light); border: 1px solid rgba(92,58,78,0.1);">
-        <svg width="140" height="46"><use href="#logo-dark"/></svg>
-        <span class="badge badge-ok">Approved</span>
-      </div>
-      <div class="palette-card" style="background: #FFFFFF; border: 1px solid rgba(92,58,78,0.1);">
-        <svg width="140" height="46"><use href="#logo-dark"/></svg>
-        <span class="badge badge-ok">Approved</span>
-      </div>
-      <div class="palette-card" style="background: var(--accent);">
-        <svg width="140" height="46"><use href="#logo-light"/></svg>
-        <span class="badge badge-ok" style="color: var(--light); background: rgba(248,244,240,0.15);">Approved</span>
-      </div>
-      <div class="palette-card" style="background: var(--secondary);">
-        <svg width="140" height="46"><use href="#logo-light"/></svg>
-        <span class="badge badge-ok" style="color: var(--light); background: rgba(248,244,240,0.15);">Approved</span>
-      </div>
-    </div>
-
-    <div class="reveal" style="margin-top: 24px;">
-      <h3 style="font-size: var(--fs-lg); margin-bottom: 8px;">Not Approved / Запрещённые</h3>
-    </div>
-    <div class="palette-grid reveal">
-      <div class="palette-card" style="background: #FF6B6B;">
-        <svg width="140" height="46"><use href="#logo-light"/></svg>
-        <span class="badge badge-no">Not Approved</span>
-      </div>
-      <div class="palette-card" style="background: #4ECDC4;">
-        <svg width="140" height="46"><use href="#logo-dark"/></svg>
-        <span class="badge badge-no">Not Approved</span>
-      </div>
-      <div class="palette-card" style="background: #FFE66D;">
-        <svg width="140" height="46"><use href="#logo-dark"/></svg>
-        <span class="badge badge-no">Not Approved</span>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>07</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================== -->
-<!-- 08. COLOR PALETTE -->
-<!-- ============================================== -->
-<section class="page" id="colors">
-  <div class="page-inner">
-    <div class="section-num reveal">Section 08</div>
-    <h2 class="reveal">Color Palette<br><span style="font-size: var(--fs-xl); color: var(--secondary);">Цветовая палитра</span></h2>
-    <div class="divider reveal"></div>
-
-    <div class="color-grid reveal" style="margin-top: 32px;">
-      <div class="color-swatch" onclick="copyHex('#5C3A4E')">
-        <div class="color-circle" style="background: #5C3A4E;"></div>
-        <div class="color-name">Dusty Plum</div>
-        <div class="color-hex">#5C3A4E</div>
-      </div>
-      <div class="color-swatch" onclick="copyHex('#C5A882')">
-        <div class="color-circle" style="background: #C5A882;"></div>
-        <div class="color-name">Champagne Gold</div>
-        <div class="color-hex">#C5A882</div>
-      </div>
-      <div class="color-swatch" onclick="copyHex('#B8929B')">
-        <div class="color-circle" style="background: #B8929B;"></div>
-        <div class="color-name">Muted Rose</div>
-        <div class="color-hex">#B8929B</div>
-      </div>
-      <div class="color-swatch" onclick="copyHex('#F8F4F0')">
-        <div class="color-circle" style="background: #F8F4F0; border-color: rgba(92,58,78,0.15);"></div>
-        <div class="color-name">Warm Ivory</div>
-        <div class="color-hex">#F8F4F0</div>
-      </div>
-      <div class="color-swatch" onclick="copyHex('#3D2B35')">
-        <div class="color-circle" style="background: #3D2B35;"></div>
-        <div class="color-name">Deep Mauve</div>
-        <div class="color-hex">#3D2B35</div>
-      </div>
-    </div>
-
-    <div class="reveal" style="margin-top: 40px;">
-      <h3 style="font-size: var(--fs-xl); margin-bottom: 16px;">Usage / Применение</h3>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-        <div>
-          <p style="font-weight: 400; margin-bottom: 4px;">Primary backgrounds</p>
-          <p style="font-size: var(--fs-sm); color: var(--secondary);">Dusty Plum or Warm Ivory for main surfaces</p>
-        </div>
-        <div>
-          <p style="font-weight: 400; margin-bottom: 4px;">Accents &amp; details</p>
-          <p style="font-size: var(--fs-sm); color: var(--secondary);">Champagne Gold for lines, borders, icons</p>
-        </div>
-        <div>
-          <p style="font-weight: 400; margin-bottom: 4px;">Body text</p>
-          <p style="font-size: var(--fs-sm); color: var(--secondary);">Deep Mauve on light backgrounds (never pure black)</p>
-        </div>
-        <div>
-          <p style="font-weight: 400; margin-bottom: 4px;">Secondary elements</p>
-          <p style="font-size: var(--fs-sm); color: var(--secondary);">Muted Rose for captions, dividers, subtle details</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="reveal" style="margin-top: 32px;">
-      <h3 style="font-size: var(--fs-xl); margin-bottom: 16px;">Contrast Combinations</h3>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-        <div style="background: var(--primary); color: var(--light); padding: 16px 24px; font-family: var(--font-heading); font-size: var(--fs-lg);">Plum + Ivory</div>
-        <div style="background: var(--text); color: var(--accent); padding: 16px 24px; font-family: var(--font-heading); font-size: var(--fs-lg);">Mauve + Gold</div>
-        <div style="background: var(--light); color: var(--text); padding: 16px 24px; font-family: var(--font-heading); font-size: var(--fs-lg); border: 1px solid rgba(92,58,78,0.1);">Ivory + Mauve</div>
-        <div style="background: var(--accent); color: var(--text); padding: 16px 24px; font-family: var(--font-heading); font-size: var(--fs-lg);">Gold + Mauve</div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>08</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================== -->
-<!-- 09. TYPOGRAPHY -->
-<!-- ============================================== -->
-<section class="page" id="typography">
-  <div class="page-inner">
-    <div class="section-num reveal">Section 09</div>
-    <h2 class="reveal">Typography<br><span style="font-size: var(--fs-xl); color: var(--secondary);">Типографика</span></h2>
-    <div class="divider reveal"></div>
-
-    <!-- Heading Font -->
-    <div class="reveal" style="margin-top: 32px;">
-      <h3 style="font-size: var(--fs-xl); margin-bottom: 8px;">Heading / Заголовочный</h3>
-      <p style="font-family: var(--font-heading); font-size: var(--fs-4xl); font-weight: 300; line-height: 1.2; margin-bottom: 8px;">Cormorant Garamond</p>
-      <p style="font-size: var(--fs-sm); color: var(--secondary);">Weights: Light 300, Regular 400, Medium 500, SemiBold 600</p>
-    </div>
-
-    <div class="type-specimen reveal" style="margin-top: 24px;">
-      <div class="type-row">
-        <span class="type-label">Display</span>
-        <span class="type-sample" style="font-family: var(--font-heading); font-size: var(--fs-4xl); font-weight: 300; line-height: 1.2;">Bloshka DELUXE</span>
-        <span class="type-meta">Light / 50px</span>
-      </div>
-      <div class="type-row">
-        <span class="type-label">H1</span>
-        <span class="type-sample" style="font-family: var(--font-heading); font-size: var(--fs-3xl); font-weight: 300; line-height: 1.2;">Vintage Elegance</span>
-        <span class="type-meta">Light / 38px</span>
-      </div>
-      <div class="type-row">
-        <span class="type-label">H2</span>
-        <span class="type-sample" style="font-family: var(--font-heading); font-size: var(--fs-2xl); font-weight: 400; line-height: 1.3;">Beauty in Every Detail</span>
-        <span class="type-meta">Regular / 28px</span>
-      </div>
-      <div class="type-row">
-        <span class="type-label">H3</span>
-        <span class="type-sample" style="font-family: var(--font-heading); font-size: var(--fs-xl); font-weight: 500; line-height: 1.4;">Our Collection</span>
-        <span class="type-meta">Medium / 21px</span>
-      </div>
-    </div>
-
-    <!-- Body Font -->
-    <div class="reveal" style="margin-top: 40px;">
-      <h3 style="font-size: var(--fs-xl); margin-bottom: 8px;">Body / Текстовый</h3>
-      <p style="font-family: var(--font-body); font-size: var(--fs-2xl); font-weight: 300; margin-bottom: 8px;">DM Sans</p>
-      <p style="font-size: var(--fs-sm); color: var(--secondary);">Weights: Light 300, Regular 400, Medium 500</p>
-    </div>
-
-    <div class="type-specimen reveal" style="margin-top: 24px;">
-      <div class="type-row">
-        <span class="type-label">Body</span>
-        <span class="type-sample" style="font-family: var(--font-body); font-size: var(--fs-base); font-weight: 300; line-height: 1.7;">Each piece in our collection carries a unique story spanning decades and continents.</span>
-        <span class="type-meta">Light / 16px</span>
-      </div>
-      <div class="type-row">
-        <span class="type-label">Small</span>
-        <span class="type-sample" style="font-family: var(--font-body); font-size: var(--fs-sm); font-weight: 400; line-height: 1.6;">Curated vintage &amp; antique tableware</span>
-        <span class="type-meta">Regular / 14px</span>
-      </div>
-      <div class="type-row">
-        <span class="type-label">Caption</span>
-        <span class="type-sample" style="font-family: var(--font-body); font-size: var(--fs-xs); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;">Brand Guidelines 2026</span>
-        <span class="type-meta">Regular / 12px</span>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>09</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================== -->
-<!-- 10. BUSINESS CARDS -->
-<!-- ============================================== -->
-<section class="page" id="cards">
-  <div class="page-inner">
-    <div class="section-num reveal">Section 10</div>
-    <h2 class="reveal">Business Cards<br><span style="font-size: var(--fs-xl); color: var(--secondary);">Визитные карточки</span></h2>
-    <div class="divider reveal"></div>
-
-    <p class="reveal" style="margin-top: 16px;">Standard European format: 90 x 50 mm. Front and back shown below.</p>
-
-    <!-- Variant 1: Dark -->
-    <div class="reveal" style="margin-top: 24px;">
-      <p style="font-size: var(--fs-sm); color: var(--secondary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Variant 1 / Dark</p>
-      <div class="card-preview">
-        <!-- Front -->
-        <div class="bcard double-frame" style="background: var(--primary);">
-          <div class="bcard-inner">
-            <svg width="140" height="46"><use href="#logo-light"/></svg>
-          </div>
-        </div>
-        <!-- Back -->
-        <div class="bcard" style="background: var(--primary); border: 0.5pt solid var(--accent);">
-          <div class="bcard-inner" style="align-items: flex-start; justify-content: flex-end; padding: 5mm 7mm;">
-            <div>
-              <div class="bcard-name" style="color: var(--light);">Larisa Vlasova</div>
-              <div class="bcard-title" style="color: var(--accent);">Founder &amp; Curator</div>
-              <div style="width: 30px; height: 0.5px; background: var(--accent); margin-bottom: 3mm;"></div>
-              <div class="bcard-contact" style="color: var(--light); text-align: left;">
-                +7 903 722 11 34<br>
-                lvlasova2016@yandex.ru<br>
-                @bloshka_deluxe
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Variant 2: Light -->
-    <div class="reveal" style="margin-top: 32px;">
-      <p style="font-size: var(--fs-sm); color: var(--secondary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">Variant 2 / Light</p>
-      <div class="card-preview">
-        <!-- Front -->
-        <div class="bcard double-frame" style="background: var(--light); border-color: var(--accent);">
-          <div class="bcard-inner">
-            <svg width="140" height="46"><use href="#logo-dark"/></svg>
-          </div>
-          <div style="position:absolute;top:3pt;left:3pt;right:3pt;bottom:3pt;border:0.5pt solid var(--accent);pointer-events:none;"></div>
-        </div>
-        <!-- Back -->
-        <div class="bcard" style="background: var(--light); border: 0.5pt solid var(--accent);">
-          <div class="bcard-inner" style="align-items: flex-start; justify-content: flex-end; padding: 5mm 7mm;">
-            <div>
-              <div class="bcard-name" style="color: var(--text);">Larisa Vlasova</div>
-              <div class="bcard-title" style="color: var(--accent);">Founder &amp; Curator</div>
-              <div style="width: 30px; height: 0.5px; background: var(--accent); margin-bottom: 3mm;"></div>
-              <div class="bcard-contact" style="color: var(--text); text-align: left;">
-                +7 903 722 11 34<br>
-                lvlasova2016@yandex.ru<br>
-                @bloshka_deluxe
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>10</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================== -->
-<!-- 11. CONTACTS -->
-<!-- ============================================== -->
-<section class="page" id="contacts">
-  <div class="page-inner">
-    <div class="section-num reveal">Section 11</div>
-    <h2 class="reveal">Contacts<br><span style="font-size: var(--fs-xl); color: var(--secondary);">Контакты</span></h2>
-    <div class="divider reveal"></div>
-
-    <div style="display: flex; align-items: center; gap: 40px; margin-top: 40px;" class="reveal">
-      <div style="flex-shrink: 0;">
-        <svg width="80" height="125" style="color: var(--primary);"><use href="#icon"/></svg>
+    <div class="section-num reveal">Раздел 03</div>
+    <h2 class="reveal">О бренде</h2>
+    <div class="divider-wide reveal"></div>
+    <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:48px">
+      <div>
+        <h3 style="font-size:1.2rem;margin-bottom:12px">Миссия</h3>
+        <p style="font-family:var(--font-heading);font-size:1.6rem;line-height:1.4;font-weight:300;color:var(--primary);font-style:italic">"Вижу красоту в старинных вещах, даю им вторую жизнь!"</p>
+        <div class="divider" style="margin:16px 0"></div>
+        <p style="font-size:0.85rem;color:var(--secondary)">Каждый предмет несёт историю, эпоху и мастерство прошлых поколений. Мы находим эти сокровища и делимся ими с теми, кто ценит подлинную красоту.</p>
       </div>
       <div>
-        <p style="font-family: var(--font-heading); font-size: var(--fs-2xl); font-weight: 300; margin-bottom: 4px;">Bloshka DELUXE</p>
-        <p style="font-size: var(--fs-sm); color: var(--secondary); letter-spacing: 0.15em; text-transform: uppercase;">Vintage &amp; Antique Treasures</p>
+        <h3 style="font-size:1.2rem;margin-bottom:12px">Суть бренда</h3>
+        <p>Bloshka DELUXE — это тёплый мир винтажа и антиквариата. Посуда, предметы сервировки, коллекционные вещи царской и советской России — то, чего почти нет у конкурентов.</p>
+        <p style="font-size:0.85rem;color:var(--secondary);margin-top:8px">Наша аудитория — женщины 25+, которые ценят домашний уют, красоту и качество. Мы экономим их время и деньги, тщательно отбирая лучшее. Доступнее конкурентов, ближе к клиенту.</p>
       </div>
     </div>
-
-    <div class="contact-block reveal" style="margin-top: 40px;">
-      <div class="contact-row">
-        <span class="contact-label">Name</span>
-        <span class="contact-value">Larisa Vlasova / Лариса Власова</span>
-      </div>
-      <div class="contact-row">
-        <span class="contact-label">Phone</span>
-        <span class="contact-value">+7 903 722 11 34</span>
-      </div>
-      <div class="contact-row">
-        <span class="contact-label">WhatsApp</span>
-        <span class="contact-value">+7 903 722 11 34</span>
-      </div>
-      <div class="contact-row">
-        <span class="contact-label">Email</span>
-        <span class="contact-value">lvlasova2016@yandex.ru</span>
-      </div>
-      <div class="contact-row">
-        <span class="contact-label">Instagram</span>
-        <span class="contact-value">@bloshka_deluxe</span>
-      </div>
-      <div class="contact-row">
-        <span class="contact-label">Location</span>
-        <span class="contact-value">Russia / CIS</span>
+    <div class="reveal" style="margin-top:48px">
+      <h3 style="font-size:1.2rem;margin-bottom:24px">Ценности бренда</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:20px">
+        <div style="text-align:center;padding:20px 8px;background:rgba(197,168,130,0.06);border-radius:4px">
+          <p style="font-family:var(--font-heading);font-size:1.4rem;color:var(--primary);font-weight:300;margin-bottom:4px">Красота</p>
+          <p style="font-size:0.7rem;color:var(--secondary)">В каждой детали</p>
+        </div>
+        <div style="text-align:center;padding:20px 8px;background:rgba(197,168,130,0.06);border-radius:4px">
+          <p style="font-family:var(--font-heading);font-size:1.4rem;color:var(--primary);font-weight:300;margin-bottom:4px">Вкус</p>
+          <p style="font-size:0.7rem;color:var(--secondary)">Утончённый выбор</p>
+        </div>
+        <div style="text-align:center;padding:20px 8px;background:rgba(197,168,130,0.06);border-radius:4px">
+          <p style="font-family:var(--font-heading);font-size:1.4rem;color:var(--primary);font-weight:300;margin-bottom:4px">Эстетика</p>
+          <p style="font-size:0.7rem;color:var(--secondary)">Гармония форм</p>
+        </div>
+        <div style="text-align:center;padding:20px 8px;background:rgba(197,168,130,0.06);border-radius:4px">
+          <p style="font-family:var(--font-heading);font-size:1.4rem;color:var(--primary);font-weight:300;margin-bottom:4px">Качество</p>
+          <p style="font-size:0.7rem;color:var(--secondary)">Проверено временем</p>
+        </div>
+        <div style="text-align:center;padding:20px 8px;background:rgba(197,168,130,0.06);border-radius:4px">
+          <p style="font-family:var(--font-heading);font-size:1.4rem;color:var(--primary);font-weight:300;margin-bottom:4px">Надёжность</p>
+          <p style="font-size:0.7rem;color:var(--secondary)">Доверие клиентов</p>
+        </div>
       </div>
     </div>
-
-    <div class="reveal" style="margin-top: auto; padding-top: 40px; text-align: center;">
-      <div class="divider" style="margin: 0 auto 24px;"></div>
-      <p style="font-family: var(--font-heading); font-size: var(--fs-lg); font-weight: 300; color: var(--secondary);">Designed by AI Design Studio</p>
-      <p style="font-size: var(--fs-xs); color: var(--secondary); margin-top: 4px;">Brand Guidelines v1.0 &mdash; March 2026</p>
+    <div class="reveal" style="margin-top:32px">
+      <h3 style="font-size:1rem;margin-bottom:12px;color:var(--secondary)">Эмоции бренда</h3>
+      <div style="display:flex;gap:16px">
+        <span style="font-family:var(--font-heading);font-size:1.1rem;font-weight:300;color:var(--accent);padding:8px 20px;border:1px solid var(--accent);border-radius:20px">Восторг</span>
+        <span style="font-family:var(--font-heading);font-size:1.1rem;font-weight:300;color:var(--accent);padding:8px 20px;border:1px solid var(--accent);border-radius:20px">Доверие</span>
+        <span style="font-family:var(--font-heading);font-size:1.1rem;font-weight:300;color:var(--accent);padding:8px 20px;border:1px solid var(--accent);border-radius:20px">Желание вернуться</span>
+      </div>
     </div>
-
-    <div class="page-footer">
-      <span>Bloshka DELUXE</span>
-      <span>11</span>
-    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>03</span></div>
   </div>
 </section>
 
+<!-- 04. PRIMARY LOGO -->
+<section class="page" id="logo-main">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 04</div>
+    <h2 class="reveal">Основной логотип</h2>
+    <div class="divider-wide reveal"></div>
+    <p class="reveal" style="margin-top:16px;max-width:75%">Словесный знак Bloshka набран шрифтом Cormorant Garamond Light, подпись DELUXE — DM Sans. Золотая линия объединяет композицию. Вдохновлено эстетикой Chanel, Dior, Celine — по желанию клиента.</p>
+    <div class="logo-display reveal" style="background:var(--primary);margin-top:32px;background-image:radial-gradient(ellipse at center,rgba(197,168,130,0.06) 0%,transparent 70%)">
+      <svg width="320" height="106"><use href="#logo-light"/></svg>
+    </div>
+    <div class="logo-display reveal" style="background:var(--light);margin-top:16px;border:1px solid rgba(92,58,78,0.08)">
+      <svg width="320" height="106"><use href="#logo-dark"/></svg>
+    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>04</span></div>
+  </div>
+</section>
 
-<!-- ========== Scripts ========== -->
+<!-- 05. LOGO VARIANTS -->
+<section class="page" id="logo-variants">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 05</div>
+    <h2 class="reveal">Варианты логотипа</h2>
+    <div class="divider-wide reveal"></div>
+    <p class="reveal" style="margin-top:16px;font-size:0.85rem;color:var(--secondary)">Минимум 5 цветовых решений + иконка-знак (буква B)</p>
+    <div class="logo-grid reveal" style="margin-top:24px">
+      <div class="logo-card" style="background:var(--primary)"><svg width="160" height="53"><use href="#logo-light"/></svg><span class="logo-card-label" style="color:var(--light)">Dusty Plum</span></div>
+      <div class="logo-card" style="background:var(--light);border:1px solid rgba(92,58,78,0.08)"><svg width="160" height="53"><use href="#logo-dark"/></svg><span class="logo-card-label">Warm Ivory</span></div>
+      <div class="logo-card" style="background:#fff;border:1px solid rgba(92,58,78,0.08)"><svg width="160" height="53"><use href="#logo-dark"/></svg><span class="logo-card-label">White</span></div>
+      <div class="logo-card" style="background:var(--text)"><svg width="160" height="53"><use href="#logo-light"/></svg><span class="logo-card-label" style="color:var(--light)">Deep Mauve</span></div>
+      <div class="logo-card" style="background:var(--accent)"><svg width="160" height="53"><use href="#logo-light"/></svg><span class="logo-card-label" style="color:var(--light)">Champagne Gold</span></div>
+      <div class="logo-card" style="background:var(--primary)"><svg width="50" height="78" style="color:var(--light)"><use href="#icon"/></svg><span class="logo-card-label" style="color:var(--light)">Иконка</span></div>
+    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>05</span></div>
+  </div>
+</section>
+
+<!-- 06. CLEAR SPACE -->
+<section class="page" id="clearzone">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 06</div>
+    <h2 class="reveal">Охранное поле</h2>
+    <div class="divider-wide reveal"></div>
+    <p class="reveal" style="margin-top:16px">Минимальное охранное поле = высота подписи DELUXE (X). Никакие элементы не должны попадать в эту зону.</p>
+    <div class="reveal" style="display:flex;justify-content:center;margin:40px 0">
+      <div style="position:relative;padding:40px;display:inline-block">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;border:1px dashed var(--accent);opacity:.5"></div>
+        <span style="position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--accent);letter-spacing:.1em">X</span>
+        <span style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--accent);letter-spacing:.1em">X</span>
+        <span style="position:absolute;top:50%;left:8px;transform:translateY(-50%) rotate(-90deg);font-size:10px;color:var(--accent);letter-spacing:.1em">X</span>
+        <span style="position:absolute;top:50%;right:8px;transform:translateY(-50%) rotate(90deg);font-size:10px;color:var(--accent);letter-spacing:.1em">X</span>
+        <svg width="220" height="73"><use href="#logo-dark"/></svg>
+      </div>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px">
+      <div>
+        <p style="font-weight:500;font-size:0.85rem;margin-bottom:4px">Печать</p>
+        <p style="font-size:0.8rem;color:var(--secondary)">Минимальная ширина: 35 мм</p>
+      </div>
+      <div>
+        <p style="font-weight:500;font-size:0.85rem;margin-bottom:4px">Цифровые носители</p>
+        <p style="font-size:0.8rem;color:var(--secondary)">Минимальная ширина: 120 px</p>
+      </div>
+    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>06</span></div>
+  </div>
+</section>
+
+<!-- 07. LOGO ON PALETTES -->
+<section class="page" id="logo-palette">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 07</div>
+    <h2 class="reveal">Логотип на фонах</h2>
+    <div class="divider-wide reveal"></div>
+    <h3 class="reveal" style="font-size:1rem;margin-top:16px;color:var(--secondary)">Разрешено</h3>
+    <div class="palette-grid reveal">
+      <div class="palette-card" style="background:var(--primary)"><svg width="130" height="43"><use href="#logo-light"/></svg><span class="badge badge-ok" style="color:var(--light);background:rgba(248,244,240,.15)">OK</span></div>
+      <div class="palette-card" style="background:var(--text)"><svg width="130" height="43"><use href="#logo-light"/></svg><span class="badge badge-ok" style="color:var(--light);background:rgba(248,244,240,.15)">OK</span></div>
+      <div class="palette-card" style="background:var(--light);border:1px solid rgba(92,58,78,.08)"><svg width="130" height="43"><use href="#logo-dark"/></svg><span class="badge badge-ok">OK</span></div>
+      <div class="palette-card" style="background:#fff;border:1px solid rgba(92,58,78,.08)"><svg width="130" height="43"><use href="#logo-dark"/></svg><span class="badge badge-ok">OK</span></div>
+      <div class="palette-card" style="background:var(--accent)"><svg width="130" height="43"><use href="#logo-light"/></svg><span class="badge badge-ok" style="color:var(--light);background:rgba(248,244,240,.15)">OK</span></div>
+      <div class="palette-card" style="background:var(--secondary)"><svg width="130" height="43"><use href="#logo-light"/></svg><span class="badge badge-ok" style="color:var(--light);background:rgba(248,244,240,.15)">OK</span></div>
+    </div>
+    <h3 class="reveal" style="font-size:1rem;margin-top:24px;color:var(--secondary)">Запрещено</h3>
+    <div class="palette-grid reveal">
+      <div class="palette-card" style="background:#FF6B6B"><svg width="130" height="43"><use href="#logo-light"/></svg><span class="badge badge-no">NO</span></div>
+      <div class="palette-card" style="background:#4ECDC4"><svg width="130" height="43"><use href="#logo-dark"/></svg><span class="badge badge-no">NO</span></div>
+      <div class="palette-card" style="background:#000"><svg width="130" height="43"><use href="#logo-light"/></svg><span class="badge badge-no">NO</span></div>
+    </div>
+    <p class="reveal" style="font-size:0.8rem;color:var(--secondary);margin-top:12px">Клиент просил избегать чёрного цвета. Логотип не используется на чистом чёрном фоне.</p>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>07</span></div>
+  </div>
+</section>
+
+<!-- 08. COLOR PALETTE -->
+<section class="page" id="colors">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 08</div>
+    <h2 class="reveal">Цветовая палитра</h2>
+    <div class="divider-wide reveal"></div>
+    <p class="reveal" style="margin-top:12px;font-size:0.85rem;color:var(--secondary)">Пастельные, приглушённые, глубокие тона — по пожеланию клиента. Без чёрного.</p>
+    <div class="color-bars reveal" style="margin-top:24px">
+      <div class="color-bar" style="background:#5C3A4E;color:var(--light)" onclick="copyHex('#5C3A4E')"><div class="color-bar-name">Dusty Plum</div><div class="color-bar-hex">#5C3A4E</div></div>
+      <div class="color-bar" style="background:#C5A882;color:var(--text)" onclick="copyHex('#C5A882')"><div class="color-bar-name">Champagne Gold</div><div class="color-bar-hex">#C5A882</div></div>
+      <div class="color-bar" style="background:#B8929B;color:var(--light)" onclick="copyHex('#B8929B')"><div class="color-bar-name">Muted Rose</div><div class="color-bar-hex">#B8929B</div></div>
+      <div class="color-bar" style="background:#F8F4F0;color:var(--text);border-right:1px solid rgba(92,58,78,.08)" onclick="copyHex('#F8F4F0')"><div class="color-bar-name">Warm Ivory</div><div class="color-bar-hex">#F8F4F0</div></div>
+      <div class="color-bar" style="background:#3D2B35;color:var(--light)" onclick="copyHex('#3D2B35')"><div class="color-bar-name">Deep Mauve</div><div class="color-bar-hex">#3D2B35</div></div>
+    </div>
+    <div class="reveal" style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div><p style="font-weight:500;font-size:0.85rem;margin-bottom:4px">Основные фоны</p><p style="font-size:0.8rem;color:var(--secondary)">Warm Ivory для тёплых макетов, Dusty Plum для акцентных</p></div>
+      <div><p style="font-weight:500;font-size:0.85rem;margin-bottom:4px">Акценты</p><p style="font-size:0.8rem;color:var(--secondary)">Champagne Gold для линий, рамок, декора</p></div>
+      <div><p style="font-weight:500;font-size:0.85rem;margin-bottom:4px">Текст</p><p style="font-size:0.8rem;color:var(--secondary)">Deep Mauve (никогда чистый чёрный!)</p></div>
+      <div><p style="font-weight:500;font-size:0.85rem;margin-bottom:4px">Второстепенный</p><p style="font-size:0.8rem;color:var(--secondary)">Muted Rose для подписей, разделителей</p></div>
+    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>08</span></div>
+  </div>
+</section>
+
+<!-- 09. TYPOGRAPHY -->
+<section class="page" id="typography">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 09</div>
+    <h2 class="reveal">Типографика</h2>
+    <div class="divider-wide reveal"></div>
+    <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:48px">
+      <div>
+        <p style="font-size:0.7rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Заголовки</p>
+        <p style="font-family:var(--font-heading);font-size:2.6rem;font-weight:300;line-height:1.1">Cormorant Garamond</p>
+        <p style="font-size:0.75rem;color:var(--secondary);margin-top:8px">Light 300 / Regular 400 / Medium 500 / SemiBold 600</p>
+        <p style="font-size:0.75rem;color:var(--secondary);margin-top:4px">Вдохновлён классикой: утончённый, элегантный, женственный</p>
+      </div>
+      <div>
+        <p style="font-size:0.7rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px">Основной текст</p>
+        <p style="font-family:var(--font-body);font-size:2rem;font-weight:300;line-height:1.1">DM Sans</p>
+        <p style="font-size:0.75rem;color:var(--secondary);margin-top:8px">Light 300 / Regular 400 / Medium 500</p>
+        <p style="font-size:0.75rem;color:var(--secondary);margin-top:4px">Чистый, современный, дружелюбный</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:40px">
+      <div class="type-row"><span class="type-label">Display</span><span class="type-sample" style="font-family:var(--font-heading);font-size:2.4rem;font-weight:300">Красота в деталях</span><span class="type-meta">Light / 38px</span></div>
+      <div class="type-row"><span class="type-label">H1</span><span class="type-sample" style="font-family:var(--font-heading);font-size:1.8rem;font-weight:300">Винтажная элегантность</span><span class="type-meta">Light / 29px</span></div>
+      <div class="type-row"><span class="type-label">H2</span><span class="type-sample" style="font-family:var(--font-heading);font-size:1.4rem;font-weight:400">Коллекция сервировки</span><span class="type-meta">Regular / 22px</span></div>
+      <div class="type-row"><span class="type-label">Body</span><span class="type-sample" style="font-family:var(--font-body);font-size:0.95rem;font-weight:300">Каждый предмет хранит уникальную историю длиной в десятилетия.</span><span class="type-meta">Light / 15px</span></div>
+      <div class="type-row"><span class="type-label">Caption</span><span class="type-sample" style="font-family:var(--font-body);font-size:0.7rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase">Bloshka DELUXE 2026</span><span class="type-meta">Reg / 11px</span></div>
+    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>09</span></div>
+  </div>
+</section>
+
+<!-- 10. BUSINESS CARDS -->
+<section class="page" id="cards">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 10</div>
+    <h2 class="reveal">Визитные карточки</h2>
+    <div class="divider-wide reveal"></div>
+    <p class="reveal" style="margin-top:12px;font-size:0.85rem;color:var(--secondary)">90 x 50 мм / Лицо + Оборот</p>
+    <p class="reveal subtitle" style="margin-top:24px;margin-bottom:12px;text-align:left">Вариант 1 — Dusty Plum</p>
+    <div class="card-pair reveal">
+      <div class="bcard double-frame" style="background:var(--primary)"><div class="bcard-inner"><svg width="150" height="50"><use href="#logo-light"/></svg></div></div>
+      <div class="bcard" style="background:var(--primary);border:.5pt solid var(--accent)">
+        <div class="bcard-back">
+          <div class="bcard-watermark" style="color:var(--light)"><svg><use href="#icon"/></svg></div>
+          <div class="bcard-name" style="color:var(--light)">Лариса Власова</div>
+          <div class="bcard-title" style="color:var(--accent)">Основатель и куратор</div>
+          <div class="bcard-line" style="background:var(--accent)"></div>
+          <div class="bcard-contact" style="color:var(--light)">+7 903 722 11 34<br>lvlasova2016@yandex.ru<br>@bloshka_deluxe</div>
+        </div>
+      </div>
+    </div>
+    <p class="reveal subtitle" style="margin-top:24px;margin-bottom:12px;text-align:left">Вариант 2 — Warm Ivory</p>
+    <div class="card-pair reveal">
+      <div class="bcard double-frame" style="background:var(--light);border-color:var(--accent)"><div class="bcard-inner"><svg width="150" height="50"><use href="#logo-dark"/></svg></div></div>
+      <div class="bcard" style="background:var(--light);border:.5pt solid var(--accent)">
+        <div class="bcard-back">
+          <div class="bcard-watermark" style="color:var(--primary)"><svg><use href="#icon"/></svg></div>
+          <div class="bcard-name" style="color:var(--text)">Лариса Власова</div>
+          <div class="bcard-title" style="color:var(--accent)">Основатель и куратор</div>
+          <div class="bcard-line" style="background:var(--accent)"></div>
+          <div class="bcard-contact" style="color:var(--text)">+7 903 722 11 34<br>lvlasova2016@yandex.ru<br>@bloshka_deluxe</div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>10</span></div>
+  </div>
+</section>
+
+<!-- 11. SOCIAL MEDIA -->
+<section class="page" id="social">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 11</div>
+    <h2 class="reveal">Социальные сети</h2>
+    <div class="divider-wide reveal"></div>
+    <p class="reveal" style="margin-top:16px">Шаблоны для Instagram и TikTok. Единый стиль бренда на всех платформах. Тон — тёплый, дружелюбный, с утончённым вкусом.</p>
+
+    <div class="reveal" style="margin-top:24px">
+      <h3 style="font-size:1rem;color:var(--secondary);margin-bottom:16px">Форматы</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+        <div style="border-left:2px solid var(--accent);padding-left:16px">
+          <p style="font-weight:500;font-size:0.85rem">Instagram Post</p>
+          <p style="font-size:0.75rem;color:var(--secondary)">1080 x 1080 px</p>
+          <p style="font-size:0.7rem;color:var(--secondary);margin-top:4px">Фото товара, подборки, цитаты</p>
+        </div>
+        <div style="border-left:2px solid var(--accent);padding-left:16px">
+          <p style="font-weight:500;font-size:0.85rem">Instagram Story / Reels</p>
+          <p style="font-size:0.75rem;color:var(--secondary)">1080 x 1920 px</p>
+          <p style="font-size:0.7rem;color:var(--secondary);margin-top:4px">Распаковки, обзоры, за кулисами</p>
+        </div>
+        <div style="border-left:2px solid var(--accent);padding-left:16px">
+          <p style="font-weight:500;font-size:0.85rem">TikTok</p>
+          <p style="font-size:0.75rem;color:var(--secondary)">1080 x 1920 px</p>
+          <p style="font-size:0.7rem;color:var(--secondary);margin-top:4px">Истории находок, сравнения</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-preview reveal" style="margin-top:24px">
+      <div>
+        <div class="social-frame ig-post-mini" style="background:var(--primary);background-image:radial-gradient(ellipse at 30% 30%,rgba(197,168,130,.08) 0%,transparent 60%)">
+          <div class="social-card"><svg width="90" height="30"><use href="#logo-light"/></svg><p class="tagline" style="color:var(--light)">Красота в деталях</p></div>
+        </div>
+        <p class="social-frame-label">IG Post / Dark</p>
+      </div>
+      <div>
+        <div class="social-frame ig-post-mini" style="background:var(--light);border:1px solid rgba(92,58,78,.06)">
+          <div class="social-card"><svg width="90" height="30"><use href="#logo-dark"/></svg><p class="tagline" style="color:var(--text)">Красота в деталях</p></div>
+        </div>
+        <p class="social-frame-label">IG Post / Light</p>
+      </div>
+      <div>
+        <div class="social-frame ig-story-mini" style="background:var(--primary);background-image:radial-gradient(ellipse at 50% 30%,rgba(197,168,130,.1) 0%,transparent 60%)">
+          <div class="social-card" style="justify-content:flex-start;padding-top:24px"><svg width="50" height="17"><use href="#logo-light"/></svg><p class="tagline" style="color:var(--accent);margin-top:auto;margin-bottom:12px;font-size:6px">@bloshka_deluxe</p></div>
+        </div>
+        <p class="social-frame-label">Story / Dark</p>
+      </div>
+      <div>
+        <div class="social-frame ig-story-mini" style="background:var(--light);border:1px solid rgba(92,58,78,.06)">
+          <div class="social-card" style="justify-content:flex-start;padding-top:24px"><svg width="50" height="17"><use href="#logo-dark"/></svg><p class="tagline" style="color:var(--secondary);margin-top:auto;margin-bottom:12px;font-size:6px">@bloshka_deluxe</p></div>
+        </div>
+        <p class="social-frame-label">Story / Light</p>
+      </div>
+      <div>
+        <div class="social-frame tiktok-mini" style="background:var(--text);background-image:linear-gradient(180deg,rgba(92,58,78,.3) 0%,transparent 50%)">
+          <div class="social-card" style="justify-content:flex-start;padding-top:24px"><svg width="50" height="17"><use href="#logo-light"/></svg><p class="tagline" style="color:var(--accent);margin-top:auto;margin-bottom:12px;font-size:6px">TikTok</p></div>
+        </div>
+        <p class="social-frame-label">TikTok</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:24px">
+      <h3 style="font-size:1rem;color:var(--secondary);margin-bottom:12px">Правила оформления</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <p style="font-size:0.8rem">Логотип всегда в верхней части или по центру. Никогда ниже линии сгиба.</p>
+        <p style="font-size:0.8rem">Безопасная зона: 80px от краёв для текста и ключевых элементов.</p>
+        <p style="font-size:0.8rem">Только цвета бренда. Без фильтров, искажающих палитру.</p>
+        <p style="font-size:0.8rem">Заголовки: Cormorant Garamond. Подписи: DM Sans.</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:16px">
+      <h3 style="font-size:1rem;color:var(--secondary);margin-bottom:12px">Тон коммуникации</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+        <div style="background:rgba(197,168,130,0.06);padding:16px;border-radius:4px">
+          <p style="font-weight:500;font-size:0.8rem;margin-bottom:4px;color:var(--primary)">Дружелюбно</p>
+          <p style="font-size:0.75rem;color:var(--secondary)">Как подруга, которая разбирается в красивых вещах. Вдохновлено подходом Kaori: премиум без пафоса.</p>
+        </div>
+        <div style="background:rgba(197,168,130,0.06);padding:16px;border-radius:4px">
+          <p style="font-weight:500;font-size:0.8rem;margin-bottom:4px;color:var(--primary)">Каждая вещь — история</p>
+          <p style="font-size:0.75rem;color:var(--secondary)">Рассказывайте об эпохе, мастере, судьбе предмета. Это не просто посуда — это наследие.</p>
+        </div>
+        <div style="background:rgba(197,168,130,0.06);padding:16px;border-radius:4px">
+          <p style="font-weight:500;font-size:0.8rem;margin-bottom:4px;color:var(--primary)">Тепло и доступно</p>
+          <p style="font-size:0.75rem;color:var(--secondary)">Без холодного пафоса конкурентов. Искренний восторг от находок, честные цены.</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>11</span></div>
+  </div>
+</section>
+
+<!-- 12. CONTACTS -->
+<section class="page" id="contacts">
+  <div class="page-inner">
+    <div class="section-num reveal">Раздел 12</div>
+    <h2 class="reveal">Контакты</h2>
+    <div class="divider-wide reveal"></div>
+    <div style="display:flex;align-items:center;gap:32px;margin-top:40px" class="reveal">
+      <svg width="64" height="100" style="color:var(--primary);flex-shrink:0"><use href="#icon"/></svg>
+      <div>
+        <p style="font-family:var(--font-heading);font-size:1.6rem;font-weight:300">Bloshka DELUXE</p>
+        <p class="subtitle" style="margin-top:4px">Винтаж и антиквариат с душой</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:40px">
+      <div class="contact-row"><span class="contact-label">Имя</span><span class="contact-value">Лариса Власова</span></div>
+      <div class="contact-row"><span class="contact-label">Телефон</span><span class="contact-value">+7 903 722 11 34</span></div>
+      <div class="contact-row"><span class="contact-label">WhatsApp</span><span class="contact-value">+7 903 722 11 34</span></div>
+      <div class="contact-row"><span class="contact-label">Email</span><span class="contact-value">lvlasova2016@yandex.ru</span></div>
+      <div class="contact-row"><span class="contact-label">Instagram</span><span class="contact-value">@bloshka_deluxe</span></div>
+      <div class="contact-row"><span class="contact-label">Регион</span><span class="contact-value">Страны СНГ</span></div>
+    </div>
+    <div class="reveal" style="margin-top:auto;padding-top:40px;text-align:center">
+      <div class="divider" style="margin:0 auto 20px"></div>
+      <p style="font-family:var(--font-heading);font-size:1rem;font-weight:300;color:var(--secondary)">Designed by AI Design Studio</p>
+      <p style="font-size:0.65rem;color:var(--secondary);margin-top:4px">Brand Guidelines v3.0 — Март 2026</p>
+    </div>
+    <div class="page-footer"><span>Bloshka DELUXE</span><span>12</span></div>
+  </div>
+</section>
+
 <script>
-// Progress bar
-function updateProgress() {
+window.addEventListener('scroll', () => {
   const h = document.documentElement.scrollHeight - window.innerHeight;
-  const s = window.scrollY;
-  document.getElementById('progressBar').style.width = h > 0 ? (s / h * 100) + '%' : '0%';
-}
-window.addEventListener('scroll', updateProgress);
-
-// Reveal on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Copy HEX
-function copyHex(hex) {
-  navigator.clipboard.writeText(hex).then(() => showToast('Copied ' + hex));
-}
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 1500);
-}
+  document.getElementById('progressBar').style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0%';
+});
+document.querySelectorAll('.reveal').forEach(el => {
+  new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 }).observe(el);
+});
+function copyHex(hex) { navigator.clipboard.writeText(hex).then(() => showToast('Скопировано: ' + hex)); }
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1500); }
 </script>
-
 </body>
 </html>

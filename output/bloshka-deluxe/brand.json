@@ -1,11 +1,12 @@
 {
   "name": "Bloshka DELUXE",
-  "tagline": "Beauty in vintage",
-  "description": "Vintage and antique tableware, serving pieces. Giving beautiful old things a second life.",
-  "description_ru": "Винтаж и антиквариат: посуда, предметы сервировки. Даём красивым старинным вещам вторую жизнь.",
+  "tagline": "Винтаж и антиквариат с душой",
+  "tagline_en": "Vintage with soul",
+  "description": "Vintage and antique tableware, serving pieces from Imperial and Soviet Russia. Beauty in old things, second life.",
+  "description_ru": "Винтаж и антиквариат: посуда, предметы сервировки царской и советской России. Вижу красоту в старинных вещах, даю им вторую жизнь.",
   "package": "start",
-  "version": "1.0",
-  "style": "Classic Luxury",
+  "version": "3.0",
+  "style": "Warm Friendly Premium",
   "fonts": {
     "heading": "Cormorant Garamond",
     "headingWeights": [300, 400, 500, 600],
