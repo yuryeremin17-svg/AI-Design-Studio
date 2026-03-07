@@ -1,32 +1,45 @@
 # HANDOFF — AI Design Studio
-> Дата: 2026-03-06 | Сессия: #10
+> Дата: 2026-03-07 | Сессия: #11
 
-## Что сделано в этой сессии (#10)
+## Что сделано в сессии #11
 
-### 1. Web3Forms — ключ получен и вставлен (DONE)
-- `templates/brief/brand-brief.html:927` — access_key `4aea30c6-...` вставлен
-- Бриф-форма отправляет заявки на `rubelnick.ai@gmail.com`
+### deliver-v2.js — полная переработка системы доставки
 
-### 2. GitHub Pages — включен (DONE)
-- Settings → Pages → Deploy from branch → master / root
-- Лендинг live: https://yuryeremin17-svg.github.io/AI-Design-Studio/
-- Бриф live: https://yuryeremin17-svg.github.io/AI-Design-Studio/templates/brief/brand-brief.html
+**Спринт 1 (MUST):**
+- 1.1 PDF в корень ZIP (из output/*/print/) — клиент сразу видит PDF
+- 1.2 HTML перемещены в Interactive/ — не путают клиента
+- 1.3 Аватарки 512×512 (dark/light/circle) через Playwright — для WhatsApp/Telegram
+- 1.4 README двуязычный (русский + английский)
+- 1.5 Шрифты TTF скачиваются из Google Fonts GitHub (OFL лицензия)
+- 1.6 Версия + дата сборки в brand.json и README
 
-### 3. Шаблоны соцсетей (DONE)
-- `templates/social/social-templates.html` — универсальный шаблон (Aurelius)
-- `output/rubiilnik/social-templates.html` — РубИИльник (Manrope + Inter, Deep Blue + Copper)
-- Форматы: IG Post (1080×1080), IG Story (1080×1920), LinkedIn (1200×627)
-- Варианты: тёмный + светлый (12 шаблонов всего)
-- Визуально проверено через Playwright
+**Спринт 2 (Бизнес+):**
+- 2.1 Email-подпись: signature.html + How-to-Install.txt (Gmail/Outlook/Apple Mail)
+- 2.2 Social PNG: экспорт шаблонов по CSS-классам (.ig-post, .ig-story, .linkedin-*)
+- 2.3 Print specs: спецификация для типографии (бумага, вылеты, покрытие, RU+EN)
+- 2.4 Favicon: 16/32/180px + css-variables.txt для разработчика
 
-### 4. Ценообразование — ресёрч (DONE)
-- 6 источников, студии Дубая (Digital Agencies UAE, Dubai Net Solutions, Abtach, Blossom Web, Veda, Mirage Minds)
-- Наши пакеты в рынке: Старт = нижний-средний, Бизнес = средний, Премиум = средний-верхний
-- Цены менять не нужно. Преимущество: скорость (AI) + полный пакет дешевле агентств
+**Архитектурные решения:**
+- ESM (import) вместо CJS — совместимость с package.json type:module
+- Playwright singleton getPlaywright() — один import на весь скрипт
+- Валидация clientName `/^[a-z0-9-]+$/` — защита от command injection
+- getChromePath() regex `/^chromium-\d+$/` — точный match
 
-### 5. Воронка — полностью рабочая (DONE)
-- Клиент → лендинг → бриф → email на rubelnick.ai@gmail.com → КП → работа
-- Фаза 1 закрыта
+**Результат:**
+- Aurelius: 89 KB → 1762 KB (5 PDF + email-sig + favicon + шрифты)
+- РубИИльник: 95 KB → 1681 KB (2 PDF + 4 social PNG + favicon + шрифты)
+- deliver.js v1 не тронут (архив)
+
+### Решение: остановить разработку, начать продавать
+- Спринт 3 (мокапы, PowerPoint) отложен до клиента на Премиум
+- Следующий шаг: кейс-стади РубИИльник на лендинг → первый клиент
+
+---
+
+## Что было сделано в сессии #10
+
+- Web3Forms ключ вставлен, GitHub Pages включен
+- Шаблоны соцсетей, ценообразование, воронка — Фаза 1 закрыта
 
 ---
 
@@ -164,11 +177,11 @@ Brand-Kit/
 - [x] Ценообразование
 
 ### Фаза 2: Первые клиенты
-- [ ] **СПРИНТ 1** — deliver-v2.js (MUST: PDF, аватарки, README-RU, шрифты, версия)
-- [ ] **СПРИНТ 2** — deliver-v2.js (email-подпись, social PNG, print specs, favicon, QR)
-- [ ] Реальный клиент #1
-- [ ] RTL-адаптация (арабский)
-- [ ] Кейс-стади
+- [x] **СПРИНТ 1** — deliver-v2.js (PDF, аватарки, README-RU, шрифты, версия) — DONE сессия #11
+- [x] **СПРИНТ 2** — deliver-v2.js (email-подпись, social PNG, print specs, favicon) — DONE сессия #11
+- [ ] **Кейс-стади РубИИльник на лендинг** (скриншоты + до/после)
+- [ ] Реальный клиент #1 (Старт 5000 AED или бесплатно за отзыв)
+- [ ] RTL-адаптация (когда будет арабоязычный клиент)
 
 ### Фаза 3: Масштаб
 - [ ] **СПРИНТ 3** — мокапы, PowerPoint, Brand One-Pager (Премиум)
@@ -184,8 +197,8 @@ AI-Design-Studio/
 ├── index.html                      <- Лендинг (live на GitHub Pages)
 ├── package.json                    <- type: module, playwright
 ├── scripts/
-│   ├── deliver.js                  <- ZIP сборка v1 (НЕ ТРОГАТЬ до готовности v2)
-│   ├── deliver-v2.js               <- ZIP сборка v2 (в разработке)
+│   ├── deliver.js                  <- ZIP сборка v1 (архив, НЕ ТРОГАТЬ)
+│   ├── deliver-v2.js               <- ZIP сборка v2 (ОСНОВНОЙ, Спринт 1+2 готовы)
 │   ├── export-pdf.js               <- PDF (НЕ ТРОГАТЬ)
 │   └── screenshot-sections.js
 ├── templates/
@@ -202,8 +215,8 @@ AI-Design-Studio/
 │   ├── aurelius-group/ (brandbook, cards, letterhead, presentation, email-sig, print/)
 │   └── rubiilnik/ (brandbook, cards, social-templates, print/)
 ├── delivery/
-│   ├── aurelius-group/ (ZIP 89KB — v1)
-│   └── rubiilnik/ (ZIP 95KB — v1)
+│   ├── aurelius-group/ (ZIP 1762KB — v2)
+│   └── rubiilnik/ (ZIP 1681KB — v2)
 └── .claude/commands/
 ```
 
