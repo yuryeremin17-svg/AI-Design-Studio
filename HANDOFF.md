@@ -19,6 +19,11 @@
 - 2.3 Print specs: спецификация для типографии (бумага, вылеты, покрытие, RU+EN)
 - 2.4 Favicon: 16/32/180px + css-variables.txt для разработчика
 
+**Финальный аудит (после спринтов):**
+- try/finally на все Playwright-функции (exportAvatars, exportSocialPng, exportFavicons) — browser всегда закрывается
+- try/catch на top-level main — ошибки ловятся с понятным сообщением
+- Quick Start добавлен в README — 6 пошаговых инструкций для клиента (RU+EN)
+
 **Архитектурные решения:**
 - ESM (import) вместо CJS — совместимость с package.json type:module
 - Playwright singleton getPlaywright() — один import на весь скрипт
@@ -29,10 +34,12 @@
 - Aurelius: 89 KB → 1762 KB (5 PDF + email-sig + favicon + шрифты)
 - РубИИльник: 95 KB → 1681 KB (2 PDF + 4 social PNG + favicon + шрифты)
 - deliver.js v1 не тронут (архив)
+- Web3Forms бриф проверен end-to-end (success: true)
 
 ### Решение: остановить разработку, начать продавать
 - Спринт 3 (мокапы, PowerPoint) отложен до клиента на Премиум
 - Следующий шаг: кейс-стади РубИИльник на лендинг → первый клиент
+- Бриф готов к отправке клиенту: templates/brief/brand-brief.html
 
 ---
 

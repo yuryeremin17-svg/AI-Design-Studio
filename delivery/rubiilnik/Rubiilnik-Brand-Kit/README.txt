@@ -2,6 +2,22 @@
 ========================
 Version: 1.0 | 2026-03-07
 
+БЫСТРЫЙ СТАРТ / QUICK START
+----------------------------
+1. Откройте Brand_Guidelines.pdf — это ваш брендбук (цвета, шрифты, правила)
+2. Поставьте аватарку: Logos/avatar-512-dark.png → WhatsApp, Telegram, Instagram
+3. Установите шрифты: Fonts/ → двойной клик на каждый TTF → "Установить"
+4. Визитки в печать: Business_Cards.pdf + Print-Specs/print-specifications.txt → в типографию
+5. Email-подпись: Email-Signature/ → инструкция внутри (Gmail/Outlook за 2 минуты)
+6. Соцсети: Social/ → готовые картинки, загрузите напрямую в Instagram/LinkedIn
+
+1. Open Brand_Guidelines.pdf — your brand guidelines (colors, fonts, rules)
+2. Set profile picture: Logos/avatar-512-dark.png → WhatsApp, Telegram, Instagram
+3. Install fonts: Fonts/ → double-click each TTF → "Install"
+4. Print business cards: Business_Cards.pdf + Print-Specs/ → send to print shop
+5. Email signature: Email-Signature/ → instructions inside (Gmail/Outlook, 2 min setup)
+6. Social media: Social/ → ready-to-post images for Instagram/LinkedIn
+
 СОДЕРЖИМОЕ / CONTENTS
 ---------------------
 

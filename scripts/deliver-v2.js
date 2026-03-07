@@ -59,6 +59,7 @@ async function getPlaywright() {
 }
 
 // --- Main ---
+try {
 console.log(`\nPreparing Brand Kit v2 for: ${brandKitName}`);
 console.log('='.repeat(50));
 
@@ -206,6 +207,11 @@ console.log(`Version: ${brand.version} | Date: ${buildDate}`);
 console.log(`\nContents:`);
 listDir(kitDir, '  ');
 
+} catch (err) {
+  console.error(`\nERROR: ${err.message}`);
+  process.exit(1);
+}
+
 // --- Helpers ---
 
 function formatBrandKitName(name) {
@@ -267,26 +273,24 @@ async function exportAvatars(svgPath, outDir, brand) {
   const { chromium } = await getPlaywright();
 
   const browser = await chromium.launch({ executablePath: chromePath });
-  const size = 512;
+  try {
+    const size = 512;
+    const svgContent = fs.readFileSync(svgPath, 'utf8');
 
-  // Read SVG
-  const svgContent = fs.readFileSync(svgPath, 'utf8');
+    const paletteEntries = Object.entries(brand.palette);
+    const darkColor = paletteEntries.find(([k]) => /primary|navy|deep|dark/i.test(k))?.[1]?.hex || '#1A1A1A';
+    const lightColor = paletteEntries.find(([k]) => /light|cream|white|warm\s*white/i.test(k))?.[1]?.hex || '#FFFFFF';
 
-  // Get primary dark and light colors from brand
-  const paletteEntries = Object.entries(brand.palette);
-  const darkColor = paletteEntries.find(([k]) => /primary|navy|deep|dark/i.test(k))?.[1]?.hex || '#1A1A1A';
-  const lightColor = paletteEntries.find(([k]) => /light|cream|white|warm\s*white/i.test(k))?.[1]?.hex || '#FFFFFF';
+    const variants = [
+      { name: 'avatar-512-dark', bg: darkColor },
+      { name: 'avatar-512-light', bg: lightColor },
+      { name: 'avatar-512-circle', bg: darkColor, circle: true },
+    ];
 
-  const variants = [
-    { name: 'avatar-512-dark', bg: darkColor },
-    { name: 'avatar-512-light', bg: lightColor },
-    { name: 'avatar-512-circle', bg: darkColor, circle: true },
-  ];
-
-  for (const v of variants) {
-    const page = await browser.newPage({ viewport: { width: size, height: size } });
-    const borderRadius = v.circle ? '50%' : '0';
-    const html = `<!DOCTYPE html>
+    for (const v of variants) {
+      const page = await browser.newPage({ viewport: { width: size, height: size } });
+      const borderRadius = v.circle ? '50%' : '0';
+      const html = `<!DOCTYPE html>
 <html><head><style>
   body { margin: 0; display: flex; align-items: center; justify-content: center;
          width: ${size}px; height: ${size}px; background: ${v.bg};
@@ -295,16 +299,17 @@ async function exportAvatars(svgPath, outDir, brand) {
 </style></head>
 <body>${svgContent}</body></html>`;
 
-    await page.setContent(html, { waitUntil: 'load' });
-    await page.waitForTimeout(200);
+      await page.setContent(html, { waitUntil: 'load' });
+      await page.waitForTimeout(200);
 
-    const pngPath = path.join(outDir, `${v.name}.png`);
-    await page.screenshot({ path: pngPath, omitBackground: v.circle, timeout: 10000 });
-    console.log(`   ${v.name}.png`);
-    await page.close();
+      const pngPath = path.join(outDir, `${v.name}.png`);
+      await page.screenshot({ path: pngPath, omitBackground: v.circle, timeout: 10000 });
+      console.log(`   ${v.name}.png`);
+      await page.close();
+    }
+  } finally {
+    await browser.close();
   }
-
-  await browser.close();
 }
 
 async function downloadFonts(fontsConfig, fontsDir) {
@@ -405,6 +410,22 @@ function generateReadme(kitDir, brandKitName, brand, pdfCount) {
   const readme = `${name} — Brand Kit
 ${'='.repeat(name.length + 14)}
 Version: ${version} | ${date}
+
+БЫСТРЫЙ СТАРТ / QUICK START
+----------------------------
+1. Откройте Brand_Guidelines.pdf — это ваш брендбук (цвета, шрифты, правила)
+2. Поставьте аватарку: Logos/avatar-512-dark.png → WhatsApp, Telegram, Instagram
+3. Установите шрифты: Fonts/ → двойной клик на каждый TTF → "Установить"
+4. Визитки в печать: Business_Cards.pdf + Print-Specs/print-specifications.txt → в типографию
+5. Email-подпись: Email-Signature/ → инструкция внутри (Gmail/Outlook за 2 минуты)
+6. Соцсети: Social/ → готовые картинки, загрузите напрямую в Instagram/LinkedIn
+
+1. Open Brand_Guidelines.pdf — your brand guidelines (colors, fonts, rules)
+2. Set profile picture: Logos/avatar-512-dark.png → WhatsApp, Telegram, Instagram
+3. Install fonts: Fonts/ → double-click each TTF → "Install"
+4. Print business cards: Business_Cards.pdf + Print-Specs/ → send to print shop
+5. Email signature: Email-Signature/ → instructions inside (Gmail/Outlook, 2 min setup)
+6. Social media: Social/ → ready-to-post images for Instagram/LinkedIn
 
 СОДЕРЖИМОЕ / CONTENTS
 ---------------------
@@ -541,67 +562,63 @@ async function exportSocialPng(htmlPath, socialDir) {
   const { chromium } = await getPlaywright();
   const browser = await chromium.launch({ executablePath: chromePath });
 
-  const page = await browser.newPage();
-  await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle' });
-  await page.waitForTimeout(500);
+  try {
+    const page = await browser.newPage();
+    await page.goto(`file://${htmlPath}`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(500);
 
-  // Find all social template cards by CSS classes
-  const templates = await page.evaluate(() => {
-    const cards = [];
-    // Priority 1: data-format attribute
-    // Priority 2: known social media CSS classes
-    // Priority 3: .template-card or .social-template
-    const selectors = [
-      '[data-format]',
-      '.ig-post', '.ig-story', '.linkedin-post', '.linkedin-banner',
-      '.template-card', '.social-template',
-    ];
-    const seen = new Set();
-    for (const sel of selectors) {
-      document.querySelectorAll(sel).forEach(el => {
-        if (seen.has(el)) return;
-        seen.add(el);
-        const rect = el.getBoundingClientRect();
-        if (rect.width < 10 || rect.height < 10) return;
-        // Build descriptive format name
-        const cls = el.className.split(' ').filter(c => c && c !== 'template-card');
-        const format = el.dataset.format || cls.join('-') || `${Math.round(rect.width)}x${Math.round(rect.height)}`;
-        cards.push({ format, x: rect.x, y: rect.y, width: rect.width, height: rect.height });
-      });
-    }
-    return cards;
-  });
-
-  if (templates.length > 0) {
-    // Filter out templates with zero or invalid dimensions
-    const valid = templates.filter(t => t.width > 10 && t.height > 10);
-    for (let i = 0; i < valid.length; i++) {
-      const t = valid[i];
-      const fileName = `Social-${i + 1}-${t.format}.png`;
-      try {
-        await page.screenshot({
-          path: path.join(socialDir, fileName),
-          clip: { x: Math.max(0, t.x), y: Math.max(0, t.y), width: t.width, height: t.height },
-          fullPage: true,
-          timeout: 10000,
+    const templates = await page.evaluate(() => {
+      const cards = [];
+      const selectors = [
+        '[data-format]',
+        '.ig-post', '.ig-story', '.linkedin-post', '.linkedin-banner',
+        '.template-card', '.social-template',
+      ];
+      const seen = new Set();
+      for (const sel of selectors) {
+        document.querySelectorAll(sel).forEach(el => {
+          if (seen.has(el)) return;
+          seen.add(el);
+          const rect = el.getBoundingClientRect();
+          if (rect.width < 10 || rect.height < 10) return;
+          const cls = el.className.split(' ').filter(c => c && c !== 'template-card');
+          const format = el.dataset.format || cls.join('-') || `${Math.round(rect.width)}x${Math.round(rect.height)}`;
+          cards.push({ format, x: rect.x, y: rect.y, width: rect.width, height: rect.height });
         });
-        console.log(`   ${fileName}`);
-      } catch {
-        console.log(`   SKIP: ${fileName} (clip out of bounds)`);
+      }
+      return cards;
+    });
+
+    if (templates.length > 0) {
+      const valid = templates.filter(t => t.width > 10 && t.height > 10);
+      for (let i = 0; i < valid.length; i++) {
+        const t = valid[i];
+        const fileName = `Social-${i + 1}-${t.format}.png`;
+        try {
+          await page.screenshot({
+            path: path.join(socialDir, fileName),
+            clip: { x: Math.max(0, t.x), y: Math.max(0, t.y), width: t.width, height: t.height },
+            fullPage: true,
+            timeout: 10000,
+          });
+          console.log(`   ${fileName}`);
+        } catch {
+          console.log(`   SKIP: ${fileName} (clip out of bounds)`);
+        }
       }
     }
+    if (templates.length === 0) {
+      console.log('   No individual templates detected, exporting full page...');
+      await page.screenshot({
+        path: path.join(socialDir, 'Social-Templates-Full.png'),
+        fullPage: true,
+        timeout: 15000,
+      });
+      console.log('   Social-Templates-Full.png');
+    }
+  } finally {
+    await browser.close();
   }
-  if (templates.length === 0) {
-    console.log('   No individual templates detected, exporting full page...');
-    await page.screenshot({
-      path: path.join(socialDir, 'Social-Templates-Full.png'),
-      fullPage: true,
-      timeout: 15000,
-    });
-    console.log('   Social-Templates-Full.png');
-  }
-
-  await browser.close();
 }
 
 async function exportFavicons(svgPath, webDir, brand) {
@@ -609,21 +626,22 @@ async function exportFavicons(svgPath, webDir, brand) {
   const { chromium } = await getPlaywright();
   const browser = await chromium.launch({ executablePath: chromePath });
 
-  const svgContent = fs.readFileSync(svgPath, 'utf8');
-  const paletteEntries = Object.entries(brand.palette);
-  const darkColor = paletteEntries.find(([k]) => /primary|navy|deep|dark/i.test(k))?.[1]?.hex || '#1A1A1A';
+  try {
+    const svgContent = fs.readFileSync(svgPath, 'utf8');
+    const paletteEntries = Object.entries(brand.palette);
+    const darkColor = paletteEntries.find(([k]) => /primary|navy|deep|dark/i.test(k))?.[1]?.hex || '#1A1A1A';
 
-  const sizes = [
-    { name: 'favicon-16.png', size: 16 },
-    { name: 'favicon-32.png', size: 32 },
-    { name: 'apple-touch-icon-180.png', size: 180 },
-  ];
+    const sizes = [
+      { name: 'favicon-16.png', size: 16 },
+      { name: 'favicon-32.png', size: 32 },
+      { name: 'apple-touch-icon-180.png', size: 180 },
+    ];
 
-  for (const { name, size } of sizes) {
-    const renderSize = Math.max(size, 64); // render at min 64px for quality, then resize
-    const page = await browser.newPage({ viewport: { width: renderSize, height: renderSize } });
+    for (const { name, size } of sizes) {
+      const renderSize = Math.max(size, 64);
+      const page = await browser.newPage({ viewport: { width: renderSize, height: renderSize } });
 
-    const html = `<!DOCTYPE html>
+      const html = `<!DOCTYPE html>
 <html><head><style>
   body { margin: 0; display: flex; align-items: center; justify-content: center;
          width: ${renderSize}px; height: ${renderSize}px; background: ${darkColor};
@@ -632,32 +650,32 @@ async function exportFavicons(svgPath, webDir, brand) {
 </style></head>
 <body>${svgContent}</body></html>`;
 
-    await page.setContent(html, { waitUntil: 'load' });
-    await page.waitForTimeout(200);
+      await page.setContent(html, { waitUntil: 'load' });
+      await page.waitForTimeout(200);
 
-    const pngPath = path.join(webDir, name);
-    await page.screenshot({ path: pngPath, timeout: 10000 });
+      const pngPath = path.join(webDir, name);
+      await page.screenshot({ path: pngPath, timeout: 10000 });
 
-    // Resize if renderSize != target size
-    if (renderSize !== size) {
-      try {
-        execSync(`sips -z ${size} ${size} "${pngPath}" --out "${pngPath}" 2>/dev/null`, { stdio: 'pipe' });
-      } catch {}
+      if (renderSize !== size) {
+        try {
+          execSync(`sips -z ${size} ${size} "${pngPath}" --out "${pngPath}" 2>/dev/null`, { stdio: 'pipe' });
+        } catch {}
+      }
+
+      console.log(`   ${name} (${size}x${size})`);
+      await page.close();
     }
 
-    console.log(`   ${name} (${size}x${size})`);
-    await page.close();
+    // CSS variables snippet
+    const cssVars = Object.entries(brand.palette)
+      .map(([name, val]) => `  --${name.toLowerCase().replace(/[^a-z0-9]/g, '-')}: ${val.hex};`)
+      .join('\n');
+    fs.writeFileSync(path.join(webDir, 'css-variables.txt'),
+      `/* ${brand.brand} — CSS Variables */\n:root {\n${cssVars}\n}\n`);
+    console.log('   css-variables.txt');
+  } finally {
+    await browser.close();
   }
-
-  // CSS variables snippet
-  const cssVars = Object.entries(brand.palette)
-    .map(([name, val]) => `  --${name.toLowerCase().replace(/[^a-z0-9]/g, '-')}: ${val.hex};`)
-    .join('\n');
-  fs.writeFileSync(path.join(webDir, 'css-variables.txt'),
-    `/* ${brand.brand} — CSS Variables */\n:root {\n${cssVars}\n}\n`);
-  console.log('   css-variables.txt');
-
-  await browser.close();
 }
 
 function generatePrintSpecs(dir, brand) {
