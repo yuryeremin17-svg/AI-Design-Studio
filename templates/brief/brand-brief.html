@@ -710,24 +710,25 @@
 
             <div class="field">
                 <label data-en="Visual style" data-ru="Визуальный стиль">Visual style</label>
+                <p style="font-size: 0.75rem; color: var(--text-secondary, #888); margin: -4px 0 8px;" data-en="You can select multiple options" data-ru="Можно выбрать несколько вариантов">You can select multiple options</p>
                 <div class="checkbox-group">
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="minimalism">
                         <span data-en="Minimalism" data-ru="Минимализм">Minimalism</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="luxury">
                         <span data-en="Luxury" data-ru="Роскошь">Luxury</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="bold">
                         <span data-en="Bold & Modern" data-ru="Яркий и современный">Bold & Modern</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="classic">
                         <span data-en="Classic & Elegant" data-ru="Классический и элегантный">Classic & Elegant</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="organic">
                         <span data-en="Organic & Natural" data-ru="Натуральный и органический">Organic & Natural</span>
                     </label>
@@ -766,28 +767,29 @@
 
             <div class="field">
                 <label data-en="What do you need?" data-ru="Что нужно создать?">What do you need?</label>
+                <p style="font-size: 0.75rem; color: var(--text-secondary, #888); margin: -4px 0 8px;" data-en="You can select multiple options" data-ru="Можно выбрать несколько вариантов">You can select multiple options</p>
                 <div class="checkbox-group">
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="logo">
                         <span data-en="Logo" data-ru="Логотип">Logo</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="brandbook">
                         <span data-en="Brand Book" data-ru="Брендбук">Brand Book</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="cards">
                         <span data-en="Business Cards" data-ru="Визитки">Business Cards</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="letterhead">
                         <span data-en="Letterhead" data-ru="Бланк">Letterhead</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="presentation">
                         <span data-en="Presentation" data-ru="Презентация">Presentation</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="social">
                         <span data-en="Social Media" data-ru="Соцсети">Social Media</span>
                     </label>
@@ -797,15 +799,15 @@
             <div class="field">
                 <label data-en="Languages for brand materials" data-ru="Языки для бренд-материалов">Languages for brand materials</label>
                 <div class="checkbox-group">
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="languages[]" value="en">
                         <span>English</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="languages[]" value="ar">
                         <span>Arabic / العربية</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="languages[]" value="ru">
                         <span>Russian / Русский</span>
                     </label>
@@ -932,8 +934,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function toggleCheck(el) {
+        function toggleCheck(el, evt) {
+            // Prevent double-toggle: label click propagates to input, which bubbles back
+            if (evt) evt.preventDefault();
             el.classList.toggle('checked');
+            const cb = el.querySelector('input[type="checkbox"]');
+            if (cb) cb.checked = el.classList.contains('checked');
         }
 
         function setLang(lang) {
