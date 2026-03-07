@@ -1,0 +1,7 @@
+/* РубИИльник — CSS Variables */
+:root {
+  --deep-blue--primary-: #0F2B4C;
+  --copper-electric--accent-: #C46B2A;
+  --warm-sand--secondary-: #C4A87C;
+  --warm-white--light-: #FAF7F2;
+}

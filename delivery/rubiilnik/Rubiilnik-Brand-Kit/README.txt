@@ -44,11 +44,34 @@ Version: 1.0 | 2026-03-07
   Brand color palette with HEX and RGB values.
   Share this file with your designer or developer.
 
+EMAIL-ПОДПИСЬ / EMAIL SIGNATURE (Email-Signature/)
+  signature.html — готовая подпись для email
+  How-to-Install.txt — инструкция для Gmail, Outlook, Apple Mail
+
+  signature.html — ready-to-use email signature
+  How-to-Install.txt — setup guide for Gmail, Outlook, Apple Mail
+
+СОЦСЕТИ / SOCIAL MEDIA (Social/)
+  Готовые PNG для публикации в Instagram и LinkedIn.
+
+  Ready-to-use PNG images for Instagram and LinkedIn.
+
+ВЕБ / WEB (Web/)
+  favicon-16.png, favicon-32.png — иконки для сайта
+  apple-touch-icon-180.png — иконка для iPhone
+  css-variables.txt — CSS-переменные для разработчика
+
+  Favicon set for website + CSS variables for developer.
+
+ТИПОГРАФИЯ / PRINT SPECS (Print-Specs/)
+  print-specifications.txt — бумага, размеры, вылеты, покрытие
+  Передайте в типографию вместе с PDF файлами.
+
+  Paper weight, sizes, bleed, finish specs for print shop.
+
 ИНТЕРАКТИВ / INTERACTIVE (Interactive/)
   HTML-версии документов с анимациями.
   Открыть в браузере (Chrome, Safari, Firefox).
-  Копирование цветов по клику, интерактивные элементы.
-  Для печати из HTML: Ctrl+P (Cmd+P на Mac) → Сохранить как PDF.
 
   HTML versions with animations and interactive features.
   Open in any modern browser. Click to copy colors.
