@@ -4,13 +4,16 @@ description: Собрать и отправить финал клиенту
 
 Подготовь финальную доставку для клиента $ARGUMENTS.
 
-1. Запусти `node scripts/deliver.js <client-name>` — он соберёт ZIP с:
-   - Все HTML файлы из output/<client-name>/
-   - Логотипы SVG + PNG (@1x, @2x, @4x) из assets/logos/<client-name>/
-   - colors.json с палитрой и шрифтами
-   - README.txt с инструкциями
+1. Запусти `node scripts/deliver-v2.js <client-name>` — он соберёт ZIP с:
+   - PDF документы (брендбук, визитки, бланки) в корне ZIP
+   - Логотипы SVG + PNG (@1x, @2x, @4x) + аватарки 512x512 (dark/light/circle)
+   - Шрифты TTF из Google Fonts
+   - colors.json с палитрой
+   - HTML файлы в подпапке Interactive/
+   - README.txt на русском и английском
+   - Версия и дата сборки
 
-2. Проверь содержимое ZIP: все файлы на месте, PNG не пустые
+2. Проверь содержимое ZIP: PDF в корне, PNG не пустые, шрифты скачались
 
 3. Покажи итог: что внутри, размер ZIP, путь к архиву
 
