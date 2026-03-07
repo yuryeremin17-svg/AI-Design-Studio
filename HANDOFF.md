@@ -1,6 +1,41 @@
 # HANDOFF — AI Design Studio
 > Дата: 2026-03-07 | Сессия: #12
 
+## Bloshka DELUXE — ПЕРВЫЙ РЕАЛЬНЫЙ КЛИЕНТ (в работе)
+
+**Статус:** палитра + логотип утверждены, следующий шаг — брендбук
+**Пакет:** Старт (5-8K AED), срок 1 неделя
+**Клиент:** Лариса Власова, винтаж и антиквариат (посуда, сервировка), СНГ
+**WhatsApp:** +79037221134 | Email: lvlasova2016@yandex.ru
+
+**Утверждено:**
+- Стиль: Classic Luxury / Vintage Elegance
+- Шрифты: Cormorant Garamond (Light 300) + DM Sans
+- Палитра: Dusty Plum #5C3A4E + Champagne Gold #C5A882 + Muted Rose #B8929B + Warm Ivory #F8F4F0 + Deep Mauve #3D2B35 (текст, без чёрного)
+- Логотип: BLOSHKA + золотой разделитель + DELUXE (outlined SVG, 3 варианта)
+- Превью: `output/bloshka-deluxe/palette-preview.html`
+
+**Готово:**
+- [x] Структура: `assets/logos/bloshka-deluxe/`, `output/bloshka-deluxe/`
+- [x] brand.json
+- [x] Логотип SVG outlined: logo.svg (dark), logo-light.svg (light), icon.svg (B)
+- [x] palette-preview.html — клиент одобрил
+
+**Осталось:**
+- [ ] Брендбук 12 секций (Старт)
+- [ ] Визитные карточки (1 вариант, лицо + оборот)
+- [ ] Визуальная проверка Playwright
+- [ ] Сборка ZIP через /deliver
+- [ ] Отправить клиенту
+
+**Важно при продолжении:**
+- SVG логотипы используются INLINE (не через `<img>`) — viewBox 359x118
+- Шрифт Cormorant Garamond скачан с gstatic (не GitHub raw — тот даёт HTML redirect)
+- fonttools для outlined: `/tmp/fontenv/bin/python3` (venv, может потребовать пересоздания)
+- Ориентиры клиента: Chanel, Dior, Celine — минимализм, элегантность
+
+---
+
 ## Что сделано в сессии #12
 
 ### Кейс-стади РубИИльник на лендинг
