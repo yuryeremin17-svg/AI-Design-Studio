@@ -400,6 +400,42 @@
             color: #888;
             max-width: 400px;
             margin: 0 auto;
+        }
+
+        .error-screen {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .error-screen.active { display: block; }
+        .error-screen h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--error);
+            margin-bottom: 1rem;
+        }
+        .error-screen p {
+            font-size: 0.9rem;
+            color: #888;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .error-screen .fallback-contacts {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .error-screen .fallback-contacts a {
+            display: inline-block;
+            padding: 10px 24px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
             line-height: 1.7;
         }
 
@@ -674,24 +710,25 @@
 
             <div class="field">
                 <label data-en="Visual style" data-ru="Визуальный стиль">Visual style</label>
+                <p style="font-size: 0.75rem; color: var(--text-secondary, #888); margin: -4px 0 8px;" data-en="You can select multiple options" data-ru="Можно выбрать несколько вариантов">You can select multiple options</p>
                 <div class="checkbox-group">
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="minimalism">
                         <span data-en="Minimalism" data-ru="Минимализм">Minimalism</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="luxury">
                         <span data-en="Luxury" data-ru="Роскошь">Luxury</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="bold">
                         <span data-en="Bold & Modern" data-ru="Яркий и современный">Bold & Modern</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="classic">
                         <span data-en="Classic & Elegant" data-ru="Классический и элегантный">Classic & Elegant</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="style[]" value="organic">
                         <span data-en="Organic & Natural" data-ru="Натуральный и органический">Organic & Natural</span>
                     </label>
@@ -730,28 +767,29 @@
 
             <div class="field">
                 <label data-en="What do you need?" data-ru="Что нужно создать?">What do you need?</label>
+                <p style="font-size: 0.75rem; color: var(--text-secondary, #888); margin: -4px 0 8px;" data-en="You can select multiple options" data-ru="Можно выбрать несколько вариантов">You can select multiple options</p>
                 <div class="checkbox-group">
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="logo">
                         <span data-en="Logo" data-ru="Логотип">Logo</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="brandbook">
                         <span data-en="Brand Book" data-ru="Брендбук">Brand Book</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="cards">
                         <span data-en="Business Cards" data-ru="Визитки">Business Cards</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="letterhead">
                         <span data-en="Letterhead" data-ru="Бланк">Letterhead</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="presentation">
                         <span data-en="Presentation" data-ru="Презентация">Presentation</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="deliverables[]" value="social">
                         <span data-en="Social Media" data-ru="Соцсети">Social Media</span>
                     </label>
@@ -761,15 +799,15 @@
             <div class="field">
                 <label data-en="Languages for brand materials" data-ru="Языки для бренд-материалов">Languages for brand materials</label>
                 <div class="checkbox-group">
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="languages[]" value="en">
                         <span>English</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="languages[]" value="ar">
                         <span>Arabic / العربية</span>
                     </label>
-                    <label class="checkbox-item" onclick="toggleCheck(this)">
+                    <label class="checkbox-item" onclick="toggleCheck(this, event)">
                         <input type="checkbox" name="languages[]" value="ru">
                         <span>Russian / Русский</span>
                     </label>
@@ -821,6 +859,16 @@
         <div class="success-screen" id="successScreen">
             <h2 data-en="Thank You" data-ru="Спасибо">Thank You</h2>
             <p data-en="We've received your brief and will get back to you within 24 hours." data-ru="Мы получили ваш бриф и свяжемся с вами в течение 24 часов.">We've received your brief and will get back to you within 24 hours.</p>
+        </div>
+
+        <div class="error-screen" id="errorScreen">
+            <h2 data-en="Something went wrong" data-ru="Что-то пошло не так">Something went wrong</h2>
+            <p data-en="Your brief could not be sent. Please contact us directly — we'll be happy to help:" data-ru="Бриф не удалось отправить. Свяжитесь с нами напрямую — мы будем рады помочь:">Your brief could not be sent. Please contact us directly:</p>
+            <div class="fallback-contacts">
+                <a href="https://wa.me/971585177230" target="_blank">WhatsApp</a>
+                <a href="https://t.me/eremin_plus" target="_blank">Telegram</a>
+                <a href="mailto:rubelnick.ai@gmail.com">Email</a>
+            </div>
         </div>
 
     </div>
@@ -886,8 +934,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function toggleCheck(el) {
+        function toggleCheck(el, evt) {
+            // Prevent double-toggle: label click propagates to input, which bubbles back
+            if (evt) evt.preventDefault();
             el.classList.toggle('checked');
+            const cb = el.querySelector('input[type="checkbox"]');
+            if (cb) cb.checked = el.classList.contains('checked');
         }
 
         function setLang(lang) {
@@ -900,7 +952,7 @@
             });
         }
 
-        async function submitBrief() {
+        function submitBrief() {
             if (!validateStep(currentStep)) return;
 
             const btn = document.querySelector('.btn-submit');
@@ -922,43 +974,54 @@
                 }
             });
 
-            // Format for Web3Forms
-            const formData = new FormData();
-            formData.append('access_key', '4aea30c6-2b83-4fe1-a945-45c30e34a3e2');
-            formData.append('subject', 'New Brand Brief: ' + (data.company_name || 'Unknown'));
-            formData.append('from_name', data.contact_name || 'Brand Brief');
+            // Save locally as backup
+            localStorage.setItem('brief_' + Date.now(), JSON.stringify(data));
 
-            for (const [key, value] of Object.entries(data)) {
-                if (Array.isArray(value)) {
-                    formData.append(key, value.join(', '));
-                } else {
-                    formData.append(key, value);
-                }
+            // Build a real HTML form and submit as POST
+            // Cloudflare blocks fetch() to Web3Forms, but allows normal form POST
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'https://api.web3forms.com/submit';
+            form.style.display = 'none';
+
+            // Web3Forms fields
+            const fields = {
+                'access_key': '4aea30c6-2b83-4fe1-a945-45c30e34a3e2',
+                'subject': 'New Brand Brief: ' + (data.company_name || 'Unknown'),
+                'from_name': data.contact_name || 'Brand Brief',
+                'redirect': window.location.href.replace(/brand-brief\.html.*/, 'brand-brief.html?sent=1')
+            };
+
+            // Add Web3Forms fields
+            for (const [key, value] of Object.entries(fields)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = value;
+                form.appendChild(input);
             }
 
-            try {
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData
-                });
-                const result = await response.json();
+            // Add all brief data
+            for (const [key, value] of Object.entries(data)) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = Array.isArray(value) ? value.join(', ') : value;
+                form.appendChild(input);
+            }
 
-                if (result.success) {
-                    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-                    document.getElementById('successScreen').classList.add('active');
-                } else {
-                    throw new Error(result.message || 'Submission failed');
-                }
-            } catch (err) {
-                console.error('Brief submission error:', err);
-                // Fallback: save locally + show success
-                localStorage.setItem('brief_' + Date.now(), JSON.stringify(data));
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        // Handle redirect back after successful submission
+        if (window.location.search.includes('sent=1')) {
+            document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
                 document.getElementById('successScreen').classList.add('active');
-            }
-
-            btn.disabled = false;
-            btn.textContent = currentLang === 'ru' ? 'Отправить бриф' : 'Submit Brief';
+                // Clean URL
+                history.replaceState(null, '', window.location.pathname);
+            });
         }
     </script>
 

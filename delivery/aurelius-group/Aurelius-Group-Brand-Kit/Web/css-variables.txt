@@ -1,0 +1,8 @@
+/* Aurelius Group — CSS Variables */
+:root {
+  --navy--primary-: #010110;
+  --gold--accent-: #BE9A64;
+  --cream--light-: #F5F0E8;
+  --white: #FFFFFF;
+  --warm-gray: #8A8A8A;
+}

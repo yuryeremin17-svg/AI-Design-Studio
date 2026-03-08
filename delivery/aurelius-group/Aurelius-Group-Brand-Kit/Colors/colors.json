@@ -1,7 +1,5 @@
 {
   "brand": "Aurelius Group",
-  "style": "Luxury / Old Money",
-  "description": "Investment company, Dubai",
   "palette": {
     "Navy (Primary)": {
       "hex": "#010110",
@@ -28,23 +26,5 @@
       "rgb": "138, 138, 138",
       "usage": "Secondary text, captions"
     }
-  },
-  "fonts": {
-    "heading": "Cormorant Garamond",
-    "headingWeights": [
-      300,
-      400,
-      600
-    ],
-    "body": "DM Sans",
-    "bodyWeights": [
-      300,
-      400
-    ],
-    "source": "Google Fonts"
-  },
-  "contact": {
-    "company": "Aurelius Group",
-    "location": "Dubai, UAE"
   }
 }

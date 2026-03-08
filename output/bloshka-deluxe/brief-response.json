@@ -1,0 +1,42 @@
+{
+  "contact_name": "Лариса Власова",
+  "company_name": "Bloshka_DELUXE",
+  "email": "lvlasova2016@yandex.ru",
+  "phone": "+79037221134",
+  "company_description": "Продажа винтажа и антиквариата, в основном это посуда, предметы сервировки",
+  "company_stage": "startup",
+  "mission": "Вижу красоту в старинных вещах, даю им вторую жизнь!",
+  "regions": "Страны СНГ",
+  "ideal_client": "Женщина 25+, работает, любит домашний уют",
+  "client_problem": "Экономлю его время и деньги при покупке винтажа и антиквариата",
+  "client_feeling": "Все прошло лучше, чем я ожидал!",
+  "competitors": [
+    { "name": "3сороки", "url": "http://3soroki.ru/" },
+    { "name": "Винтажная лавка", "url": "http://neustarelo.ru/" }
+  ],
+  "differentiator": "У них дороже и почти нет изделий царской и советской России",
+  "admired_brands": [
+    { "name": "Kaori", "url": "https://kaoristore.ru/" }
+  ],
+  "brand_person": "Интеллигентный, образованный, хорошо воспитанный, стильный, с хорошим утонченным вкусом",
+  "brand_words": ["Красота", "вкус", "эстетика", "качество", "надежность"],
+  "brand_emotions": ["Восторг", "доверие", "желание вернуться"],
+  "scales": {
+    "modern": 4,
+    "playful": 3,
+    "luxury": 2,
+    "gender_feminine": 4
+  },
+  "tone": "friendly",
+  "liked_logos": "Шанель, Диор, Селин",
+  "preferred_colors": "Пастельные приглушенные глубокие цвета",
+  "avoid_colors": "Черный",
+  "style": [],
+  "has_existing": "no",
+  "deliverables": [],
+  "languages": [],
+  "budget": "5-8k",
+  "deadline": "1 неделя",
+  "feedback_method": "whatsapp",
+  "notes": ""
+}
