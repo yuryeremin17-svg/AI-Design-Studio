@@ -1,5 +1,6 @@
 {
   "brand": "РубИИльник",
+  "style": "Tech Premium / Warm Minimalism",
   "palette": {
     "Deep Blue (Primary)": {
       "hex": "#0F2B4C",
@@ -21,5 +22,10 @@
       "rgb": "250, 247, 242",
       "usage": "Light backgrounds, paper"
     }
+  },
+  "fonts": {
+    "heading": "Manrope (400, 500, 600, 700)",
+    "body": "Inter (300, 400, 500, 600)",
+    "source": "Google Fonts"
   }
 }

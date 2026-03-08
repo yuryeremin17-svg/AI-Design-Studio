@@ -1,119 +1,32 @@
 # HANDOFF — AI Design Studio
-> Дата: 2026-03-07 | Сессия: #12
+> Дата: 2026-03-06 | Сессия: #10
 
-## Bloshka DELUXE — ПЕРВЫЙ РЕАЛЬНЫЙ КЛИЕНТ (в работе)
+## Что сделано в этой сессии (#10)
 
-**Статус:** палитра + логотип утверждены, следующий шаг — брендбук
-**Пакет:** Старт (5-8K AED), срок 1 неделя
-**Клиент:** Лариса Власова, винтаж и антиквариат (посуда, сервировка), СНГ
-**WhatsApp:** +79037221134 | Email: lvlasova2016@yandex.ru
+### 1. Web3Forms — ключ получен и вставлен (DONE)
+- `templates/brief/brand-brief.html:927` — access_key `4aea30c6-...` вставлен
+- Бриф-форма отправляет заявки на `rubelnick.ai@gmail.com`
 
-**Утверждено:**
-- Стиль: Classic Luxury / Vintage Elegance
-- Шрифты: Cormorant Garamond (Light 300) + DM Sans
-- Палитра: Dusty Plum #5C3A4E + Champagne Gold #C5A882 + Muted Rose #B8929B + Warm Ivory #F8F4F0 + Deep Mauve #3D2B35 (текст, без чёрного)
-- Логотип: BLOSHKA + золотой разделитель + DELUXE (outlined SVG, 3 варианта)
-- Превью: `output/bloshka-deluxe/palette-preview.html`
+### 2. GitHub Pages — включен (DONE)
+- Settings → Pages → Deploy from branch → master / root
+- Лендинг live: https://yuryeremin17-svg.github.io/AI-Design-Studio/
+- Бриф live: https://yuryeremin17-svg.github.io/AI-Design-Studio/templates/brief/brand-brief.html
 
-**Готово:**
-- [x] Структура: `assets/logos/bloshka-deluxe/`, `output/bloshka-deluxe/`
-- [x] brand.json
-- [x] Логотип SVG outlined: logo.svg (dark), logo-light.svg (light), icon.svg (B)
-- [x] palette-preview.html — клиент одобрил
+### 3. Шаблоны соцсетей (DONE)
+- `templates/social/social-templates.html` — универсальный шаблон (Aurelius)
+- `output/rubiilnik/social-templates.html` — РубИИльник (Manrope + Inter, Deep Blue + Copper)
+- Форматы: IG Post (1080×1080), IG Story (1080×1920), LinkedIn (1200×627)
+- Варианты: тёмный + светлый (12 шаблонов всего)
+- Визуально проверено через Playwright
 
-**Осталось:**
-- [ ] Брендбук 12 секций (Старт)
-- [ ] Визитные карточки (1 вариант, лицо + оборот)
-- [ ] Визуальная проверка Playwright
-- [ ] Сборка ZIP через /deliver
-- [ ] Отправить клиенту
+### 4. Ценообразование — ресёрч (DONE)
+- 6 источников, студии Дубая (Digital Agencies UAE, Dubai Net Solutions, Abtach, Blossom Web, Veda, Mirage Minds)
+- Наши пакеты в рынке: Старт = нижний-средний, Бизнес = средний, Премиум = средний-верхний
+- Цены менять не нужно. Преимущество: скорость (AI) + полный пакет дешевле агентств
 
-**Важно при продолжении:**
-- SVG логотипы используются INLINE (не через `<img>`) — viewBox 359x118
-- Шрифт Cormorant Garamond скачан с gstatic (не GitHub raw — тот даёт HTML redirect)
-- fonttools для outlined: `/tmp/fontenv/bin/python3` (venv, может потребовать пересоздания)
-- Ориентиры клиента: Chanel, Dior, Celine — минимализм, элегантность
-
----
-
-## Что сделано в сессии #12
-
-### Кейс-стади РубИИльник на лендинг
-- 4 скриншота брендбука через Playwright: обложка, логотип, палитра, визитки
-- Сохранены в `assets/portfolio/rubiilnik/` (284 KB суммарно, `loading="lazy"`)
-- Новая секция Case Study в `index.html` — под карточками портфолио
-- Содержит: галерея 2x2, описание клиента/deliverables/стиль, CTA на интерактивный брендбук
-- Карточка РубИИльник ведёт якорем на кейс-стади (smooth scroll)
-- Остальные секции (Hero, Services, Process, Contact, Footer) не тронуты
-
-### Фикс бриф-формы — Cloudflare блокировал отправку
-- **Проблема:** Web3Forms включил Cloudflare protection. `fetch()` получал HTML challenge вместо JSON → catch показывал ложное "спасибо" → письмо не уходило
-- **Решение:** `fetch()` заменён на обычный `form.submit()` (HTML form POST). Cloudflare пропускает нативные form POST через challenge прозрачно для пользователя
-- **Redirect:** Web3Forms поле `redirect` возвращает на `?sent=1` → JS показывает successScreen → `history.replaceState` чистит URL
-- **Fallback:** `localStorage` бэкап перед отправкой + экран ошибки с WhatsApp/Telegram/Email (хотя при form POST он практически недостижим)
-- **Тест:** localhost HTTP → Playwright → реальный POST → 3 письма дошли на rubelnick.ai@gmail.com
-
-### Что НЕ тронуто
-- deliver-v2.js, export-pdf.js — не тронуты
-- output/ — только чтение для скриншотов
-- templates/ (кроме brand-brief.html) — не тронуты
-
----
-
-## Следующие шаги
-- [ ] Первый реальный клиент (Старт 5000 AED или бесплатно за отзыв)
-- [ ] Кейс-стади Aurelius (аналогично, когда будет второй клиент — для социального доказательства)
-- [ ] RTL-адаптация (когда будет арабоязычный клиент)
-- [ ] Спринт 3 deliver-v2.js — мокапы, PowerPoint, One-Pager (когда клиент на Премиум)
-
----
-
-## Что сделано в сессии #11
-
-### deliver-v2.js — полная переработка системы доставки
-
-**Спринт 1 (MUST):**
-- 1.1 PDF в корень ZIP (из output/*/print/) — клиент сразу видит PDF
-- 1.2 HTML перемещены в Interactive/ — не путают клиента
-- 1.3 Аватарки 512×512 (dark/light/circle) через Playwright — для WhatsApp/Telegram
-- 1.4 README двуязычный (русский + английский)
-- 1.5 Шрифты TTF скачиваются из Google Fonts GitHub (OFL лицензия)
-- 1.6 Версия + дата сборки в brand.json и README
-
-**Спринт 2 (Бизнес+):**
-- 2.1 Email-подпись: signature.html + How-to-Install.txt (Gmail/Outlook/Apple Mail)
-- 2.2 Social PNG: экспорт шаблонов по CSS-классам (.ig-post, .ig-story, .linkedin-*)
-- 2.3 Print specs: спецификация для типографии (бумага, вылеты, покрытие, RU+EN)
-- 2.4 Favicon: 16/32/180px + css-variables.txt для разработчика
-
-**Финальный аудит (после спринтов):**
-- try/finally на все Playwright-функции (exportAvatars, exportSocialPng, exportFavicons) — browser всегда закрывается
-- try/catch на top-level main — ошибки ловятся с понятным сообщением
-- Quick Start добавлен в README — 6 пошаговых инструкций для клиента (RU+EN)
-
-**Архитектурные решения:**
-- ESM (import) вместо CJS — совместимость с package.json type:module
-- Playwright singleton getPlaywright() — один import на весь скрипт
-- Валидация clientName `/^[a-z0-9-]+$/` — защита от command injection
-- getChromePath() regex `/^chromium-\d+$/` — точный match
-
-**Результат:**
-- Aurelius: 89 KB → 1762 KB (5 PDF + email-sig + favicon + шрифты)
-- РубИИльник: 95 KB → 1681 KB (2 PDF + 4 social PNG + favicon + шрифты)
-- deliver.js v1 не тронут (архив)
-- Web3Forms бриф проверен end-to-end (success: true)
-
-### Решение: остановить разработку, начать продавать
-- Спринт 3 (мокапы, PowerPoint) отложен до клиента на Премиум
-- Следующий шаг: кейс-стади РубИИльник на лендинг → первый клиент
-- Бриф готов к отправке клиенту: templates/brief/brand-brief.html
-
----
-
-## Что было сделано в сессии #10
-
-- Web3Forms ключ вставлен, GitHub Pages включен
-- Шаблоны соцсетей, ценообразование, воронка — Фаза 1 закрыта
+### 5. Воронка — полностью рабочая (DONE)
+- Клиент → лендинг → бриф → email на rubelnick.ai@gmail.com → КП → работа
+- Фаза 1 закрыта
 
 ---
 
@@ -251,11 +164,11 @@ Brand-Kit/
 - [x] Ценообразование
 
 ### Фаза 2: Первые клиенты
-- [x] **СПРИНТ 1** — deliver-v2.js (PDF, аватарки, README-RU, шрифты, версия) — DONE сессия #11
-- [x] **СПРИНТ 2** — deliver-v2.js (email-подпись, social PNG, print specs, favicon) — DONE сессия #11
-- [ ] **Кейс-стади РубИИльник на лендинг** (скриншоты + до/после)
-- [ ] Реальный клиент #1 (Старт 5000 AED или бесплатно за отзыв)
-- [ ] RTL-адаптация (когда будет арабоязычный клиент)
+- [ ] **СПРИНТ 1** — deliver-v2.js (MUST: PDF, аватарки, README-RU, шрифты, версия)
+- [ ] **СПРИНТ 2** — deliver-v2.js (email-подпись, social PNG, print specs, favicon, QR)
+- [ ] Реальный клиент #1
+- [ ] RTL-адаптация (арабский)
+- [ ] Кейс-стади
 
 ### Фаза 3: Масштаб
 - [ ] **СПРИНТ 3** — мокапы, PowerPoint, Brand One-Pager (Премиум)
@@ -271,8 +184,8 @@ AI-Design-Studio/
 ├── index.html                      <- Лендинг (live на GitHub Pages)
 ├── package.json                    <- type: module, playwright
 ├── scripts/
-│   ├── deliver.js                  <- ZIP сборка v1 (архив, НЕ ТРОГАТЬ)
-│   ├── deliver-v2.js               <- ZIP сборка v2 (ОСНОВНОЙ, Спринт 1+2 готовы)
+│   ├── deliver.js                  <- ZIP сборка v1 (НЕ ТРОГАТЬ до готовности v2)
+│   ├── deliver-v2.js               <- ZIP сборка v2 (в разработке)
 │   ├── export-pdf.js               <- PDF (НЕ ТРОГАТЬ)
 │   └── screenshot-sections.js
 ├── templates/
@@ -289,8 +202,8 @@ AI-Design-Studio/
 │   ├── aurelius-group/ (brandbook, cards, letterhead, presentation, email-sig, print/)
 │   └── rubiilnik/ (brandbook, cards, social-templates, print/)
 ├── delivery/
-│   ├── aurelius-group/ (ZIP 1762KB — v2)
-│   └── rubiilnik/ (ZIP 1681KB — v2)
+│   ├── aurelius-group/ (ZIP 89KB — v1)
+│   └── rubiilnik/ (ZIP 95KB — v1)
 └── .claude/commands/
 ```
 
