@@ -9,41 +9,37 @@
 - Логотип клиента — ВСЕГДА из папки assets/logos/ (никогда не воспроизводи текстом)
 - Перед сдачей — ВСЕГДА проверь визуально через Playwright скриншот
 
-## ОБЯЗАТЕЛЬНО: Анализ брифа перед любой работой
-Это правило НЕ ПРОПУСКАЕТСЯ. Без выполнения всех шагов — не начинать дизайн.
+## ОБЯЗАТЕЛЬНО: Brand Algorithm перед любой работой
+Это правило НЕ ПРОПУСКАЕТСЯ. Полный алгоритм — **BRAND-ALGORITHM.md**.
 
+**GATE-правило:** Без заполненных `brief-analysis.md` и `brand-strategy.md` в output/<client>/ — к дизайну НЕ приступать.
+
+Краткий порядок (детали в BRAND-ALGORITHM.md):
 1. **Прочитать бриф** — output/<client>/brief-response.json (Read)
-2. **Открыть ВСЕ ссылки из брифа** через WebFetch:
-   - competitors[].url — проанализировать визуал, цены, тон, слабые стороны
-   - admired_brands[].url — понять ЧТО именно нравится клиенту (стиль, подход, атмосфера)
-3. **Составить сводку** — записать в output/<client>/brief-analysis.md:
-   - Шкалы клиента (modern, playful, luxury, feminine)
-   - Тон (tone) и слова бренда (brand_words)
-   - Что взять от admired_brands
-   - Чем отличаемся от competitors (differentiator)
-   - Что клиент НЕ хочет (avoid_colors, etc.)
-4. **Только после этого** — выбирать шрифты, палитру, начинать дизайн
-5. **Дизайн-решения ссылаются на бриф** — "шкала luxury=2, поэтому тёплый тон, а не холодный"
+2. **Открыть ВСЕ ссылки из брифа** через WebFetch (конкуренты, референсы)
+3. **Заполнить brief-analysis.md** по шаблону templates/strategy/brief-analysis-template.md
+4. **Заполнить brand-strategy.md** по шаблону templates/strategy/brand-strategy-template.md
+5. **Показать превью клиенту** → получить фидбэк → только потом производство
+6. **Каждое решение = ссылка на бриф** — "шкала luxury=2, поэтому тёплый тон, а не холодный"
+
+Справочники: references/archetypes.md, font-matrix.md, color-psychology.md, social-psychology.md
 
 Антипаттерны (запрещено):
 - Начинать дизайн до чтения брифа
 - Игнорировать ссылки на конкурентов и референсы
 - Использовать шаблон "Luxury" когда клиент выбрал luxury=2/5
 - Писать текст на английском когда клиент из СНГ
+- Выбирать шрифты/цвета "потому что красиво" без обоснования через бриф
+- Пропускать Gate 1 или Gate 2
 
 ## Стандарты вёрстки
 - Каждая страница брендбука — отдельный section с page-break-before для печати
 - CSS @media print обязателен в каждом файле
 - Все файлы — двуязычные (русский + английский) если клиент из ОАЭ/СНГ
 
-## Шрифтовые пары по стилям
-- Luxury / Old Money: Cormorant Garamond + DM Sans
-- Modern Luxury: Playfair Display + Inter
-- Corporate: Source Serif Pro + Source Sans Pro
-- Fashion: Cormorant + Montserrat
-- Tech Premium: Space Grotesk + IBM Plex Sans
-- Classic: EB Garamond + Lato
-- Минимализм: DM Serif Display + DM Sans
+## Шрифтовые пары
+Единый источник: **references/font-matrix.md** (архетип → пара + кириллица).
+Быстрые алиасы: Luxury=Cormorant+DM Sans, Modern=Playfair+Inter, Corporate=Source Serif+Source Sans, Tech=Manrope+Inter.
 
 ## Цветовые палитры по стилям
 - Luxury: Navy #010110 + Gold #BE9A64 + Cream #F5F0E8
