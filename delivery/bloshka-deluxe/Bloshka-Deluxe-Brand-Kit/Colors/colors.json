@@ -1,0 +1,30 @@
+{
+  "brand": "Bloshka DELUXE",
+  "palette": {
+    "Dusty Plum (Primary)": {
+      "hex": "#5C3A4E",
+      "rgb": "92, 58, 78",
+      "usage": "Backgrounds, primary identity"
+    },
+    "Champagne Gold (Accent)": {
+      "hex": "#C5A882",
+      "rgb": "197, 168, 130",
+      "usage": "Accent elements, decorations, logo"
+    },
+    "Muted Rose (Secondary)": {
+      "hex": "#B8929B",
+      "rgb": "184, 146, 155",
+      "usage": "Secondary elements, soft accents"
+    },
+    "Warm Ivory (Light)": {
+      "hex": "#F8F4F0",
+      "rgb": "248, 244, 240",
+      "usage": "Light backgrounds, paper"
+    },
+    "Deep Mauve (Dark)": {
+      "hex": "#3D2B35",
+      "rgb": "61, 43, 53",
+      "usage": "Text, dark backgrounds (instead of black)"
+    }
+  }
+}

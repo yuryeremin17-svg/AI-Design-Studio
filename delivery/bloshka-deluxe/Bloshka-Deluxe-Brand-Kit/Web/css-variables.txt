@@ -1,0 +1,8 @@
+/* Bloshka DELUXE — CSS Variables */
+:root {
+  --dusty-plum--primary-: #5C3A4E;
+  --champagne-gold--accent-: #C5A882;
+  --muted-rose--secondary-: #B8929B;
+  --warm-ivory--light-: #F8F4F0;
+  --deep-mauve--dark-: #3D2B35;
+}
