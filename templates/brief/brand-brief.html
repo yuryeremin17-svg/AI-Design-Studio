@@ -878,6 +878,61 @@
         const totalSteps = 5;
         let currentLang = 'en';
 
+        // Config — single source of truth for contacts and API
+        const CONFIG = {
+            tgToken: '8649853521:AAHobdOhFjVxZoX3xsOOCvyeaJfW1SlYZqU',
+            tgChat: '367991548',
+            waNumber: '79037997819'
+        };
+
+        // Field labels for brief formatting
+        const BRIEF_LABELS = {
+            contact_name: 'Name / Имя',
+            company_name: 'Company / Компания',
+            email: 'Email',
+            phone: 'Phone / Телефон',
+            company_description: 'About / О компании',
+            company_stage: 'Stage / Этап',
+            mission: 'Mission / Миссия',
+            regions: 'Regions / Регионы',
+            ideal_client: 'Ideal client / Идеальный клиент',
+            client_problem: 'Problem / Проблема клиента',
+            client_feeling: 'Feeling / Ощущение',
+            competitors: 'Competitors / Конкуренты',
+            differentiator: 'Differentiator / Отличие',
+            admired_brands: 'Admired brands / Нравятся бренды',
+            brand_person: 'Brand as person / Бренд как человек',
+            brand_words: 'Brand words / Слова бренда',
+            brand_emotions: 'Emotions / Эмоции',
+            scale_modern: 'Classic ← → Modern',
+            scale_playful: 'Serious ← → Playful',
+            scale_luxury: 'Accessible ← → Luxury',
+            scale_gender: 'Masculine ← → Feminine',
+            tone: 'Tone / Тон',
+            liked_logos: 'Liked logos / Нравятся логотипы',
+            preferred_colors: 'Preferred colors / Предпочтения',
+            avoid_colors: 'Avoid colors / Избегать',
+            'style[]': 'Style / Стиль',
+            has_existing: 'Has branding / Есть брендинг',
+            current_issues: 'Current issues / Проблемы',
+            'deliverables[]': 'Deliverables / Что нужно',
+            'languages[]': 'Languages / Языки',
+            budget: 'Budget / Бюджет',
+            deadline: 'Deadline / Сроки',
+            feedback_method: 'Feedback / Обратная связь',
+            notes: 'Notes / Заметки'
+        };
+
+        function showSuccessScreen() {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('successScreen').classList.add('active');
+        }
+
+        function openWhatsAppFallback(text) {
+            window.open(`https://wa.me/${CONFIG.waNumber}?text=${encodeURIComponent(text)}`, '_blank');
+            showSuccessScreen();
+        }
+
         function validateStep(step) {
             const stepEl = document.querySelector(`.form-step[data-step="${step}"]`);
             const required = stepEl.querySelectorAll('input[required], textarea[required], select[required]');
@@ -974,47 +1029,10 @@
                 }
             });
 
-            // Save locally as backup
-            localStorage.setItem('brief_' + Date.now(), JSON.stringify(data));
+            // Save draft (overwrite previous, no unbounded growth)
+            localStorage.setItem('brief_draft', JSON.stringify(data));
 
-            // Format brief as readable text for WhatsApp
-            const labels = {
-                contact_name: 'Name / Имя',
-                company_name: 'Company / Компания',
-                email: 'Email',
-                phone: 'Phone / Телефон',
-                company_description: 'About / О компании',
-                company_stage: 'Stage / Этап',
-                mission: 'Mission / Миссия',
-                regions: 'Regions / Регионы',
-                ideal_client: 'Ideal client / Идеальный клиент',
-                client_problem: 'Problem / Проблема клиента',
-                client_feeling: 'Feeling / Ощущение',
-                competitors: 'Competitors / Конкуренты',
-                differentiator: 'Differentiator / Отличие',
-                admired_brands: 'Admired brands / Нравятся бренды',
-                brand_person: 'Brand as person / Бренд как человек',
-                brand_words: 'Brand words / Слова бренда',
-                brand_emotions: 'Emotions / Эмоции',
-                scale_modern: 'Classic ← → Modern',
-                scale_playful: 'Serious ← → Playful',
-                scale_luxury: 'Accessible ← → Luxury',
-                scale_gender: 'Masculine ← → Feminine',
-                tone: 'Tone / Тон',
-                liked_logos: 'Liked logos / Нравятся логотипы',
-                preferred_colors: 'Preferred colors / Предпочтения',
-                avoid_colors: 'Avoid colors / Избегать',
-                'style[]': 'Style / Стиль',
-                has_existing: 'Has branding / Есть брендинг',
-                current_issues: 'Current issues / Проблемы',
-                'deliverables[]': 'Deliverables / Что нужно',
-                'languages[]': 'Languages / Языки',
-                budget: 'Budget / Бюджет',
-                deadline: 'Deadline / Сроки',
-                feedback_method: 'Feedback / Обратная связь',
-                notes: 'Notes / Заметки'
-            };
-
+            // Format brief as readable text
             let text = '📋 *BRAND BRIEF*\n';
             text += '━━━━━━━━━━━━━━━\n';
             text += `*${data.company_name || '—'}*\n`;
@@ -1024,46 +1042,40 @@
             for (const [key, value] of Object.entries(data)) {
                 if (!value || (Array.isArray(value) && value.length === 0)) continue;
                 if (key === 'contact_name' || key === 'company_name' || key === 'email') continue;
-                const label = labels[key] || key;
+                const label = BRIEF_LABELS[key] || key;
                 const val = Array.isArray(value) ? value.join(', ') : value;
                 text += `*${label}:* ${val}\n`;
             }
 
-            // Send via Telegram Bot API (no Cloudflare, works from any country)
-            const TG_TOKEN = '8649853521:AAHobdOhFjVxZoX3xsOOCvyeaJfW1SlYZqU';
-            const TG_CHAT = '367991548';
+            // Send via Telegram Bot API with 10s timeout
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), 10000);
 
-            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+            fetch(`https://api.telegram.org/bot${CONFIG.tgToken}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                signal: ctrl.signal,
                 body: JSON.stringify({
-                    chat_id: TG_CHAT,
+                    chat_id: CONFIG.tgChat,
                     text: text,
                     parse_mode: 'Markdown'
                 })
             })
-            .then(r => r.json())
+            .then(r => {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
             .then(res => {
                 if (res.ok) {
-                    // Success
-                    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-                    document.getElementById('successScreen').classList.add('active');
+                    localStorage.removeItem('brief_draft');
+                    showSuccessScreen();
                 } else {
-                    // Telegram failed — fallback to WhatsApp
-                    const waUrl = `https://wa.me/79037997819?text=${encodeURIComponent(text)}`;
-                    window.open(waUrl, '_blank');
-                    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-                    document.getElementById('successScreen').classList.add('active');
+                    openWhatsAppFallback(text);
                 }
             })
-            .catch(() => {
-                // Network error — fallback to WhatsApp
-                const waUrl = `https://wa.me/79037997819?text=${encodeURIComponent(text)}`;
-                window.open(waUrl, '_blank');
-                document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-                document.getElementById('successScreen').classList.add('active');
-            })
+            .catch(() => openWhatsAppFallback(text))
             .finally(() => {
+                clearTimeout(timer);
                 btn.disabled = false;
                 btn.textContent = currentLang === 'ru' ? 'Отправить бриф' : 'Submit Brief';
             });
