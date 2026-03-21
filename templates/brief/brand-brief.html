@@ -857,8 +857,12 @@
              Success Screen
              ========================================== -->
         <div class="success-screen" id="successScreen">
-            <h2 data-en="Thank You" data-ru="Спасибо">Thank You</h2>
-            <p data-en="We've received your brief and will get back to you within 24 hours." data-ru="Мы получили ваш бриф и свяжемся с вами в течение 24 часов.">We've received your brief and will get back to you within 24 hours.</p>
+            <h2 data-en="Almost Done!" data-ru="Почти готово!">Almost Done!</h2>
+            <p data-en="WhatsApp should open with your brief. Just tap Send! We'll get back to you within 24 hours." data-ru="WhatsApp откроется с вашим брифом. Просто нажмите Отправить! Мы свяжемся с вами в течение 24 часов.">WhatsApp should open with your brief. Just tap Send! We'll get back to you within 24 hours.</p>
+            <p style="margin-top:20px; font-size:14px;">
+                <span data-en="WhatsApp didn't open?" data-ru="WhatsApp не открылся?">WhatsApp didn't open?</span>
+                <a href="mailto:rubelnick.ai@gmail.com?subject=Brand%20Brief" style="color:var(--accent);" data-en="Send via Email" data-ru="Отправить по Email">Send via Email</a>
+            </p>
         </div>
 
         <div class="error-screen" id="errorScreen">
@@ -977,51 +981,74 @@
             // Save locally as backup
             localStorage.setItem('brief_' + Date.now(), JSON.stringify(data));
 
-            // Build a real HTML form and submit as POST
-            // Cloudflare blocks fetch() to Web3Forms, but allows normal form POST
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = 'https://api.web3forms.com/submit';
-            form.style.display = 'none';
-
-            // Web3Forms fields
-            const fields = {
-                'access_key': '4aea30c6-2b83-4fe1-a945-45c30e34a3e2',
-                'subject': 'New Brand Brief: ' + (data.company_name || 'Unknown'),
-                'from_name': data.contact_name || 'Brand Brief',
-                'redirect': window.location.href.replace(/brand-brief\.html.*/, 'brand-brief.html?sent=1')
+            // Format brief as readable text for WhatsApp
+            const labels = {
+                contact_name: 'Name / Имя',
+                company_name: 'Company / Компания',
+                email: 'Email',
+                phone: 'Phone / Телефон',
+                company_description: 'About / О компании',
+                company_stage: 'Stage / Этап',
+                mission: 'Mission / Миссия',
+                regions: 'Regions / Регионы',
+                ideal_client: 'Ideal client / Идеальный клиент',
+                client_problem: 'Problem / Проблема клиента',
+                client_feeling: 'Feeling / Ощущение',
+                competitors: 'Competitors / Конкуренты',
+                differentiator: 'Differentiator / Отличие',
+                admired_brands: 'Admired brands / Нравятся бренды',
+                brand_person: 'Brand as person / Бренд как человек',
+                brand_words: 'Brand words / Слова бренда',
+                brand_emotions: 'Emotions / Эмоции',
+                scale_modern: 'Classic ← → Modern',
+                scale_playful: 'Serious ← → Playful',
+                scale_luxury: 'Accessible ← → Luxury',
+                scale_gender: 'Masculine ← → Feminine',
+                tone: 'Tone / Тон',
+                liked_logos: 'Liked logos / Нравятся логотипы',
+                preferred_colors: 'Preferred colors / Предпочтения',
+                avoid_colors: 'Avoid colors / Избегать',
+                'style[]': 'Style / Стиль',
+                has_existing: 'Has branding / Есть брендинг',
+                current_issues: 'Current issues / Проблемы',
+                'deliverables[]': 'Deliverables / Что нужно',
+                'languages[]': 'Languages / Языки',
+                budget: 'Budget / Бюджет',
+                deadline: 'Deadline / Сроки',
+                feedback_method: 'Feedback / Обратная связь',
+                notes: 'Notes / Заметки'
             };
 
-            // Add Web3Forms fields
-            for (const [key, value] of Object.entries(fields)) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = value;
-                form.appendChild(input);
-            }
+            let text = '📋 *BRAND BRIEF*\n';
+            text += '━━━━━━━━━━━━━━━\n';
+            text += `*${data.company_name || '—'}*\n`;
+            text += `${data.contact_name || '—'} | ${data.email || '—'}\n`;
+            text += '━━━━━━━━━━━━━━━\n\n';
 
-            // Add all brief data
             for (const [key, value] of Object.entries(data)) {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key;
-                input.value = Array.isArray(value) ? value.join(', ') : value;
-                form.appendChild(input);
+                if (!value || (Array.isArray(value) && value.length === 0)) continue;
+                if (key === 'contact_name' || key === 'company_name' || key === 'email') continue;
+                const label = labels[key] || key;
+                const val = Array.isArray(value) ? value.join(', ') : value;
+                text += `*${label}:* ${val}\n`;
             }
 
-            document.body.appendChild(form);
-            form.submit();
-        }
+            // WhatsApp deep link (primary)
+            const waPhone = '971585177230';
+            const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(text)}`;
 
-        // Handle redirect back after successful submission
-        if (window.location.search.includes('sent=1')) {
-            document.addEventListener('DOMContentLoaded', () => {
-                document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-                document.getElementById('successScreen').classList.add('active');
-                // Clean URL
-                history.replaceState(null, '', window.location.pathname);
-            });
+            // Open WhatsApp
+            window.open(waUrl, '_blank');
+
+            // Show success screen
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('successScreen').classList.add('active');
+
+            // Re-enable button in case user comes back
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.textContent = currentLang === 'ru' ? 'Отправить бриф' : 'Submit Brief';
+            }, 3000);
         }
     </script>
 
