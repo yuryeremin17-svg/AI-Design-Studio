@@ -857,12 +857,8 @@
              Success Screen
              ========================================== -->
         <div class="success-screen" id="successScreen">
-            <h2 data-en="Almost Done!" data-ru="Почти готово!">Almost Done!</h2>
-            <p data-en="WhatsApp should open with your brief. Just tap Send! We'll get back to you within 24 hours." data-ru="WhatsApp откроется с вашим брифом. Просто нажмите Отправить! Мы свяжемся с вами в течение 24 часов.">WhatsApp should open with your brief. Just tap Send! We'll get back to you within 24 hours.</p>
-            <p style="margin-top:20px; font-size:14px;">
-                <span data-en="WhatsApp didn't open?" data-ru="WhatsApp не открылся?">WhatsApp didn't open?</span>
-                <a href="mailto:rubelnick.ai@gmail.com?subject=Brand%20Brief" style="color:var(--accent);" data-en="Send via Email" data-ru="Отправить по Email">Send via Email</a>
-            </p>
+            <h2 data-en="Thank You!" data-ru="Спасибо!">Thank You!</h2>
+            <p data-en="We've received your brief and will get back to you within 24 hours." data-ru="Мы получили ваш бриф и свяжемся с вами в течение 24 часов.">We've received your brief and will get back to you within 24 hours.</p>
         </div>
 
         <div class="error-screen" id="errorScreen">
@@ -1033,22 +1029,44 @@
                 text += `*${label}:* ${val}\n`;
             }
 
-            // WhatsApp deep link (primary)
-            const waPhone = '971585177230';
-            const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(text)}`;
+            // Send via Telegram Bot API (no Cloudflare, works from any country)
+            const TG_TOKEN = '8649853521:AAHobdOhFjVxZoX3xsOOCvyeaJfW1SlYZqU';
+            const TG_CHAT = '367991548';
 
-            // Open WhatsApp
-            window.open(waUrl, '_blank');
-
-            // Show success screen
-            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-            document.getElementById('successScreen').classList.add('active');
-
-            // Re-enable button in case user comes back
-            setTimeout(() => {
+            fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TG_CHAT,
+                    text: text,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(r => r.json())
+            .then(res => {
+                if (res.ok) {
+                    // Success
+                    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+                    document.getElementById('successScreen').classList.add('active');
+                } else {
+                    // Telegram failed — fallback to WhatsApp
+                    const waUrl = `https://wa.me/971585177230?text=${encodeURIComponent(text)}`;
+                    window.open(waUrl, '_blank');
+                    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+                    document.getElementById('successScreen').classList.add('active');
+                }
+            })
+            .catch(() => {
+                // Network error — fallback to WhatsApp
+                const waUrl = `https://wa.me/971585177230?text=${encodeURIComponent(text)}`;
+                window.open(waUrl, '_blank');
+                document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+                document.getElementById('successScreen').classList.add('active');
+            })
+            .finally(() => {
                 btn.disabled = false;
                 btn.textContent = currentLang === 'ru' ? 'Отправить бриф' : 'Submit Brief';
-            }, 3000);
+            });
         }
     </script>
 
