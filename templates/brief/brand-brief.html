@@ -933,6 +933,61 @@
             showSuccessScreen();
         }
 
+        // Autosave — save form on every field change, restore on page load
+        function autosave() {
+            const data = {};
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.type === 'checkbox') {
+                    data[el.name + '_' + el.value] = el.parentElement.classList.contains('checked');
+                } else {
+                    data[el.name] = el.value;
+                }
+            });
+            data._step = currentStep;
+            localStorage.setItem('brief_autosave', JSON.stringify(data));
+        }
+
+        function restoreForm() {
+            const saved = localStorage.getItem('brief_autosave');
+            if (!saved) return;
+            try {
+                const data = JSON.parse(saved);
+                document.querySelectorAll('input, textarea, select').forEach(el => {
+                    if (el.type === 'checkbox') {
+                        const key = el.name + '_' + el.value;
+                        if (data[key]) {
+                            el.parentElement.classList.add('checked');
+                            el.checked = true;
+                        }
+                    } else if (data[el.name] !== undefined) {
+                        el.value = data[el.name];
+                    }
+                });
+                if (data._step && data._step > 1) {
+                    // Jump to saved step
+                    for (let s = 1; s < data._step; s++) {
+                        document.querySelector(`.form-step[data-step="${s}"]`).classList.remove('active');
+                        document.querySelector(`.progress-step[data-step="${s}"]`).classList.remove('active');
+                        document.querySelector(`.progress-step[data-step="${s}"]`).classList.add('done');
+                    }
+                    currentStep = data._step;
+                    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+                    document.querySelector(`.progress-step[data-step="${currentStep}"]`).classList.add('active');
+                }
+            } catch(e) {}
+        }
+
+        // Attach autosave to all inputs
+        document.addEventListener('DOMContentLoaded', () => {
+            restoreForm();
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                el.addEventListener('change', autosave);
+                if (el.type === 'text' || el.tagName === 'TEXTAREA') {
+                    el.addEventListener('input', autosave);
+                }
+            });
+        });
+
         function validateStep(step) {
             const stepEl = document.querySelector(`.form-step[data-step="${step}"]`);
             const required = stepEl.querySelectorAll('input[required], textarea[required], select[required]');
@@ -987,6 +1042,7 @@
             });
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            autosave();
         }
 
         function toggleCheck(el, evt) {
@@ -1070,6 +1126,7 @@
             .then(res => {
                 if (res.ok) {
                     localStorage.removeItem('brief_draft');
+                    localStorage.removeItem('brief_autosave');
                     showSuccessScreen();
                 } else {
                     openWhatsAppFallback(text);
