@@ -865,7 +865,7 @@
             <h2 data-en="Something went wrong" data-ru="Что-то пошло не так">Something went wrong</h2>
             <p data-en="Your brief could not be sent. Please contact us directly — we'll be happy to help:" data-ru="Бриф не удалось отправить. Свяжитесь с нами напрямую — мы будем рады помочь:">Your brief could not be sent. Please contact us directly:</p>
             <div class="fallback-contacts">
-                <a href="https://wa.me/971585177230" target="_blank">WhatsApp</a>
+                <a href="https://wa.me/79037997819" target="_blank">WhatsApp</a>
                 <a href="https://t.me/eremin_plus" target="_blank">Telegram</a>
                 <a href="mailto:rubelnick.ai@gmail.com">Email</a>
             </div>
@@ -1050,7 +1050,7 @@
                     document.getElementById('successScreen').classList.add('active');
                 } else {
                     // Telegram failed — fallback to WhatsApp
-                    const waUrl = `https://wa.me/971585177230?text=${encodeURIComponent(text)}`;
+                    const waUrl = `https://wa.me/79037997819?text=${encodeURIComponent(text)}`;
                     window.open(waUrl, '_blank');
                     document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
                     document.getElementById('successScreen').classList.add('active');
@@ -1058,7 +1058,7 @@
             })
             .catch(() => {
                 // Network error — fallback to WhatsApp
-                const waUrl = `https://wa.me/971585177230?text=${encodeURIComponent(text)}`;
+                const waUrl = `https://wa.me/79037997819?text=${encodeURIComponent(text)}`;
                 window.open(waUrl, '_blank');
                 document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
                 document.getElementById('successScreen').classList.add('active');
