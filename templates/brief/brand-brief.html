@@ -1032,11 +1032,13 @@
             // Save draft (overwrite previous, no unbounded growth)
             localStorage.setItem('brief_draft', JSON.stringify(data));
 
-            // Format brief as readable text
-            let text = '📋 *BRAND BRIEF*\n';
+            // Format brief as HTML for Telegram (Markdown breaks on special chars in user input)
+            function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+            let text = '📋 <b>BRAND BRIEF</b>\n';
             text += '━━━━━━━━━━━━━━━\n';
-            text += `*${data.company_name || '—'}*\n`;
-            text += `${data.contact_name || '—'} | ${data.email || '—'}\n`;
+            text += `<b>${esc(data.company_name || '—')}</b>\n`;
+            text += `${esc(data.contact_name || '—')} | ${esc(data.email || '—')}\n`;
             text += '━━━━━━━━━━━━━━━\n\n';
 
             for (const [key, value] of Object.entries(data)) {
@@ -1044,7 +1046,7 @@
                 if (key === 'contact_name' || key === 'company_name' || key === 'email') continue;
                 const label = BRIEF_LABELS[key] || key;
                 const val = Array.isArray(value) ? value.join(', ') : value;
-                text += `*${label}:* ${val}\n`;
+                text += `<b>${esc(label)}:</b> ${esc(val)}\n`;
             }
 
             // Send via Telegram Bot API with 10s timeout
@@ -1058,7 +1060,7 @@
                 body: JSON.stringify({
                     chat_id: CONFIG.tgChat,
                     text: text,
-                    parse_mode: 'Markdown'
+                    parse_mode: 'HTML'
                 })
             })
             .then(r => {
