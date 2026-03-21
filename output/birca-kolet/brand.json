@@ -1,0 +1,54 @@
+{
+  "brand_name": "Birca Kolet",
+  "tagline": "Одежда, которую забываешь снять",
+  "tagline_en": "Wear it. Forget it's there.",
+  "archetype": "Everyman (70%) + Caregiver (30%)",
+  "tone": "friendly, ironic, honest",
+  "package": "business",
+  "languages": ["ru", "en"],
+  "palette": {
+    "Green": {
+      "hex": "#008C53",
+      "rgb": "0, 140, 83",
+      "usage": "Primary — логотип, заголовки, CTA"
+    },
+    "Warm Charcoal": {
+      "hex": "#3A3A3A",
+      "rgb": "58, 58, 58",
+      "usage": "Secondary — текст, подзаголовки"
+    },
+    "Soft Lime": {
+      "hex": "#8DB838",
+      "rgb": "141, 184, 56",
+      "usage": "Accent — кнопки, выделения, digital"
+    },
+    "Warm Cotton": {
+      "hex": "#F5F2EC",
+      "rgb": "245, 242, 236",
+      "usage": "Light — фоны, пространство"
+    },
+    "Deep Forest": {
+      "hex": "#1A3A2A",
+      "rgb": "26, 58, 42",
+      "usage": "Dark — тёмные секции, тёмный фон"
+    }
+  },
+  "fonts": {
+    "heading": "Montserrat",
+    "heading_weight": "700",
+    "body": "Lato",
+    "body_weight": "400"
+  },
+  "contact": {
+    "name": "Max",
+    "email": "rassmaxalex@gmail.com",
+    "company": "Birca Kolet",
+    "website": "",
+    "phone": ""
+  },
+  "logo": {
+    "wordmark": "assets/logos/birca-kolet/logo.svg",
+    "wordmark_light": "assets/logos/birca-kolet/logo-light.svg",
+    "icon": "assets/logos/birca-kolet/icon.svg"
+  }
+}

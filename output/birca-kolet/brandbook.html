@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birca Kolet — Brand Guidelines / Руководство по бренду</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --c-primary: #008C53;
+  --c-secondary: #3A3A3A;
+  --c-accent: #8DB838;
+  --c-light: #F5F2EC;
+  --c-dark: #1A3A2A;
+  --c-white: #FFFFFF;
+  --c-primary-rgb: 0, 140, 83;
+  --c-secondary-rgb: 58, 58, 58;
+  --c-accent-rgb: 141, 184, 56;
+  --c-light-rgb: 245, 242, 236;
+  --c-dark-rgb: 26, 58, 42;
+  --f-heading: 'Montserrat', sans-serif;
+  --f-body: 'Lato', sans-serif;
+  --fw-heading: 700;
+  --fw-body: 400;
+  --fw-light: 300;
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 40px;
+  --sp-6: 48px;
+  --sp-8: 64px;
+  --sp-10: 80px;
+  --sp-12: 96px;
+  --sp-16: 128px;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-lg: 16px;
+  /* Major Third scale (1.25) from 16px base */
+  --fs-xs: 0.64rem;    /* ~10px */
+  --fs-sm: 0.8rem;     /* ~13px */
+  --fs-base: 1rem;     /* 16px */
+  --fs-md: 1.25rem;    /* 20px */
+  --fs-lg: 1.563rem;   /* 25px */
+  --fs-xl: 1.953rem;   /* 31px */
+  --fs-2xl: 2.441rem;  /* 39px */
+  --fs-3xl: 3.052rem;  /* 49px */
+  --fs-4xl: 3.815rem;  /* 61px */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,0.1);
+  --transition: 0.3s ease;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--f-body);
+  font-weight: var(--fw-body);
+  color: var(--c-secondary);
+  background: var(--c-white);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== PROGRESS BAR ===== */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--c-primary);
+  z-index: 9999;
+  transition: width 0.15s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ===== TOAST ===== */
+#toast {
+  position: fixed;
+  bottom: var(--sp-4);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--c-dark);
+  color: var(--c-light);
+  font-family: var(--f-body);
+  font-size: var(--fs-sm);
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  min-height: 100vh;
+  padding: var(--sp-10) var(--sp-6);
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+.section-full {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5 {
+  font-family: var(--f-heading);
+  font-weight: var(--fw-heading);
+  color: var(--c-dark);
+  line-height: 1.2;
+}
+h1 { font-size: var(--fs-4xl); letter-spacing: -0.02em; }
+h2 { font-size: var(--fs-2xl); margin-bottom: var(--sp-2); }
+h3 { font-size: var(--fs-xl); margin-bottom: var(--sp-2); }
+h4 { font-size: var(--fs-lg); margin-bottom: var(--sp-1); }
+p { margin-bottom: var(--sp-2); }
+.section-number {
+  font-family: var(--f-heading);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-sm);
+  color: var(--c-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--sp-1);
+  display: block;
+}
+.section-title-ru { margin-bottom: var(--sp-1); }
+.section-title-en {
+  font-family: var(--f-body);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-lg);
+  color: var(--c-secondary);
+  opacity: 0.5;
+  margin-bottom: var(--sp-6);
+}
+.divider {
+  width: 60px;
+  height: 2px;
+  background: var(--c-primary);
+  border-radius: 1px;
+  margin-bottom: var(--sp-6);
+}
+.divider-wide {
+  width: 100%;
+  height: 1px;
+  background: var(--c-primary);
+  opacity: 0.2;
+  margin: var(--sp-6) 0;
+}
+
+/* ===== REVEAL ANIMATION ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== SVG SYMBOLS ===== */
+.logo-display { display: block; max-width: 100%; height: auto; }
+.logo-main { width: 320px; height: 48px; }
+.logo-main-lg { width: 400px; height: 60px; }
+.logo-icon { width: 64px; height: 64px; }
+.logo-sm { width: 200px; height: 30px; }
+
+/* ===== COVER (Section 01) ===== */
+.cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--c-light);
+  text-align: center;
+  padding: var(--sp-8);
+  position: relative;
+}
+.cover-logo { width: 460px; height: 69px; margin-bottom: var(--sp-6); }
+/* Subtle fabric texture overlay */
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20h40M20 0v40' stroke='%23008C53' stroke-width='0.3' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+.cover > * { position: relative; z-index: 1; }
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: var(--sp-6);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+  opacity: 0.4;
+  animation: scrollBounce 2s ease-in-out infinite;
+  cursor: pointer;
+  z-index: 1;
+}
+.scroll-hint svg { width: 24px; height: 24px; }
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+/* Scroll to top button */
+#scroll-top {
+  position: fixed;
+  bottom: var(--sp-4);
+  right: var(--sp-4);
+  width: 44px;
+  height: 44px;
+  background: var(--c-primary);
+  color: var(--c-light);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition);
+  z-index: 999;
+  box-shadow: var(--shadow-md);
+}
+#scroll-top.visible { opacity: 1; pointer-events: auto; }
+#scroll-top:hover { transform: scale(1.1); background: var(--c-dark); }
+.cover-line {
+  width: 80px;
+  height: 2px;
+  background: var(--c-primary);
+  margin: 0 auto var(--sp-4);
+  border-radius: 1px;
+}
+.cover-tagline {
+  font-family: var(--f-body);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-lg);
+  color: var(--c-secondary);
+  margin-bottom: var(--sp-1);
+}
+.cover-tagline-en {
+  font-family: var(--f-body);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-base);
+  color: var(--c-secondary);
+  opacity: 0.5;
+}
+.cover-subtitle {
+  font-family: var(--f-heading);
+  font-weight: 500;
+  font-size: var(--fs-sm);
+  color: var(--c-primary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: var(--sp-8);
+}
+
+/* ===== TOC (Section 02) ===== */
+.toc-list {
+  list-style: none;
+  counter-reset: toc;
+}
+.toc-list li {
+  counter-increment: toc;
+  border-bottom: 1px solid rgba(0,140,83,0.1);
+}
+.toc-list a {
+  display: flex;
+  align-items: center;
+  padding: var(--sp-2) 0;
+  text-decoration: none;
+  color: var(--c-secondary);
+  font-size: var(--fs-base);
+  transition: color var(--transition);
+  gap: var(--sp-3);
+}
+.toc-list a:hover {
+  color: var(--c-primary);
+  padding-left: var(--sp-2);
+  background: rgba(0,140,83,0.04);
+  border-radius: var(--radius-sm);
+}
+.toc-list a {
+  transition: color var(--transition), padding-left var(--transition), background var(--transition);
+}
+.toc-list a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-family: var(--f-heading);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-sm);
+  color: var(--c-primary);
+  min-width: 32px;
+}
+.toc-list .toc-title-ru {
+  font-family: var(--f-heading);
+  font-weight: 600;
+  flex: 1;
+}
+.toc-list .toc-title-en {
+  font-family: var(--f-body);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-sm);
+  opacity: 0.4;
+}
+
+/* ===== LOGO DISPLAYS ===== */
+.logo-showcase {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-6);
+}
+.logo-card {
+  flex: 1;
+  min-width: 260px;
+  padding: var(--sp-8) var(--sp-6);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.logo-card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+.logo-card-label {
+  position: absolute;
+  bottom: var(--sp-2);
+  left: var(--sp-3);
+  font-size: var(--fs-xs);
+  font-family: var(--f-heading);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+}
+.bg-light { background: var(--c-light); }
+.bg-dark { background: var(--c-dark); }
+.bg-white { background: var(--c-white); border: 1px solid rgba(0,0,0,0.06); }
+.bg-primary { background: var(--c-primary); }
+.bg-secondary { background: var(--c-secondary); }
+
+/* ===== CLEAR SPACE ===== */
+.clearspace-demo {
+  display: inline-block;
+  position: relative;
+  padding: var(--sp-8);
+  border: 1px dashed var(--c-primary);
+  border-radius: var(--radius);
+  background: var(--c-white);
+  margin: var(--sp-4) 0;
+}
+.clearspace-demo::before,
+.clearspace-demo::after {
+  content: '';
+  position: absolute;
+  border: 1px dashed rgba(0,140,83,0.3);
+}
+.clearspace-label {
+  font-family: var(--f-heading);
+  font-size: var(--fs-xs);
+  color: var(--c-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.clearspace-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-6);
+  align-items: start;
+}
+
+/* ===== COLOR PALETTE ===== */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-3);
+}
+.color-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.color-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.color-swatch {
+  height: 140px;
+  width: 100%;
+}
+.color-info {
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--c-white);
+}
+.color-name {
+  font-family: var(--f-heading);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--c-dark);
+  margin-bottom: 4px;
+}
+.color-hex {
+  font-family: var(--f-body);
+  font-size: var(--fs-xs);
+  color: var(--c-secondary);
+  margin-bottom: 2px;
+}
+.color-usage {
+  font-family: var(--f-body);
+  font-size: var(--fs-xs);
+  color: var(--c-secondary);
+  opacity: 0.6;
+}
+
+/* ===== TYPOGRAPHY SECTION ===== */
+.type-specimen {
+  padding: var(--sp-6);
+  background: var(--c-light);
+  border-radius: var(--radius);
+  margin-bottom: var(--sp-4);
+  transition: box-shadow var(--transition);
+}
+.type-specimen:hover {
+  box-shadow: var(--shadow-md);
+}
+.type-sample-heading {
+  font-family: var(--f-heading);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-3xl);
+  color: var(--c-dark);
+  margin-bottom: var(--sp-2);
+}
+.type-sample-body {
+  font-family: var(--f-body);
+  font-weight: var(--fw-body);
+  font-size: var(--fs-md);
+  color: var(--c-secondary);
+  line-height: 1.7;
+}
+.type-scale {
+  display: grid;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+}
+.type-scale-item {
+  display: grid;
+  grid-template-columns: 100px 80px 1fr;
+  align-items: baseline;
+  gap: var(--sp-2);
+  padding: var(--sp-1) 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+.type-scale-label {
+  font-family: var(--f-heading);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-primary);
+}
+.type-scale-size {
+  font-family: var(--f-body);
+  font-size: var(--fs-xs);
+  color: var(--c-secondary);
+  opacity: 0.5;
+}
+
+/* ===== BUSINESS CARDS ===== */
+.cards-container {
+  display: flex;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card-pair { text-align: center; }
+.card-pair h4 { margin-bottom: var(--sp-3); }
+.bcard {
+  width: 340px;
+  height: 189px; /* 90x50mm ratio */
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: var(--sp-2);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.bcard:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+.bcard-front-light {
+  background: var(--c-light);
+  color: var(--c-dark);
+}
+.bcard-front-dark {
+  background: var(--c-dark);
+  color: var(--c-light);
+}
+.bcard-back {
+  padding: var(--sp-3) var(--sp-4);
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.bcard-line {
+  width: 40px;
+  height: 2px;
+  background: var(--c-primary);
+  margin: var(--sp-2) 0;
+  border-radius: 1px;
+}
+.bcard-name {
+  font-family: var(--f-heading);
+  font-weight: var(--fw-heading);
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.bcard-position {
+  font-family: var(--f-body);
+  font-size: 11px;
+  opacity: 0.6;
+  margin-bottom: var(--sp-2);
+}
+.bcard-contact {
+  font-family: var(--f-body);
+  font-size: 10px;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+.bcard-label {
+  font-family: var(--f-body);
+  font-size: var(--fs-xs);
+  color: var(--c-secondary);
+  opacity: 0.5;
+  margin-bottom: var(--sp-3);
+}
+
+/* ===== BRAND ELEMENTS ===== */
+.elements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--sp-4);
+}
+.element-card {
+  background: var(--c-light);
+  border-radius: var(--radius);
+  padding: var(--sp-6);
+  text-align: center;
+}
+.element-demo {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-3);
+}
+.pattern-strip {
+  width: 100%;
+  height: 80px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--c-primary) 0px,
+    var(--c-primary) 2px,
+    transparent 2px,
+    transparent 16px
+  );
+  opacity: 0.15;
+  border-radius: var(--radius-sm);
+}
+.tag-motif {
+  width: 48px;
+  height: 64px;
+  border: 2px solid var(--c-primary);
+  border-radius: 6px;
+  position: relative;
+}
+.tag-motif::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--c-primary);
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tag-motif::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 12px;
+  border-top: 2px solid var(--c-primary);
+  border-left: 2px solid var(--c-primary);
+  border-right: 2px solid var(--c-primary);
+  border-radius: 8px 8px 0 0;
+}
+.rounded-box {
+  width: 100px;
+  height: 60px;
+  border: 2px solid var(--c-primary);
+  border-radius: var(--radius);
+}
+
+/* ===== DO'S & DON'TS ===== */
+.dos-donts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.do-card, .dont-card {
+  padding: var(--sp-4);
+  border-radius: var(--radius);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.do-card:hover, .dont-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.do-card {
+  background: rgba(0, 140, 83, 0.06);
+  border: 1px solid rgba(0, 140, 83, 0.15);
+}
+.dont-card {
+  background: rgba(200, 50, 50, 0.04);
+  border: 1px solid rgba(200, 50, 50, 0.15);
+}
+.do-card .verdict {
+  font-family: var(--f-heading);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-sm);
+  color: var(--c-primary);
+  margin-bottom: var(--sp-2);
+}
+.dont-card .verdict {
+  font-family: var(--f-heading);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-sm);
+  color: #C83232;
+  margin-bottom: var(--sp-2);
+}
+.example-box {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--sp-2);
+}
+.example-desc {
+  font-size: var(--fs-xs);
+  color: var(--c-secondary);
+  opacity: 0.7;
+}
+
+/* ===== TONE OF VOICE ===== */
+.tov-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.tov-card {
+  background: var(--c-light);
+  border-radius: var(--radius);
+  padding: var(--sp-4);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.tov-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.tov-label {
+  font-family: var(--f-heading);
+  font-weight: 600;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--sp-1);
+}
+.tov-label.yes { color: var(--c-primary); }
+.tov-label.no { color: #C83232; }
+.tov-example {
+  font-family: var(--f-body);
+  font-style: italic;
+  font-size: var(--fs-base);
+  color: var(--c-secondary);
+  line-height: 1.6;
+}
+
+/* ===== PHOTOGRAPHY ===== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+.photo-placeholder {
+  aspect-ratio: 4/3;
+  background: var(--c-light);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--sp-3);
+  font-family: var(--f-body);
+  font-size: var(--fs-sm);
+  color: var(--c-secondary);
+  opacity: 0.6;
+  border: 1px dashed rgba(0,140,83,0.15);
+}
+.photo-guidelines {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+.photo-guideline {
+  padding: var(--sp-3);
+  background: var(--c-light);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--c-primary);
+}
+.photo-guideline h4 {
+  font-size: var(--fs-sm);
+  margin-bottom: var(--sp-1);
+}
+.photo-guideline p {
+  font-size: var(--fs-sm);
+  margin-bottom: 0;
+}
+
+/* ===== LETTERHEAD ===== */
+.letterhead-container {
+  display: flex;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.letterhead {
+  width: 340px;
+  height: 480px;
+  background: var(--c-white);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  padding: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.letterhead-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: var(--sp-2);
+  border-bottom: 2px solid var(--c-primary);
+  margin-bottom: var(--sp-3);
+}
+.letterhead-contacts {
+  text-align: right;
+  font-family: var(--f-body);
+  font-size: 8px;
+  color: var(--c-secondary);
+  line-height: 1.6;
+}
+.letterhead-body {
+  flex: 1;
+  position: relative;
+}
+.letterhead-body-lines {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 18px,
+    rgba(0,0,0,0.03) 18px,
+    rgba(0,0,0,0.03) 19px
+  );
+}
+.letterhead-footer {
+  border-top: 1px solid var(--c-primary);
+  padding-top: var(--sp-1);
+  font-family: var(--f-body);
+  font-size: 7px;
+  color: var(--c-secondary);
+  opacity: 0.5;
+  text-align: center;
+}
+.letterhead-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.06;
+}
+
+/* ===== PRESENTATION / WEB ===== */
+.slide-demo {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--c-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-6);
+  margin-bottom: var(--sp-3);
+  position: relative;
+  overflow: hidden;
+}
+.slide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.web-spec {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: var(--sp-1) var(--sp-3);
+  font-size: var(--fs-sm);
+}
+.web-spec dt {
+  font-family: var(--f-heading);
+  font-weight: 600;
+  color: var(--c-dark);
+}
+.web-spec dd {
+  color: var(--c-secondary);
+}
+
+/* ===== EMAIL SIGNATURE ===== */
+.email-sig-demo {
+  max-width: 500px;
+  padding: var(--sp-4);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius);
+  background: var(--c-white);
+  box-shadow: var(--shadow-sm);
+}
+.email-sig-inner {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: #333;
+}
+.email-sig-divider {
+  width: 2px;
+  min-height: 80px;
+  background: var(--c-primary);
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+.email-sig-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--c-dark);
+  margin-bottom: 2px;
+}
+.email-sig-position {
+  font-size: 12px;
+  color: var(--c-secondary);
+  margin-bottom: 8px;
+}
+.email-sig-contact {
+  font-size: 11px;
+  color: var(--c-secondary);
+  line-height: 1.6;
+}
+.email-sig-contact a { color: var(--c-primary); text-decoration: none; }
+
+/* ===== HELPER CLASSES ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+.text-center { text-align: center; }
+.text-primary { color: var(--c-primary); }
+.text-muted { opacity: 0.6; }
+.mb-2 { margin-bottom: var(--sp-2); }
+.mb-4 { margin-bottom: var(--sp-4); }
+.mb-6 { margin-bottom: var(--sp-6); }
+.mt-4 { margin-top: var(--sp-4); }
+.mt-6 { margin-top: var(--sp-6); }
+.p-4 { padding: var(--sp-4); }
+.p-6 { padding: var(--sp-6); }
+.bg-light-rounded { background: var(--c-light); border-radius: var(--radius); padding: var(--sp-4); }
+.inline-tag {
+  display: inline-block;
+  font-family: var(--f-heading);
+  font-weight: 500;
+  font-size: var(--fs-xs);
+  background: rgba(0,140,83,0.08);
+  color: var(--c-primary);
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,140,83,0.15);
+  transition: background var(--transition), transform var(--transition);
+  cursor: default;
+}
+.inline-tag:hover {
+  background: var(--c-primary);
+  color: var(--c-light);
+  transform: scale(1.05);
+}
+.rule-list { list-style: none; padding: 0; }
+.rule-list li {
+  padding: var(--sp-2) 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  font-size: var(--fs-base);
+  display: flex;
+  gap: var(--sp-2);
+  align-items: flex-start;
+}
+.rule-list li::before {
+  content: '\2192';
+  color: var(--c-primary);
+  flex-shrink: 0;
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  margin: var(--sp-4) 0;
+}
+.value-card {
+  background: var(--c-light);
+  border-radius: var(--radius);
+  padding: var(--sp-4);
+  text-align: center;
+  border-top: 3px solid var(--c-primary);
+}
+.value-card h4 {
+  color: var(--c-primary);
+  margin-bottom: var(--sp-1);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .section { padding: var(--sp-6) var(--sp-3); }
+  h1 { font-size: var(--fs-2xl); }
+  h2 { font-size: var(--fs-xl); }
+  .grid-2, .grid-3, .dos-donts-grid, .tov-grid, .photo-grid, .photo-guidelines, .slide-grid {
+    grid-template-columns: 1fr;
+  }
+  .logo-showcase { flex-direction: column; }
+  .bcard { width: 100%; max-width: 340px; }
+  .letterhead { width: 100%; max-width: 340px; }
+  .type-scale-item { grid-template-columns: 1fr; gap: 4px; }
+  .cover-logo { width: 260px; height: 39px; }
+  .cards-container, .letterhead-container { flex-direction: column; align-items: center; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body { font-size: 11pt; }
+  #progress-bar, #toast { display: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .section { min-height: auto; page-break-before: always; padding: 20mm; max-width: none; }
+  .section:first-of-type { page-break-before: avoid; }
+  .cover { min-height: 100vh; }
+  a { color: inherit !important; text-decoration: none !important; }
+  .color-card:hover, .bcard { box-shadow: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOL DEFINITIONS -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <!-- Logo Main (green) -->
+  <symbol id="logo-main" viewBox="0 0 400 60">
+    <g transform="translate(46.1, 8)" fill="#008C53">
+      <path d="M83 0V700H425Q557 700 623.5 650.0Q690 600 690 518Q690 463 663.0 422.5Q636 382 589.0 360.0Q542 338 481 338L500 379Q566 379 617.0 357.5Q668 336 696.5 294.0Q725 252 725 191Q725 101 654.0 50.5Q583 0 445 0ZM244 122H433Q496 122 528.5 142.5Q561 163 561 208Q561 252 528.5 273.5Q496 295 433 295H232V413H405Q464 413 495.5 433.5Q527 454 527 496Q527 537 495.5 557.5Q464 578 405 578H244Z" transform="translate(0.0, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H245V0Z" transform="translate(33.1, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H382Q528 700 609.0 632.5Q690 565 690 446Q690 368 653.0 311.5Q616 255 548.0 225.0Q480 195 386 195H173L245 266V0ZM528 0 353 254H526L703 0ZM245 248 173 324H377Q452 324 489.0 356.5Q526 389 526 446Q526 504 489.0 536.0Q452 568 377 568H173L245 645Z" transform="translate(49.5, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M418 -12Q337 -12 267.5 14.5Q198 41 147.0 90.0Q96 139 67.5 205.0Q39 271 39 350Q39 429 67.5 495.0Q96 561 147.5 610.0Q199 659 268.0 685.5Q337 712 419 712Q510 712 583.5 680.5Q657 649 707 588L603 492Q567 533 523.0 553.5Q479 574 427 574Q378 574 337.0 558.0Q296 542 266.0 512.0Q236 482 219.5 441.0Q203 400 203 350Q203 300 219.5 259.0Q236 218 266.0 188.0Q296 158 337.0 142.0Q378 126 427 126Q479 126 523.0 146.5Q567 167 603 209L707 113Q657 52 583.5 20.0Q510 -12 418 -12Z" transform="translate(81.5, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M-9 0 303 700H463L776 0H606L350 618H414L157 0ZM147 150 190 273H550L594 150Z" transform="translate(113.0, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M228 160 219 347 554 700H734L432 375L342 279ZM83 0V700H244V0ZM562 0 313 305 419 420 751 0Z" transform="translate(159.6, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M423 -12Q340 -12 269.5 15.0Q199 42 147.5 91.0Q96 140 67.5 206.0Q39 272 39 350Q39 428 67.5 494.0Q96 560 148.0 609.0Q200 658 270.0 685.0Q340 712 422 712Q505 712 574.5 685.0Q644 658 695.5 609.0Q747 560 776.0 494.5Q805 429 805 350Q805 272 776.0 205.5Q747 139 695.5 90.5Q644 42 574.5 15.0Q505 -12 423 -12ZM422 126Q469 126 508.5 142.0Q548 158 578.0 188.0Q608 218 624.5 259.0Q641 300 641 350Q641 400 624.5 441.0Q608 482 578.5 512.0Q549 542 509.0 558.0Q469 574 422 574Q375 574 335.5 558.0Q296 542 266.0 512.0Q236 482 219.5 441.0Q203 400 203 350Q203 301 219.5 259.5Q236 218 265.5 188.0Q295 158 335.0 142.0Q375 126 422 126Z" transform="translate(191.7, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H245V132H596V0Z" transform="translate(227.8, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H612V570H244V130H625V0ZM232 292V418H569V292Z" transform="translate(254.7, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M228 0V568H4V700H614V568H390V0Z" transform="translate(284.2, 38.0) scale(0.038000, -0.038000)"/>
+    </g>
+  </symbol>
+
+  <!-- Logo Light (cream) -->
+  <symbol id="logo-light" viewBox="0 0 400 60">
+    <g transform="translate(46.1, 8)" fill="#F5F2EC">
+      <path d="M83 0V700H425Q557 700 623.5 650.0Q690 600 690 518Q690 463 663.0 422.5Q636 382 589.0 360.0Q542 338 481 338L500 379Q566 379 617.0 357.5Q668 336 696.5 294.0Q725 252 725 191Q725 101 654.0 50.5Q583 0 445 0ZM244 122H433Q496 122 528.5 142.5Q561 163 561 208Q561 252 528.5 273.5Q496 295 433 295H232V413H405Q464 413 495.5 433.5Q527 454 527 496Q527 537 495.5 557.5Q464 578 405 578H244Z" transform="translate(0.0, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H245V0Z" transform="translate(33.1, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H382Q528 700 609.0 632.5Q690 565 690 446Q690 368 653.0 311.5Q616 255 548.0 225.0Q480 195 386 195H173L245 266V0ZM528 0 353 254H526L703 0ZM245 248 173 324H377Q452 324 489.0 356.5Q526 389 526 446Q526 504 489.0 536.0Q452 568 377 568H173L245 645Z" transform="translate(49.5, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M418 -12Q337 -12 267.5 14.5Q198 41 147.0 90.0Q96 139 67.5 205.0Q39 271 39 350Q39 429 67.5 495.0Q96 561 147.5 610.0Q199 659 268.0 685.5Q337 712 419 712Q510 712 583.5 680.5Q657 649 707 588L603 492Q567 533 523.0 553.5Q479 574 427 574Q378 574 337.0 558.0Q296 542 266.0 512.0Q236 482 219.5 441.0Q203 400 203 350Q203 300 219.5 259.0Q236 218 266.0 188.0Q296 158 337.0 142.0Q378 126 427 126Q479 126 523.0 146.5Q567 167 603 209L707 113Q657 52 583.5 20.0Q510 -12 418 -12Z" transform="translate(81.5, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M-9 0 303 700H463L776 0H606L350 618H414L157 0ZM147 150 190 273H550L594 150Z" transform="translate(113.0, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M228 160 219 347 554 700H734L432 375L342 279ZM83 0V700H244V0ZM562 0 313 305 419 420 751 0Z" transform="translate(159.6, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M423 -12Q340 -12 269.5 15.0Q199 42 147.5 91.0Q96 140 67.5 206.0Q39 272 39 350Q39 428 67.5 494.0Q96 560 148.0 609.0Q200 658 270.0 685.0Q340 712 422 712Q505 712 574.5 685.0Q644 658 695.5 609.0Q747 560 776.0 494.5Q805 429 805 350Q805 272 776.0 205.5Q747 139 695.5 90.5Q644 42 574.5 15.0Q505 -12 423 -12ZM422 126Q469 126 508.5 142.0Q548 158 578.0 188.0Q608 218 624.5 259.0Q641 300 641 350Q641 400 624.5 441.0Q608 482 578.5 512.0Q549 542 509.0 558.0Q469 574 422 574Q375 574 335.5 558.0Q296 542 266.0 512.0Q236 482 219.5 441.0Q203 400 203 350Q203 301 219.5 259.5Q236 218 265.5 188.0Q295 158 335.0 142.0Q375 126 422 126Z" transform="translate(191.7, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H245V132H596V0Z" transform="translate(227.8, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H612V570H244V130H625V0ZM232 292V418H569V292Z" transform="translate(254.7, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M228 0V568H4V700H614V568H390V0Z" transform="translate(284.2, 38.0) scale(0.038000, -0.038000)"/>
+    </g>
+  </symbol>
+
+  <!-- Logo with custom fill (inherits currentColor) -->
+  <symbol id="logo-current" viewBox="0 0 400 60">
+    <g transform="translate(46.1, 8)" fill="currentColor">
+      <path d="M83 0V700H425Q557 700 623.5 650.0Q690 600 690 518Q690 463 663.0 422.5Q636 382 589.0 360.0Q542 338 481 338L500 379Q566 379 617.0 357.5Q668 336 696.5 294.0Q725 252 725 191Q725 101 654.0 50.5Q583 0 445 0ZM244 122H433Q496 122 528.5 142.5Q561 163 561 208Q561 252 528.5 273.5Q496 295 433 295H232V413H405Q464 413 495.5 433.5Q527 454 527 496Q527 537 495.5 557.5Q464 578 405 578H244Z" transform="translate(0.0, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H245V0Z" transform="translate(33.1, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H382Q528 700 609.0 632.5Q690 565 690 446Q690 368 653.0 311.5Q616 255 548.0 225.0Q480 195 386 195H173L245 266V0ZM528 0 353 254H526L703 0ZM245 248 173 324H377Q452 324 489.0 356.5Q526 389 526 446Q526 504 489.0 536.0Q452 568 377 568H173L245 645Z" transform="translate(49.5, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M418 -12Q337 -12 267.5 14.5Q198 41 147.0 90.0Q96 139 67.5 205.0Q39 271 39 350Q39 429 67.5 495.0Q96 561 147.5 610.0Q199 659 268.0 685.5Q337 712 419 712Q510 712 583.5 680.5Q657 649 707 588L603 492Q567 533 523.0 553.5Q479 574 427 574Q378 574 337.0 558.0Q296 542 266.0 512.0Q236 482 219.5 441.0Q203 400 203 350Q203 300 219.5 259.0Q236 218 266.0 188.0Q296 158 337.0 142.0Q378 126 427 126Q479 126 523.0 146.5Q567 167 603 209L707 113Q657 52 583.5 20.0Q510 -12 418 -12Z" transform="translate(81.5, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M-9 0 303 700H463L776 0H606L350 618H414L157 0ZM147 150 190 273H550L594 150Z" transform="translate(113.0, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M228 160 219 347 554 700H734L432 375L342 279ZM83 0V700H244V0ZM562 0 313 305 419 420 751 0Z" transform="translate(159.6, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M423 -12Q340 -12 269.5 15.0Q199 42 147.5 91.0Q96 140 67.5 206.0Q39 272 39 350Q39 428 67.5 494.0Q96 560 148.0 609.0Q200 658 270.0 685.0Q340 712 422 712Q505 712 574.5 685.0Q644 658 695.5 609.0Q747 560 776.0 494.5Q805 429 805 350Q805 272 776.0 205.5Q747 139 695.5 90.5Q644 42 574.5 15.0Q505 -12 423 -12ZM422 126Q469 126 508.5 142.0Q548 158 578.0 188.0Q608 218 624.5 259.0Q641 300 641 350Q641 400 624.5 441.0Q608 482 578.5 512.0Q549 542 509.0 558.0Q469 574 422 574Q375 574 335.5 558.0Q296 542 266.0 512.0Q236 482 219.5 441.0Q203 400 203 350Q203 301 219.5 259.5Q236 218 265.5 188.0Q295 158 335.0 142.0Q375 126 422 126Z" transform="translate(191.7, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H245V132H596V0Z" transform="translate(227.8, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M83 0V700H612V570H244V130H625V0ZM232 292V418H569V292Z" transform="translate(254.7, 38.0) scale(0.038000, -0.038000)"/>
+      <path d="M228 0V568H4V700H614V568H390V0Z" transform="translate(284.2, 38.0) scale(0.038000, -0.038000)"/>
+    </g>
+  </symbol>
+
+  <!-- Icon (tag with BK) -->
+  <symbol id="logo-icon" viewBox="0 0 64 64">
+    <rect x="12" y="8" width="40" height="48" rx="4" fill="#008C53"/>
+    <circle cx="32" cy="16" r="3.5" fill="#008C53"/>
+    <path d="M28 4 Q32 11 36 4" stroke="#008C53" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <g transform="translate(16.4, 30)" fill="#F5F2EC">
+      <path d="M83 0V700H425Q557 700 623.5 650.0Q690 600 690 518Q690 463 663.0 422.5Q636 382 589.0 360.0Q542 338 481 338L500 379Q566 379 617.0 357.5Q668 336 696.5 294.0Q725 252 725 191Q725 101 654.0 50.5Q583 0 445 0ZM244 122H433Q496 122 528.5 142.5Q561 163 561 208Q561 252 528.5 273.5Q496 295 433 295H232V413H405Q464 413 495.5 433.5Q527 454 527 496Q527 537 495.5 557.5Q464 578 405 578H244Z" transform="translate(0.0, 20.0) scale(0.020000, -0.020000)"/>
+      <path d="M228 160 219 347 554 700H734L432 375L342 279ZM83 0V700H244V0ZM562 0 313 305 419 420 751 0Z" transform="translate(16.3, 20.0) scale(0.020000, -0.020000)"/>
+    </g>
+  </symbol>
+
+  <!-- Icon with currentColor fill -->
+  <symbol id="logo-icon-current" viewBox="0 0 64 64">
+    <rect x="12" y="8" width="40" height="48" rx="4" fill="currentColor"/>
+    <circle cx="32" cy="16" r="3.5" fill="currentColor"/>
+    <path d="M28 4 Q32 11 36 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <g transform="translate(16.4, 30)" fill="#F5F2EC">
+      <path d="M83 0V700H425Q557 700 623.5 650.0Q690 600 690 518Q690 463 663.0 422.5Q636 382 589.0 360.0Q542 338 481 338L500 379Q566 379 617.0 357.5Q668 336 696.5 294.0Q725 252 725 191Q725 101 654.0 50.5Q583 0 445 0ZM244 122H433Q496 122 528.5 142.5Q561 163 561 208Q561 252 528.5 273.5Q496 295 433 295H232V413H405Q464 413 495.5 433.5Q527 454 527 496Q527 537 495.5 557.5Q464 578 405 578H244Z" transform="translate(0.0, 20.0) scale(0.020000, -0.020000)"/>
+      <path d="M228 160 219 347 554 700H734L432 375L342 279ZM83 0V700H244V0ZM562 0 313 305 419 420 751 0Z" transform="translate(16.3, 20.0) scale(0.020000, -0.020000)"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar" style="width: 0%"></div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 01: COVER -->
+<!-- ============================================================ -->
+<section class="section section-full cover" id="cover">
+  <svg class="logo-display cover-logo" aria-label="Birca Kolet"><use href="#logo-main"/></svg>
+  <div class="cover-line"></div>
+  <p class="cover-tagline">&laquo;Одежда, которую забываешь снять&raquo;</p>
+  <p class="cover-tagline-en">Wear it. Forget it's there.</p>
+  <div class="scroll-hint" onclick="document.querySelector('#toc').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 02: TABLE OF CONTENTS -->
+<!-- ============================================================ -->
+<section class="section" id="toc">
+  <span class="section-number reveal">02</span>
+  <h2 class="section-title-ru reveal">Содержание</h2>
+  <p class="section-title-en reveal">Table of Contents</p>
+  <div class="divider reveal"></div>
+
+  <ol class="toc-list reveal">
+    <li><a href="#cover"><span class="toc-title-ru">Обложка</span><span class="toc-title-en">Cover</span></a></li>
+    <li><a href="#toc"><span class="toc-title-ru">Содержание</span><span class="toc-title-en">Table of Contents</span></a></li>
+    <li><a href="#about"><span class="toc-title-ru">О бренде</span><span class="toc-title-en">About the Brand</span></a></li>
+    <li><a href="#primary-logo"><span class="toc-title-ru">Основной логотип</span><span class="toc-title-en">Primary Logo</span></a></li>
+    <li><a href="#logo-variants"><span class="toc-title-ru">Цветовые варианты</span><span class="toc-title-en">Logo Color Variants</span></a></li>
+    <li><a href="#clear-space"><span class="toc-title-ru">Охранное поле</span><span class="toc-title-en">Clear Space</span></a></li>
+    <li><a href="#logo-backgrounds"><span class="toc-title-ru">Логотип на фонах</span><span class="toc-title-en">Logo on Backgrounds</span></a></li>
+    <li><a href="#typography"><span class="toc-title-ru">Типографика</span><span class="toc-title-en">Typography</span></a></li>
+    <li><a href="#colors"><span class="toc-title-ru">Цветовая палитра</span><span class="toc-title-en">Color Palette</span></a></li>
+    <li><a href="#business-cards"><span class="toc-title-ru">Визитные карточки</span><span class="toc-title-en">Business Cards</span></a></li>
+    <li><a href="#brand-elements"><span class="toc-title-ru">Фирменные элементы</span><span class="toc-title-en">Brand Elements</span></a></li>
+    <li><a href="#dos-donts"><span class="toc-title-ru">Правила использования</span><span class="toc-title-en">Do's & Don'ts</span></a></li>
+    <li><a href="#tone-of-voice"><span class="toc-title-ru">Голос бренда</span><span class="toc-title-en">Tone of Voice</span></a></li>
+    <li><a href="#photography"><span class="toc-title-ru">Фотографический стиль</span><span class="toc-title-en">Photography Style</span></a></li>
+    <li><a href="#letterheads"><span class="toc-title-ru">Фирменные бланки</span><span class="toc-title-en">Letterheads</span></a></li>
+    <li><a href="#presentations"><span class="toc-title-ru">Презентации и сайт</span><span class="toc-title-en">Presentations & Website</span></a></li>
+    <li><a href="#email-signature"><span class="toc-title-ru">Email-подпись</span><span class="toc-title-en">Email Signature</span></a></li>
+  </ol>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 03: ABOUT THE BRAND -->
+<!-- ============================================================ -->
+<section class="section" id="about">
+  <span class="section-number reveal">03</span>
+  <h2 class="section-title-ru reveal">О бренде</h2>
+  <p class="section-title-en reveal">About the Brand</p>
+  <div class="divider reveal"></div>
+
+  <div class="grid-2 reveal">
+    <div>
+      <h3>Миссия / Mission</h3>
+      <p>Максимум комфорта в жизни и в материалах носимой одежды. Мы создаём вещи, которые не раздражают, не натирают и не напоминают о себе. Потому что лучшая одежда -- та, которую забываешь снять.</p>
+      <p style="opacity:0.5; font-size: var(--fs-sm);">Maximum comfort in life and in the materials you wear. We make clothes that don't irritate, don't chafe, and don't remind you they exist.</p>
+    </div>
+    <div>
+      <h3>История названия / The Name</h3>
+      <p>Birca Kolet -- ироничная транслитерация &laquo;бирка колет&raquo;. Каждый знает это ощущение: новая вещь, а бирка царапает шею. Мы решили проблему: съёмные ярлыки и печатная информация вместо пришивных этикеток.</p>
+      <p style="opacity:0.5; font-size: var(--fs-sm);">An ironic transliteration of the Russian phrase "the tag pokes". Removable labels and printed info instead of sewn-in tags.</p>
+    </div>
+  </div>
+
+  <div class="values-grid reveal" style="margin-top: var(--sp-6);">
+    <div class="value-card">
+      <svg class="logo-icon" style="width:32px;height:32px;margin-bottom:var(--sp-2);"><use href="#logo-icon"/></svg>
+      <h4>Комфорт / Comfort</h4>
+      <p style="font-size:var(--fs-sm);">Каждая деталь продумана для ощущения &laquo;второй кожи&raquo;. Без раздражителей, без компромиссов.</p>
+    </div>
+    <div class="value-card">
+      <svg style="width:32px;height:32px;margin-bottom:var(--sp-2);color:var(--c-primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      <h4>Качество / Quality</h4>
+      <p style="font-size:var(--fs-sm);">Материалы, которые выдерживают стирки и время. Честные ткани, честные швы.</p>
+    </div>
+    <div class="value-card">
+      <svg style="width:32px;height:32px;margin-bottom:var(--sp-2);color:var(--c-primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h4>Ирония / Irony</h4>
+      <p style="font-size:var(--fs-sm);">Мы не притворяемся luxury-брендом. Мы шутим над проблемой и решаем её.</p>
+    </div>
+  </div>
+
+  <div class="bg-light-rounded reveal" style="margin-top: var(--sp-6);">
+    <h4>Архетип бренда / Brand Archetype</h4>
+    <p><span class="inline-tag">Everyman 70%</span> <span class="inline-tag">Caregiver 30%</span></p>
+    <p style="font-size:var(--fs-sm); margin-top:var(--sp-1);">Мы -- &laquo;свои&raquo;. Говорим на &laquo;ты&raquo;, не строим из себя элиту. При этом заботимся о каждой мелочи, которая касается твоей кожи.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 04: PRIMARY LOGO -->
+<!-- ============================================================ -->
+<section class="section" id="primary-logo">
+  <span class="section-number reveal">04</span>
+  <h2 class="section-title-ru reveal">Основной логотип</h2>
+  <p class="section-title-en reveal">Primary Logo</p>
+  <div class="divider reveal"></div>
+
+  <div class="reveal" style="text-align:center; margin-bottom:var(--sp-6);">
+    <div style="background:var(--c-light); padding:var(--sp-12) var(--sp-8); border-radius:var(--radius); display:inline-block;">
+      <svg class="logo-display logo-main-lg" aria-label="Birca Kolet"><use href="#logo-main"/></svg>
+    </div>
+  </div>
+
+  <div class="grid-2 reveal">
+    <div>
+      <h4>Словесный знак / Wordmark</h4>
+      <p>Основной логотип -- горизонтальный словесный знак BIRCA KOLET. Используется как главный идентификатор бренда на всех носителях.</p>
+      <ul class="rule-list">
+        <li>Минимальная ширина: 120px (цифровые носители)</li>
+        <li>Минимальная ширина: 30mm (печать)</li>
+        <li>Всегда располагать горизонтально</li>
+        <li>Не изменять пропорции</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Иконка / Icon Mark</h4>
+      <div style="text-align:center; padding:var(--sp-4); background:var(--c-light); border-radius:var(--radius);">
+        <svg class="logo-display logo-icon" style="margin:0 auto;" aria-label="BK Icon"><use href="#logo-icon"/></svg>
+      </div>
+      <p style="margin-top:var(--sp-2); font-size:var(--fs-sm);">Иконка-бирка с инициалами BK. Используется как фавикон, аватар в соцсетях и на ярлыках одежды.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 05: LOGO COLOR VARIANTS -->
+<!-- ============================================================ -->
+<section class="section" id="logo-variants">
+  <span class="section-number reveal">05</span>
+  <h2 class="section-title-ru reveal">Цветовые варианты логотипа</h2>
+  <p class="section-title-en reveal">Logo Color Variants</p>
+  <div class="divider reveal"></div>
+
+  <div class="logo-showcase reveal">
+    <!-- 1. Green on Light -->
+    <div class="logo-card bg-light">
+      <svg class="logo-display logo-main" aria-label="Green on Light"><use href="#logo-main"/></svg>
+      <span class="logo-card-label" style="color:var(--c-secondary);">Primary / Green on Warm Cotton</span>
+    </div>
+    <!-- 2. Cream on Dark -->
+    <div class="logo-card bg-dark">
+      <svg class="logo-display logo-main" aria-label="Light on Dark"><use href="#logo-light"/></svg>
+      <span class="logo-card-label" style="color:var(--c-light);">Light on Deep Forest</span>
+    </div>
+  </div>
+
+  <div class="logo-showcase reveal">
+    <!-- 3. Charcoal on Light -->
+    <div class="logo-card bg-light">
+      <svg class="logo-display logo-main" style="color:var(--c-secondary);" aria-label="Charcoal on Light"><use href="#logo-current"/></svg>
+      <span class="logo-card-label" style="color:var(--c-secondary);">Charcoal on Warm Cotton</span>
+    </div>
+    <!-- 4. Green on White -->
+    <div class="logo-card bg-white">
+      <svg class="logo-display logo-main" aria-label="Green on White"><use href="#logo-main"/></svg>
+      <span class="logo-card-label" style="color:var(--c-secondary);">Green on White</span>
+    </div>
+  </div>
+
+  <div class="logo-showcase reveal">
+    <!-- 5. Monochrome (dark on white) -->
+    <div class="logo-card bg-white">
+      <svg class="logo-display logo-main" style="color:var(--c-dark);" aria-label="Monochrome"><use href="#logo-current"/></svg>
+      <span class="logo-card-label" style="color:var(--c-secondary);">Monochrome / Dark</span>
+    </div>
+    <!-- 6. White on Primary -->
+    <div class="logo-card bg-primary">
+      <svg class="logo-display logo-main" aria-label="Light on Primary"><use href="#logo-light"/></svg>
+      <span class="logo-card-label" style="color:rgba(255,255,255,0.6);">Light on Primary Green</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 06: CLEAR SPACE -->
+<!-- ============================================================ -->
+<section class="section" id="clear-space">
+  <span class="section-number reveal">06</span>
+  <h2 class="section-title-ru reveal">Охранное поле</h2>
+  <p class="section-title-en reveal">Clear Space</p>
+  <div class="divider reveal"></div>
+
+  <div class="reveal" style="text-align:center; margin-bottom:var(--sp-6);">
+    <div style="display:inline-block; position:relative; padding:48px 64px; border:2px dashed var(--c-primary); border-radius:var(--radius); background:var(--c-white);">
+      <!-- Top measurement -->
+      <div style="position:absolute; top:8px; left:50%; transform:translateX(-50%); font-family:var(--f-heading); font-size:10px; color:var(--c-primary); letter-spacing:0.1em;">X</div>
+      <!-- Bottom measurement -->
+      <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); font-family:var(--f-heading); font-size:10px; color:var(--c-primary); letter-spacing:0.1em;">X</div>
+      <!-- Left measurement -->
+      <div style="position:absolute; left:16px; top:50%; transform:translateY(-50%); font-family:var(--f-heading); font-size:10px; color:var(--c-primary); letter-spacing:0.1em;">1.5X</div>
+      <!-- Right measurement -->
+      <div style="position:absolute; right:16px; top:50%; transform:translateY(-50%); font-family:var(--f-heading); font-size:10px; color:var(--c-primary); letter-spacing:0.1em;">1.5X</div>
+      <!-- Inner border -->
+      <div style="border:1px dashed rgba(0,140,83,0.2); border-radius:6px; padding:var(--sp-4) var(--sp-6);">
+        <svg class="logo-display" style="width:280px; height:42px;" aria-label="Logo with clear space"><use href="#logo-main"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2 reveal">
+    <div class="bg-light-rounded">
+      <h4>Правила / Rules</h4>
+      <ul class="rule-list">
+        <li>X = высота буквы &laquo;B&raquo; в логотипе</li>
+        <li>Минимальное поле сверху и снизу: 1X</li>
+        <li>Минимальное поле слева и справа: 1.5X</li>
+        <li>Никакие элементы не должны входить в охранное поле</li>
+      </ul>
+    </div>
+    <div class="bg-light-rounded">
+      <h4>Применение / Application</h4>
+      <ul class="rule-list">
+        <li>Охранное поле обязательно на всех носителях</li>
+        <li>При размещении на фоне с текстурой -- увеличить поле на 0.5X</li>
+        <li>На ярлыках одежды допускается уменьшение до 0.5X (при согласовании)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 07: LOGO ON BACKGROUNDS -->
+<!-- ============================================================ -->
+<section class="section" id="logo-backgrounds">
+  <span class="section-number reveal">07</span>
+  <h2 class="section-title-ru reveal">Логотип на фонах</h2>
+  <p class="section-title-en reveal">Logo on Backgrounds</p>
+  <div class="divider reveal"></div>
+
+  <h4 class="reveal" style="color:var(--c-primary); margin-bottom:var(--sp-3);">Утверждённые комбинации / Approved</h4>
+  <div class="logo-showcase reveal" style="margin-bottom:var(--sp-6);">
+    <div class="logo-card" style="background:var(--c-light); min-height:100px;">
+      <svg class="logo-display logo-sm"><use href="#logo-main"/></svg>
+    </div>
+    <div class="logo-card" style="background:var(--c-dark); min-height:100px;">
+      <svg class="logo-display logo-sm"><use href="#logo-light"/></svg>
+    </div>
+    <div class="logo-card" style="background:var(--c-white); min-height:100px; border:1px solid rgba(0,0,0,0.06);">
+      <svg class="logo-display logo-sm"><use href="#logo-main"/></svg>
+    </div>
+    <div class="logo-card" style="background:var(--c-primary); min-height:100px;">
+      <svg class="logo-display logo-sm"><use href="#logo-light"/></svg>
+    </div>
+  </div>
+
+  <h4 class="reveal" style="color:#C83232; margin-bottom:var(--sp-3);">Запрещённые комбинации / Prohibited</h4>
+  <div class="logo-showcase reveal">
+    <div class="logo-card" style="background:var(--c-accent); min-height:100px; position:relative;">
+      <svg class="logo-display logo-sm"><use href="#logo-main"/></svg>
+      <div style="position:absolute; top:0; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center;">
+        <svg style="width:48px;height:48px;color:#C83232;opacity:0.8;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+      </div>
+      <span class="logo-card-label" style="color:#C83232;">Низкий контраст</span>
+    </div>
+    <div class="logo-card" style="background:#FF6B6B; min-height:100px; position:relative;">
+      <svg class="logo-display logo-sm"><use href="#logo-main"/></svg>
+      <div style="position:absolute; top:0; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center;">
+        <svg style="width:48px;height:48px;color:#C83232;opacity:0.8;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+      </div>
+      <span class="logo-card-label" style="color:#fff;">Конфликтный цвет</span>
+    </div>
+    <div class="logo-card" style="background:linear-gradient(135deg, #008C53, #8DB838); min-height:100px; position:relative;">
+      <svg class="logo-display logo-sm"><use href="#logo-main"/></svg>
+      <div style="position:absolute; top:0; left:0; right:0; bottom:0; display:flex; align-items:center; justify-content:center;">
+        <svg style="width:48px;height:48px;color:#fff;opacity:0.8;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+      </div>
+      <span class="logo-card-label" style="color:#fff;">Градиентный фон</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 08: TYPOGRAPHY -->
+<!-- ============================================================ -->
+<section class="section" id="typography">
+  <span class="section-number reveal">08</span>
+  <h2 class="section-title-ru reveal">Типографика</h2>
+  <p class="section-title-en reveal">Typography</p>
+  <div class="divider reveal"></div>
+
+  <div class="grid-2 reveal">
+    <!-- Heading font -->
+    <div class="type-specimen">
+      <span class="inline-tag" style="margin-bottom:var(--sp-2); display:inline-block;">Заголовки / Headings</span>
+      <div class="type-sample-heading" style="margin-top:var(--sp-2);">Montserrat Bold</div>
+      <p style="font-family:var(--f-heading); font-weight:700; font-size:var(--fs-xl); color:var(--c-dark); margin:var(--sp-2) 0;">
+        Аа Бб Вв Гг Дд Ее Жж Зз
+      </p>
+      <p style="font-family:var(--f-heading); font-weight:700; font-size:var(--fs-md); color:var(--c-secondary);">
+        Aa Bb Cc Dd Ee Ff Gg Hh Ii
+      </p>
+      <p style="font-family:var(--f-heading); font-weight:700; font-size:var(--fs-base); color:var(--c-secondary); opacity:0.6;">
+        0123456789 !@#$%&amp;*()
+      </p>
+    </div>
+    <!-- Body font -->
+    <div class="type-specimen">
+      <span class="inline-tag" style="margin-bottom:var(--sp-2); display:inline-block;">Основной текст / Body</span>
+      <div style="font-family:var(--f-body); font-weight:400; font-size:var(--fs-2xl); color:var(--c-dark); margin-top:var(--sp-2);">Lato Regular</div>
+      <p style="font-family:var(--f-body); font-weight:400; font-size:var(--fs-xl); color:var(--c-dark); margin:var(--sp-2) 0;">
+        Аа Бб Вв Гг Дд Ее Жж Зз
+      </p>
+      <p style="font-family:var(--f-body); font-weight:400; font-size:var(--fs-md); color:var(--c-secondary);">
+        Aa Bb Cc Dd Ee Ff Gg Hh Ii
+      </p>
+      <p style="font-family:var(--f-body); font-weight:400; font-size:var(--fs-base); color:var(--c-secondary); opacity:0.6;">
+        0123456789 !@#$%&amp;*()
+      </p>
+    </div>
+  </div>
+
+  <!-- Type Scale -->
+  <div class="reveal" style="margin-top:var(--sp-6);">
+    <h4 style="margin-bottom:var(--sp-3);">Шкала размеров / Type Scale (Major Third 1.25)</h4>
+    <div class="type-scale">
+      <div class="type-scale-item">
+        <span class="type-scale-label">H1</span>
+        <span class="type-scale-size">61px / 3.815rem</span>
+        <span style="font-family:var(--f-heading); font-weight:700; font-size:28px; color:var(--c-dark);">Birca Kolet</span>
+      </div>
+      <div class="type-scale-item">
+        <span class="type-scale-label">H2</span>
+        <span class="type-scale-size">49px / 3.052rem</span>
+        <span style="font-family:var(--f-heading); font-weight:700; font-size:24px; color:var(--c-dark);">Birca Kolet</span>
+      </div>
+      <div class="type-scale-item">
+        <span class="type-scale-label">H3</span>
+        <span class="type-scale-size">39px / 2.441rem</span>
+        <span style="font-family:var(--f-heading); font-weight:700; font-size:20px; color:var(--c-dark);">Birca Kolet</span>
+      </div>
+      <div class="type-scale-item">
+        <span class="type-scale-label">H4</span>
+        <span class="type-scale-size">31px / 1.953rem</span>
+        <span style="font-family:var(--f-heading); font-weight:700; font-size:18px; color:var(--c-dark);">Birca Kolet</span>
+      </div>
+      <div class="type-scale-item">
+        <span class="type-scale-label">Body</span>
+        <span class="type-scale-size">16px / 1rem</span>
+        <span style="font-family:var(--f-body); font-size:16px; color:var(--c-secondary);">Одежда, которую забываешь снять</span>
+      </div>
+      <div class="type-scale-item">
+        <span class="type-scale-label">Small</span>
+        <span class="type-scale-size">13px / 0.8rem</span>
+        <span style="font-family:var(--f-body); font-size:13px; color:var(--c-secondary);">Wear it. Forget it's there.</span>
+      </div>
+      <div class="type-scale-item">
+        <span class="type-scale-label">Caption</span>
+        <span class="type-scale-size">10px / 0.64rem</span>
+        <span style="font-family:var(--f-body); font-size:10px; color:var(--c-secondary);">BIRCA KOLET &copy; 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-light-rounded reveal" style="margin-top:var(--sp-6);">
+    <h4>Правила использования / Usage Rules</h4>
+    <ul class="rule-list">
+      <li><strong>Montserrat Bold (700)</strong> -- заголовки, навигация, кнопки, акцентный текст</li>
+      <li><strong>Montserrat Medium (500)</strong> -- подзаголовки, метки, теги</li>
+      <li><strong>Lato Regular (400)</strong> -- основной текст, описания, параграфы</li>
+      <li><strong>Lato Light (300)</strong> -- подписи, второстепенный текст</li>
+      <li><strong>Lato Bold (700)</strong> -- выделение в тексте, ссылки</li>
+      <li>Межстрочный интервал: 1.5-1.7 для основного текста</li>
+      <li>Межбуквенный интервал: -0.02em для заголовков, 0.15em для CAPS</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 09: COLOR PALETTE -->
+<!-- ============================================================ -->
+<section class="section" id="colors">
+  <span class="section-number reveal">09</span>
+  <h2 class="section-title-ru reveal">Цветовая палитра</h2>
+  <p class="section-title-en reveal">Color Palette</p>
+  <div class="divider reveal"></div>
+
+  <p class="reveal mb-4">Нажмите на карточку цвета, чтобы скопировать HEX-код. / Click a color card to copy the HEX code.</p>
+
+  <div class="palette-grid reveal">
+    <div class="color-card" onclick="copyHex('#008C53', this)">
+      <div class="color-swatch" style="background:#008C53;"></div>
+      <div class="color-info">
+        <div class="color-name">Primary Green</div>
+        <div class="color-hex">#008C53 / RGB 0, 140, 83</div>
+        <div class="color-usage">Логотип, кнопки, акценты / Logo, buttons, accents</div>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyHex('#3A3A3A', this)">
+      <div class="color-swatch" style="background:#3A3A3A;"></div>
+      <div class="color-info">
+        <div class="color-name">Warm Charcoal</div>
+        <div class="color-hex">#3A3A3A / RGB 58, 58, 58</div>
+        <div class="color-usage">Основной текст / Body text</div>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyHex('#8DB838', this)">
+      <div class="color-swatch" style="background:#8DB838;"></div>
+      <div class="color-info">
+        <div class="color-name">Soft Lime</div>
+        <div class="color-hex">#8DB838 / RGB 141, 184, 56</div>
+        <div class="color-usage">Акцентные элементы, hover / Accent, hover states</div>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyHex('#F5F2EC', this)">
+      <div class="color-swatch" style="background:#F5F2EC; border-bottom:1px solid rgba(0,0,0,0.06);"></div>
+      <div class="color-info">
+        <div class="color-name">Warm Cotton</div>
+        <div class="color-hex">#F5F2EC / RGB 245, 242, 236</div>
+        <div class="color-usage">Фоны, карточки / Backgrounds, cards</div>
+      </div>
+    </div>
+    <div class="color-card" onclick="copyHex('#1A3A2A', this)">
+      <div class="color-swatch" style="background:#1A3A2A;"></div>
+      <div class="color-info">
+        <div class="color-name">Deep Forest</div>
+        <div class="color-hex">#1A3A2A / RGB 26, 58, 42</div>
+        <div class="color-usage">Тёмный фон, футер / Dark bg, footer</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top:var(--sp-6);">
+    <h4 style="margin-bottom:var(--sp-3);">Пропорции использования / Usage Ratios</h4>
+    <div style="display:flex; height:40px; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm);">
+      <div style="flex:5; background:var(--c-light);" title="Warm Cotton 50%"></div>
+      <div style="flex:2.5; background:var(--c-primary);" title="Primary Green 25%"></div>
+      <div style="flex:1.5; background:var(--c-secondary);" title="Warm Charcoal 15%"></div>
+      <div style="flex:0.5; background:var(--c-accent);" title="Soft Lime 5%"></div>
+      <div style="flex:0.5; background:var(--c-dark);" title="Deep Forest 5%"></div>
+    </div>
+    <div style="display:flex; gap:var(--sp-3); margin-top:var(--sp-1); font-size:var(--fs-xs); color:var(--c-secondary);">
+      <span>Warm Cotton 50%</span>
+      <span>Primary Green 25%</span>
+      <span>Warm Charcoal 15%</span>
+      <span>Soft Lime 5%</span>
+      <span>Deep Forest 5%</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 10: BUSINESS CARDS -->
+<!-- ============================================================ -->
+<section class="section" id="business-cards">
+  <span class="section-number reveal">10</span>
+  <h2 class="section-title-ru reveal">Визитные карточки</h2>
+  <p class="section-title-en reveal">Business Cards</p>
+  <div class="divider reveal"></div>
+
+  <p class="reveal mb-6">Формат: 90 x 50 мм (европейский стандарт) / 90 x 50 mm (European standard)</p>
+
+  <!-- Variant 1: Light -->
+  <h4 class="reveal text-primary mb-2">Вариант 1: Светлый / Light Variant</h4>
+  <div class="cards-container reveal mb-6">
+    <div class="card-pair">
+      <div class="bcard bcard-front-light">
+        <svg class="logo-display" style="width:160px;height:24px;margin-bottom:var(--sp-2);" aria-label="Logo"><use href="#logo-main"/></svg>
+        <div class="bcard-line"></div>
+        <span style="font-family:var(--f-body);font-size:9px;color:var(--c-secondary);letter-spacing:0.15em;text-transform:uppercase;margin-top:4px;">Clothing that you forget to take off</span>
+      </div>
+      <span class="bcard-label">Лицевая сторона / Front</span>
+    </div>
+    <div class="card-pair">
+      <div class="bcard bcard-front-light bcard-back" style="text-align:left;">
+        <div class="bcard-name" style="color:var(--c-dark);">Max</div>
+        <div class="bcard-position" style="color:var(--c-secondary);">Founder</div>
+        <div class="bcard-line" style="width:24px;"></div>
+        <div class="bcard-contact" style="color:var(--c-secondary);">
+          rassmaxalex@gmail.com<br>
+          bircakolet.com<br>
+          Birca Kolet
+        </div>
+        <svg class="logo-display" style="width:28px;height:28px;position:absolute;bottom:16px;right:20px;opacity:0.15;" aria-label="Icon"><use href="#logo-icon"/></svg>
+      </div>
+      <span class="bcard-label">Оборотная сторона / Back</span>
+    </div>
+  </div>
+
+  <!-- Variant 2: Dark -->
+  <h4 class="reveal text-primary mb-2">Вариант 2: Тёмный / Dark Variant</h4>
+  <div class="cards-container reveal">
+    <div class="card-pair">
+      <div class="bcard bcard-front-dark">
+        <svg class="logo-display" style="width:160px;height:24px;margin-bottom:var(--sp-2);" aria-label="Logo Light"><use href="#logo-light"/></svg>
+        <div class="bcard-line"></div>
+        <span style="font-family:var(--f-body);font-size:9px;color:var(--c-light);letter-spacing:0.15em;text-transform:uppercase;margin-top:4px;opacity:0.7;">Clothing that you forget to take off</span>
+      </div>
+      <span class="bcard-label">Лицевая сторона / Front</span>
+    </div>
+    <div class="card-pair">
+      <div class="bcard bcard-front-dark bcard-back" style="text-align:left;">
+        <div class="bcard-name" style="color:var(--c-light);">Max</div>
+        <div class="bcard-position" style="color:var(--c-light);">Founder</div>
+        <div class="bcard-line"></div>
+        <div class="bcard-contact" style="color:var(--c-light);">
+          rassmaxalex@gmail.com<br>
+          bircakolet.com<br>
+          Birca Kolet
+        </div>
+        <svg class="logo-display" style="width:28px;height:28px;position:absolute;bottom:16px;right:20px;opacity:0.1;color:var(--c-primary);" aria-label="Icon"><use href="#logo-icon-current"/></svg>
+      </div>
+      <span class="bcard-label">Оборотная сторона / Back</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 11: BRAND ELEMENTS -->
+<!-- ============================================================ -->
+<section class="section" id="brand-elements">
+  <span class="section-number reveal">11</span>
+  <h2 class="section-title-ru reveal">Фирменные элементы</h2>
+  <p class="section-title-en reveal">Brand Elements</p>
+  <div class="divider reveal"></div>
+
+  <div class="elements-grid reveal">
+    <div class="element-card">
+      <div class="element-demo">
+        <div class="tag-motif"></div>
+      </div>
+      <h4>Мотив бирки / Tag Motif</h4>
+      <p style="font-size:var(--fs-sm);">Стилизованная бирка -- главный декоративный элемент бренда. Используется как иконка, разделитель и фоновый паттерн.</p>
+    </div>
+    <div class="element-card">
+      <div class="element-demo">
+        <div style="display:flex; gap:var(--sp-3); align-items:center;">
+          <div style="width:80px; height:1px; background:var(--c-primary);"></div>
+          <div style="width:80px; height:1px; background:var(--c-primary); opacity:0.4;"></div>
+          <div style="width:40px; height:1px; background:var(--c-accent);"></div>
+        </div>
+      </div>
+      <h4>Тонкие линии / Thin Lines</h4>
+      <p style="font-size:var(--fs-sm);">Одинарные линии толщиной 1-2px. Используются как разделители и акценты. Не двойные (это не luxury-бренд).</p>
+    </div>
+    <div class="element-card">
+      <div class="element-demo">
+        <div style="display:flex; gap:var(--sp-2);">
+          <div class="rounded-box"></div>
+          <div class="rounded-box" style="border-radius:var(--radius-lg);"></div>
+        </div>
+      </div>
+      <h4>Скруглённые углы / Rounded Corners</h4>
+      <p style="font-size:var(--fs-sm);">8-12px скругления на всех контейнерах и карточках. Создают ощущение мягкости и дружелюбности.</p>
+    </div>
+    <div class="element-card">
+      <div class="element-demo">
+        <div class="pattern-strip"></div>
+      </div>
+      <h4>Паттерн / Pattern</h4>
+      <p style="font-size:var(--fs-sm);">Вертикальные штрихи с шагом 16px, opacity 10-15%. Используется как фоновая текстура на крупных плоскостях.</p>
+    </div>
+  </div>
+
+  <div class="bg-light-rounded reveal" style="margin-top:var(--sp-4);">
+    <h4>Дополнительные элементы / Additional Elements</h4>
+    <ul class="rule-list">
+      <li><strong>8px grid</strong> -- все отступы кратны 8px (8, 16, 24, 32, 48, 64, 96, 128)</li>
+      <li><strong>Тени</strong> -- мягкие, не контрастные: 0 4px 12px rgba(0,0,0,0.08)</li>
+      <li><strong>Иконки</strong> -- линейный стиль, stroke-width 1.5, скруглённые концы</li>
+      <li><strong>Фото обрезка</strong> -- border-radius 10px на всех изображениях</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 12: DO'S & DON'TS -->
+<!-- ============================================================ -->
+<section class="section" id="dos-donts">
+  <span class="section-number reveal">12</span>
+  <h2 class="section-title-ru reveal">Правила использования логотипа</h2>
+  <p class="section-title-en reveal">Do's & Don'ts</p>
+  <div class="divider reveal"></div>
+
+  <div class="dos-donts-grid reveal" style="margin-bottom:var(--sp-4);">
+    <div class="do-card">
+      <div class="verdict">Правильно / Do</div>
+      <div class="example-box" style="background:var(--c-light);">
+        <svg class="logo-display logo-sm"><use href="#logo-main"/></svg>
+      </div>
+      <p class="example-desc">Используй утверждённые цветовые варианты на контрастном фоне</p>
+    </div>
+    <div class="dont-card">
+      <div class="verdict">Неправильно / Don't</div>
+      <div class="example-box" style="background:var(--c-light);">
+        <svg class="logo-display logo-sm" style="transform:rotate(15deg);"><use href="#logo-main"/></svg>
+      </div>
+      <p class="example-desc">Не поворачивай и не наклоняй логотип</p>
+    </div>
+  </div>
+
+  <div class="dos-donts-grid reveal" style="margin-bottom:var(--sp-4);">
+    <div class="do-card">
+      <div class="verdict">Правильно / Do</div>
+      <div class="example-box" style="background:var(--c-light);">
+        <svg class="logo-display logo-sm"><use href="#logo-main"/></svg>
+      </div>
+      <p class="example-desc">Соблюдай охранное поле вокруг логотипа</p>
+    </div>
+    <div class="dont-card">
+      <div class="verdict">Неправильно / Don't</div>
+      <div class="example-box" style="background:var(--c-light);">
+        <svg class="logo-display" style="width:200px;height:40px;" ><use href="#logo-main"/></svg>
+        <span style="font-size:11px; color:var(--c-secondary); margin-left:-20px;">текст рядом</span>
+      </div>
+      <p class="example-desc">Не размещай текст или элементы внутри охранного поля</p>
+    </div>
+  </div>
+
+  <div class="dos-donts-grid reveal" style="margin-bottom:var(--sp-4);">
+    <div class="do-card">
+      <div class="verdict">Правильно / Do</div>
+      <div class="example-box" style="background:var(--c-dark);">
+        <svg class="logo-display logo-sm"><use href="#logo-light"/></svg>
+      </div>
+      <p class="example-desc">На тёмном фоне используй светлую версию</p>
+    </div>
+    <div class="dont-card">
+      <div class="verdict">Неправильно / Don't</div>
+      <div class="example-box" style="background:var(--c-light);">
+        <svg class="logo-display logo-sm" style="opacity:0.3;"><use href="#logo-main"/></svg>
+      </div>
+      <p class="example-desc">Не снижай прозрачность логотипа</p>
+    </div>
+  </div>
+
+  <div class="dos-donts-grid reveal">
+    <div class="do-card">
+      <div class="verdict">Правильно / Do</div>
+      <div class="example-box" style="background:var(--c-light);">
+        <svg class="logo-display logo-sm"><use href="#logo-main"/></svg>
+      </div>
+      <p class="example-desc">Сохраняй оригинальные пропорции</p>
+    </div>
+    <div class="dont-card">
+      <div class="verdict">Неправильно / Don't</div>
+      <div class="example-box" style="background:var(--c-light);">
+        <svg class="logo-display" style="width:200px;height:50px;" preserveAspectRatio="none"><use href="#logo-main"/></svg>
+      </div>
+      <p class="example-desc">Не искажай и не растягивай логотип</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 13: TONE OF VOICE -->
+<!-- ============================================================ -->
+<section class="section" id="tone-of-voice">
+  <span class="section-number reveal">13</span>
+  <h2 class="section-title-ru reveal">Голос бренда</h2>
+  <p class="section-title-en reveal">Tone of Voice</p>
+  <div class="divider reveal"></div>
+
+  <div class="bg-light-rounded reveal mb-6">
+    <h4>Характер коммуникации / Communication Character</h4>
+    <div style="display:flex; gap:var(--sp-2); flex-wrap:wrap; margin:var(--sp-2) 0;">
+      <span class="inline-tag">Дружелюбный / Friendly</span>
+      <span class="inline-tag">Ироничный / Ironic</span>
+      <span class="inline-tag">Честный / Honest</span>
+      <span class="inline-tag">На "ты" / Informal</span>
+    </div>
+    <p style="font-size:var(--fs-sm); margin-top:var(--sp-2);">Мы говорим как друг, который разбирается в одежде. Не как корпорация, не как luxury-бренд. Мы шутим, признаём проблемы и предлагаем решения.</p>
+  </div>
+
+  <h4 class="reveal mb-4">Примеры / Examples</h4>
+
+  <div class="tov-grid reveal" style="margin-bottom:var(--sp-4);">
+    <div class="tov-card">
+      <div class="tov-label yes">Так говорим / We say</div>
+      <p class="tov-example">&laquo;Знаешь эту бирку, которая колет шею уже третий день? Мы её убрали. Вся информация -- напечатана прямо на ткани.&raquo;</p>
+    </div>
+    <div class="tov-card">
+      <div class="tov-label no">Так не говорим / We don't say</div>
+      <p class="tov-example">&laquo;Наш инновационный подход к маркировке текстильных изделий обеспечивает максимальный комфорт потребителя.&raquo;</p>
+    </div>
+  </div>
+
+  <div class="tov-grid reveal" style="margin-bottom:var(--sp-4);">
+    <div class="tov-card">
+      <div class="tov-label yes">We say (EN)</div>
+      <p class="tov-example">"That tag that's been scratching your neck for three days? Gone. All the info is printed right on the fabric."</p>
+    </div>
+    <div class="tov-card">
+      <div class="tov-label no">We don't say (EN)</div>
+      <p class="tov-example">"Our innovative labeling technology provides an unparalleled consumer experience."</p>
+    </div>
+  </div>
+
+  <div class="tov-grid reveal" style="margin-bottom:var(--sp-4);">
+    <div class="tov-card">
+      <div class="tov-label yes">Соцсети / Social Media</div>
+      <p class="tov-example">&laquo;Опрос: кто ещё срезает бирки ножницами сразу после покупки? (Мы тоже так делали. Потом решили это исправить.)&raquo;</p>
+    </div>
+    <div class="tov-card">
+      <div class="tov-label yes">Сайт / Website</div>
+      <p class="tov-example">&laquo;Birca Kolet -- это одежда, о которой ты не думаешь. Она просто на тебе. Комфортно. Тихо. Без сюрпризов.&raquo;</p>
+    </div>
+  </div>
+
+  <div class="bg-light-rounded reveal">
+    <h4>Ключевые принципы / Key Principles</h4>
+    <ul class="rule-list">
+      <li><strong>Ирония, не сарказм</strong> -- мы смеёмся вместе с людьми, не над ними</li>
+      <li><strong>Проблема - решение</strong> -- всегда начинаем с боли, заканчиваем решением</li>
+      <li><strong>Короткие предложения</strong> -- максимум 15-20 слов в предложении</li>
+      <li><strong>Обращение на "ты"</strong> -- везде, кроме официальных документов и B2B</li>
+      <li><strong>Без пафоса</strong> -- не "эксклюзивная коллекция", а "новые футболки"</li>
+      <li><strong>Честность</strong> -- если что-то не идеально, говорим об этом первыми</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 14: PHOTOGRAPHY STYLE -->
+<!-- ============================================================ -->
+<section class="section" id="photography">
+  <span class="section-number reveal">14</span>
+  <h2 class="section-title-ru reveal">Фотографический стиль</h2>
+  <p class="section-title-en reveal">Photography Style</p>
+  <div class="divider reveal"></div>
+
+  <div class="photo-grid reveal mb-6">
+    <div class="photo-placeholder">Естественный свет<br>Мягкие тени<br>Тёплые тона</div>
+    <div class="photo-placeholder">Повседневные ситуации<br>Реальные люди<br>Без постановки</div>
+    <div class="photo-placeholder">Текстура ткани<br>Макросъёмка<br>Детали</div>
+  </div>
+
+  <div class="photo-guidelines reveal">
+    <div class="photo-guideline">
+      <h4>Настроение / Mood</h4>
+      <p>Тёплое, расслабленное, повседневное. Как утро выходного дня. Люди в кадре -- естественные, не позируют. Улыбки -- настоящие.</p>
+    </div>
+    <div class="photo-guideline">
+      <h4>Свет / Lighting</h4>
+      <p>Естественный дневной свет. Мягкие тени. Тёплый баланс белого (5500-6000K). Никаких студийных вспышек и жёстких теней.</p>
+    </div>
+    <div class="photo-guideline">
+      <h4>Композиция / Composition</h4>
+      <p>Свободная, с воздухом. Правило третей. Негативное пространство приветствуется. Фокус на текстуре ткани и комфорте.</p>
+    </div>
+    <div class="photo-guideline">
+      <h4>Цветокоррекция / Color Grading</h4>
+      <p>Тёплые тона, слегка десатурированные. Никаких HDR-эффектов. Зелёные оттенки -- в рамках палитры бренда.</p>
+    </div>
+  </div>
+
+  <div class="bg-light-rounded reveal" style="margin-top:var(--sp-4);">
+    <h4>Запрещено в фотографии / Photography Don'ts</h4>
+    <ul class="rule-list">
+      <li>Глянцевая студийная съёмка в стиле luxury</li>
+      <li>Чрезмерная ретушь и обработка кожи</li>
+      <li>Холодные, синие тона</li>
+      <li>Постановочные "модные" позы</li>
+      <li>Тёмные, мрачные тона</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 15: LETTERHEADS -->
+<!-- ============================================================ -->
+<section class="section" id="letterheads">
+  <span class="section-number reveal">15</span>
+  <h2 class="section-title-ru reveal">Фирменные бланки</h2>
+  <p class="section-title-en reveal">Letterheads</p>
+  <div class="divider reveal"></div>
+
+  <p class="reveal mb-6">Формат: A4 (210 x 297 мм) / A4 Portrait (210 x 297 mm)</p>
+
+  <div class="letterhead-container reveal">
+    <!-- Standard -->
+    <div style="text-align:center;">
+      <div class="letterhead">
+        <div class="letterhead-header">
+          <svg class="logo-display" style="width:100px;height:15px;" aria-label="Logo"><use href="#logo-main"/></svg>
+          <div class="letterhead-contacts">
+            rassmaxalex@gmail.com<br>
+            bircakolet.com<br>
+            Birca Kolet
+          </div>
+        </div>
+        <div class="letterhead-body">
+          <div class="letterhead-body-lines"></div>
+        </div>
+        <div class="letterhead-footer">
+          Birca Kolet &copy; 2026 | bircakolet.com
+        </div>
+      </div>
+      <span class="bcard-label" style="margin-top:var(--sp-2);display:block;">Стандартный / Standard</span>
+    </div>
+
+    <!-- With watermark -->
+    <div style="text-align:center;">
+      <div class="letterhead">
+        <div class="letterhead-header">
+          <svg class="logo-display" style="width:100px;height:15px;" aria-label="Logo"><use href="#logo-main"/></svg>
+          <div class="letterhead-contacts">
+            rassmaxalex@gmail.com<br>
+            bircakolet.com<br>
+            Birca Kolet
+          </div>
+        </div>
+        <div class="letterhead-body">
+          <div class="letterhead-body-lines"></div>
+          <div class="letterhead-watermark">
+            <svg style="width:160px;height:160px;opacity:1;" aria-label="Watermark"><use href="#logo-icon"/></svg>
+          </div>
+        </div>
+        <div class="letterhead-footer">
+          Birca Kolet &copy; 2026 | bircakolet.com
+        </div>
+      </div>
+      <span class="bcard-label" style="margin-top:var(--sp-2);display:block;">С водяным знаком / With Watermark</span>
+    </div>
+  </div>
+
+  <div class="bg-light-rounded reveal" style="margin-top:var(--sp-6);">
+    <h4>Спецификации / Specifications</h4>
+    <ul class="rule-list">
+      <li>Поля: 20mm со всех сторон</li>
+      <li>Шапка: логотип слева, контакты справа, зелёная линия 2px под шапкой</li>
+      <li>Подвал: зелёная линия 1px, копирайт по центру</li>
+      <li>Водяной знак: иконка-бирка, opacity 5-8%, по центру страницы</li>
+      <li>Шрифт контактов: Lato Regular, 8pt</li>
+      <li>Шрифт копирайта: Lato Regular, 7pt</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 16: PRESENTATIONS & WEBSITE -->
+<!-- ============================================================ -->
+<section class="section" id="presentations">
+  <span class="section-number reveal">16</span>
+  <h2 class="section-title-ru reveal">Презентации и сайт</h2>
+  <p class="section-title-en reveal">Presentations & Website</p>
+  <div class="divider reveal"></div>
+
+  <h4 class="reveal mb-4">Слайды презентаций / Presentation Slides</h4>
+  <div class="slide-grid reveal mb-6">
+    <!-- Title Slide -->
+    <div>
+      <div class="slide-demo" style="flex-direction:column; gap:var(--sp-3);">
+        <svg class="logo-display" style="width:200px;height:30px;" aria-label="Logo"><use href="#logo-main"/></svg>
+        <div style="width:40px;height:1px;background:var(--c-primary);"></div>
+        <span style="font-family:var(--f-heading);font-size:var(--fs-sm);color:var(--c-secondary);">Название презентации</span>
+        <span style="font-family:var(--f-body);font-size:var(--fs-xs);color:var(--c-secondary);opacity:0.5;">Дата / Автор</span>
+      </div>
+      <p style="font-size:var(--fs-sm); text-align:center; color:var(--c-secondary);">Титульный слайд / Title Slide</p>
+    </div>
+    <!-- Content Slide -->
+    <div>
+      <div class="slide-demo" style="flex-direction:column; align-items:flex-start; padding:var(--sp-4) var(--sp-6);">
+        <span style="font-family:var(--f-heading);font-weight:700;font-size:var(--fs-md);color:var(--c-dark);">Заголовок раздела</span>
+        <div style="width:30px;height:2px;background:var(--c-primary);margin:var(--sp-1) 0;"></div>
+        <div style="display:flex;gap:var(--sp-3);width:100%;margin-top:var(--sp-2);">
+          <div style="flex:1;background:rgba(0,140,83,0.06);border-radius:var(--radius-sm);padding:var(--sp-2);height:60px;"></div>
+          <div style="flex:1;background:rgba(0,140,83,0.06);border-radius:var(--radius-sm);padding:var(--sp-2);height:60px;"></div>
+        </div>
+        <svg class="logo-display" style="width:60px;height:9px;position:absolute;bottom:12px;right:16px;opacity:0.3;" aria-label="Logo"><use href="#logo-main"/></svg>
+      </div>
+      <p style="font-size:var(--fs-sm); text-align:center; color:var(--c-secondary);">Контентный слайд / Content Slide</p>
+    </div>
+  </div>
+
+  <div class="divider-wide reveal"></div>
+
+  <h4 class="reveal mb-4">Гайдлайны для сайта / Website Guidelines</h4>
+  <div class="grid-2 reveal">
+    <div>
+      <dl class="web-spec">
+        <dt>Фон страниц</dt>
+        <dd>#FFFFFF или #F5F2EC</dd>
+        <dt>Макс. ширина</dt>
+        <dd>1200px (контент)</dd>
+        <dt>Заголовки</dt>
+        <dd>Montserrat Bold, #1A3A2A</dd>
+        <dt>Текст</dt>
+        <dd>Lato Regular, #3A3A3A, 16px</dd>
+        <dt>Кнопки</dt>
+        <dd>#008C53, radius 10px, Montserrat 600</dd>
+        <dt>Hover</dt>
+        <dd>Затемнение 10% или #8DB838</dd>
+        <dt>Карточки</dt>
+        <dd>bg #F5F2EC, shadow-sm, radius 10px</dd>
+        <dt>Иконки</dt>
+        <dd>Линейные, stroke 1.5px, #008C53</dd>
+      </dl>
+    </div>
+    <div>
+      <dl class="web-spec">
+        <dt>Навигация</dt>
+        <dd>Montserrat 500, #3A3A3A</dd>
+        <dt>Активная ссылка</dt>
+        <dd>#008C53, нижнее подчёркивание 2px</dd>
+        <dt>Футер</dt>
+        <dd>bg #1A3A2A, текст #F5F2EC</dd>
+        <dt>Формы</dt>
+        <dd>border 1px #E0DDD7, focus: #008C53</dd>
+        <dt>Анимации</dt>
+        <dd>ease 0.3s, без bounce</dd>
+        <dt>Брейкпоинты</dt>
+        <dd>768px (tablet), 480px (mobile)</dd>
+        <dt>Изображения</dt>
+        <dd>border-radius 10px, lazy loading</dd>
+        <dt>404 страница</dt>
+        <dd>Ирония: "Эту страницу тоже срезали"</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 17: EMAIL SIGNATURE -->
+<!-- ============================================================ -->
+<section class="section" id="email-signature">
+  <span class="section-number reveal">17</span>
+  <h2 class="section-title-ru reveal">Email-подпись</h2>
+  <p class="section-title-en reveal">Email Signature</p>
+  <div class="divider reveal"></div>
+
+  <p class="reveal mb-4">HTML-шаблон подписи для корпоративной почты. Совместим с Gmail, Outlook, Apple Mail.</p>
+
+  <div class="reveal mb-6">
+    <div class="email-sig-demo">
+      <div class="email-sig-inner">
+        <svg style="width:40px;height:40px;flex-shrink:0;" aria-label="Icon"><use href="#logo-icon"/></svg>
+        <div class="email-sig-divider"></div>
+        <div>
+          <div class="email-sig-name">Max</div>
+          <div class="email-sig-position">Founder</div>
+          <div class="email-sig-contact">
+            <a href="mailto:rassmaxalex@gmail.com">rassmaxalex@gmail.com</a><br>
+            <a href="https://bircakolet.com">bircakolet.com</a><br>
+            <span style="font-size:10px;color:#999;margin-top:4px;display:inline-block;">Birca Kolet -- Wear it. Forget it's there.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-light-rounded reveal">
+    <h4>HTML-код подписи / Signature HTML Code</h4>
+    <pre style="background:var(--c-white);border:1px solid rgba(0,0,0,0.08);border-radius:var(--radius-sm);padding:var(--sp-3);font-size:12px;overflow-x:auto;line-height:1.6;color:var(--c-secondary);margin-top:var(--sp-2);"><code>&lt;table cellpadding="0" cellspacing="0" style="font-family:Arial,sans-serif;"&gt;
+  &lt;tr&gt;
+    &lt;td style="padding-right:12px;border-right:2px solid #008C53;"&gt;
+      &lt;img src="icon.png" width="40" height="40" alt="BK"&gt;
+    &lt;/td&gt;
+    &lt;td style="padding-left:12px;"&gt;
+      &lt;strong style="font-size:14px;color:#1A3A2A;"&gt;Max&lt;/strong&gt;&lt;br&gt;
+      &lt;span style="font-size:12px;color:#3A3A3A;"&gt;Founder&lt;/span&gt;&lt;br&gt;
+      &lt;a href="mailto:rassmaxalex@gmail.com"
+         style="font-size:11px;color:#008C53;"&gt;rassmaxalex@gmail.com&lt;/a&gt;&lt;br&gt;
+      &lt;a href="https://bircakolet.com"
+         style="font-size:11px;color:#008C53;"&gt;bircakolet.com&lt;/a&gt;&lt;br&gt;
+      &lt;span style="font-size:10px;color:#999;"&gt;
+        Birca Kolet &amp;mdash; Wear it. Forget it's there.
+      &lt;/span&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+  </div>
+
+  <!-- FINAL PAGE -->
+  <div class="reveal" style="text-align:center; margin-top:var(--sp-16); padding:var(--sp-12) 0;">
+    <svg class="logo-display logo-icon" style="margin:0 auto var(--sp-4);"><use href="#logo-icon"/></svg>
+    <h3 style="color:var(--c-primary); margin-bottom:var(--sp-2);">Birca Kolet</h3>
+    <p style="font-family:var(--f-body); font-weight:var(--fw-light); color:var(--c-secondary);">
+      &laquo;Одежда, которую забываешь снять&raquo;<br>
+      <span style="opacity:0.5;">Wear it. Forget it's there.</span>
+    </p>
+    <div style="width:40px;height:2px;background:var(--c-primary);margin:var(--sp-4) auto;border-radius:1px;"></div>
+    <p style="font-size:var(--fs-sm); color:var(--c-secondary); opacity:0.4;">
+      Brand Guidelines v1.0 / 2026<br>
+      rassmaxalex@gmail.com
+    </p>
+  </div>
+</section>
+
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+(function() {
+  'use strict';
+
+  /* --- Progress Bar --- */
+  const progressBar = document.getElementById('progress-bar');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }
+  /* --- Scroll to Top Button --- */
+  var scrollTopBtn = document.getElementById('scroll-top');
+  function updateScrollTop() {
+    if (window.scrollY > 600) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', function() {
+    updateProgress();
+    updateScrollTop();
+  }, { passive: true });
+
+  /* --- Reveal Animation (IntersectionObserver) --- */
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  /* --- Copy HEX to Clipboard with Toast --- */
+  window.copyHex = function(hex, el) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(hex).then(function() { showToast(hex + ' скопирован / copied'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = hex;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast(hex + ' скопирован / copied');
+    }
+  };
+
+  var toastTimer;
+  function showToast(msg) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() { toast.classList.remove('show'); }, 2000);
+  }
+
+  /* --- Smooth scroll for TOC --- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
