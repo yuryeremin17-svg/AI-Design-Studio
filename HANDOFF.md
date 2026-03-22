@@ -1,4 +1,58 @@
 # HANDOFF — AI Design Studio
+> Дата: 2026-03-22 | Сессия: #19
+
+## Что сделано в сессии #19
+
+### Birca Kolet — доработка по фидбэку клиента (Максим)
+
+**Фидбэк от Максима:**
+1. Логотип — идея бирки ОК, но "обыграть интереснее"
+2. Цвета — "грязно и мрачно" → хочет ярче, чище
+3. Шрифт — Montserrat "заезженный"
+4. Референс — 3D буква B из зелёной ленты (прислал свою картинку)
+
+**Что сделано:**
+
+1. **Мозговой штурм** — 3 независимых креативщика (Agent), каждый со своим вариантом:
+   - A: 3D Ribbon B (отброшен — SVG слишком угловатый)
+   - B: Smart Flat / Geometric Tag (отброшен — не понравился)
+   - C: Tag-Integrated Wordmark (выбран Юрием)
+
+2. **Concept C — Tag-Integrated Wordmark:**
+   - Буква "I" в BIRCA = бирка с отверстием и петлёй нити (лаймовый акцент)
+   - Механизм FedEx — скрытый символ прямо в названии
+   - Шрифт: Nunito Sans ExtraBold (outlined через opentype.js)
+   - Outlined SVG paths — не зависит от загрузки шрифтов
+
+3. **Новая палитра (по фидбэку):**
+   - #00A85A (Vivid Green, ярче прежнего #008C53)
+   - #7ED321 (Lime, чище прежнего #8DB838)
+   - #CEFF00 (Signal Lime — из preferred_colors клиента)
+   - #FAF8F5 (Warm White)
+   - #1A1A1A (Rich Black, нейтральный вместо болотного #1A3A2A)
+
+4. **Каскадное обновление всех файлов:**
+   - brandbook.html — CSS переменные + hardcoded HEX + SVG symbols + названия цветов + RGB
+   - social-templates.html — CSS переменные + 7 wordmark SVG + 6 icon SVG + заголовок
+   - brand.json — палитра + шрифт
+   - brand-strategy.md — палитра + шрифтовые пары
+   - email-draft.html — ссылочный цвет
+   - SVG логотипы: logo.svg, logo-light.svg, icon.svg — Concept C outlined
+
+5. **logo-presentation-v2.html** — сравнение "До/После" для Максима
+
+6. **Скриншоты** — убраны из корня проекта в output/birca-kolet/screenshots/
+
+**Урок сессии:** При каскадном обновлении бренда — менять ВСЁ за один проход (CSS переменные + hardcoded HEX + inline SVG symbols + текстовые упоминания). Записано в memory.
+
+### Что осталось по Birca Kolet
+- [ ] Показать Максиму (logo-presentation-v2 + brandbook через GitHub Pages)
+- [ ] Фидбэк от Максима (раунд 2)
+- [ ] Правки по фидбэку (если будут)
+- [ ] /deliver — сборка ZIP
+
+---
+
 > Дата: 2026-03-18 | Сессия: #16
 
 ## Что сделано в сессии #16
