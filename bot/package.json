@@ -1,0 +1,16 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "npm cache сломан (права доступа). Нужно: ```bash sudo rm -rf ~/.npm/_cacache npm cache verify ``` После этого: `npm install -g wrangler` или `npx wrangler`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "grammy": "^1.41.1"
+  }
+}
