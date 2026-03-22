@@ -45,8 +45,19 @@
 
 **Урок сессии:** При каскадном обновлении бренда — менять ВСЁ за один проход (CSS переменные + hardcoded HEX + inline SVG symbols + текстовые упоминания). Записано в memory.
 
+### Портфолио на лендинге — 4 кейса
+- Переделана секция Portfolio: все карточки ведут напрямую на брендбук (как Aurelius)
+- Убраны промежуточные case-study блоки со скриншотами
+- Добавлена **Bloshka Deluxe** (4-й кейс)
+- Порядок: Aurelius → РубИИльник → Birca Kolet → Bloshka Deluxe
+- Live: https://yuryeremin17-svg.github.io/AI-Design-Studio/#portfolio
+
+### Письмо Максиму v2
+- email-draft.html обновлён: тон Birca Kolet (дружелюбный, на "ты")
+- Структура: замечания → что исправили → 3 ссылки → что дальше (ZIP если ОК)
+- Письмо отправлено
+
 ### Что осталось по Birca Kolet
-- [ ] Показать Максиму (logo-presentation-v2 + brandbook через GitHub Pages)
 - [ ] Фидбэк от Максима (раунд 2)
 - [ ] Правки по фидбэку (если будут)
 - [ ] /deliver — сборка ZIP
