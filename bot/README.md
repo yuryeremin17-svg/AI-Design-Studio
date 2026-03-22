@@ -1,24 +1,11 @@
 # AI Design Studio — Telegram Bot
 
-## Статус: Шаг 0+1 задеплоен, бот НЕ отвечает
+## Статус: РАБОТАЕТ (сессия #20, 2026-03-22)
 
-### Диагностика (куда вернуться)
-- Worker задеплоен на `https://ai-design-studio-bot.yuryeremin17.workers.dev`
-- Webhook установлен, Telegram доставляет updates (pending=0, нет ошибок)
-- Прямой Bot API (curl sendMessage) — РАБОТАЕТ
-- Worker получает POST, отвечает 200 — но sendMessage внутри Worker молча не срабатывает
-- **Гипотеза:** `env.BOT_TOKEN` (wrangler secret) недоступен внутри fetch handler
-- **Следующий шаг:** добавить GET `/debug` endpoint который вызовет sendMessage через env.BOT_TOKEN → если не отправит — пересоздать secret
-- Код: без grammY, чистый Bot API (grammy не работал на Workers)
-- Webhook secret убран (сначала починить основное)
-
-## Блокер
-npm cache сломан (права доступа). Нужно:
-```bash
-sudo rm -rf ~/.npm/_cacache
-npm cache verify
-```
-После этого: `npm install -g wrangler` или `npx wrangler`
+- Worker: `https://ai-design-studio-bot.yuryeremin17.workers.dev`
+- Webhook установлен, бот отвечает на /start, кнопки, ключевые слова
+- Код: чистый Bot API (без grammY), Cloudflare Workers
+- **Фикс:** секрет BOT_TOKEN был повреждён — пересоздан через `wrangler secret put`
 
 ## Дорожная карта
 

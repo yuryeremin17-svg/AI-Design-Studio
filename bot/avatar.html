@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 512px; height: 512px;
+  background: #0F2B4C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Manrope', sans-serif;
+  overflow: hidden;
+}
+.container {
+  text-align: center;
+}
+.icon {
+  margin-bottom: 24px;
+}
+.icon svg {
+  width: 160px;
+  height: 160px;
+}
+.name {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #FAF7F2;
+  margin-bottom: 8px;
+}
+.name span {
+  color: #C46B2A;
+  text-transform: uppercase;
+}
+.divider {
+  width: 50px;
+  height: 2px;
+  background: #C4A87C;
+  margin: 12px auto;
+  opacity: 0.5;
+}
+.sub {
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: #C4A87C;
+}
+</style></head><body>
+<div class="container">
+  <div class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+      <circle cx="40" cy="42" r="28" fill="none" stroke="#C46B2A" stroke-width="3" stroke-dasharray="140 36" stroke-dashoffset="-18"/>
+      <line x1="40" y1="14" x2="40" y2="38" stroke="#C46B2A" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="name">руб<span>ИИ</span>льник</div>
+  <!-- CSS handles casing: all lowercase except ИИ -->
+  <div class="divider"></div>
+  <div class="sub">Design Studio</div>
+</div>
+</body></html>
