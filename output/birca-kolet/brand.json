@@ -7,35 +7,40 @@
   "package": "business",
   "languages": ["ru", "en"],
   "palette": {
-    "Green": {
-      "hex": "#008C53",
-      "rgb": "0, 140, 83",
+    "Vivid Green": {
+      "hex": "#00A85A",
+      "rgb": "0, 168, 90",
       "usage": "Primary — логотип, заголовки, CTA"
     },
-    "Warm Charcoal": {
-      "hex": "#3A3A3A",
-      "rgb": "58, 58, 58",
+    "Soft Black": {
+      "hex": "#2D2D2D",
+      "rgb": "45, 45, 45",
       "usage": "Secondary — текст, подзаголовки"
     },
-    "Soft Lime": {
-      "hex": "#8DB838",
-      "rgb": "141, 184, 56",
-      "usage": "Accent — кнопки, выделения, digital"
+    "Lime": {
+      "hex": "#7ED321",
+      "rgb": "126, 211, 33",
+      "usage": "Accent — кнопки, нитка в логотипе, digital"
     },
-    "Warm Cotton": {
-      "hex": "#F5F2EC",
-      "rgb": "245, 242, 236",
+    "Signal Lime": {
+      "hex": "#CEFF00",
+      "rgb": "206, 255, 0",
+      "usage": "Signal — теги, стикеры, sale, промо"
+    },
+    "Warm White": {
+      "hex": "#FAF8F5",
+      "rgb": "250, 248, 245",
       "usage": "Light — фоны, пространство"
     },
-    "Deep Forest": {
-      "hex": "#1A3A2A",
-      "rgb": "26, 58, 42",
-      "usage": "Dark — тёмные секции, тёмный фон"
+    "Rich Black": {
+      "hex": "#1A1A1A",
+      "rgb": "26, 26, 26",
+      "usage": "Dark — тёмные секции, контрастный фон"
     }
   },
   "fonts": {
-    "heading": "Montserrat",
-    "heading_weight": "700",
+    "heading": "Nunito Sans",
+    "heading_weight": "800",
     "body": "Lato",
     "body_weight": "400"
   },

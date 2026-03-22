@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birca Kolet — Logo: Before & After</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Nunito+Sans:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #00A85A;
+  --accent: #7ED321;
+  --dark: #1A1A1A;
+  --light: #FAF8F5;
+  --white: #FFFFFF;
+  --text: #2D2D2D;
+  --text-muted: #6B6B6B;
+  --font-heading: 'Nunito Sans', sans-serif;
+  --font-body: 'Lato', sans-serif;
+  --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-6: 48px; --sp-8: 64px; --sp-12: 96px;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-hover: 0 12px 48px rgba(0,0,0,0.15);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Header ── */
+.header {
+  background: var(--primary);
+  color: var(--white);
+  padding: var(--sp-12) var(--sp-4) var(--sp-8);
+  text-align: center;
+}
+.header h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 2.4rem;
+  letter-spacing: 0.04em;
+}
+.header .subtitle {
+  font-weight: 300;
+  font-size: 1.1rem;
+  margin-top: var(--sp-2);
+  opacity: 0.85;
+}
+
+/* ── Version Block ── */
+.version-block {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sp-8) var(--sp-4);
+}
+.version-label {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  margin-bottom: var(--sp-2);
+}
+.version-label.before { background: #e0e0e0; color: #666; }
+.version-label.after { background: var(--primary); color: var(--white); }
+.version-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: var(--dark);
+  margin-bottom: var(--sp-1);
+}
+.version-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin-bottom: var(--sp-4);
+  line-height: 1.7;
+}
+.version-desc span {
+  display: block;
+  margin-top: 4px;
+  font-style: italic;
+  opacity: 0.6;
+  font-size: 0.85rem;
+}
+
+/* ── Cards ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+}
+.logo-card {
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  padding: var(--sp-4);
+  position: relative;
+  transition: transform var(--transition);
+}
+.logo-card:hover { transform: translateY(-3px); }
+.card-label {
+  position: absolute;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* ── Palette row ── */
+.palette-row {
+  display: flex;
+  gap: 8px;
+  margin-top: var(--sp-3);
+}
+.palette-row .swatch {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  position: relative;
+}
+.palette-row .swatch-label {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  text-align: center;
+}
+
+/* ── Divider ── */
+.divider {
+  max-width: 1200px;
+  margin: 0 auto;
+  border: none;
+  border-top: 2px solid #eee;
+}
+
+/* ── Comparison ── */
+.comparison {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sp-8) var(--sp-4);
+}
+.comparison h2 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: var(--sp-6);
+}
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: var(--sp-3);
+  align-items: center;
+}
+.compare-cell {
+  border-radius: var(--radius);
+  padding: var(--sp-6) var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+.compare-cell .label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: var(--sp-3);
+}
+.arrow {
+  font-size: 2rem;
+  color: var(--primary);
+  text-align: center;
+  font-weight: 800;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: var(--sp-4);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .header h1 { font-size: 1.6rem; }
+  .logo-grid { grid-template-columns: 1fr; }
+  .compare-grid { grid-template-columns: 1fr; }
+  .arrow { transform: rotate(90deg); }
+}
+
+/* ── Print ── */
+@media print {
+  .logo-card:hover { transform: none; }
+  .version-block { page-break-inside: avoid; }
+  .comparison { page-break-before: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="header">
+  <h1>Birca Kolet</h1>
+  <div class="subtitle">Логотип: до и после вашего фидбэка / Logo: Before & After your feedback</div>
+</header>
+
+<!-- ═══════════ BEFORE ═══════════ -->
+<section class="version-block">
+  <div class="version-label before">До / Before</div>
+  <h2 class="version-title">Первый вариант</h2>
+  <div class="version-desc">
+    Wordmark на Montserrat Bold. Плоская иконка-бирка с "BK". Приглушённая палитра.
+    <span>Wordmark in Montserrat Bold. Flat tag icon with "BK". Muted palette.</span>
+  </div>
+
+  <div class="logo-grid">
+    <!-- Light bg -->
+    <div class="logo-card" style="background:#F5F2EC; box-shadow:var(--shadow);">
+      <span class="card-label" style="color:#3A3A3A;">Light bg</span>
+      <div style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.6rem; letter-spacing:0.15em; text-transform:uppercase; color:#1A3A2A;">BIRCA KOLET</div>
+    </div>
+    <!-- Dark bg -->
+    <div class="logo-card" style="background:#1A3A2A; box-shadow:var(--shadow);">
+      <span class="card-label" style="color:#F5F2EC;">Dark bg</span>
+      <div style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.6rem; letter-spacing:0.15em; text-transform:uppercase; color:#F5F2EC;">BIRCA KOLET</div>
+    </div>
+  </div>
+
+  <div style="margin-top:var(--sp-4);">
+    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Палитра / Palette:</div>
+    <div class="palette-row">
+      <div>
+        <div class="swatch" style="background:#008C53;"></div>
+        <div class="swatch-label">#008C53</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#8DB838;"></div>
+        <div class="swatch-label">#8DB838</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#F5F2EC; box-shadow:inset 0 0 0 1px rgba(0,0,0,0.1);"></div>
+        <div class="swatch-label">#F5F2EC</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#1A3A2A;"></div>
+        <div class="swatch-label">#1A3A2A</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem; color:#999; margin-top:8px;">Шрифт: Montserrat Bold</div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════ AFTER ═══════════ -->
+<section class="version-block">
+  <div class="version-label after">После / After</div>
+  <h2 class="version-title">Tag-Integrated Wordmark</h2>
+  <div class="version-desc">
+    Буква "I" в BIRCA = бирка с отверстием и петлёй нити. Nunito Sans ExtraBold. Яркая, чистая палитра. Скрытый символ прямо в названии.
+    <span>Letter "I" in BIRCA = clothing tag with hole and thread loop. Nunito Sans ExtraBold. Bright, clean palette. Hidden symbol in the name.</span>
+  </div>
+
+  <div class="logo-grid">
+    <!-- Bright green bg — hero -->
+    <div class="logo-card" style="background:#00A85A; box-shadow:var(--shadow);">
+      <span class="card-label" style="color:#fff;">Green bg — hero</span>
+      <div style="text-align:center;">
+        <svg viewBox="0 0 450 80" width="420" height="70" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.06 62L3.69 62L3.69 25.34L20.49 25.34Q26.36 25.34 29.56 27.89Q32.76 30.44 32.76 34.86L32.76 34.86Q32.76 38.13 30.89 40.42Q29.02 42.71 25.74 43.49L25.74 42.66Q28.29 43.07 30.06 44.27Q31.82 45.46 32.79 47.34Q33.75 49.21 33.75 51.65L33.75 51.65Q33.75 54.88 32.21 57.22Q30.68 59.56 27.85 60.78Q25.01 62 21.06 62ZM11.39 46.40L11.39 56.02L19.97 56.02Q21.22 56.02 22.20 55.81Q23.19 55.60 23.89 55.24Q24.60 54.88 25.06 54.28Q25.53 53.68 25.77 52.90Q26.00 52.12 26.00 51.18L26.00 51.18Q26.00 50.20 25.77 49.44Q25.53 48.69 25.06 48.12Q24.60 47.54 23.89 47.15Q23.19 46.76 22.20 46.58Q21.22 46.40 19.97 46.40L19.97 46.40L11.39 46.40ZM11.39 31.32L11.39 40.42L19.08 40.42Q22.10 40.42 23.56 39.28Q25.01 38.13 25.01 35.84L25.01 35.84Q25.01 33.61 23.56 32.46Q22.10 31.32 19.08 31.32L19.08 31.32L11.39 31.32Z" fill="#FFFFFF"/>
+          <g transform="translate(42, 6)"><rect x="0" y="14" width="22" height="50" rx="3" ry="3" fill="#FFFFFF"/><circle cx="11" cy="22" r="4" fill="#00A85A"/><path d="M11,18 Q11,4 18,2 Q25,0 22,8 Q20,14 15,16" stroke="#CEFF00" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>
+          <path d="M83.75 62L75.69 62L75.69 25.34L92.44 25.34Q98.57 25.34 101.90 28.30Q105.23 31.27 105.23 36.57L105.23 36.57Q105.23 40.00 103.72 42.50Q102.21 45.00 99.38 46.35Q96.54 47.70 92.44 47.70L92.44 47.70L92.85 46.82L94.98 46.82Q97.17 46.82 98.81 47.88Q100.44 48.95 101.64 51.13L101.64 51.13L107.57 62L98.68 62L92.33 50.30Q91.81 49.36 91.14 48.82Q90.46 48.27 89.60 48.04Q88.74 47.80 87.70 47.80L87.70 47.80L83.75 47.80L83.75 62ZM83.75 31.63L83.75 41.98L90.98 41.98Q94.20 41.98 95.84 40.68Q97.48 39.38 97.48 36.78L97.48 36.78Q97.48 34.23 95.84 32.93Q94.20 31.63 90.98 31.63L90.98 31.63L83.75 31.63ZM129.41 62.57Q123.48 62.57 119.27 60.23Q115.06 57.89 112.79 53.65Q110.53 49.42 110.53 43.64L110.53 43.64Q110.53 37.87 112.79 33.66Q115.06 29.45 119.27 27.11Q123.48 24.77 129.41 24.77L129.41 24.77Q133.05 24.77 136.38 25.91Q139.70 27.06 141.84 29.03L141.84 29.03L139.34 35.43Q137 33.61 134.63 32.75Q132.27 31.89 129.67 31.89L129.67 31.89Q124.47 31.89 121.76 34.93Q119.06 37.98 119.06 43.64L119.06 43.64Q119.06 49.31 121.76 52.38Q124.47 55.45 129.67 55.45L129.67 55.45Q132.27 55.45 134.63 54.59Q137 53.73 139.34 51.91L139.34 51.91L141.84 58.31Q139.70 60.28 136.38 61.43Q133.05 62.57 129.41 62.57ZM150.42 62L142.25 62L159.10 25.34L165.60 25.34L182.45 62L174.34 62L169.97 51.81L173.19 54.04L151.51 54.04L154.73 51.81L150.42 62ZM162.38 33.92L162.27 33.92L155.62 49.78L154.21 47.75L170.49 47.75L169.08 49.78L162.38 33.92Z" fill="#FFFFFF"/>
+          <path d="M289.75 62L281.69 62L281.69 25.34L289.75 25.34L289.75 41.30L289.86 41.30L305.09 25.34L314.76 25.34L296.04 44.58L296.10 41.10L315.49 62L305.72 62L289.86 45.26L289.75 45.26L289.75 62ZM333.02 62.57Q328.96 62.57 325.61 61.22Q322.25 59.87 319.86 57.37Q317.47 54.88 316.19 51.39Q314.92 47.91 314.92 43.64L314.92 43.64Q314.92 39.33 316.19 35.87Q317.47 32.41 319.86 29.94Q322.25 27.47 325.61 26.12Q328.96 24.77 333.02 24.77L333.02 24.77Q337.12 24.77 340.45 26.12Q343.78 27.47 346.17 29.92Q348.56 32.36 349.86 35.84Q351.16 39.33 351.16 43.59L351.16 43.59Q351.16 47.91 349.86 51.39Q348.56 54.88 346.17 57.37Q343.78 59.87 340.45 61.22Q337.12 62.57 333.02 62.57ZM333.02 55.71Q336.14 55.71 338.27 54.28Q340.40 52.85 341.57 50.12Q342.74 47.39 342.74 43.64L342.74 43.64Q342.74 39.85 341.60 37.14Q340.45 34.44 338.27 33.04Q336.08 31.63 333.02 31.63L333.02 31.63Q330 31.63 327.82 33.04Q325.63 34.44 324.49 37.14Q323.34 39.85 323.34 43.64L323.34 43.64Q323.34 47.39 324.49 50.12Q325.63 52.85 327.82 54.28Q330 55.71 333.02 55.71ZM382.42 62L357.40 62L357.40 25.34L365.46 25.34L365.46 55.19L382.42 55.19L382.42 62ZM412.32 62L387.20 62L387.20 25.34L412.32 25.34L412.32 31.63L394.90 31.63L394.90 40.21L411.17 40.21L411.17 46.56L394.90 46.56L394.90 55.71L412.32 55.71L412.32 62ZM435.46 62L427.40 62L427.40 32.00L415.28 32.00L415.28 25.34L447.57 25.34L447.57 32.00L435.46 32.00L435.46 62Z" fill="#FFFFFF"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Light bg -->
+    <div class="logo-card" style="background:#FAF8F5; box-shadow:var(--shadow);">
+      <span class="card-label" style="color:#2D2D2D;">Light bg</span>
+      <div style="text-align:center;">
+        <svg viewBox="0 0 450 80" width="420" height="70" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.06 62L3.69 62L3.69 25.34L20.49 25.34Q26.36 25.34 29.56 27.89Q32.76 30.44 32.76 34.86L32.76 34.86Q32.76 38.13 30.89 40.42Q29.02 42.71 25.74 43.49L25.74 42.66Q28.29 43.07 30.06 44.27Q31.82 45.46 32.79 47.34Q33.75 49.21 33.75 51.65L33.75 51.65Q33.75 54.88 32.21 57.22Q30.68 59.56 27.85 60.78Q25.01 62 21.06 62ZM11.39 46.40L11.39 56.02L19.97 56.02Q21.22 56.02 22.20 55.81Q23.19 55.60 23.89 55.24Q24.60 54.88 25.06 54.28Q25.53 53.68 25.77 52.90Q26.00 52.12 26.00 51.18L26.00 51.18Q26.00 50.20 25.77 49.44Q25.53 48.69 25.06 48.12Q24.60 47.54 23.89 47.15Q23.19 46.76 22.20 46.58Q21.22 46.40 19.97 46.40L19.97 46.40L11.39 46.40ZM11.39 31.32L11.39 40.42L19.08 40.42Q22.10 40.42 23.56 39.28Q25.01 38.13 25.01 35.84L25.01 35.84Q25.01 33.61 23.56 32.46Q22.10 31.32 19.08 31.32L19.08 31.32L11.39 31.32Z" fill="#1A1A1A"/>
+          <g transform="translate(42, 6)"><rect x="0" y="14" width="22" height="50" rx="3" ry="3" fill="#1A1A1A"/><circle cx="11" cy="22" r="4" fill="#FAF8F5"/><path d="M11,18 Q11,4 18,2 Q25,0 22,8 Q20,14 15,16" stroke="#00A85A" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>
+          <path d="M83.75 62L75.69 62L75.69 25.34L92.44 25.34Q98.57 25.34 101.90 28.30Q105.23 31.27 105.23 36.57L105.23 36.57Q105.23 40.00 103.72 42.50Q102.21 45.00 99.38 46.35Q96.54 47.70 92.44 47.70L92.44 47.70L92.85 46.82L94.98 46.82Q97.17 46.82 98.81 47.88Q100.44 48.95 101.64 51.13L101.64 51.13L107.57 62L98.68 62L92.33 50.30Q91.81 49.36 91.14 48.82Q90.46 48.27 89.60 48.04Q88.74 47.80 87.70 47.80L87.70 47.80L83.75 47.80L83.75 62ZM83.75 31.63L83.75 41.98L90.98 41.98Q94.20 41.98 95.84 40.68Q97.48 39.38 97.48 36.78L97.48 36.78Q97.48 34.23 95.84 32.93Q94.20 31.63 90.98 31.63L90.98 31.63L83.75 31.63ZM129.41 62.57Q123.48 62.57 119.27 60.23Q115.06 57.89 112.79 53.65Q110.53 49.42 110.53 43.64L110.53 43.64Q110.53 37.87 112.79 33.66Q115.06 29.45 119.27 27.11Q123.48 24.77 129.41 24.77L129.41 24.77Q133.05 24.77 136.38 25.91Q139.70 27.06 141.84 29.03L141.84 29.03L139.34 35.43Q137 33.61 134.63 32.75Q132.27 31.89 129.67 31.89L129.67 31.89Q124.47 31.89 121.76 34.93Q119.06 37.98 119.06 43.64L119.06 43.64Q119.06 49.31 121.76 52.38Q124.47 55.45 129.67 55.45L129.67 55.45Q132.27 55.45 134.63 54.59Q137 53.73 139.34 51.91L139.34 51.91L141.84 58.31Q139.70 60.28 136.38 61.43Q133.05 62.57 129.41 62.57ZM150.42 62L142.25 62L159.10 25.34L165.60 25.34L182.45 62L174.34 62L169.97 51.81L173.19 54.04L151.51 54.04L154.73 51.81L150.42 62ZM162.38 33.92L162.27 33.92L155.62 49.78L154.21 47.75L170.49 47.75L169.08 49.78L162.38 33.92Z" fill="#1A1A1A"/>
+          <path d="M289.75 62L281.69 62L281.69 25.34L289.75 25.34L289.75 41.30L289.86 41.30L305.09 25.34L314.76 25.34L296.04 44.58L296.10 41.10L315.49 62L305.72 62L289.86 45.26L289.75 45.26L289.75 62ZM333.02 62.57Q328.96 62.57 325.61 61.22Q322.25 59.87 319.86 57.37Q317.47 54.88 316.19 51.39Q314.92 47.91 314.92 43.64L314.92 43.64Q314.92 39.33 316.19 35.87Q317.47 32.41 319.86 29.94Q322.25 27.47 325.61 26.12Q328.96 24.77 333.02 24.77L333.02 24.77Q337.12 24.77 340.45 26.12Q343.78 27.47 346.17 29.92Q348.56 32.36 349.86 35.84Q351.16 39.33 351.16 43.59L351.16 43.59Q351.16 47.91 349.86 51.39Q348.56 54.88 346.17 57.37Q343.78 59.87 340.45 61.22Q337.12 62.57 333.02 62.57ZM333.02 55.71Q336.14 55.71 338.27 54.28Q340.40 52.85 341.57 50.12Q342.74 47.39 342.74 43.64L342.74 43.64Q342.74 39.85 341.60 37.14Q340.45 34.44 338.27 33.04Q336.08 31.63 333.02 31.63L333.02 31.63Q330 31.63 327.82 33.04Q325.63 34.44 324.49 37.14Q323.34 39.85 323.34 43.64L323.34 43.64Q323.34 47.39 324.49 50.12Q325.63 52.85 327.82 54.28Q330 55.71 333.02 55.71ZM382.42 62L357.40 62L357.40 25.34L365.46 25.34L365.46 55.19L382.42 55.19L382.42 62ZM412.32 62L387.20 62L387.20 25.34L412.32 25.34L412.32 31.63L394.90 31.63L394.90 40.21L411.17 40.21L411.17 46.56L394.90 46.56L394.90 55.71L412.32 55.71L412.32 62ZM435.46 62L427.40 62L427.40 32.00L415.28 32.00L415.28 25.34L447.57 25.34L447.57 32.00L435.46 32.00L435.46 62Z" fill="#1A1A1A"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- White bg green logo -->
+    <div class="logo-card" style="background:#FFFFFF; box-shadow:0 0 0 1px rgba(0,0,0,0.06), var(--shadow);">
+      <span class="card-label" style="color:#2D2D2D;">White bg</span>
+      <div style="text-align:center;">
+        <svg viewBox="0 0 450 80" width="420" height="70" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.06 62L3.69 62L3.69 25.34L20.49 25.34Q26.36 25.34 29.56 27.89Q32.76 30.44 32.76 34.86L32.76 34.86Q32.76 38.13 30.89 40.42Q29.02 42.71 25.74 43.49L25.74 42.66Q28.29 43.07 30.06 44.27Q31.82 45.46 32.79 47.34Q33.75 49.21 33.75 51.65L33.75 51.65Q33.75 54.88 32.21 57.22Q30.68 59.56 27.85 60.78Q25.01 62 21.06 62ZM11.39 46.40L11.39 56.02L19.97 56.02Q21.22 56.02 22.20 55.81Q23.19 55.60 23.89 55.24Q24.60 54.88 25.06 54.28Q25.53 53.68 25.77 52.90Q26.00 52.12 26.00 51.18L26.00 51.18Q26.00 50.20 25.77 49.44Q25.53 48.69 25.06 48.12Q24.60 47.54 23.89 47.15Q23.19 46.76 22.20 46.58Q21.22 46.40 19.97 46.40L19.97 46.40L11.39 46.40ZM11.39 31.32L11.39 40.42L19.08 40.42Q22.10 40.42 23.56 39.28Q25.01 38.13 25.01 35.84L25.01 35.84Q25.01 33.61 23.56 32.46Q22.10 31.32 19.08 31.32L19.08 31.32L11.39 31.32Z" fill="#00A85A"/>
+          <g transform="translate(42, 6)"><rect x="0" y="14" width="22" height="50" rx="3" ry="3" fill="#00A85A"/><circle cx="11" cy="22" r="4" fill="#FFFFFF"/><path d="M11,18 Q11,4 18,2 Q25,0 22,8 Q20,14 15,16" stroke="#7ED321" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>
+          <path d="M83.75 62L75.69 62L75.69 25.34L92.44 25.34Q98.57 25.34 101.90 28.30Q105.23 31.27 105.23 36.57L105.23 36.57Q105.23 40.00 103.72 42.50Q102.21 45.00 99.38 46.35Q96.54 47.70 92.44 47.70L92.44 47.70L92.85 46.82L94.98 46.82Q97.17 46.82 98.81 47.88Q100.44 48.95 101.64 51.13L101.64 51.13L107.57 62L98.68 62L92.33 50.30Q91.81 49.36 91.14 48.82Q90.46 48.27 89.60 48.04Q88.74 47.80 87.70 47.80L87.70 47.80L83.75 47.80L83.75 62ZM83.75 31.63L83.75 41.98L90.98 41.98Q94.20 41.98 95.84 40.68Q97.48 39.38 97.48 36.78L97.48 36.78Q97.48 34.23 95.84 32.93Q94.20 31.63 90.98 31.63L90.98 31.63L83.75 31.63ZM129.41 62.57Q123.48 62.57 119.27 60.23Q115.06 57.89 112.79 53.65Q110.53 49.42 110.53 43.64L110.53 43.64Q110.53 37.87 112.79 33.66Q115.06 29.45 119.27 27.11Q123.48 24.77 129.41 24.77L129.41 24.77Q133.05 24.77 136.38 25.91Q139.70 27.06 141.84 29.03L141.84 29.03L139.34 35.43Q137 33.61 134.63 32.75Q132.27 31.89 129.67 31.89L129.67 31.89Q124.47 31.89 121.76 34.93Q119.06 37.98 119.06 43.64L119.06 43.64Q119.06 49.31 121.76 52.38Q124.47 55.45 129.67 55.45L129.67 55.45Q132.27 55.45 134.63 54.59Q137 53.73 139.34 51.91L139.34 51.91L141.84 58.31Q139.70 60.28 136.38 61.43Q133.05 62.57 129.41 62.57ZM150.42 62L142.25 62L159.10 25.34L165.60 25.34L182.45 62L174.34 62L169.97 51.81L173.19 54.04L151.51 54.04L154.73 51.81L150.42 62ZM162.38 33.92L162.27 33.92L155.62 49.78L154.21 47.75L170.49 47.75L169.08 49.78L162.38 33.92Z" fill="#00A85A"/>
+          <path d="M289.75 62L281.69 62L281.69 25.34L289.75 25.34L289.75 41.30L289.86 41.30L305.09 25.34L314.76 25.34L296.04 44.58L296.10 41.10L315.49 62L305.72 62L289.86 45.26L289.75 45.26L289.75 62ZM333.02 62.57Q328.96 62.57 325.61 61.22Q322.25 59.87 319.86 57.37Q317.47 54.88 316.19 51.39Q314.92 47.91 314.92 43.64L314.92 43.64Q314.92 39.33 316.19 35.87Q317.47 32.41 319.86 29.94Q322.25 27.47 325.61 26.12Q328.96 24.77 333.02 24.77L333.02 24.77Q337.12 24.77 340.45 26.12Q343.78 27.47 346.17 29.92Q348.56 32.36 349.86 35.84Q351.16 39.33 351.16 43.59L351.16 43.59Q351.16 47.91 349.86 51.39Q348.56 54.88 346.17 57.37Q343.78 59.87 340.45 61.22Q337.12 62.57 333.02 62.57ZM333.02 55.71Q336.14 55.71 338.27 54.28Q340.40 52.85 341.57 50.12Q342.74 47.39 342.74 43.64L342.74 43.64Q342.74 39.85 341.60 37.14Q340.45 34.44 338.27 33.04Q336.08 31.63 333.02 31.63L333.02 31.63Q330 31.63 327.82 33.04Q325.63 34.44 324.49 37.14Q323.34 39.85 323.34 43.64L323.34 43.64Q323.34 47.39 324.49 50.12Q325.63 52.85 327.82 54.28Q330 55.71 333.02 55.71ZM382.42 62L357.40 62L357.40 25.34L365.46 25.34L365.46 55.19L382.42 55.19L382.42 62ZM412.32 62L387.20 62L387.20 25.34L412.32 25.34L412.32 31.63L394.90 31.63L394.90 40.21L411.17 40.21L411.17 46.56L394.90 46.56L394.90 55.71L412.32 55.71L412.32 62ZM435.46 62L427.40 62L427.40 32.00L415.28 32.00L415.28 25.34L447.57 25.34L447.57 32.00L435.46 32.00L435.46 62Z" fill="#00A85A"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Compact avatars -->
+    <div class="logo-card" style="background:#FFFFFF; box-shadow:0 0 0 1px rgba(0,0,0,0.06), var(--shadow);">
+      <span class="card-label" style="color:#2D2D2D;">Compact / Avatar</span>
+      <div style="display:flex; gap:24px; align-items:center;">
+        <div style="width:72px;height:72px;background:#1A1A1A;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 50 80" width="32" height="52" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="24" width="34" height="52" rx="5" ry="5" fill="#FAF8F5"/>
+            <circle cx="25" cy="34" r="6" fill="#1A1A1A"/>
+            <path d="M25,28 Q25,10 34,6 Q43,2 39,14 Q36,22 30,26" stroke="#7ED321" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="width:72px;height:72px;background:#00A85A;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 50 80" width="32" height="52" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="24" width="34" height="52" rx="5" ry="5" fill="#FAF8F5"/>
+            <circle cx="25" cy="34" r="6" fill="#00A85A"/>
+            <path d="M25,28 Q25,10 34,6 Q43,2 39,14 Q36,22 30,26" stroke="#CEFF00" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="width:32px;height:32px;background:#1A1A1A;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 50 80" width="18" height="29" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="24" width="34" height="52" rx="5" ry="5" fill="#FAF8F5"/>
+            <path d="M25,28 Q25,10 34,6 Q43,2 39,14 Q36,22 30,26" stroke="#7ED321" stroke-width="4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:var(--sp-4);">
+    <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Палитра / Palette:</div>
+    <div class="palette-row">
+      <div>
+        <div class="swatch" style="background:#00A85A;"></div>
+        <div class="swatch-label">#00A85A</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#7ED321;"></div>
+        <div class="swatch-label">#7ED321</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#CEFF00;"></div>
+        <div class="swatch-label">#CEFF00</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#FAF8F5; box-shadow:inset 0 0 0 1px rgba(0,0,0,0.1);"></div>
+        <div class="swatch-label">#FAF8F5</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#1A1A1A;"></div>
+        <div class="swatch-label">#1A1A1A</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem; color:#999; margin-top:8px;">Шрифт: Nunito Sans ExtraBold</div>
+  </div>
+</section>
+
+<!-- ═══════════ COMPARISON ═══════════ -->
+<section class="comparison">
+  <h2>Сравнение / Side by Side</h2>
+  <div class="compare-grid">
+    <!-- Before -->
+    <div class="compare-cell" style="background:#1A3A2A;">
+      <div style="font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.4rem; letter-spacing:0.15em; text-transform:uppercase; color:#F5F2EC;">BIRCA KOLET</div>
+      <div class="label" style="color:#8DB838;">До / Before</div>
+    </div>
+    <!-- Arrow -->
+    <div class="arrow">&rarr;</div>
+    <!-- After -->
+    <div class="compare-cell" style="background:#00A85A;">
+      <svg viewBox="0 0 450 80" width="320" height="56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21.06 62L3.69 62L3.69 25.34L20.49 25.34Q26.36 25.34 29.56 27.89Q32.76 30.44 32.76 34.86L32.76 34.86Q32.76 38.13 30.89 40.42Q29.02 42.71 25.74 43.49L25.74 42.66Q28.29 43.07 30.06 44.27Q31.82 45.46 32.79 47.34Q33.75 49.21 33.75 51.65L33.75 51.65Q33.75 54.88 32.21 57.22Q30.68 59.56 27.85 60.78Q25.01 62 21.06 62ZM11.39 46.40L11.39 56.02L19.97 56.02Q21.22 56.02 22.20 55.81Q23.19 55.60 23.89 55.24Q24.60 54.88 25.06 54.28Q25.53 53.68 25.77 52.90Q26.00 52.12 26.00 51.18L26.00 51.18Q26.00 50.20 25.77 49.44Q25.53 48.69 25.06 48.12Q24.60 47.54 23.89 47.15Q23.19 46.76 22.20 46.58Q21.22 46.40 19.97 46.40L19.97 46.40L11.39 46.40ZM11.39 31.32L11.39 40.42L19.08 40.42Q22.10 40.42 23.56 39.28Q25.01 38.13 25.01 35.84L25.01 35.84Q25.01 33.61 23.56 32.46Q22.10 31.32 19.08 31.32L19.08 31.32L11.39 31.32Z" fill="#fff"/>
+        <g transform="translate(42, 6)"><rect x="0" y="14" width="22" height="50" rx="3" ry="3" fill="#fff"/><circle cx="11" cy="22" r="4" fill="#00A85A"/><path d="M11,18 Q11,4 18,2 Q25,0 22,8 Q20,14 15,16" stroke="#CEFF00" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>
+        <path d="M83.75 62L75.69 62L75.69 25.34L92.44 25.34Q98.57 25.34 101.90 28.30Q105.23 31.27 105.23 36.57L105.23 36.57Q105.23 40.00 103.72 42.50Q102.21 45.00 99.38 46.35Q96.54 47.70 92.44 47.70L92.44 47.70L92.85 46.82L94.98 46.82Q97.17 46.82 98.81 47.88Q100.44 48.95 101.64 51.13L101.64 51.13L107.57 62L98.68 62L92.33 50.30Q91.81 49.36 91.14 48.82Q90.46 48.27 89.60 48.04Q88.74 47.80 87.70 47.80L87.70 47.80L83.75 47.80L83.75 62ZM83.75 31.63L83.75 41.98L90.98 41.98Q94.20 41.98 95.84 40.68Q97.48 39.38 97.48 36.78L97.48 36.78Q97.48 34.23 95.84 32.93Q94.20 31.63 90.98 31.63L90.98 31.63L83.75 31.63ZM129.41 62.57Q123.48 62.57 119.27 60.23Q115.06 57.89 112.79 53.65Q110.53 49.42 110.53 43.64L110.53 43.64Q110.53 37.87 112.79 33.66Q115.06 29.45 119.27 27.11Q123.48 24.77 129.41 24.77L129.41 24.77Q133.05 24.77 136.38 25.91Q139.70 27.06 141.84 29.03L141.84 29.03L139.34 35.43Q137 33.61 134.63 32.75Q132.27 31.89 129.67 31.89L129.67 31.89Q124.47 31.89 121.76 34.93Q119.06 37.98 119.06 43.64L119.06 43.64Q119.06 49.31 121.76 52.38Q124.47 55.45 129.67 55.45L129.67 55.45Q132.27 55.45 134.63 54.59Q137 53.73 139.34 51.91L139.34 51.91L141.84 58.31Q139.70 60.28 136.38 61.43Q133.05 62.57 129.41 62.57ZM150.42 62L142.25 62L159.10 25.34L165.60 25.34L182.45 62L174.34 62L169.97 51.81L173.19 54.04L151.51 54.04L154.73 51.81L150.42 62ZM162.38 33.92L162.27 33.92L155.62 49.78L154.21 47.75L170.49 47.75L169.08 49.78L162.38 33.92Z" fill="#fff"/>
+        <path d="M289.75 62L281.69 62L281.69 25.34L289.75 25.34L289.75 41.30L289.86 41.30L305.09 25.34L314.76 25.34L296.04 44.58L296.10 41.10L315.49 62L305.72 62L289.86 45.26L289.75 45.26L289.75 62ZM333.02 62.57Q328.96 62.57 325.61 61.22Q322.25 59.87 319.86 57.37Q317.47 54.88 316.19 51.39Q314.92 47.91 314.92 43.64L314.92 43.64Q314.92 39.33 316.19 35.87Q317.47 32.41 319.86 29.94Q322.25 27.47 325.61 26.12Q328.96 24.77 333.02 24.77L333.02 24.77Q337.12 24.77 340.45 26.12Q343.78 27.47 346.17 29.92Q348.56 32.36 349.86 35.84Q351.16 39.33 351.16 43.59L351.16 43.59Q351.16 47.91 349.86 51.39Q348.56 54.88 346.17 57.37Q343.78 59.87 340.45 61.22Q337.12 62.57 333.02 62.57ZM333.02 55.71Q336.14 55.71 338.27 54.28Q340.40 52.85 341.57 50.12Q342.74 47.39 342.74 43.64L342.74 43.64Q342.74 39.85 341.60 37.14Q340.45 34.44 338.27 33.04Q336.08 31.63 333.02 31.63L333.02 31.63Q330 31.63 327.82 33.04Q325.63 34.44 324.49 37.14Q323.34 39.85 323.34 43.64L323.34 43.64Q323.34 47.39 324.49 50.12Q325.63 52.85 327.82 54.28Q330 55.71 333.02 55.71ZM382.42 62L357.40 62L357.40 25.34L365.46 25.34L365.46 55.19L382.42 55.19L382.42 62ZM412.32 62L387.20 62L387.20 25.34L412.32 25.34L412.32 31.63L394.90 31.63L394.90 40.21L411.17 40.21L411.17 46.56L394.90 46.56L394.90 55.71L412.32 55.71L412.32 62ZM435.46 62L427.40 62L427.40 32.00L415.28 32.00L415.28 25.34L447.57 25.34L447.57 32.00L435.46 32.00L435.46 62Z" fill="#fff"/>
+      </svg>
+      <div class="label" style="color:#CEFF00;">После / After</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  AI Design Studio &middot; Birca Kolet &middot; 2026
+</footer>
+
+</body>
+</html>
