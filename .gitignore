@@ -1,1 +1,4 @@
 node_modules/
+
+# Local work archives (session artifacts)
+archive/
