@@ -15,7 +15,7 @@
   --copper-soft:#A87E5A;
   --copper-dark:#6D4F36;
   --graphite:#3D3A37;
-  --graphite-2:#5D5D5B;
+  --graphite-2:#504D49;
   --latte:#D2C8B5;
   --concrete:#B1B0A9;
   --sand:#D3B489;
@@ -81,18 +81,18 @@ body{display:flex; flex-direction:column; align-items:center; padding:40px 0; ga
 }
 .slide .section-mark .icon svg{ width:30px; height:30px; }
 .slide .section-mark .label .t1{
-  font-weight:700; font-size:34px; color:var(--graphite); line-height:1.1;
+  font-weight:700; font-size:30px; color:var(--graphite); line-height:1.1;
   letter-spacing:-0.5px;
 }
 .slide .section-mark .label .t2{
-  font-weight:400; font-size:17px; color:var(--graphite-2); margin-top:4px;
+  font-weight:400; font-size:15px; color:var(--graphite-2); margin-top:4px;
 }
 
 /* Подпись внизу */
 .slide .footer-tag{
   position:absolute; left:64px; bottom:32px;
   font-family:var(--font-narrow);
-  font-weight:400; font-size:15px; letter-spacing:3px; text-transform:uppercase;
+  font-weight:400; font-size:13px; letter-spacing:3px; text-transform:uppercase;
   color:var(--graphite-2);
 }
 
@@ -105,19 +105,19 @@ body{display:flex; flex-direction:column; align-items:center; padding:40px 0; ga
 
 /* ============ TYPOGRAPHY ============ */
 h1.brand-h{
-  font-weight:800; font-size:108px; line-height:0.94; color:var(--copper);
+  font-weight:800; font-size:96px; line-height:0.94; color:var(--copper);
   letter-spacing:-2px; text-transform:uppercase;
 }
 h2.slide-h{
-  font-weight:700; font-size:34px; letter-spacing:-0.5px; color:var(--graphite);
+  font-weight:700; font-size:30px; letter-spacing:-0.5px; color:var(--graphite);
 }
 .eyebrow{
   font-family:var(--font-narrow);
-  font-weight:700; font-size:15px; letter-spacing:5px;
+  font-weight:700; font-size:13px; letter-spacing:5px;
   color:var(--copper); text-transform:uppercase; margin-bottom:18px;
 }
-.body-md{ font-size:19px; line-height:1.55; color:var(--graphite);}
-.body-sm{ font-size:16px; line-height:1.5; color:var(--graphite-2);}
+.body-md{ font-size:17px; line-height:1.55; color:var(--graphite);}
+.body-sm{ font-size:14px; line-height:1.5; color:var(--graphite-2);}
 
 /* ============ COVER ============ */
 .slide.cover h1.brand-h{ margin-top:0; }
@@ -135,6 +135,71 @@ h2.slide-h{
 }
 .slide.cover .tag.solid{
   background:var(--copper); color:var(--ivory); border-color:var(--copper);
+}
+.ai-cover-visual{
+  position:absolute;
+  right:0;
+  top:0;
+  width:58%;
+  height:100%;
+  background-image:linear-gradient(90deg, var(--ivory) 0%, rgba(248,246,235,.72) 22%, rgba(248,246,235,.08) 58%), url('ai-visuals/peptide-receptor-visual.png');
+  background-size:cover;
+  background-position:center right;
+  opacity:.86;
+  z-index:1;
+  pointer-events:none;
+}
+.ai-cover-visual::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 74% 45%, rgba(138,102,70,.10), rgba(248,246,235,0) 48%);
+}
+.slide.cover .content{ z-index:2; }
+.ai-visual-panel{
+  position:relative;
+  height:480px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(138,102,70,.18);
+  background:rgba(255,255,255,.55);
+}
+.ai-visual-panel img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.ai-visual-panel .overlay-diagram{
+  position:absolute;
+  left:24px;
+  bottom:22px;
+  right:24px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.overlay-step{
+  border-radius:12px;
+  padding:11px 12px;
+  background:rgba(248,246,235,.82);
+  border:1px solid rgba(138,102,70,.20);
+  backdrop-filter:blur(8px);
+}
+.overlay-step b{
+  display:block;
+  font-family:var(--font-narrow);
+  letter-spacing:3px;
+  color:var(--copper);
+  font-size:12px;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.overlay-step span{
+  display:block;
+  color:var(--graphite);
+  font-size:13.4px;
+  line-height:1.35;
 }
 
 /* ============ MODULE TITLE ============ */
@@ -170,18 +235,18 @@ h2.slide-h{
 }
 .card .num{
   display:inline-block; font-family:var(--font-narrow); font-weight:700;
-  font-size:15px; letter-spacing:4px; color:var(--copper);
+  font-size:13px; letter-spacing:4px; color:var(--copper);
   padding:5px 12px; border-radius:6px; background:rgba(138,102,70,.10);
   margin-bottom:14px;
 }
-.card .ttl{ font-weight:700; font-size:22px; color:var(--graphite); margin-bottom:8px;}
-.card .desc{ font-size:16px; line-height:1.55; color:var(--graphite-2); }
+.card .ttl{ font-weight:700; font-size:20px; color:var(--graphite); margin-bottom:8px;}
+.card .desc{ font-size:14px; line-height:1.5; color:var(--graphite-2); }
 
 /* Pill */
 .pill{
   display:inline-block; padding:6px 14px; border-radius:999px;
   background:var(--copper); color:var(--ivory);
-  font-weight:600; font-size:14px; letter-spacing:0.4px;
+  font-weight:600; font-size:12px; letter-spacing:0.4px;
 }
 .pill.ghost{ background:transparent; border:1px solid var(--copper); color:var(--copper);}
 
@@ -205,7 +270,7 @@ h2.slide-h{
 
 /* ============ TABLE ============ */
 table.brand{
-  width:100%; border-collapse:collapse; font-size:16px;
+  width:100%; border-collapse:collapse; font-size:14px;
 }
 table.brand thead th{
   background:var(--copper); color:var(--ivory);
@@ -236,12 +301,639 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
 .flow-step.danger .n{ background:#B33A2F; }
 .flow-step.danger { border-color:rgba(179,58,47,.35); background:rgba(179,58,47,.05);}
 
+/* ============ DECISION BOARD (visual upgrade) ============ */
+.decision-board{
+  display:grid;
+  grid-template-columns:1.02fr 1.28fr;
+  gap:22px;
+  height:100%;
+}
+.decision-panel{
+  background:rgba(255,255,255,.56);
+  border:1px solid rgba(138,102,70,.18);
+  border-radius:14px;
+  padding:18px 20px;
+}
+.decision-panel .kicker{
+  font-family:var(--font-narrow);
+  font-size:12px;
+  letter-spacing:4px;
+  color:var(--copper);
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.verify-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+.verify-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:11px 12px;
+  border-radius:10px;
+  background:rgba(138,102,70,.055);
+  border:1px solid rgba(138,102,70,.12);
+}
+.verify-item .dot{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  background:var(--copper);
+  color:var(--ivory);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.verify-item svg{ width:15px; height:15px; }
+.verify-item b{
+  display:block;
+  font-size:13px;
+  color:var(--graphite);
+  margin-bottom:2px;
+}
+.verify-item span{
+  display:block;
+  font-size:12.5px;
+  line-height:1.35;
+  color:var(--graphite-2);
+}
+.decision-route{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:12px;
+}
+.route-card{
+  min-height:210px;
+  border-radius:14px;
+  padding:16px 16px 14px;
+  border:1px solid rgba(138,102,70,.18);
+  background:rgba(255,255,255,.62);
+  position:relative;
+  overflow:hidden;
+}
+.route-card::after{
+  content:'';
+  position:absolute;
+  width:110px;
+  height:110px;
+  right:-44px;
+  bottom:-48px;
+  border-radius:50%;
+  background:rgba(138,102,70,.07);
+}
+.route-card .status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:12px;
+}
+.route-card .status svg{
+  width:24px;
+  height:24px;
+  flex-shrink:0;
+}
+.route-card .status b{
+  font-size:15px;
+  line-height:1.15;
+}
+.route-card .if{
+  font-family:var(--font-narrow);
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--graphite-2);
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.route-card p{
+  font-size:13px;
+  line-height:1.42;
+  color:var(--graphite);
+}
+.route-card .next{
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid rgba(138,102,70,.14);
+  font-size:12.5px;
+  line-height:1.35;
+  color:var(--graphite-2);
+}
+.route-card.ok{ border-color:rgba(46,125,50,.34); background:rgba(46,125,50,.055); }
+.route-card.ok .status{ color:#2E7D32; }
+.route-card.adjust{ border-color:rgba(176,122,14,.34); background:rgba(217,150,38,.06); }
+.route-card.adjust .status{ color:#B07A0E; }
+.route-card.stop{ border-color:rgba(179,58,47,.34); background:rgba(179,58,47,.055); }
+.route-card.stop .status{ color:#B33A2F; }
+.decision-alert{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:52px 1fr;
+  gap:14px;
+  align-items:center;
+  padding:15px 18px;
+  border-radius:14px;
+  background:var(--copper);
+  color:var(--ivory);
+}
+.decision-alert .badge{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(248,246,235,.16);
+  color:var(--ivory);
+}
+.decision-alert svg{ width:26px; height:26px; }
+.decision-alert b{
+  display:block;
+  font-size:15px;
+  letter-spacing:.2px;
+  margin-bottom:3px;
+}
+.decision-alert span{
+  display:block;
+  font-size:13.5px;
+  line-height:1.4;
+  color:rgba(248,246,235,.88);
+}
+
+/* ============ VISUAL UPGRADE BOARDS ============ */
+.selector-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.selector-card{
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(138,102,70,.18);
+  border-radius:14px;
+  padding:15px 16px;
+  min-height:128px;
+}
+.selector-card .request{
+  font-size:13px;
+  line-height:1.35;
+  color:var(--graphite);
+  min-height:38px;
+  margin-bottom:12px;
+}
+.selector-card .meta{
+  font-family:var(--font-narrow);
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--graphite-2);
+  text-transform:uppercase;
+  margin-bottom:7px;
+}
+.selector-card.warn{ border-color:rgba(179,58,47,.32); background:rgba(179,58,47,.045); }
+.selector-note{
+  margin-top:14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 16px;
+  border-radius:12px;
+  background:rgba(138,102,70,.10);
+  color:var(--graphite);
+  font-size:13.5px;
+}
+.selector-note svg{ width:22px; height:22px; color:var(--copper); flex-shrink:0; }
+.visit-lane{ display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:14px; }
+.lane-card{
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(138,102,70,.18);
+  border-radius:14px;
+  padding:16px;
+  min-height:215px;
+}
+.lane-card .lane-top{ display:flex; align-items:center; gap:9px; margin-bottom:12px; color:var(--copper); }
+.lane-card .lane-top svg{ width:25px; height:25px; }
+.lane-card h3{
+  margin:0;
+  font-size:15px;
+  color:var(--graphite);
+  letter-spacing:0;
+  text-transform:none;
+}
+.lane-card ol{ list-style:none; padding:0; margin:0; }
+.lane-card li{
+  position:relative;
+  padding-left:24px;
+  margin-bottom:9px;
+  font-size:13px;
+  line-height:1.36;
+  color:var(--graphite-2);
+}
+.lane-card li::before{
+  content:attr(data-n);
+  position:absolute;
+  left:0;
+  top:-1px;
+  width:17px;
+  height:17px;
+  border-radius:50%;
+  background:var(--copper);
+  color:var(--ivory);
+  font-size:10px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.lane-card.stop{ border-color:rgba(179,58,47,.34); background:rgba(179,58,47,.045); }
+.lane-card.stop .lane-top{ color:#B33A2F; }
+.lane-card.stop li::before{ background:#B33A2F; }
+.redflag-board{ display:grid; grid-template-columns:.82fr 1.18fr; gap:22px; height:100%; }
+.stop-tile{
+  background:rgba(179,58,47,.07);
+  border:1px solid rgba(179,58,47,.34);
+  border-radius:16px;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  color:#B33A2F;
+}
+.stop-tile svg{ width:76px; height:76px; margin-bottom:24px; }
+.stop-tile .big{ font-size:54px; line-height:.92; font-weight:800; letter-spacing:-1px; }
+.stop-tile .sub{ margin-top:18px; font-size:17px; line-height:1.45; color:var(--graphite); }
+.flag-columns{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.flag-list{
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(138,102,70,.18);
+  border-radius:14px;
+  padding:18px 20px;
+}
+.flag-list.danger{ border-color:rgba(179,58,47,.34); }
+.flag-list h3{ font-size:15px; margin-bottom:12px; }
+.flag-list.danger h3{ color:#B33A2F; }
+.flag-rule{
+  margin-top:16px;
+  padding:15px 18px;
+  border-radius:14px;
+  background:var(--copper);
+  color:var(--ivory);
+  font-size:16px;
+  line-height:1.45;
+}
+.objection-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+.objection-card{
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(138,102,70,.18);
+  border-radius:14px;
+  padding:15px 14px;
+  min-height:360px;
+}
+.objection-card .q{ font-weight:800; font-size:14px; line-height:1.25; color:var(--graphite); min-height:54px; }
+.objection-card .answer{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid rgba(138,102,70,.14);
+  font-size:12.6px;
+  line-height:1.45;
+  color:var(--graphite-2);
+}
+.objection-card .say{
+  font-family:var(--font-narrow);
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--copper);
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.risk-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+.risk-card{
+  background:rgba(179,58,47,.05);
+  border:1px solid rgba(179,58,47,.28);
+  border-radius:14px;
+  padding:15px 14px;
+  min-height:250px;
+}
+.risk-card .num{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#B33A2F;
+  color:var(--ivory);
+  font-weight:800;
+  margin-bottom:12px;
+}
+.risk-card b{ display:block; font-size:14px; line-height:1.25; color:#B33A2F; margin-bottom:9px; }
+.risk-card span{ display:block; font-size:12.6px; line-height:1.42; color:var(--graphite); }
+.case-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.case-flow{
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(138,102,70,.18);
+  border-radius:14px;
+  padding:16px;
+}
+.case-flow .case-head{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.case-flow h3{ margin:0; font-size:16px; letter-spacing:1px; color:var(--copper); text-transform:uppercase; }
+.case-steps{ display:grid; grid-template-columns:1fr; gap:8px; }
+.case-step{
+  display:grid;
+  grid-template-columns:86px 1fr;
+  gap:12px;
+  align-items:start;
+  border-radius:10px;
+  padding:9px 11px;
+  background:rgba(138,102,70,.055);
+  border:1px solid rgba(138,102,70,.11);
+}
+.case-step .label{
+  font-family:var(--font-narrow);
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--copper);
+  text-transform:uppercase;
+}
+.case-step p{ font-size:12.8px; line-height:1.38; color:var(--graphite); }
+.case-step.alert{ background:rgba(179,58,47,.06); border-color:rgba(179,58,47,.24); }
+.case-step.alert .label{ color:#B33A2F; }
+.notebook-strip{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:16px;
+}
+.notebook-tab{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-height:82px;
+  padding:16px 18px;
+  border-radius:999px;
+  border:1px solid rgba(138,102,70,.32);
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.7), rgba(255,255,255,.4)),
+    repeating-linear-gradient(90deg, rgba(138,102,70,.07) 0 1px, transparent 1px 44px);
+  box-shadow:inset 0 0 0 4px rgba(138,102,70,.045);
+  overflow:hidden;
+}
+.notebook-tab svg{
+  width:38px;
+  height:38px;
+  color:var(--copper);
+  flex-shrink:0;
+}
+.notebook-tab b{
+  display:block;
+  font-size:18px;
+  color:var(--graphite);
+  line-height:1.1;
+}
+.notebook-tab span{
+  display:block;
+  margin-top:4px;
+  font-size:13.5px;
+  color:var(--graphite-2);
+}
+.visual-rail{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-bottom:18px;
+}
+.visual-rail::before{
+  content:'';
+  position:absolute;
+  left:8%;
+  right:8%;
+  top:35px;
+  height:2px;
+  background:linear-gradient(90deg, var(--copper), rgba(138,102,70,.22), #B33A2F, rgba(138,102,70,.22), var(--copper));
+  z-index:0;
+}
+.rail-node{
+  position:relative;
+  z-index:1;
+  text-align:center;
+}
+.rail-node .orb{
+  width:70px;
+  height:70px;
+  margin:0 auto 10px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--ivory);
+  border:2px solid rgba(138,102,70,.32);
+  color:var(--copper);
+  box-shadow:0 0 0 8px rgba(248,246,235,.95);
+}
+.rail-node .orb svg{ width:32px; height:32px; }
+.rail-node.stop .orb{ color:#B33A2F; border-color:rgba(179,58,47,.42); }
+.rail-node b{ display:block; font-size:14px; color:var(--graphite); }
+.rail-node span{ display:block; margin-top:3px; font-size:12.8px; color:var(--graphite-2); }
+.redflag-meter{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.meter-step{
+  min-height:74px;
+  border-radius:12px;
+  padding:12px;
+  border:1px solid rgba(138,102,70,.18);
+  background:rgba(255,255,255,.58);
+}
+.meter-step b{ display:block; font-size:13px; color:var(--graphite); margin-bottom:4px; }
+.meter-step span{ font-size:12.5px; line-height:1.35; color:var(--graphite-2); }
+.meter-step.stop{ border-color:rgba(179,58,47,.34); background:rgba(179,58,47,.06); }
+.meter-step.stop b{ color:#B33A2F; }
+.symptom-path{
+  display:grid;
+  grid-template-columns:1fr 34px 1fr 34px 1fr;
+  gap:10px;
+  align-items:center;
+  margin-bottom:14px;
+}
+.path-box{
+  min-height:78px;
+  border-radius:14px;
+  padding:13px 15px;
+  border:1px solid rgba(138,102,70,.22);
+  background:rgba(255,255,255,.64);
+}
+.path-box .label{
+  font-family:var(--font-narrow);
+  font-size:12px;
+  letter-spacing:3px;
+  color:var(--copper);
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.path-box b{ display:block; font-size:16px; color:var(--graphite); line-height:1.2; }
+.path-arrow{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--copper);
+  color:var(--ivory);
+  font-weight:800;
+}
+.complex-dashboard{
+  display:grid;
+  grid-template-columns:390px 1fr;
+  gap:24px;
+  height:100%;
+}
+.body-console{
+  position:relative;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.46)),
+    repeating-linear-gradient(0deg, rgba(138,102,70,.05) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(90deg, rgba(138,102,70,.04) 0 1px, transparent 1px 42px);
+  border:1px solid rgba(138,102,70,.20);
+  border-radius:16px;
+  padding:18px;
+  overflow:hidden;
+}
+.body-console.ai-body{
+  background:rgba(255,255,255,.56);
+}
+.body-console.ai-body img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  opacity:.88;
+}
+.body-console.ai-body::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(248,246,235,.10), rgba(248,246,235,.34));
+  pointer-events:none;
+}
+.body-console .scan-title{
+  position:absolute;
+  top:18px;
+  left:18px;
+  right:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:4;
+}
+.body-console .scan-title b{
+  font-family:var(--font-narrow);
+  font-size:13px;
+  letter-spacing:4px;
+  color:var(--copper);
+  text-transform:uppercase;
+}
+.body-console .scan-title span{
+  font-size:12.5px;
+  color:var(--graphite-2);
+}
+.body-console svg.body-map-svg{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-45%);
+  width:300px;
+  height:438px;
+  color:var(--copper);
+  opacity:.92;
+}
+.body-pin{
+  position:absolute;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.84);
+  border:1px solid rgba(138,102,70,.22);
+  color:var(--copper);
+  font-weight:800;
+  font-size:11px;
+  box-shadow:0 8px 22px rgba(61,58,55,.07);
+}
+.body-pin svg{ width:19px; height:19px; }
+.pin-brain{ left:36px; top:122px; }
+.pin-stress{ right:28px; top:182px; }
+.pin-immune{ left:28px; top:292px; }
+.pin-pain{ right:36px; top:368px; }
+.pin-repro{ left:72px; bottom:74px; }
+.dashboard-right{
+  display:grid;
+  grid-template-rows:auto 1fr;
+  gap:14px;
+}
+.system-tabs{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+.system-tab{
+  padding:12px 10px;
+  min-height:82px;
+  border-radius:14px;
+  background:rgba(138,102,70,.08);
+  border:1px solid rgba(138,102,70,.18);
+  text-align:center;
+}
+.system-tab svg{ width:26px; height:26px; color:var(--copper); margin-bottom:6px; }
+.system-tab b{ display:block; font-size:12.5px; color:var(--graphite); line-height:1.2; }
+.system-tab span{ display:block; margin-top:4px; font-size:11.8px; color:var(--graphite-2); }
+.complex-matrix{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.matrix-card{
+  border-radius:14px;
+  border:1px solid rgba(138,102,70,.18);
+  background:rgba(255,255,255,.62);
+  padding:14px 15px;
+  min-height:111px;
+  position:relative;
+  overflow:hidden;
+}
+.matrix-card::after{
+  content:'';
+  position:absolute;
+  right:-38px;
+  bottom:-46px;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:rgba(138,102,70,.06);
+}
+.matrix-card .top{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+}
+.matrix-card svg{ width:28px; height:28px; color:var(--copper); flex-shrink:0; }
+.matrix-card b{ display:block; color:var(--copper); font-size:14px; letter-spacing:.4px; }
+.matrix-card span{ display:block; color:var(--graphite); font-size:13px; line-height:1.35; }
+.matrix-card.full{ grid-column:span 2; min-height:88px; display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center; }
+.matrix-card.full .mini-pair{ display:flex; align-items:center; gap:10px; }
+
 /* ============ TWO-COL ============ */
 .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
 .bloc{ background:rgba(255,255,255,.55); border:1px solid rgba(138,102,70,.18); border-radius:14px; padding:22px 26px; }
-.bloc h3{ font-weight:700; font-size:17px; letter-spacing:3px; color:var(--copper); text-transform:uppercase; margin-bottom:12px;}
+.bloc h3{ font-weight:700; font-size:15px; letter-spacing:3px; color:var(--copper); text-transform:uppercase; margin-bottom:12px;}
 .bloc ul{ padding-left:0; list-style:none; }
-.bloc li{ position:relative; padding-left:18px; margin-bottom:6px; font-size:16px; line-height:1.55; color:var(--graphite);}
+.bloc li{ position:relative; padding-left:18px; margin-bottom:6px; font-size:14px; line-height:1.55; color:var(--graphite);}
 .bloc li::before{ content:''; position:absolute; left:0; top:9px; width:7px; height:7px; border-radius:50%; background:var(--copper); }
 
 /* Pinned bottom bloc для дисклеймера */
@@ -271,8 +963,8 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
 
 .complex-body{ display:flex; flex-direction:column; gap:14px; }
 .bloc-mini{ background:rgba(255,255,255,.65); border:1px solid rgba(138,102,70,.18); border-radius:12px; padding:14px 18px; }
-.bloc-mini h4{ font-family:var(--font-narrow); font-size:14px; letter-spacing:4px; color:var(--copper); text-transform:uppercase; margin-bottom:8px;}
-.bloc-mini p, .bloc-mini li{ font-size:15.5px; line-height:1.55; color:var(--graphite); }
+.bloc-mini h4{ font-family:var(--font-narrow); font-size:12px; letter-spacing:4px; color:var(--copper); text-transform:uppercase; margin-bottom:8px;}
+.bloc-mini p, .bloc-mini li{ font-size:13.5px; line-height:1.5; color:var(--graphite); }
 .bloc-mini ul{ padding-left:0; list-style:none;}
 .bloc-mini li{ position:relative; padding-left:13px; margin-bottom:3px;}
 .bloc-mini li::before{ content:''; position:absolute; left:0; top:8px; width:5px; height:5px; border-radius:50%; background:var(--copper);}
@@ -295,14 +987,57 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
 
 /* FAQ */
 .faq-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px 26px; }
-.faq-item .q{ font-weight:700; font-size:17px; color:var(--copper); margin-bottom:5px; }
-.faq-item .a{ font-size:15.5px; line-height:1.55; color:var(--graphite); }
+.faq-item .q{ font-weight:700; font-size:15px; color:var(--copper); margin-bottom:5px; }
+.faq-item .a{ font-size:13.5px; line-height:1.5; color:var(--graphite); }
 
 /* Quote / formula */
 .script-block{
   background:rgba(138,102,70,0.06); border:1px dashed rgba(138,102,70,0.4); border-radius:10px; padding:14px 18px;
   font-size:13.5px; line-height:1.5; color:var(--graphite); font-style:italic;
 }
+
+/* Readability pass: larger text for client-facing review */
+.slide .section-mark .label .t2{ font-size:17px; }
+.slide .footer-tag{ font-size:14px; color:var(--graphite); opacity:.82; }
+.eyebrow{ font-size:14px; }
+.body-sm{ font-size:15.5px; line-height:1.55; }
+.card .desc{ font-size:15.5px; line-height:1.52; }
+.pill{ font-size:13px; padding:7px 15px; }
+table.brand{ font-size:15.5px; }
+table.brand tbody td{ padding:12px 18px; }
+.flow-step .d{ font-size:14.2px; line-height:1.45; }
+.decision-panel .kicker,
+.selector-card .meta,
+.route-card .if,
+.objection-card .say,
+.case-step .label,
+.bloc-mini h4,
+.zone-bloc .h{ font-size:12px; }
+.verify-item b{ font-size:14.2px; }
+.verify-item span{ font-size:13.7px; line-height:1.42; }
+.route-card p{ font-size:14.2px; line-height:1.45; }
+.route-card .next{ font-size:13.7px; line-height:1.42; }
+.decision-alert span{ font-size:14.5px; line-height:1.45; }
+.selector-card .request{ font-size:14.4px; line-height:1.42; }
+.selector-note{ font-size:15px; line-height:1.42; }
+.lane-card li{ font-size:14.2px; line-height:1.42; }
+.flag-list li{ font-size:14.6px; line-height:1.5; }
+.objection-card .q{ font-size:15.2px; min-height:58px; }
+.objection-card .answer{ font-size:13.9px; line-height:1.48; }
+.risk-card b{ font-size:15px; }
+.risk-card span{ font-size:13.8px; line-height:1.48; }
+.case-step p{ font-size:14px; line-height:1.45; }
+.bloc li{ font-size:15px; line-height:1.55; }
+.bloc-mini p, .bloc-mini li{ font-size:14.4px; line-height:1.52; }
+.faq-item .q{ font-size:17px; }
+.faq-item .a{ font-size:15.2px; line-height:1.55; }
+.script-block{ font-size:15px; line-height:1.55; }
+.map-card .z{ font-size:13px; }
+.zone-bloc .l{ font-size:14.5px; }
+.slide:nth-of-type(6) .bloc h3{ font-size:14px !important; }
+.slide:nth-of-type(6) .bloc div[style*="font-size:12.5px"]{ font-size:14px !important; line-height:1.52 !important; color:var(--graphite) !important; }
+.slide:nth-of-type(9) h3 span{ font-size:12px !important; color:var(--graphite) !important; }
+.slide:nth-of-type(9) div[style*="font-weight:800"][style*="font-size:11px"]{ font-size:12.2px !important; }
 
 /* Final */
 .slide.final{ display:flex; align-items:center; justify-content:center; }
@@ -522,290 +1257,8 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     </symbol>
 
     <!-- ====================================================== -->
-    <!-- ИЛЛЮСТРАЦИЯ V2: Механизм пептидов (премиум, фирстиль)  -->
-    <!-- ДНК → ножницы → пептид-ключ → клетка-замок             -->
-    <!-- ====================================================== -->
-    <symbol id="ill-mechanism-v2" viewBox="0 0 1200 480">
-      <!-- ─── Стадия 1: Белок как ДНК-подобная двойная спираль ─── -->
-      <g transform="translate(40,80)">
-        <text x="0" y="0" font-family="PT Sans Narrow, sans-serif" font-size="18" letter-spacing="3" fill="currentColor" font-weight="700">БЕЛОК</text>
-        <text x="0" y="22" font-family="Manrope, sans-serif" font-size="13" fill="currentColor" opacity="0.7">длинная цепочка аминокислот</text>
-
-        <!-- Двойная спираль (контурный медный стиль) -->
-        <g transform="translate(0,50)" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-          <!-- Верхняя нить -->
-          <path d="M0 30 Q 25 5, 50 30 T 100 30 T 150 30 T 200 30 T 250 30"/>
-          <!-- Нижняя нить -->
-          <path d="M0 90 Q 25 65, 50 90 T 100 90 T 150 90 T 200 90 T 250 90"/>
-          <!-- Связи между нитями (поперечные линии — нуклеотиды) -->
-          <line x1="10" y1="38" x2="10" y2="82"/>
-          <line x1="35" y1="22" x2="35" y2="98"/>
-          <line x1="60" y1="38" x2="60" y2="82"/>
-          <line x1="85" y1="22" x2="85" y2="98"/>
-          <line x1="110" y1="38" x2="110" y2="82"/>
-          <line x1="135" y1="22" x2="135" y2="98"/>
-          <line x1="160" y1="38" x2="160" y2="82"/>
-          <line x1="185" y1="22" x2="185" y2="98"/>
-          <line x1="210" y1="38" x2="210" y2="82"/>
-          <line x1="235" y1="22" x2="235" y2="98"/>
-        </g>
-        <!-- Шарики-аминокислоты на узлах -->
-        <g transform="translate(0,50)" fill="currentColor">
-          <circle cx="10" cy="38" r="5"/><circle cx="10" cy="82" r="5"/>
-          <circle cx="60" cy="38" r="5"/><circle cx="60" cy="82" r="5"/>
-          <circle cx="110" cy="38" r="5"/><circle cx="110" cy="82" r="5"/>
-          <circle cx="160" cy="38" r="5"/><circle cx="160" cy="82" r="5"/>
-          <circle cx="210" cy="38" r="5"/><circle cx="210" cy="82" r="5"/>
-        </g>
-      </g>
-
-      <!-- ─── Стрелка + ножницы ─── -->
-      <g transform="translate(320,180)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <!-- Ножницы стилизованные -->
-        <g transform="translate(0,-30)">
-          <circle cx="0" cy="0" r="9"/>
-          <circle cx="0" cy="22" r="9"/>
-          <line x1="6" y1="-5" x2="40" y2="-20"/>
-          <line x1="6" y1="27" x2="40" y2="42"/>
-          <path d="M40 -20 L 60 -10 L 40 42 L 20 18 Z" fill="currentColor" fill-opacity="0.15"/>
-        </g>
-        <!-- Стрелка -->
-        <path d="M0 30 H 50"/>
-        <path d="M40 22 L 50 30 L 40 38"/>
-      </g>
-
-      <!-- ─── Стадия 2: Короткий пептид ─── -->
-      <g transform="translate(420,80)">
-        <text x="0" y="0" font-family="PT Sans Narrow, sans-serif" font-size="18" letter-spacing="3" fill="currentColor" font-weight="700">ПЕПТИД</text>
-        <text x="0" y="22" font-family="Manrope, sans-serif" font-size="13" fill="currentColor" opacity="0.7">короткая сигнальная молекула с «ключом»</text>
-
-        <g transform="translate(20,90)">
-          <!-- Тело пептида: 3 шарика связанных -->
-          <line x1="0" y1="0" x2="80" y2="0" stroke="currentColor" stroke-width="2.2"/>
-          <circle cx="0" cy="0" r="13" fill="currentColor"/>
-          <circle cx="40" cy="0" r="13" fill="currentColor" opacity="0.85"/>
-          <circle cx="80" cy="0" r="13" fill="currentColor"/>
-          <!-- Ключевая структура на правом конце -->
-          <g transform="translate(80,0)" fill="currentColor">
-            <rect x="14" y="-7" width="40" height="14" rx="2"/>
-            <rect x="48" y="-12" width="6" height="6"/>
-            <rect x="48" y="6" width="6" height="6"/>
-            <rect x="40" y="-10" width="4" height="4"/>
-            <rect x="40" y="6" width="4" height="4"/>
-          </g>
-          <text x="100" y="35" font-family="Manrope, sans-serif" font-size="12" fill="currentColor" opacity="0.7" font-style="italic">ключевая структура</text>
-        </g>
-      </g>
-
-      <!-- ─── Стрелка → клетка ─── -->
-      <g transform="translate(720,180)" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M0 30 H 50"/>
-        <path d="M40 22 L 50 30 L 40 38"/>
-        <text x="25" y="20" font-family="Manrope, sans-serif" font-size="11" fill="currentColor" text-anchor="middle" stroke="none" font-style="italic">подходит к рецептору</text>
-      </g>
-
-      <!-- ─── Стадия 3: Клетка с пептидом-ключом ─── -->
-      <g transform="translate(820,80)">
-        <text x="120" y="0" font-family="PT Sans Narrow, sans-serif" font-size="18" letter-spacing="3" fill="currentColor" font-weight="700" text-anchor="middle">КЛЕТКА</text>
-        <text x="120" y="22" font-family="Manrope, sans-serif" font-size="13" fill="currentColor" opacity="0.7" text-anchor="middle">принимает команду через рецептор</text>
-      </g>
-
-      <!-- Клетка-иллюстрация -->
-      <g transform="translate(940,260)">
-        <!-- Мембрана (двойная линия) -->
-        <circle cx="0" cy="0" r="90" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-width="2.5"/>
-        <circle cx="0" cy="0" r="82" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
-
-        <!-- Ядро -->
-        <circle cx="0" cy="0" r="28" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.5"/>
-        <text x="0" y="4" text-anchor="middle" font-family="Manrope, sans-serif" font-size="10" fill="currentColor" font-weight="700" opacity="0.8">ЯДРО</text>
-
-        <!-- Рецепторы (зубчатые «замки» на мембране) -->
-        <g fill="currentColor">
-          <!-- Левый — куда садится ключ -->
-          <path d="M-92 -8 L -82 -10 L -82 -4 L -76 -4 L -76 4 L -82 4 L -82 10 L -92 8 Z"/>
-          <!-- Верхний -->
-          <path d="M-8 -92 L -10 -82 L -4 -82 L -4 -76 L 4 -76 L 4 -82 L 10 -82 L 8 -92 Z"/>
-          <!-- Правый -->
-          <path d="M92 -8 L 82 -10 L 82 -4 L 76 -4 L 76 4 L 82 4 L 82 10 L 92 8 Z"/>
-          <!-- Нижний -->
-          <path d="M-8 92 L -10 82 L -4 82 L -4 76 L 4 76 L 4 82 L 10 82 L 8 92 Z"/>
-        </g>
-
-        <!-- Пептид-ключ садится в левый рецептор -->
-        <g transform="translate(-130,-2)">
-          <line x1="0" y1="2" x2="36" y2="2" stroke="currentColor" stroke-width="2"/>
-          <circle cx="0" cy="2" r="8" fill="currentColor"/>
-          <circle cx="18" cy="2" r="8" fill="currentColor" opacity="0.85"/>
-          <circle cx="36" cy="2" r="8" fill="currentColor"/>
-          <g transform="translate(40,-7)" fill="currentColor">
-            <rect x="0" y="3" width="10" height="8" rx="1"/>
-            <rect x="6" y="0" width="4" height="4"/>
-            <rect x="6" y="10" width="4" height="4"/>
-          </g>
-        </g>
-
-        <!-- Сигнал-волны от мембраны к ядру -->
-        <g fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5">
-          <circle cx="0" cy="0" r="44"/>
-          <circle cx="0" cy="0" r="56"/>
-          <circle cx="0" cy="0" r="68"/>
-        </g>
-
-        <!-- Искра в ядре -->
-        <g transform="translate(-3,-3)" fill="currentColor">
-          <path d="M0 -8 L 2 -2 L 8 0 L 2 2 L 0 8 L -2 2 L -8 0 L -2 -2 Z"/>
-        </g>
-      </g>
-
-      <!-- Подпись внизу -->
-      <text x="940" y="430" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" fill="currentColor" opacity="0.7" font-style="italic">сигнал → ядро → ответ организма</text>
-    </symbol>
-
-    <!-- ====================================================== -->
-    <!-- ИЛЛЮСТРАЦИЯ V2: Принцип «ключ → замок»                 -->
-    <!-- Большая, крупная — отдельный слайд                     -->
-    <!-- ====================================================== -->
-    <symbol id="ill-key-lock" viewBox="0 0 900 360">
-      <!-- Ключ слева -->
-      <g transform="translate(60,140)" fill="currentColor">
-        <!-- Тело ключа (стилизованный пептид-ключ) -->
-        <circle cx="40" cy="40" r="36"/>
-        <circle cx="40" cy="40" r="18" fill="#F8F6EB"/>
-        <rect x="76" y="34" width="200" height="12" rx="2"/>
-        <!-- Зубцы ключа -->
-        <rect x="200" y="46" width="10" height="20"/>
-        <rect x="220" y="46" width="10" height="16"/>
-        <rect x="240" y="46" width="10" height="22"/>
-        <rect x="262" y="46" width="14" height="18"/>
-      </g>
-
-      <!-- Текст под ключом -->
-      <text x="180" y="240" text-anchor="middle" font-family="PT Sans Narrow, sans-serif" font-size="17" letter-spacing="3" fill="currentColor" font-weight="700">ПЕПТИД (КЛЮЧ)</text>
-      <text x="180" y="262" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="currentColor" opacity="0.7">короткая сигнальная молекула</text>
-
-      <!-- Стрелка → -->
-      <g transform="translate(380,170)" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M0 0 H 70"/>
-        <path d="M58 -10 L 70 0 L 58 10"/>
-      </g>
-
-      <!-- Замок справа: рецептор на мембране -->
-      <g transform="translate(500,80)">
-        <!-- Мембрана -->
-        <line x1="0" y1="30" x2="380" y2="30" stroke="currentColor" stroke-width="2.5"/>
-        <line x1="0" y1="80" x2="380" y2="80" stroke="currentColor" stroke-width="2.5"/>
-        <text x="6" y="120" font-family="Manrope, sans-serif" font-size="11" fill="currentColor" opacity="0.7" font-style="italic">мембрана клетки</text>
-
-        <!-- Рецептор-«замок» с щелью под ключ -->
-        <g transform="translate(140,30)">
-          <!-- Внешняя часть рецептора -->
-          <path d="M0 0 V -38 C 0 -55 16 -68 50 -68 C 84 -68 100 -55 100 -38 V 0 Z" fill="currentColor"/>
-          <!-- Внутренняя щель-замок (вырез) -->
-          <path d="M30 0 V -32 C 30 -42 36 -50 50 -50 C 64 -50 70 -42 70 -32 V 0 Z" fill="#F8F6EB"/>
-          <!-- Зубцы замка -->
-          <rect x="30" y="-26" width="6" height="12" fill="currentColor"/>
-          <rect x="64" y="-26" width="6" height="8" fill="currentColor"/>
-        </g>
-
-        <!-- Внутри клетки — сигнал -->
-        <g transform="translate(190,140)" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55">
-          <circle cx="0" cy="0" r="20"/>
-          <circle cx="0" cy="0" r="34"/>
-          <circle cx="0" cy="0" r="48"/>
-        </g>
-        <g transform="translate(187,137)" fill="currentColor">
-          <path d="M0 -10 L 3 -3 L 10 0 L 3 3 L 0 10 L -3 3 L -10 0 L -3 -3 Z"/>
-        </g>
-      </g>
-
-      <!-- Текст под замком -->
-      <text x="690" y="240" text-anchor="middle" font-family="PT Sans Narrow, sans-serif" font-size="17" letter-spacing="3" fill="currentColor" font-weight="700">РЕЦЕПТОР (ЗАМОК)</text>
-      <text x="690" y="262" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="currentColor" opacity="0.7">белок на поверхности клетки</text>
-
-      <!-- Главная подпись внизу -->
-      <text x="450" y="320" text-anchor="middle" font-family="Manrope, sans-serif" font-size="15" font-weight="700" fill="currentColor">Только «свой» пептид подходит к «своему» рецептору — сигнал точечный</text>
-    </symbol>
-
-    <!-- ====================================================== -->
-    <!-- ИЛЛЮСТРАЦИЯ V2: Мембрана и микробы (для STOPBACTERIA)  -->
-    <!-- ====================================================== -->
-    <symbol id="ill-membrane" viewBox="0 0 600 280">
-      <!-- Двойной липидный слой -->
-      <g fill="currentColor" stroke="currentColor" stroke-width="1.5">
-        <!-- Верхний слой -->
-        <line x1="0" y1="80" x2="600" y2="80" stroke-width="2"/>
-        <g>
-          <circle cx="30" cy="80" r="10"/><line x1="30" y1="90" x2="30" y2="110" stroke-width="2"/>
-          <circle cx="80" cy="80" r="10"/><line x1="80" y1="90" x2="80" y2="110" stroke-width="2"/>
-          <circle cx="130" cy="80" r="10"/><line x1="130" y1="90" x2="130" y2="110" stroke-width="2"/>
-          <circle cx="180" cy="80" r="10"/><line x1="180" y1="90" x2="180" y2="110" stroke-width="2"/>
-          <circle cx="230" cy="80" r="10"/><line x1="230" y1="90" x2="230" y2="110" stroke-width="2"/>
-          <circle cx="280" cy="80" r="10"/><line x1="280" y1="90" x2="280" y2="110" stroke-width="2"/>
-          <circle cx="330" cy="80" r="10"/><line x1="330" y1="90" x2="330" y2="110" stroke-width="2"/>
-          <circle cx="380" cy="80" r="10"/><line x1="380" y1="90" x2="380" y2="110" stroke-width="2"/>
-          <circle cx="430" cy="80" r="10"/><line x1="430" y1="90" x2="430" y2="110" stroke-width="2"/>
-          <circle cx="480" cy="80" r="10"/><line x1="480" y1="90" x2="480" y2="110" stroke-width="2"/>
-          <circle cx="530" cy="80" r="10"/><line x1="530" y1="90" x2="530" y2="110" stroke-width="2"/>
-          <circle cx="580" cy="80" r="10"/><line x1="580" y1="90" x2="580" y2="110" stroke-width="2"/>
-        </g>
-        <!-- Нижний слой -->
-        <line x1="0" y1="140" x2="600" y2="140" stroke-width="2"/>
-        <g>
-          <circle cx="30" cy="140" r="10"/><line x1="30" y1="110" x2="30" y2="130" stroke-width="2"/>
-          <circle cx="80" cy="140" r="10"/><line x1="80" y1="110" x2="80" y2="130" stroke-width="2"/>
-          <circle cx="130" cy="140" r="10"/><line x1="130" y1="110" x2="130" y2="130" stroke-width="2"/>
-          <circle cx="180" cy="140" r="10"/><line x1="180" y1="110" x2="180" y2="130" stroke-width="2"/>
-          <circle cx="230" cy="140" r="10"/><line x1="230" y1="110" x2="230" y2="130" stroke-width="2"/>
-          <circle cx="280" cy="140" r="10"/><line x1="280" y1="110" x2="280" y2="130" stroke-width="2"/>
-          <circle cx="330" cy="140" r="10"/><line x1="330" y1="110" x2="330" y2="130" stroke-width="2"/>
-          <circle cx="380" cy="140" r="10"/><line x1="380" y1="110" x2="380" y2="130" stroke-width="2"/>
-          <circle cx="430" cy="140" r="10"/><line x1="430" y1="110" x2="430" y2="130" stroke-width="2"/>
-          <circle cx="480" cy="140" r="10"/><line x1="480" y1="110" x2="480" y2="130" stroke-width="2"/>
-          <circle cx="530" cy="140" r="10"/><line x1="530" y1="110" x2="530" y2="130" stroke-width="2"/>
-          <circle cx="580" cy="140" r="10"/><line x1="580" y1="110" x2="580" y2="130" stroke-width="2"/>
-        </g>
-      </g>
-
-      <!-- Бактерии (атакующие сверху) -->
-      <g stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18">
-        <!-- Бактерия 1 -->
-        <ellipse cx="100" cy="30" rx="18" ry="11"/>
-        <line x1="82" y1="30" x2="74" y2="22" stroke-width="1.5"/>
-        <line x1="82" y1="30" x2="72" y2="32" stroke-width="1.5"/>
-        <line x1="82" y1="30" x2="76" y2="38" stroke-width="1.5"/>
-        <!-- Бактерия 2 -->
-        <ellipse cx="240" cy="20" rx="14" ry="10"/>
-        <line x1="254" y1="20" x2="266" y2="10" stroke-width="1.5"/>
-        <line x1="254" y1="20" x2="268" y2="20" stroke-width="1.5"/>
-        <line x1="254" y1="20" x2="266" y2="30" stroke-width="1.5"/>
-        <!-- Бактерия 3 -->
-        <ellipse cx="420" cy="32" rx="16" ry="10"/>
-        <line x1="404" y1="32" x2="392" y2="24" stroke-width="1.5"/>
-        <line x1="404" y1="32" x2="390" y2="32" stroke-width="1.5"/>
-        <line x1="404" y1="32" x2="392" y2="40" stroke-width="1.5"/>
-      </g>
-
-      <!-- Защитный пептид-щит атакует бактерию -->
-      <g transform="translate(160,55)" fill="currentColor">
-        <circle cx="0" cy="0" r="6"/>
-        <circle cx="12" cy="-3" r="6"/>
-        <circle cx="24" cy="0" r="6"/>
-        <line x1="0" y1="0" x2="100" y2="-30" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
-      </g>
-      <g transform="translate(380,55)" fill="currentColor">
-        <circle cx="0" cy="0" r="6"/>
-        <circle cx="12" cy="-3" r="6"/>
-        <circle cx="24" cy="0" r="6"/>
-        <line x1="24" y1="0" x2="80" y2="-25" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3"/>
-      </g>
-
-      <!-- Подпись «область защиты» -->
-      <text x="300" y="230" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="currentColor" opacity="0.7" font-style="italic">Защитные пептиды на поверхности слизистой обезвреживают патогены</text>
-    </symbol>
-
-    <!-- ====================================================== -->
-    <!-- Большая иллюстрация механизма пептидов (ORIGINAL v1)   -->
+    <!-- Большая иллюстрация механизма пептидов                 -->
+    <!-- (для слайда "Что такое пептиды")                       -->
     <!-- ====================================================== -->
     <symbol id="ill-mechanism" viewBox="0 0 720 360">
       <!-- Stage 1: длинная цепочка (белок) -->
@@ -990,6 +1443,7 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
 <!-- SLIDE 01 — COVER                               -->
 <!-- ============================================== -->
 <section class="slide cover">
+  <div class="ai-cover-visual"></div>
   <div class="corner-logo">
     <svg><use href="#logo-mark"/></svg>
     <span class="wm">GENELINE</span>
@@ -1087,11 +1541,13 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Что такое пептиды</div><div class="t2">Простым языком — без биохимии</div></div>
   </div>
   <div class="content">
-    <!-- Большая иллюстрация механизма "белок → пептид → ключ → клетка" -->
-    <div style="background:rgba(255,255,255,.55);border:1px solid rgba(138,102,70,.18);border-radius:14px;padding:18px 28px;color:var(--copper);height:480px;display:flex;align-items:center;justify-content:center;">
-      <svg viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid meet" style="max-height:100%;max-width:100%;color:var(--copper);">
-        <use href="#ill-mechanism-v2"/>
-      </svg>
+    <div class="ai-visual-panel">
+      <img src="ai-visuals/peptide-receptor-visual.png" alt="">
+      <div class="overlay-diagram">
+        <div class="overlay-step"><b>01 Белок</b><span>длинная цепочка аминокислот</span></div>
+        <div class="overlay-step"><b>02 Пептид</b><span>короткая сигнальная молекула</span></div>
+        <div class="overlay-step"><b>03 Рецептор</b><span>точная команда клетке</span></div>
+      </div>
     </div>
 
     <!-- Под иллюстрацией: 4 текстовые шаги горизонтально + ключевое понимание -->
@@ -1168,43 +1624,8 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
 
     <div class="bloc warm" style="margin-top:18px;padding:14px 22px;">
       <h3>Главный принцип</h3>
-      <div style="font-size:15px;line-height:1.55;color:var(--ivory);">
+      <div style="font-size:14px;line-height:1.5;color:var(--ivory);">
         Пептиды работают <b>точечно</b> — каждый комплекс рассчитан на свою задачу. Это не общеукрепляющая добавка «для всего сразу» — у каждого есть конкретная зона действия.
-      </div>
-    </div>
-  </div>
-  <div class="footer-tag">Модуль 01 — Основы</div>
-</section>
-
-<!-- ============================================== -->
-<!-- SLIDE 05c — Принцип «ключ-замок» (новый)        -->
-<!-- ============================================== -->
-<section class="slide">
-  <div class="corner-logo"><svg><use href="#logo-mark"/></svg><span class="wm">GENELINE</span></div>
-  <div class="section-mark">
-    <div class="icon"><svg><use href="#i-key"/></svg></div>
-    <div class="label"><div class="t1">Принцип «ключ → замок»</div><div class="t2">Почему пептиды работают точечно — на свои рецепторы</div></div>
-  </div>
-  <div class="content">
-    <!-- Большая иллюстрация ключа+замка -->
-    <div style="background:rgba(255,255,255,.55);border:1px solid rgba(138,102,70,.18);border-radius:14px;padding:18px 28px;color:var(--copper);height:440px;display:flex;align-items:center;justify-content:center;">
-      <svg viewBox="0 0 900 360" preserveAspectRatio="xMidYMid meet" style="max-height:100%;max-width:100%;color:var(--copper);">
-        <use href="#ill-key-lock"/>
-      </svg>
-    </div>
-
-    <div class="cards cols-3" style="margin-top:18px;gap:14px;">
-      <div class="bloc-mini" style="padding:14px 18px;">
-        <h4>Селективность</h4>
-        <p>Каждый пептидный комплекс направлен на <b>конкретную систему</b>. Не «всё подряд», а точечно.</p>
-      </div>
-      <div class="bloc-mini" style="padding:14px 18px;">
-        <h4>Минимум побочных</h4>
-        <p>Поскольку «ключ» подходит только к «своему замку», на другие системы воздействие минимально.</p>
-      </div>
-      <div class="bloc-mini" style="padding:14px 18px;">
-        <h4>Естественность</h4>
-        <p>Организм получает сигнал, который он узнаёт как свой — и реагирует <b>физиологически</b>.</p>
       </div>
     </div>
   </div>
@@ -1289,21 +1710,30 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Таблица быстрого выбора</div><div class="t2">Запрос клиента → комплекс (первый приоритет)</div></div>
   </div>
   <div class="content">
-    <table class="brand">
-      <thead><tr><th style="width:62%;">Запрос / жалоба клиента</th><th>Комплекс (первый приоритет)</th></tr></thead>
-      <tbody>
-        <tr><td>«Нет желания, нет искры», стресс, переутомление, гормоны в норме</td><td><span class="pill">TESTOBOOSTER</span> <span style="color:var(--graphite-2)">или</span> <span class="pill">AMORE</span></td></tr>
-        <tr><td>Нерегулярный цикл, функциональная аменорея, снижение фертильности</td><td><span class="pill">AMORE</span></td></tr>
-        <tr><td>«Голова не варит», забывчивость, рассеянность, умственная нагрузка</td><td><span class="pill">ACTIVEBRAIN</span></td></tr>
-        <tr><td>Хронический стресс, тревога, выгорание</td><td><span class="pill">NO STRESS</span> <span style="color:var(--graphite-2)">и/или</span> <span class="pill">STRESSRELIEF</span></td></tr>
-        <tr><td>Не могу заснуть, поверхностный сон, не восстанавливаюсь за ночь</td><td><span class="pill">RECOVERY</span> <span style="color:var(--graphite-2)">/</span> <span class="pill">NO STRESS</span></td></tr>
-        <tr><td>Часто болею ОРВИ, долго восстанавливаюсь, тревога на фоне иммунитета</td><td><span class="pill">IMMUNACTIV</span></td></tr>
-        <tr><td>Хроническая боль, гиперчувствительность, постнагрузочные боли</td><td><span class="pill">RELIEF</span> <span style="color:var(--graphite-2)">— только с врачом</span></td></tr>
-        <tr><td>Частые проблемы со слизистыми, медленное заживление, афты, герпес</td><td><span class="pill">STOPBACTERIA</span></td></tr>
-        <tr><td>Социальная тревога, «холодность», эмоциональная отстранённость</td><td><span class="pill">OXYGEN</span></td></tr>
-      </tbody>
-    </table>
-    <div class="body-sm" style="margin-top:14px;">Таблица не заменяет полную карточку комплекса и проверку противопоказаний. Конкретные дозы — по инструкции производителя.</div>
+    <div class="notebook-strip">
+      <div class="notebook-tab"><svg><use href="#i-chat"/></svg><div><b>Запрос</b><span>что клиент говорит своими словами</span></div></div>
+      <div class="notebook-tab"><svg><use href="#i-map"/></svg><div><b>Зона действия</b><span>какая система просит внимания</span></div></div>
+      <div class="notebook-tab"><svg><use href="#i-shield"/></svg><div><b>Безопасность</b><span>проверка перед схемой</span></div></div>
+    </div>
+    <div class="symptom-path">
+      <div class="path-box"><div class="label">Клиент говорит</div><b>«Не сплю / тревога / туман»</b></div>
+      <div class="path-arrow">→</div>
+      <div class="path-box"><div class="label">Специалист ищет</div><b>ведущую систему и красные флаги</b></div>
+      <div class="path-arrow">→</div>
+      <div class="path-box"><div class="label">Первый приоритет</div><b>1 комплекс + контрольная точка</b></div>
+    </div>
+    <div class="selector-grid">
+      <div class="selector-card"><div class="meta">Либидо / стресс</div><div class="request">«Нет желания, нет искры», переутомление, гормоны в норме</div><span class="pill">TESTOBOOSTER</span> <span style="color:var(--graphite-2)">или</span> <span class="pill">AMORE</span></div>
+      <div class="selector-card"><div class="meta">Репродуктивная ось</div><div class="request">Нерегулярный цикл, функциональная аменорея, снижение фертильности</div><span class="pill">AMORE</span></div>
+      <div class="selector-card"><div class="meta">Когнитивная нагрузка</div><div class="request">«Голова не варит», забывчивость, рассеянность, умственная нагрузка</div><span class="pill">ACTIVEBRAIN</span></div>
+      <div class="selector-card"><div class="meta">Стресс / выгорание</div><div class="request">Хронический стресс, тревога, выгорание</div><span class="pill">NO STRESS</span> <span style="color:var(--graphite-2)">и/или</span> <span class="pill">STRESSRELIEF</span></div>
+      <div class="selector-card"><div class="meta">Сон / восстановление</div><div class="request">Не могу заснуть, поверхностный сон, не восстанавливаюсь за ночь</div><span class="pill">RECOVERY</span> <span style="color:var(--graphite-2)">/</span> <span class="pill">NO STRESS</span></div>
+      <div class="selector-card"><div class="meta">Иммунитет</div><div class="request">Часто болею ОРВИ, долго восстанавливаюсь, тревога на фоне иммунитета</div><span class="pill">IMMUNACTIV</span></div>
+      <div class="selector-card warn"><div class="meta">Боль / врач</div><div class="request">Хроническая боль, гиперчувствительность, постнагрузочные боли</div><span class="pill">RELIEF</span> <span style="color:#B33A2F">только с врачом</span></div>
+      <div class="selector-card"><div class="meta">Слизистые</div><div class="request">Частые проблемы со слизистыми, медленное заживление, афты, герпес</div><span class="pill">STOPBACTERIA</span></div>
+      <div class="selector-card"><div class="meta">Социальный контакт</div><div class="request">Социальная тревога, «холодность», эмоциональная отстранённость</div><span class="pill">OXYGEN</span></div>
+    </div>
+    <div class="selector-note"><svg><use href="#i-shield"/></svg><span>Быстрый выбор — это первая навигация, не назначение. Перед схемой всегда проверяются противопоказания, инструкция производителя и необходимость врачебного согласования.</span></div>
   </div>
   <div class="footer-tag">Модуль 02 — Навигация</div>
 </section>
@@ -1318,80 +1748,46 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">10 комплексов Royal Peptides</div><div class="t2">Карта зон действия на организме человека</div></div>
   </div>
   <div class="content">
-    <div style="display:grid;grid-template-columns:380px 1fr;gap:30px;height:100%;">
-      <!-- Силуэт человека с зонами -->
-      <div style="background:rgba(255,255,255,.55);border:1px solid rgba(138,102,70,.18);border-radius:14px;padding:20px;display:flex;align-items:center;justify-content:center;">
-        <svg viewBox="0 0 360 520" preserveAspectRatio="xMidYMid meet" style="max-width:100%;max-height:100%;color:var(--copper);">
-          <use href="#ill-body-map"/>
-        </svg>
+    <div class="complex-dashboard">
+      <div class="body-console ai-body">
+        <img src="ai-visuals/body-systems-visual.png" alt="">
+        <div class="scan-title"><b>Clinical map</b><span>10 комплексов / 5 зон</span></div>
+        <div class="body-pin pin-brain"><svg><use href="#m-brain"/></svg>NEURO</div>
+        <div class="body-pin pin-stress"><svg><use href="#m-nostress"/></svg>STRESS</div>
+        <div class="body-pin pin-immune"><svg><use href="#m-immune"/></svg>IMMUNE</div>
+        <div class="body-pin pin-pain"><svg><use href="#m-relief"/></svg>PAIN</div>
+        <div class="body-pin pin-repro"><svg><use href="#m-amore"/></svg>REPRO</div>
       </div>
-
-      <!-- Группы комплексов с метафорами -->
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        <!-- Группа 1: Нейро/Психо -->
-        <div class="bloc" style="padding:16px 20px;">
-          <h3 style="margin-bottom:10px;">Нейро · Психо <span style="color:var(--graphite-2);font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;">— 5 комплексов</span></h3>
-          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-brain"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">ACTIVEBRAIN</div>
-            </div>
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-nostress"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">NO STRESS</div>
-            </div>
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-oxygen"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">OXYGEN</div>
-            </div>
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-recovery"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">RECOVERY</div>
-            </div>
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-stressrelief"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">STRESSRELIEF</div>
-            </div>
+      <div class="dashboard-right">
+        <div class="system-tabs">
+          <div class="system-tab"><svg><use href="#sys-nerves"/></svg><b>Нервная</b><span>мозг, стресс, сон</span></div>
+          <div class="system-tab"><svg><use href="#sys-immune"/></svg><b>Иммунная</b><span>защита и слизистые</span></div>
+          <div class="system-tab"><svg><use href="#m-recovery"/></svg><b>Сон</b><span>восстановление</span></div>
+          <div class="system-tab"><svg><use href="#m-relief"/></svg><b>Боль</b><span>сенсибилизация</span></div>
+          <div class="system-tab"><svg><use href="#sys-endo"/></svg><b>Ось</b><span>либидо, цикл</span></div>
+        </div>
+        <div class="complex-matrix">
+          <div class="matrix-card">
+            <div class="top"><svg><use href="#m-brain"/></svg><b>ACTIVEBRAIN</b></div>
+            <span>«Голова не варит» → когнитивная функция, фокус, рабочая память.</span>
+          </div>
+          <div class="matrix-card">
+            <div class="top"><svg><use href="#m-nostress"/></svg><b>NO STRESS / STRESSRELIEF</b></div>
+            <span>Острый стресс или длительное истощение → спокойствие и ресурс мозга.</span>
+          </div>
+          <div class="matrix-card">
+            <div class="top"><svg><use href="#m-recovery"/></svg><b>RECOVERY / OXYGEN</b></div>
+            <span>Сон, восстановление, социальная тревога и эмоциональный контакт.</span>
+          </div>
+          <div class="matrix-card">
+            <div class="top"><svg><use href="#m-immune"/></svg><b>IMMUNACTIV / STOPBACTERIA</b></div>
+            <span>Иммунный ответ, слизистые барьеры, восстановление после инфекций.</span>
+          </div>
+          <div class="matrix-card full">
+            <div class="mini-pair"><svg><use href="#m-relief"/></svg><div><b>RELIEF</b><span>боль и гиперчувствительность — только с врачом</span></div></div>
+            <div class="mini-pair"><svg><use href="#m-amore"/></svg><div><b>AMORE / TESTOBOOSTER</b><span>репродуктивная ось, либидо, мотивация</span></div></div>
           </div>
         </div>
-
-        <!-- Группа 2: Иммуно/Противомикробное -->
-        <div class="bloc" style="padding:16px 20px;">
-          <h3 style="margin-bottom:10px;">Иммуно · Противомикробное · Боль <span style="color:var(--graphite-2);font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;">— 3 комплекса</span></h3>
-          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-immune"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">IMMUNACTIV</div>
-            </div>
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-stop"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">STOPBACTERIA</div>
-            </div>
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-relief"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">RELIEF</div>
-            </div>
-            <div></div><div></div>
-          </div>
-        </div>
-
-        <!-- Группа 3: Репродукция -->
-        <div class="bloc" style="padding:16px 20px;">
-          <h3 style="margin-bottom:10px;">Репродукция · Либидо <span style="color:var(--graphite-2);font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;">— 2 комплекса</span></h3>
-          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-amore"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">AMORE</div>
-            </div>
-            <div style="text-align:center;">
-              <div style="color:var(--copper);width:44px;height:44px;margin:0 auto 4px;"><svg viewBox="0 0 100 100" style="width:100%;height:100%;"><use href="#m-testo"/></svg></div>
-              <div style="font-weight:800;font-size:11px;color:var(--copper);">TESTOBOOSTER</div>
-            </div>
-            <div></div><div></div><div></div>
-          </div>
-        </div>
-
-        <div class="body-sm" style="margin-top:auto;">Иконки — упрощённые метафоры механизма каждого комплекса. Подробные карточки — в Модуле 03.</div>
       </div>
     </div>
   </div>
@@ -1409,6 +1805,33 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="lede">Карточка каждого: для кого, главная выгода, как работает, ожидаемые эффекты, алгоритм подбора</div>
   </div>
   <div class="footer-tag">Модуль 03</div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 10b — Навигатор механизмов               -->
+<!-- ============================================== -->
+<section class="slide">
+  <div class="corner-logo"><svg><use href="#logo-mark"/></svg><span class="wm">GENELINE</span></div>
+  <div class="section-mark">
+    <div class="icon"><svg><use href="#i-map"/></svg></div>
+    <div class="label"><div class="t1">Навигатор механизмов</div><div class="t2">Как быстро объяснить роль каждого комплекса</div></div>
+  </div>
+  <div class="content">
+    <div class="complex-matrix" style="grid-template-columns:repeat(5,1fr);gap:14px;">
+      <div class="matrix-card"><div class="top"><svg><use href="#m-amore"/></svg><b>AMORE</b></div><span>настройка репродуктивной оси</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-brain"/></svg><b>ACTIVEBRAIN</b></div><span>ясность, фокус, нейромедиаторы</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-immune"/></svg><b>IMMUNACTIV</b></div><span>нейроиммунная регуляция</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-nostress"/></svg><b>NO STRESS</b></div><span>переключение тревожного ответа</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-oxygen"/></svg><b>OXYGEN</b></div><span>социальный контакт и близость</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-recovery"/></svg><b>RECOVERY</b></div><span>сон как восстановительный процесс</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-relief"/></svg><b>RELIEF</b></div><span>снижение болевой сенсибилизации</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-stop"/></svg><b>STOPBACTERIA</b></div><span>защита слизистых барьеров</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-stressrelief"/></svg><b>STRESSRELIEF</b></div><span>ресурс мозга при длительном стрессе</span></div>
+      <div class="matrix-card"><div class="top"><svg><use href="#m-testo"/></svg><b>TESTOBOOSTER</b></div><span>центральные сети желания</span></div>
+    </div>
+    <div class="selector-note" style="margin-top:18px;"><svg><use href="#i-chat"/></svg><span>Формула объяснения клиенту: не “лечит симптом”, а “помогает конкретной системе вернуться к более нормальной регуляции”.</span></div>
+  </div>
+  <div class="footer-tag">Модуль 03 — Навигатор</div>
 </section>
 
 <!-- =========================================================== -->
@@ -1642,13 +2065,7 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
         <div class="nm">Комплекс 8 / 10</div>
         <h2 class="cx-name">STOPBACTERIA</h2>
         <div class="zone">Слизистые, противомикробная защита</div>
-        <!-- Иллюстрация мембраны -->
-        <div style="margin-top:14px;background:rgba(248,246,235,0.08);border-radius:10px;padding:10px;color:var(--ivory);">
-          <svg viewBox="0 0 600 280" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;">
-            <use href="#ill-membrane"/>
-          </svg>
-        </div>
-        <div class="pitch" style="padding-top:14px;">«Усиливает первый барьер защиты — слизистые оболочки»</div>
+        <div class="pitch">«Усиливает первый барьер защиты — слизистые оболочки»</div>
       </div>
       <div class="complex-body">
         <div class="bloc-mini"><h4>Для кого</h4><ul>
@@ -1754,24 +2171,49 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Алгоритм первичного визита</div><div class="t2">8 шагов от запроса до назначения</div></div>
   </div>
   <div class="content">
-    <div class="flow">
-      <div class="flow-step"><div class="n">1</div><div class="t">Сбор жалоб</div><div class="d">Что беспокоит, когда началось, как меняется в течение дня и под нагрузкой</div></div>
-      <div class="flow-step"><div class="n">2</div><div class="t">Анамнез</div><div class="d">Хр. заболевания, операции, текущие препараты (гормональные, психотропные), аллергии</div></div>
-      <div class="flow-step"><div class="n">3</div><div class="t">Скрининг противопоказаний</div><div class="d">Беременность, лактация, онкология, психиатрия, эндокринология</div></div>
-      <div class="flow-step danger"><div class="n">4</div><div class="t">Красные флаги ⚠</div><div class="d">При наличии — направление к врачу ДО начала любых пептидов</div></div>
-      <div class="flow-step"><div class="n">5</div><div class="t">Формирование ожиданий</div><div class="d">Эффект развивается постепенно. Никаких «100% гарантий»</div></div>
-      <div class="flow-step"><div class="n">6</div><div class="t">Подбор комплекса</div><div class="d">По таблице быстрого выбора и алгоритму «если → то» из карточки</div></div>
-      <div class="flow-step"><div class="n">7</div><div class="t">Согласование схемы</div><div class="d">По инструкции производителя и/или назначению врача</div></div>
-      <div class="flow-step"><div class="n">8</div><div class="t">Контрольные точки</div><div class="d">Когда сверяемся по самочувствию. Заполнить карточку назначения</div></div>
+    <div class="visual-rail">
+      <div class="rail-node"><div class="orb"><svg><use href="#i-chat"/></svg></div><b>Запрос</b><span>жалобы + анамнез</span></div>
+      <div class="rail-node stop"><div class="orb"><svg><use href="#i-warn"/></svg></div><b>Стоп-факторы</b><span>красные флаги</span></div>
+      <div class="rail-node"><div class="orb"><svg><use href="#i-map"/></svg></div><b>Подбор</b><span>комплекс + ожидания</span></div>
+      <div class="rail-node"><div class="orb"><svg><use href="#i-check"/></svg></div><b>Контроль</b><span>схема + сверка</span></div>
+    </div>
+    <div class="visit-lane">
+      <div class="lane-card">
+        <div class="lane-top"><svg><use href="#i-chat"/></svg><h3>1. Понять запрос</h3></div>
+        <ol>
+          <li data-n="1">Сбор жалоб: что беспокоит, когда началось, как меняется в течение дня</li>
+          <li data-n="2">Анамнез: заболевания, операции, текущие препараты, аллергии</li>
+        </ol>
+      </div>
+      <div class="lane-card stop">
+        <div class="lane-top"><svg><use href="#i-warn"/></svg><h3>2. Проверить стоп-факторы</h3></div>
+        <ol>
+          <li data-n="3">Скрининг противопоказаний: беременность, лактация, онкология, психиатрия, эндокринология</li>
+          <li data-n="4">Красные флаги: при наличии — врач до начала любых пептидов</li>
+        </ol>
+      </div>
+      <div class="lane-card">
+        <div class="lane-top"><svg><use href="#i-map"/></svg><h3>3. Выбрать маршрут</h3></div>
+        <ol>
+          <li data-n="5">Сформировать ожидания: эффект постепенно, без гарантий 100%</li>
+          <li data-n="6">Подобрать комплекс по таблице быстрого выбора и карточке</li>
+        </ol>
+      </div>
+      <div class="lane-card">
+        <div class="lane-top"><svg><use href="#i-check"/></svg><h3>4. Зафиксировать контроль</h3></div>
+        <ol>
+          <li data-n="7">Согласовать схему по инструкции производителя и/или назначению врача</li>
+          <li data-n="8">Назначить контрольные точки и заполнить карточку назначения</li>
+        </ol>
+      </div>
     </div>
 
-    <div class="bloc warm" style="margin-top:18px;">
-      <h3>Принцип безопасности</h3>
-      <ul>
-        <li>Стартовать с <b>одного</b> комплекса. Дозу и кратность — строго по инструкции.</li>
-        <li>Первые 3–7 дней — наблюдение за переносимостью.</li>
-        <li>Не вводить параллельно новые БАДы/препараты.</li>
-      </ul>
+    <div class="decision-alert" style="margin-top:22px;">
+      <div class="badge"><svg><use href="#i-shield"/></svg></div>
+      <div>
+        <b>Принцип безопасности</b>
+        <span>Стартовать с одного комплекса. Первые 3–7 дней — наблюдение за переносимостью. Не вводить параллельно новые БАДы или препараты.</span>
+      </div>
     </div>
   </div>
   <div class="footer-tag">Модуль 04 — Алгоритмы</div>
@@ -1787,30 +2229,41 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Красные флаги — стоп для самостоятельного подбора</div><div class="t2">При наличии хотя бы одного — направление к врачу до начала пептидов</div></div>
   </div>
   <div class="content">
-    <div class="two-col">
-      <div class="bloc" style="border-color:rgba(179,58,47,.35);background:rgba(179,58,47,.05);">
-        <h3 style="color:#B33A2F;">Абсолютные противопоказания</h3>
-        <ul>
-          <li>Беременность, планирование беременности, лактация</li>
-          <li>Активная или подозреваемая онкология; состояния после онкологии без согласования с онкологом</li>
-          <li>Тяжёлые психиатрические состояния: психозы, биполярное расстройство в нестабильной фазе, тяжёлая депрессия</li>
-          <li>Аутоиммунные заболевания в стадии обострения</li>
-          <li>Возраст до 18 лет — только по решению профильного врача</li>
-        </ul>
+    <div class="redflag-board">
+      <div class="stop-tile">
+        <svg><use href="#i-warn"/></svg>
+        <div class="big">STOP</div>
+        <div class="sub">Любой красный флаг переводит консультацию из режима подбора в режим врачебной оценки.</div>
+        <div class="redflag-meter">
+          <div class="meter-step"><b>1. Услышал</b><span>клиент описал тревожный симптом</span></div>
+          <div class="meter-step"><b>2. Проверил</b><span>сверка с противопоказаниями</span></div>
+          <div class="meter-step stop"><b>3. Направил</b><span>врач до любых пептидов</span></div>
+        </div>
       </div>
-      <div class="bloc">
-        <h3>Требуют врачебного согласования</h3>
-        <ul>
-          <li>Острые инфекции, высокая лихорадка, выраженный воспалительный процесс</li>
-          <li>Эндокринная патология неясного генеза</li>
-          <li>Параллельный приём гормональных, психотропных, противоопухолевых препаратов</li>
-          <li>Сильная необъяснимая потеря веса, кровотечения, нарастающая боль</li>
-        </ul>
+      <div>
+        <div class="flag-columns">
+          <div class="flag-list danger">
+            <h3>Абсолютные противопоказания</h3>
+            <ul>
+              <li>Беременность, планирование беременности, лактация</li>
+              <li>Активная или подозреваемая онкология; состояния после онкологии без согласования с онкологом</li>
+              <li>Тяжёлые психиатрические состояния: психозы, биполярное расстройство в нестабильной фазе, тяжёлая депрессия</li>
+              <li>Аутоиммунные заболевания в стадии обострения</li>
+              <li>Возраст до 18 лет — только по решению профильного врача</li>
+            </ul>
+          </div>
+          <div class="flag-list">
+            <h3>Требуют врачебного согласования</h3>
+            <ul>
+              <li>Острые инфекции, высокая лихорадка, выраженный воспалительный процесс</li>
+              <li>Эндокринная патология неясного генеза</li>
+              <li>Параллельный приём гормональных, психотропных, противоопухолевых препаратов</li>
+              <li>Сильная необъяснимая потеря веса, кровотечения, нарастающая боль</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flag-rule"><b>Правило специалиста:</b> сомневаешься — направь к врачу. Лучше пауза, чем ошибка. Приоритет безопасности выше приоритета продажи.</div>
       </div>
-    </div>
-    <div class="bloc warm" style="margin-top:18px;">
-      <h3>Правило специалиста</h3>
-      <div class="body-md" style="color:var(--ivory);">Сомневаешься — направь к врачу. Лучше пауза, чем ошибка. Приоритет безопасности выше приоритета продажи.</div>
     </div>
   </div>
   <div class="footer-tag">Модуль 04 — Алгоритмы</div>
@@ -1826,51 +2279,64 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Контрольная точка через 2–4 недели</div><div class="t2">Что проверить и какое решение принять</div></div>
   </div>
   <div class="content">
-    <!-- Таймлайн -->
-    <div style="background:rgba(255,255,255,.55);border:1px solid rgba(138,102,70,.18);border-radius:14px;padding:18px 24px 12px;margin-bottom:14px;color:var(--copper);">
-      <svg viewBox="0 0 1000 100" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;">
-        <use href="#ill-timeline"/>
-      </svg>
-    </div>
-
-    <div class="bloc" style="margin-bottom:14px;padding:14px 22px;">
-      <h3>Что проверить на сверке</h3>
-      <ul style="display:grid;grid-template-columns:repeat(2,1fr);column-gap:24px;">
-        <li>Соблюдение схемы: доза, кратность, пропуски</li>
-        <li>Переносимость: были ли нежелательные реакции</li>
-        <li>Сравнение «исходных точек» с текущими ощущениями (сон, концентрация, либидо, тревога, боль)</li>
-        <li>Сопутствующие изменения: новый стресс, препараты, образ жизни</li>
-        <li>Дневник самочувствия клиента</li>
-      </ul>
-    </div>
-
-    <div class="cards cols-3">
-      <div class="card" style="border-color:rgba(46,125,50,.4);background:rgba(46,125,50,.06);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <svg style="width:20px;height:20px;color:#2E7D32;"><use href="#i-check"/></svg>
-          <span style="font-weight:700;color:#2E7D32;">Продолжить курс</span>
+    <div class="decision-board">
+      <div class="decision-panel">
+        <div class="kicker">Сверка перед решением</div>
+        <div class="verify-grid">
+          <div class="verify-item">
+            <div class="dot"><svg><use href="#i-check"/></svg></div>
+            <div><b>Схема соблюдалась?</b><span>Доза, кратность, пропуски, длительность приема</span></div>
+          </div>
+          <div class="verify-item">
+            <div class="dot"><svg><use href="#i-shield"/></svg></div>
+            <div><b>Переносимость нормальная?</b><span>Нежелательные реакции, ухудшение, новые симптомы</span></div>
+          </div>
+          <div class="verify-item">
+            <div class="dot"><svg><use href="#i-flow"/></svg></div>
+            <div><b>Есть динамика по исходным точкам?</b><span>Сон, концентрация, либидо, тревога, боль</span></div>
+          </div>
+          <div class="verify-item">
+            <div class="dot"><svg><use href="#i-list"/></svg></div>
+            <div><b>Контекст не изменился?</b><span>Новый стресс, препараты, образ жизни, дневник самочувствия</span></div>
+          </div>
         </div>
-        <div class="desc">Позитивная динамика, хорошая переносимость, нет новых симптомов</div>
-      </div>
-      <div class="card" style="border-color:rgba(217,150,38,.4);background:rgba(217,150,38,.06);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <svg style="width:20px;height:20px;color:#B07A0E;"><use href="#i-flow"/></svg>
-          <span style="font-weight:700;color:#B07A0E;">Скорректировать</span>
+        <div style="margin-top:16px;color:var(--copper);">
+          <svg viewBox="0 0 1000 100" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;">
+            <use href="#ill-timeline"/>
+          </svg>
         </div>
-        <div class="desc">Эффект есть, но неполный. Обсудить с врачом: схему, кратность, комбинирование</div>
       </div>
-      <div class="card" style="border-color:rgba(179,58,47,.4);background:rgba(179,58,47,.06);">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <svg style="width:20px;height:20px;color:#B33A2F;"><use href="#i-warn"/></svg>
-          <span style="font-weight:700;color:#B33A2F;">Остановить и направить</span>
-        </div>
-        <div class="desc">Нет эффекта при адекватном выборе → врач для исключения нераспознанной причины</div>
-      </div>
-    </div>
 
-    <div class="bloc warm" style="margin-top:18px;">
-      <h3>Нежелательная реакция</h3>
-      <div class="body-md" style="color:var(--ivory);">Любая выраженная реакция — приостановить приём, оценить очно у врача. Не «продавливать» курс при ухудшении.</div>
+      <div class="decision-panel">
+        <div class="kicker">Решение специалиста</div>
+        <div class="decision-route">
+          <div class="route-card ok">
+            <div class="status"><svg><use href="#i-check"/></svg><b>Продолжить курс</b></div>
+            <div class="if">Если</div>
+            <p>Позитивная динамика, хорошая переносимость, нет новых симптомов.</p>
+            <div class="next"><b>Дальше:</b> закрепить схему и назначить следующую контрольную точку.</div>
+          </div>
+          <div class="route-card adjust">
+            <div class="status"><svg><use href="#i-flow"/></svg><b>Скорректировать</b></div>
+            <div class="if">Если</div>
+            <p>Эффект есть, но неполный, или мешают сопутствующие факторы.</p>
+            <div class="next"><b>Дальше:</b> обсудить с врачом схему, кратность или комбинирование.</div>
+          </div>
+          <div class="route-card stop">
+            <div class="status"><svg><use href="#i-warn"/></svg><b>Остановить и направить</b></div>
+            <div class="if">Если</div>
+            <p>Нет эффекта при адекватном выборе, есть реакция или новые тревожные симптомы.</p>
+            <div class="next"><b>Дальше:</b> врачебная оценка до продолжения курса.</div>
+          </div>
+        </div>
+        <div class="decision-alert">
+          <div class="badge"><svg><use href="#i-warn"/></svg></div>
+          <div>
+            <b>Нежелательная реакция = пауза</b>
+            <span>Любая выраженная реакция — приостановить приём, оценить очно у врача. Не «продавливать» курс при ухудшении.</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="footer-tag">Модуль 04 — Алгоритмы</div>
@@ -1925,13 +2391,29 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Работа с возражениями</div><div class="t2">5 самых частых — с готовыми ответами</div></div>
   </div>
   <div class="content">
-    <div class="cards cols-2" style="row-gap:14px;">
-      <div class="card"><div class="ttl" style="font-size:16px;">«Это же просто БАД, такое не работает»</div><div class="desc">Пептиды — отдельный класс сигнальных молекул, таких же, как ваши собственные. Они работают точечно: на свои рецепторы. Это не общеукрепляющая добавка — у каждого комплекса есть конкретная задача.</div></div>
-      <div class="card"><div class="ttl" style="font-size:16px;">«Это гормоны, мне нельзя»</div><div class="desc">Это не гормоны. Это короткие пептидные молекулы. Они не подменяют гормоны, а помогают собственной системе работать правильнее. Гормонозависимые состояния — отдельная история, и там — только с врачом.</div></div>
-      <div class="card"><div class="ttl" style="font-size:16px;">«Это дорого»</div><div class="desc">Цена связана с тем, что это синтетические молекулы высокой степени очистки. Результат рассчитан на устойчивый эффект. На неделю курса — сравнимо со стоимостью чашки кофе в день.</div></div>
-      <div class="card"><div class="ttl" style="font-size:16px;">«А вдруг не поможет?»</div><div class="desc">Мы никогда не обещаем 100%. Эффект развивается постепенно и зависит от состояния организма. Поэтому у нас есть контрольные точки — сверяемся по самочувствию и корректируем.</div></div>
-      <div class="card" style="grid-column:span 2;"><div class="ttl" style="font-size:16px;">«А не вызовет ли привыкания?»</div><div class="desc">Эти пептиды не относятся к веществам с риском зависимости. Они не подменяют ваши собственные системы, а аккуратно их регулируют. После курса организм продолжает использовать восстановленные ресурсы.</div></div>
+    <div class="objection-grid">
+      <div class="objection-card">
+        <div class="q">«Это же просто БАД, такое не работает»</div>
+        <div class="answer"><div class="say">Ответ</div>Пептиды — отдельный класс сигнальных молекул. Они работают точечно: на свои рецепторы. Это не общеукрепляющая добавка — у каждого комплекса есть конкретная задача.</div>
+      </div>
+      <div class="objection-card">
+        <div class="q">«Это гормоны, мне нельзя»</div>
+        <div class="answer"><div class="say">Ответ</div>Это не гормоны. Короткие пептидные молекулы не подменяют гормоны, а помогают собственной системе работать правильнее. Гормонозависимые состояния — только с врачом.</div>
+      </div>
+      <div class="objection-card">
+        <div class="q">«Это дорого»</div>
+        <div class="answer"><div class="say">Ответ</div>Цена связана с синтетическими молекулами высокой степени очистки. Результат рассчитан на устойчивый эффект. На неделю курса — сравнимо со стоимостью чашки кофе в день.</div>
+      </div>
+      <div class="objection-card">
+        <div class="q">«А вдруг не поможет?»</div>
+        <div class="answer"><div class="say">Ответ</div>Мы не обещаем 100%. Эффект развивается постепенно и зависит от состояния организма. Поэтому есть контрольные точки: сверяемся по самочувствию и корректируем.</div>
+      </div>
+      <div class="objection-card">
+        <div class="q">«А не вызовет ли привыкания?»</div>
+        <div class="answer"><div class="say">Ответ</div>Эти пептиды не относятся к веществам с риском зависимости. Они не подменяют собственные системы, а аккуратно их регулируют. После курса организм использует восстановленные ресурсы.</div>
+      </div>
     </div>
+    <div class="selector-note"><svg><use href="#i-chat"/></svg><span>Формула ответа: признать вопрос → объяснить механизм простым языком → вернуть к безопасности и контрольной точке.</span></div>
   </div>
   <div class="footer-tag">Модуль 05 — Продажи</div>
 </section>
@@ -1946,14 +2428,14 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Ошибки специалистов и юридические риски</div><div class="t2">Что делать нельзя — никогда</div></div>
   </div>
   <div class="content">
-    <div class="cards cols-2" style="row-gap:14px;">
-      <div class="card"><div class="ttl" style="font-size:16px;color:#B33A2F;">1. Назначить при красных флагах</div><div class="desc">Не проверил противопоказания → назначил пептид беременной или онкопациенту. Последствия: вред клиенту + юридическая ответственность.</div></div>
-      <div class="card"><div class="ttl" style="font-size:16px;color:#B33A2F;">2. Комбинировать сразу несколько</div><div class="desc">Старт сразу с двух комплексов без переносимости каждого. Нельзя понять, что дало эффект или реакцию.</div></div>
-      <div class="card"><div class="ttl" style="font-size:16px;color:#B33A2F;">3. Увеличить дозу «для эффекта»</div><div class="desc">«Нет эффекта? Дам больше» — типичная и опасная ошибка. Дозу определяет инструкция и врач, не продавец.</div></div>
-      <div class="card"><div class="ttl" style="font-size:16px;color:#B33A2F;">4. Обещать 100% результат</div><div class="desc">«Точно поможет» — юридически опасное заявление. Говорим честно: эффект возможен, но зависит от организма.</div></div>
-      <div class="card" style="grid-column:span 2;"><div class="ttl" style="font-size:16px;color:#B33A2F;">5. Ставить диагноз клиенту</div><div class="desc">«У вас дефицит окситоцина» — специалист не имеет права ставить диагноз. Формулировка: «судя по вашим запросам, рассмотрим такой-то комплекс».</div></div>
+    <div class="risk-grid">
+      <div class="risk-card"><div class="num">1</div><b>Назначить при красных флагах</b><span>Не проверил противопоказания → назначил пептид беременной или онкопациенту. Последствия: вред клиенту + юридическая ответственность.</span></div>
+      <div class="risk-card"><div class="num">2</div><b>Комбинировать сразу несколько</b><span>Старт сразу с двух комплексов без переносимости каждого. Нельзя понять, что дало эффект или реакцию.</span></div>
+      <div class="risk-card"><div class="num">3</div><b>Увеличить дозу «для эффекта»</b><span>«Нет эффекта? Дам больше» — опасная ошибка. Дозу определяет инструкция и врач, не продавец.</span></div>
+      <div class="risk-card"><div class="num">4</div><b>Обещать 100% результат</b><span>«Точно поможет» — юридически опасное заявление. Говорим честно: эффект возможен, но зависит от организма.</span></div>
+      <div class="risk-card"><div class="num">5</div><b>Ставить диагноз клиенту</b><span>«У вас дефицит окситоцина» — специалист не имеет права ставить диагноз. Безопаснее: «по вашим запросам рассмотрим комплекс».</span></div>
     </div>
-    <div class="bloc warm" style="margin-top:14px;">
+    <div class="bloc warm" style="margin-top:18px;">
       <h3>Что говорить нельзя юридически</h3>
       <ul style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
         <li>«Лечит», «устраняет болезнь», «заменяет лекарства»</li>
@@ -1988,28 +2470,26 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Учебные кейсы 1–2</div><div class="t2">Разбор типовых ситуаций</div></div>
   </div>
   <div class="content">
-    <div class="two-col">
-      <div class="bloc">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <span class="pill">КЕЙС 01</span>
-          <h3 style="margin:0;">Стресс и тревожная бессонница</h3>
+    <div class="case-grid">
+      <div class="case-flow">
+        <div class="case-head"><span class="pill">КЕЙС 01</span><h3>Стресс и тревожная бессонница</h3></div>
+        <div class="case-steps">
+          <div class="case-step"><div class="label">Ситуация</div><p>Женщина 38 лет, руководитель. «Постоянно на взводе», засыпает по часу, ночные пробуждения, утром «как разбитая».</p></div>
+          <div class="case-step"><div class="label">Уточнить</div><p>Уровень тревоги, текущие препараты, ТТГ + ферритин + B12, планирование беременности.</p></div>
+          <div class="case-step"><div class="label">Выбор</div><p>Приоритет — тревога и сон. <span class="pill">NO STRESS</span> как переключатель; при истощении — <span class="pill">STRESSRELIEF</span>. Не оба сразу на старте.</p></div>
+          <div class="case-step"><div class="label">Контроль</div><p>Засыпание, пробуждения, уровень тревоги, утренний фон через 2–4 недели.</p></div>
+          <div class="case-step alert"><div class="label">Врач</div><p>Суицидальные мысли, выраженная депрессия, панические атаки → психиатр. Тиреоидная патология → эндокринолог.</p></div>
         </div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Ситуация</h4><p>Женщина 38 лет, руководитель. «Постоянно на взводе», засыпает по часу, ночные пробуждения, утром «как разбитая». Гормоны не сдавала более года.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Что уточнить</h4><p>Уровень тревоги, текущие препараты, ТТГ + ферритин + B12, планирование беременности.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Логика выбора</h4><p>Приоритет — тревога и сон. <span class="pill">NO STRESS</span> как переключатель; при истощении — <span class="pill">STRESSRELIEF</span>. Не оба сразу на старте.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Контрольная точка (2–4 нед)</h4><p>Засыпание, пробуждения, уровень тревоги, утренний фон.</p></div>
-        <div class="bloc-mini" style="background:rgba(179,58,47,.08);border-color:rgba(179,58,47,.3);"><h4 style="color:#B33A2F;">Когда к врачу</h4><p>Суицидальные мысли, выраженная депрессия, панические атаки → психиатр. Тиреоидная патология → эндокринолог.</p></div>
       </div>
-      <div class="bloc">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <span class="pill">КЕЙС 02</span>
-          <h3 style="margin:0;">«Туман в голове» и когнитивная нагрузка</h3>
+      <div class="case-flow">
+        <div class="case-head"><span class="pill">КЕЙС 02</span><h3>«Туман в голове» и нагрузка</h3></div>
+        <div class="case-steps">
+          <div class="case-step"><div class="label">Ситуация</div><p>Мужчина 45 лет, IT-руководитель. «Голова не варит» к середине дня, забывает задачи, трудно удерживать фокус.</p></div>
+          <div class="case-step"><div class="label">Уточнить</div><p>Качество сна: храп, апноэ. Кофеин, скрытая депрессия. ТТГ, B12, ферритин.</p></div>
+          <div class="case-step"><div class="label">Выбор</div><p>Если сон нарушен — <span class="pill">RECOVERY</span>. При сохранном сне и нагрузке — <span class="pill">ACTIVEBRAIN</span>. При выгорании — <span class="pill">STRESSRELIEF</span>.</p></div>
+          <div class="case-step"><div class="label">Контроль</div><p>Концентрация, рабочая память, утомляемость, эпизоды «тумана» через 2–4 недели.</p></div>
+          <div class="case-step alert"><div class="label">Врач</div><p>Апноэ → сомнолог. Стойкая депрессия → психиатр. Прогрессирующая потеря памяти → невролог.</p></div>
         </div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Ситуация</h4><p>Мужчина 45 лет, IT-руководитель. «Голова не варит» к середине дня, забывает задачи, трудно удерживать фокус. Сон формально 7 часов, но «не свежий».</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Что уточнить</h4><p>Качество сна (храп, апноэ?), кофеин, скрытая депрессия. ТТГ, B12, ферритин.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Логика выбора</h4><p>Если сон нарушен — <span class="pill">RECOVERY</span>. При сохранном сне и нагрузке — <span class="pill">ACTIVEBRAIN</span>. При выгорании — <span class="pill">STRESSRELIEF</span> приоритетнее.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Контрольная точка (2–4 нед)</h4><p>Концентрация, рабочая память, утомляемость, эпизоды «тумана».</p></div>
-        <div class="bloc-mini" style="background:rgba(179,58,47,.08);border-color:rgba(179,58,47,.3);"><h4 style="color:#B33A2F;">Когда к врачу</h4><p>Апноэ → сомнолог. Стойкая депрессия → психиатр. Прогрессирующая потеря памяти → невролог.</p></div>
       </div>
     </div>
   </div>
@@ -2026,28 +2506,26 @@ table.brand tbody tr:hover td{ background:rgba(255,255,255,.4); }
     <div class="label"><div class="t1">Учебные кейсы 3–4</div><div class="t2">Разбор типовых ситуаций</div></div>
   </div>
   <div class="content">
-    <div class="two-col">
-      <div class="bloc">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <span class="pill">КЕЙС 03</span>
-          <h3 style="margin:0;">Частые ОРВИ и медленное восстановление</h3>
+    <div class="case-grid">
+      <div class="case-flow">
+        <div class="case-head"><span class="pill">КЕЙС 03</span><h3>Частые ОРВИ</h3></div>
+        <div class="case-steps">
+          <div class="case-step"><div class="label">Ситуация</div><p>Женщина 32 года. «Болею каждые 1–2 месяца», восстанавливается долго, тревожится из-за иммунитета.</p></div>
+          <div class="case-step"><div class="label">Уточнить</div><p>Частота и тяжесть эпизодов, хронические очаги, витамин D, ферритин, общий анализ крови.</p></div>
+          <div class="case-step"><div class="label">Выбор</div><p><span class="pill">IMMUNACTIV</span> — основной. При слизистых проблемах — <span class="pill">STOPBACTERIA</span>. Если стресс = триггер → сначала <span class="pill">NO STRESS</span>/<span class="pill">STRESSRELIEF</span>.</p></div>
+          <div class="case-step"><div class="label">Контроль</div><p>Частота эпизодов, длительность симптомов, скорость восстановления через 4 недели.</p></div>
+          <div class="case-step alert"><div class="label">Врач</div><p>Длительная лихорадка, потеря веса, ночная потливость → терапевт/гематолог. Аутоиммунное подозрение → иммунолог.</p></div>
         </div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Ситуация</h4><p>Женщина 32 года. «Болею каждые 1–2 месяца», восстанавливается долго, тревожится из-за иммунитета. Хронических заболеваний нет.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Что уточнить</h4><p>Частота и тяжесть эпизодов, хронические очаги (ЛОР, стоматология), витамин D, ферритин, общий анализ крови.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Логика выбора</h4><p><span class="pill">IMMUNACTIV</span> — основной. При слизистых проблемах — <span class="pill">STOPBACTERIA</span>. Если стресс = триггер → сначала <span class="pill">NO STRESS</span>/<span class="pill">STRESSRELIEF</span>.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Контрольная точка (4 нед)</h4><p>Частота эпизодов, длительность симптомов, скорость восстановления.</p></div>
-        <div class="bloc-mini" style="background:rgba(179,58,47,.08);border-color:rgba(179,58,47,.3);"><h4 style="color:#B33A2F;">Когда к врачу</h4><p>Длительная лихорадка, потеря веса, ночная потливость → терапевт/гематолог. Аутоиммунное подозрение → иммунолог.</p></div>
       </div>
-      <div class="bloc">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <span class="pill">КЕЙС 04</span>
-          <h3 style="margin:0;">Снижение либидо при сохранных гормонах</h3>
+      <div class="case-flow">
+        <div class="case-head"><span class="pill">КЕЙС 04</span><h3>Снижение либидо</h3></div>
+        <div class="case-steps">
+          <div class="case-step"><div class="label">Ситуация</div><p>Мужчина 41 год. «Пропало желание». Эрекции «технически есть», гормоны и сосуды в норме. Хронический стресс.</p></div>
+          <div class="case-step"><div class="label">Уточнить</div><p>Давность, связь со стрессом и сном. Препараты: антидепрессанты, антигипертензивные. Давность обследования у уролога.</p></div>
+          <div class="case-step"><div class="label">Выбор</div><p>При сохранной оси — <span class="pill">TESTOBOOSTER</span> по согласованию. При стрессе как драйвере — сначала <span class="pill">NO STRESS</span>/<span class="pill">STRESSRELIEF</span>.</p></div>
+          <div class="case-step"><div class="label">Контроль</div><p>Уровень желания, эмоциональный фон, общая энергия через 4 недели.</p></div>
+          <div class="case-step alert"><div class="label">Врач</div><p>Сомнения по гормональному фону → эндокринолог/уролог. Депрессия или тревога → психиатр.</p></div>
         </div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Ситуация</h4><p>Мужчина 41 год. «Пропало желание». Эрекции «технически есть», но мотивации нет. Гормоны и сосуды в норме. Хронический стресс.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Что уточнить</h4><p>Давность, связь со стрессом/сном. Препараты: антидепрессанты, антигипертензивные. Давность обследования у уролога.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Логика выбора</h4><p>При сохранной оси — <span class="pill">TESTOBOOSTER</span> по согласованию. При стрессе как драйвере — сначала <span class="pill">NO STRESS</span>/<span class="pill">STRESSRELIEF</span>.</p></div>
-        <div class="bloc-mini" style="background:rgba(138,102,70,.06);margin-bottom:10px;"><h4>Контрольная точка (4 нед)</h4><p>Уровень желания, эмоциональный фон, общая энергия.</p></div>
-        <div class="bloc-mini" style="background:rgba(179,58,47,.08);border-color:rgba(179,58,47,.3);"><h4 style="color:#B33A2F;">Когда к врачу</h4><p>Сомнения по гормональному фону → эндокринолог/уролог. Депрессия/тревога → психиатр.</p></div>
       </div>
     </div>
   </div>
