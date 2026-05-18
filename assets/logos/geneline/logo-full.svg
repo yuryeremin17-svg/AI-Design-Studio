@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" fill="none">
+  <!-- Знак -->
+  <g transform="translate(80,0)">
+    <circle cx="100" cy="100" r="62" fill="currentColor"/>
+    <circle cx="100" cy="100" r="44" fill="#F8F6EB"/>
+    <circle cx="148" cy="62" r="22" fill="currentColor"/>
+    <circle cx="158" cy="30" r="8" fill="currentColor"/>
+    <circle cx="18" cy="100" r="13" fill="currentColor"/>
+    <circle cx="140" cy="170" r="10" fill="currentColor"/>
+    <text x="100" y="100" text-anchor="middle" dominant-baseline="central"
+          font-family="Manrope, 'Inter', sans-serif" font-weight="800"
+          font-size="58" fill="currentColor" letter-spacing="-2">G</text>
+  </g>
+  <!-- Wordmark GENELINE -->
+  <text x="180" y="260"
+        text-anchor="middle"
+        font-family="Manrope, 'Inter', sans-serif"
+        font-weight="700"
+        font-size="64"
+        fill="currentColor"
+        letter-spacing="6">GENELINE</text>
+</svg>

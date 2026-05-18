@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Основной круг-кольцо с буквой G -->
+  <circle cx="100" cy="100" r="62" fill="currentColor"/>
+  <circle cx="100" cy="100" r="44" fill="#F8F6EB"/>
+
+  <!-- Верхний-правый средний круг (фьюзится с кольцом) -->
+  <circle cx="148" cy="62" r="22" fill="currentColor"/>
+  <!-- Маленькая точка-сателлит над средним -->
+  <circle cx="158" cy="30" r="8" fill="currentColor"/>
+
+  <!-- Левый отдельный круг (молекулярная связь слева) -->
+  <circle cx="18" cy="100" r="13" fill="currentColor"/>
+
+  <!-- Нижне-правая точка (молекулярная связь снизу) -->
+  <circle cx="140" cy="170" r="10" fill="currentColor"/>
+
+  <!-- Буква G в центре кольца (Manrope ExtraBold-aesthetic) -->
+  <text x="100" y="100"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family="Manrope, 'Inter', sans-serif"
+        font-weight="800"
+        font-size="58"
+        fill="currentColor"
+        letter-spacing="-2">G</text>
+</svg>
