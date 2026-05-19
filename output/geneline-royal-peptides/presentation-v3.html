@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Peptides by Geneline · Методическое пособие · v3.0</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================== */
+/* GENELINE · ROYAL PEPTIDES · v3.0                                    */
+/* Стиль: брендбук Bruk Brain / Brand Packers 2023                     */
+/* Графический язык: три «танцующие» линии (стр. 25 брендбука)         */
+/* Контент: file-1_edited 2.docx — методическое пособие                */
+/* ================================================================== */
+
+:root {
+  /* Палитра брендбука (стр. 17-18) */
+  --ivory:        #F8F6EB;
+  --copper:       #8A6646;        /* горький шоколад = digital substitute для PANTONE 873 C */
+  --copper-light: #B88A5C;
+  --copper-dark:  #6D4F36;
+  --graphite-dark:#3D3A37;
+  --graphite:     #5D5D5B;
+  --black:        #1F1D1C;
+  --latte:        #D2C8B5;
+  --warm-concrete:#B1B0A9;
+  --sand:         #D3B489;
+  --white:        #FFFFFF;
+
+  /* Премиум-расширения */
+  --copper-gradient: linear-gradient(135deg, #6D4F36 0%, #B88A5C 50%, #8A6646 100%);
+
+  /* Типографика (брендбук стр. 20: TT Norms + PT Sans Narrow → substitute Inter + PT Sans Narrow) */
+  --ff-display: 'Inter', system-ui, sans-serif;
+  --ff-body:    'Inter', system-ui, sans-serif;
+  --ff-narrow:  'PT Sans Narrow', sans-serif;
+
+  /* 8px grid */
+  --sp-1: 8px;  --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+  --sp-5: 48px; --sp-6: 64px; --sp-7: 96px; --sp-8: 128px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #2a2a2a;
+  font-family: var(--ff-body);
+  color: var(--graphite-dark);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "kern", "liga", "ss01";
+}
+
+/* === SLIDE FRAME === */
+.deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 0;
+}
+
+.slide {
+  width: 1600px;
+  height: 900px;
+  position: relative;
+  overflow: hidden;
+  background: var(--ivory);
+  color: var(--graphite-dark);
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+}
+
+.slide--dark { background: var(--black); color: var(--ivory); }
+.slide--graphite { background: var(--graphite-dark); color: var(--ivory); }
+
+/* === ТРИ ВОЛНИСТЫЕ ЛИНИИ (основной графический язык — стр. 25 брендбука) === */
+/* «Три танцующие линии лежат в основе айдентики и символизируют вариативность выбора.
+   Мы выделяем графически одну линию, показывая лучший путь к красоте и здоровью среди прочих.» */
+
+.waves {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  width: 460px;
+  height: 280px;
+}
+
+.waves svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+/* Декор: правый верх */
+.waves-top-right {
+  top: 110px;
+  right: -30px;
+}
+
+/* Декор: левый низ — поднят выше, чтобы не перекрывать footer */
+.waves-bottom-left {
+  bottom: 30px;
+  left: -120px;
+  transform: rotate(180deg);
+  opacity: .9;
+}
+
+/* === CORNER LOGO === */
+.corner-logo {
+  position: absolute;
+  top: 48px;
+  right: 64px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 10;
+  color: var(--copper);
+}
+
+.slide--dark .corner-logo,
+.slide--graphite .corner-logo { color: var(--copper-light); }
+
+.corner-logo svg { width: 44px; height: 42px; }
+
+.corner-logo .wm {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 5px;
+  color: currentColor;
+}
+
+/* === FOOTER === */
+.footer-tag {
+  position: absolute;
+  bottom: 48px;
+  left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--graphite);
+  z-index: 10;
+}
+.slide--dark .footer-tag,
+.slide--graphite .footer-tag { color: var(--warm-concrete); }
+.footer-tag .dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .5;
+}
+
+.slide-counter {
+  position: absolute;
+  bottom: 48px;
+  right: 64px;
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--graphite);
+  z-index: 10;
+}
+.slide--dark .slide-counter,
+.slide--graphite .slide-counter { color: var(--warm-concrete); }
+
+/* === EYEBROW === */
+.eyebrow {
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 28px;
+}
+.slide--dark .eyebrow,
+.slide--graphite .eyebrow { color: var(--copper-light); }
+
+/* === ТИПОГРАФИКА === */
+.display-xl {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 132px;
+  line-height: .94;
+  letter-spacing: -3.5px;
+}
+
+.display-l {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 96px;
+  line-height: .98;
+  letter-spacing: -2.5px;
+}
+
+.display-m {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+}
+
+.display-s {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.lede {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1.45;
+  color: var(--graphite);
+  max-width: 1100px;
+}
+.slide--dark .lede,
+.slide--graphite .lede { color: var(--latte); }
+
+.body-l {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--graphite);
+}
+.slide--dark .body-l,
+.slide--graphite .body-l { color: var(--latte); }
+
+.body-m {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--graphite);
+}
+
+.copper-fill {
+  background: var(--copper-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.slide-body {
+  position: absolute;
+  inset: 160px 140px 160px 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+}
+
+.slide-body--bottom { justify-content: flex-end; padding-bottom: 60px; }
+.slide-body--center { justify-content: center; align-items: center; text-align: center; }
+
+/* ================================================================== */
+/* COVER SPLIT — текст слева, картинка справа во всю высоту           */
+/* ================================================================== */
+.cover-split .corner-logo { display: none; }
+
+.cover-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cover-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cover-divider {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 1px;
+  height: calc(100% - 120px);
+  background: linear-gradient(to bottom, transparent, var(--copper) 30%, var(--copper) 70%, transparent);
+  opacity: .5;
+}
+
+.cover-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  padding: 80px 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.cover-text-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--copper);
+}
+
+.cover-text-wm {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 7px;
+  color: var(--graphite-dark);
+}
+
+.cover-text-sublabel {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--copper);
+  margin-top: 12px;
+  margin-bottom: 38px;
+}
+
+.cover-text-title {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 124px;
+  line-height: .92;
+  letter-spacing: -3.5px;
+  color: var(--graphite-dark);
+  margin-bottom: 36px;
+}
+.cover-text-title--md {
+  font-size: 96px;
+  letter-spacing: -2.5px;
+}
+.cover-text-title--sm {
+  font-size: 84px;
+  letter-spacing: -2px;
+}
+
+/* Текстовый блок-абзацы для split-слайдов с контентом */
+.cover-text-body {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--graphite);
+  padding-top: 26px;
+  border-top: 1px solid rgba(138, 102, 70, 0.25);
+}
+.cover-text-body p { margin: 0 0 12px; }
+.cover-text-body p:last-child { margin-bottom: 0; }
+.cover-text-body-em {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--copper-dark) !important;
+  margin-top: 18px !important;
+}
+
+.cover-text-eyebrow {
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 18px;
+  max-width: 460px;
+  line-height: 1.4;
+}
+
+.cover-text-lede {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--graphite);
+  margin-bottom: 32px;
+}
+
+.cover-text-bottom {
+  display: flex;
+  gap: 48px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(138, 102, 70, 0.25);
+}
+
+.cover-text-bottom .bottom-label {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 6px;
+}
+
+.cover-text-bottom .bottom-value {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--graphite-dark);
+  line-height: 1.3;
+}
+
+.cover-text-bottom .bottom-ig {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--copper);
+  margin-top: 3px;
+}
+
+/* ================================================================== */
+/* CATALOGUE LIST — список 10 пептидов в 2 колонки для разделителя    */
+/* ================================================================== */
+.catalogue-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(138, 102, 70, 0.25);
+}
+.catalogue-col {
+  display: flex;
+  flex-direction: column;
+}
+.catalogue-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(138, 102, 70, 0.12);
+}
+.catalogue-item:last-child { border-bottom: none; }
+.catalogue-item .num {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--copper);
+  min-width: 22px;
+}
+.catalogue-item .name {
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--graphite-dark);
+}
+
+/* ================================================================== */
+/* COVER — центровая композиция (по стр. 1 брендбука)                 */
+/* ================================================================== */
+.cover-centered .corner-logo { display: none; }
+
+.cover-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 5;
+  padding: 0 200px;
+}
+
+.cover-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.cover-wordmark {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 42px;
+  letter-spacing: 12px;
+  color: var(--graphite-dark);
+  margin-top: 8px;
+}
+
+.cover-sublabel {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--copper);
+  margin-top: 18px;
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.cover-sublabel::before,
+.cover-sublabel::after {
+  content: "";
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background: var(--copper);
+  vertical-align: middle;
+  margin: 0 22px;
+  opacity: .6;
+}
+
+.cover-title {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 124px;
+  line-height: .92;
+  letter-spacing: -3.5px;
+  color: var(--graphite-dark);
+  margin-bottom: 36px;
+}
+
+.cover-eyebrow {
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 22px;
+}
+
+.cover-lede {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--graphite);
+  max-width: 760px;
+  margin-bottom: 70px;
+}
+
+/* Куратор + контакты — одна элегантная строка */
+.cover-bottom {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(138, 102, 70, 0.25);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 920px;
+}
+
+.cover-bottom .bottom-label {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+.cover-bottom .bottom-value {
+  font-weight: 500;
+  color: var(--graphite-dark);
+}
+
+.cover-bottom .bottom-ig {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--copper);
+}
+
+.cover-bottom .bottom-dot {
+  color: var(--warm-concrete);
+}
+
+/* ================================================================== */
+/* COVER (старая боковая композиция — оставлено для совместимости)    */
+/* ================================================================== */
+.cover .royal-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 56px;
+}
+.cover .royal-mark .line {
+  width: 80px;
+  height: 1px;
+  background: var(--copper);
+}
+
+.cover .title-stack h1 {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 96px;
+  line-height: .96;
+  letter-spacing: -2.5px;
+  color: var(--graphite-dark);
+}
+
+.cover .title-stack h1 em {
+  font-style: italic;
+  font-weight: 300;
+  background: var(--copper-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cover .lede {
+  margin-top: 40px;
+  font-size: 24px;
+}
+
+.cover .doctor-line {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(138, 102, 70, 0.25);
+  max-width: 720px;
+}
+.cover .doctor-line .label {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+.cover .doctor-line .name {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--graphite-dark);
+}
+.cover .doctor-line .ig {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--copper);
+}
+
+/* ================================================================== */
+/* DISCLAIMER                                                         */
+/* ================================================================== */
+.disclaimer-header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.disclaimer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1180px;
+  counter-reset: dl;
+}
+.disclaimer-list .item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  counter-increment: dl;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(138, 102, 70, 0.10);
+}
+.disclaimer-list .item:last-child { border-bottom: none; }
+.disclaimer-list .item::before {
+  content: counter(dl, decimal-leading-zero);
+  font-family: var(--ff-display);
+  font-weight: 200;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--copper);
+  letter-spacing: -1px;
+}
+.disclaimer-list .item p {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--graphite-dark);
+}
+.disclaimer-list .item p b {
+  font-weight: 600;
+  color: var(--copper-dark);
+}
+
+/* ================================================================== */
+/* TOC                                                                */
+/* ================================================================== */
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 64px;
+  margin-top: 44px;
+}
+
+.toc-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(138, 102, 70, 0.18);
+}
+
+.toc-row .num-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 80px;
+  color: var(--copper);
+}
+
+.toc-row .num-block svg.mol {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.toc-row .num {
+  position: relative;
+  z-index: 2;
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--copper-dark);
+  letter-spacing: -.5px;
+  /* Расположение цифры — внутри большого круга */
+  transform: translateX(-12px);
+}
+
+.toc-row .info .ttl {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--graphite-dark);
+  margin-bottom: 6px;
+}
+
+.toc-row .info .desc {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--graphite);
+}
+
+/* ================================================================== */
+/* CONTENT THOUGHT (с метафорой)                                      */
+/* ================================================================== */
+.thought {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 100px;
+  align-items: center;
+  height: 100%;
+}
+
+.thought .text h2 {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 76px;
+  line-height: 1;
+  letter-spacing: -2.5px;
+  color: var(--graphite-dark);
+  margin-bottom: 32px;
+}
+
+.thought .text h2 strong {
+  font-weight: 800;
+  background: var(--copper-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.thought .text p {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 21px;
+  line-height: 1.6;
+  color: var(--graphite);
+  max-width: 540px;
+}
+
+.thought .text p + p { margin-top: 18px; }
+
+.thought .text .quote {
+  margin-top: 32px;
+  padding: 22px 28px;
+  border-left: 2px solid var(--copper);
+}
+
+.thought .text .quote p {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--graphite-dark);
+}
+
+.thought .visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thought .visual svg {
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+}
+
+/* === ИЛЛЮСТРАЦИЯ: КЛЮЧ-ЗАМОК (минималистично, в фирстиле) === */
+.keylock-illustration .label {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  fill: var(--copper);
+}
+
+/* === PRINT === */
+@media print {
+  html, body { background: white; }
+  .deck { gap: 0; padding: 0; }
+  .slide {
+    box-shadow: none;
+    page-break-after: always;
+    margin: 0;
+  }
+  .slide:last-child { page-break-after: avoid; }
+}
+@page { size: 1600px 900px; margin: 0; }
+</style>
+</head>
+<body>
+
+<!-- ================================================================ -->
+<!-- SVG DEFS (логотип + волнистые линии + иллюстрации)               -->
+<!-- ================================================================ -->
+<svg width="0" height="0" style="position:absolute;visibility:hidden;" aria-hidden="true">
+  <defs>
+    <!-- === GENELINE LOGO === -->
+    <!-- Официальный знак из брендбука (Symbol_Red_Gold.pdf, Bruk Brain 2023) -->
+    <symbol id="logo-mark" viewBox="0 0 292.756 279.033">
+      <path transform="matrix(1,0,0,-1,53.1682,155.55609)" d="M0 0C0-11.882-9.632-21.514-21.514-21.514-33.397-21.514-43.029-11.882-43.029 0-43.029 11.882-33.397 21.514-21.514 21.514-9.632 21.514 0 11.882 0 0" fill="currentColor"/>
+      <path transform="matrix(1,0,0,-1,281.4988,257.1561)" d="M0 0C0-7.364-5.97-13.334-13.334-13.334-20.699-13.334-26.669-7.364-26.669 0-26.669 7.364-20.699 13.334-13.334 13.334-5.97 13.334 0 7.364 0 0" fill="currentColor"/>
+      <path transform="matrix(1,0,0,-1,152.7035,214.58618)" d="M0 0C-.291 0-.572-.016-.86-.013-29.817 .611-50.715 21.965-50.715 51.24-50.715 80.436-29.817 101.718-.86 102.34-.567 102.344-.323 102.35-.027 102.35 18.462 102.35 33.746 93.963 42.655 80.469L21.145 72.804C16.182 78.782 8.875 82.569-.277 82.569-.483 82.569-.657 82.571-.86 82.568-17.785 81.746-28.054 67.62-28.054 51.24-28.054 34.724-19.146 20.867-.86 20.098-.668 20.096-.492 20.098-.299 20.098 15.347 20.098 24.469 29.311 27.411 41.816H-1.735V59.038H50.556C50.897 56.502 51.131 53.918 51.131 51.24 51.131 21.527 29.633 0 0 0M103.428 171.688C103.428 191.364 87.42 207.315 67.672 207.315 47.925 207.315 32.388 191.358 31.916 171.688 31.744 164.502 36.381 154.943 37.284 152.99 38.537 150.279 39.516 144.453 35.842 139.319 33.148 135.554 29.309 133.823 25.942 133.453 22.328 133.056 19.176 134.034 18.144 134.248L18.171 134.232C12.488 135.423 6.599 136.06 .559 136.06-46.46 136.06-84.577 98.08-84.577 51.229-84.577 4.379-46.46-33.601 .559-33.601 47.579-33.601 85.695 4.379 85.695 51.229 85.695 72.538 77.792 91.996 64.771 106.896L64.836 106.858C64.836 106.858 64.674 107.024 64.418 107.302 64.099 107.662 63.79 108.032 63.464 108.387 62.003 109.892 60.221 111.772 58.758 113.847 56.387 117.208 55.289 122.528 57.197 127.172 61.008 136.446 70.901 136.203 70.901 136.203L70.865 136.22C89.114 137.832 103.428 153.085 103.428 171.688" fill="currentColor"/>
+    </symbol>
+
+    <!-- === МОЛЕКУЛЯРНЫЙ ЗНАЧОК-РАЗДЕЛИТЕЛЬ (как в брендбуке стр. 4, 6 …) === -->
+    <symbol id="mol-divider" viewBox="0 0 100 100">
+      <!-- Большой круг с цифрой + 2 сателлита (форма как у разделителей брендбука) -->
+      <circle cx="40" cy="50" r="32" fill="currentColor" opacity=".18"/>
+      <circle cx="68" cy="28" r="10" fill="currentColor" opacity=".22"/>
+      <circle cx="22" cy="84" r="6" fill="currentColor" opacity=".25"/>
+    </symbol>
+
+    <!-- === ИКОНКА ЩИТА (для дисклеймера) === -->
+    <symbol id="i-shield" viewBox="0 0 100 100">
+      <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 50 12 L 84 25 L 84 50 Q 84 78, 50 92 Q 16 78, 16 50 L 16 25 Z"/>
+        <path d="M 36 50 L 46 60 L 66 40" stroke-width="1.8"/>
+      </g>
+    </symbol>
+
+    <!-- === ИЛЛЮСТРАЦИЯ: КЛЮЧ-ЗАМОК (hero 600×600) === -->
+    <symbol id="key-lock" viewBox="0 0 600 600">
+      <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Заголовки сверху -->
+        <text x="150" y="100" text-anchor="middle"
+              font-family="PT Sans Narrow, sans-serif"
+              font-weight="700" font-size="18" letter-spacing="6"
+              fill="currentColor">ПЕПТИД</text>
+        <text x="450" y="100" text-anchor="middle"
+              font-family="PT Sans Narrow, sans-serif"
+              font-weight="700" font-size="18" letter-spacing="6"
+              fill="currentColor">РЕЦЕПТОР</text>
+
+        <!-- Ключ слева — крупный -->
+        <g transform="translate(150 300)">
+          <circle cx="0" cy="0" r="80"/>
+          <circle cx="0" cy="0" r="22" fill="currentColor"/>
+          <line x1="80" y1="0" x2="220" y2="0" stroke-width="3"/>
+          <line x1="135" y1="0" x2="135" y2="42" stroke-width="3"/>
+          <line x1="175" y1="0" x2="175" y2="50" stroke-width="3"/>
+          <line x1="215" y1="0" x2="215" y2="38" stroke-width="3"/>
+        </g>
+
+        <!-- Замок справа — крупный -->
+        <g transform="translate(390 300)">
+          <path d="M 0 -90
+                   L 0 90
+                   L 60 90
+                   L 60 60
+                   L 110 60
+                   L 110 40
+                   L 130 40
+                   L 130 -40
+                   L 110 -40
+                   L 110 -60
+                   L 60 -60
+                   L 60 -90 Z"
+                stroke-width="3"/>
+        </g>
+
+        <!-- Соединительная пунктирная линия между ключом и замком -->
+        <line x1="375" y1="300" x2="385" y2="300" stroke-dasharray="4 5" opacity=".5" stroke-width="2"/>
+
+        <!-- Декор: лёгкая клеточная мембрана справа -->
+        <path d="M 540 180 Q 590 300, 540 420"
+              opacity=".3" stroke-dasharray="3 5" stroke-width="1.4"/>
+        <path d="M 560 200 Q 600 300, 560 400"
+              opacity=".2" stroke-dasharray="3 5" stroke-width="1.2"/>
+
+        <!-- Пояснение снизу -->
+        <text x="300" y="540" text-anchor="middle"
+              font-family="Inter, sans-serif"
+              font-weight="400" font-size="20" letter-spacing=".5"
+              fill="currentColor" opacity=".8">точное совпадение формы</text>
+      </g>
+    </symbol>
+
+    <!-- === ИЛЛЮСТРАЦИЯ: ПЕПТИДНАЯ ЦЕПОЧКА (hero, viewBox squeezed для заполнения) === -->
+    <symbol id="peptide-chain" viewBox="0 0 600 480">
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Декор сверху: ХАОТИЧНЫЙ БЕЛОК (длинная цепь) приглушенно -->
+        <g opacity=".22">
+          <text x="300" y="40" text-anchor="middle"
+                font-family="PT Sans Narrow, sans-serif"
+                font-weight="700" font-size="16" letter-spacing="5"
+                fill="currentColor" stroke="none">БЕЛОК · длинная цепь</text>
+          <g transform="translate(40 80)">
+            <circle cx="0"   cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="40"  cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="80"  cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="120" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="160" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="200" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="240" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="280" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="320" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="360" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="400" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="440" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="480" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <circle cx="520" cy="0" r="14" fill="currentColor" stroke="none"/>
+            <line x1="14"  y1="0" x2="26"  y2="0" stroke-width="2"/>
+            <line x1="54"  y1="0" x2="66"  y2="0" stroke-width="2"/>
+            <line x1="94"  y1="0" x2="106" y2="0" stroke-width="2"/>
+            <line x1="134" y1="0" x2="146" y2="0" stroke-width="2"/>
+            <line x1="174" y1="0" x2="186" y2="0" stroke-width="2"/>
+            <line x1="214" y1="0" x2="226" y2="0" stroke-width="2"/>
+            <line x1="254" y1="0" x2="266" y2="0" stroke-width="2"/>
+            <line x1="294" y1="0" x2="306" y2="0" stroke-width="2"/>
+            <line x1="334" y1="0" x2="346" y2="0" stroke-width="2"/>
+            <line x1="374" y1="0" x2="386" y2="0" stroke-width="2"/>
+            <line x1="414" y1="0" x2="426" y2="0" stroke-width="2"/>
+            <line x1="454" y1="0" x2="466" y2="0" stroke-width="2"/>
+            <line x1="494" y1="0" x2="506" y2="0" stroke-width="2"/>
+          </g>
+        </g>
+
+        <!-- Стрелка "разрезать" сверху-вниз -->
+        <g opacity=".5">
+          <line x1="300" y1="140" x2="300" y2="200" stroke-width="2" stroke-dasharray="3 4"/>
+          <path d="M 290 195 L 300 210 L 310 195" stroke-width="2"/>
+          <text x="320" y="180" text-anchor="start"
+                font-family="PT Sans Narrow, sans-serif"
+                font-weight="400" font-size="13" letter-spacing="3"
+                fill="currentColor" stroke="none">разрезать</text>
+        </g>
+
+        <!-- ПЕПТИД: hero-цепочка из 5 крупных аминокислот -->
+        <text x="300" y="250" text-anchor="middle"
+              font-family="PT Sans Narrow, sans-serif"
+              font-weight="700" font-size="20" letter-spacing="7"
+              fill="currentColor" stroke="none">ПЕПТИД</text>
+        <g transform="translate(60 340)">
+          <circle cx="0"   cy="0" r="50" fill="currentColor" stroke="none"/>
+          <circle cx="120" cy="0" r="50" fill="var(--ivory)" stroke="currentColor" stroke-width="3.5"/>
+          <circle cx="240" cy="0" r="50" fill="currentColor" stroke="none"/>
+          <circle cx="360" cy="0" r="50" fill="var(--ivory)" stroke="currentColor" stroke-width="3.5"/>
+          <circle cx="480" cy="0" r="50" fill="currentColor" stroke="none"/>
+          <line x1="50"  y1="0" x2="70"  y2="0" stroke-width="4"/>
+          <line x1="170" y1="0" x2="190" y2="0" stroke-width="4"/>
+          <line x1="290" y1="0" x2="310" y2="0" stroke-width="4"/>
+          <line x1="410" y1="0" x2="430" y2="0" stroke-width="4"/>
+        </g>
+
+        <!-- Пояснение снизу -->
+        <text x="300" y="450" text-anchor="middle"
+              font-family="Inter, sans-serif"
+              font-weight="400" font-size="22" letter-spacing=".5"
+              fill="currentColor" opacity=".85" stroke="none">короткая сигнальная цепочка</text>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+
+<main class="deck">
+
+<!-- ================================================================ -->
+<!-- 01 — COVER                                                       -->
+<!-- ================================================================ -->
+<section class="slide cover cover-split">
+
+  <!-- Картинка справа во всю высоту слайда -->
+  <div class="cover-image">
+    <img src="ai-visuals/01-cover.png" alt="Royal Peptides by Geneline"/>
+    <!-- Тонкая медная вертикальная линия — разделитель -->
+    <div class="cover-divider"></div>
+  </div>
+
+  <!-- Текстовый блок слева -->
+  <div class="cover-text">
+    <!-- Логотип сверху -->
+    <div class="cover-text-logo">
+      <svg viewBox="0 0 292.756 279.033" width="60" height="57" style="color: var(--copper);">
+        <use href="#logo-mark"/>
+      </svg>
+      <span class="cover-text-wm">GENELINE</span>
+    </div>
+
+    <!-- Подбренд -->
+    <div class="cover-text-sublabel">— by Doctor Gusarova —</div>
+
+    <!-- Главный заголовок -->
+    <h1 class="cover-text-title">Royal<br><span class="copper-fill">Peptides</span></h1>
+
+    <!-- Подзаголовок -->
+    <p class="cover-text-eyebrow">Методическое пособие для специалистов и дистрибьюторов</p>
+
+    <p class="cover-text-lede">
+      10 комплексов<br>
+      алгоритмы подбора<br>
+      сценарии продаж
+    </p>
+
+    <!-- Куратор + контакты -->
+    <div class="cover-text-bottom">
+      <div>
+        <div class="bottom-label">Куратор курса</div>
+        <div class="bottom-value">Doctor Elena Gusarova</div>
+        <div class="bottom-ig">@doctor__gusarova</div>
+      </div>
+      <div>
+        <div class="bottom-label">Контакты</div>
+        <div class="bottom-value">geneline.ru</div>
+        <div class="bottom-ig">+8 (965) 341-28-64</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag" style="z-index: 20;">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Методическое пособие</span>
+  </div>
+  <div class="slide-counter" style="z-index: 20;">01 / 28</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 02 — МЕДИЦИНСКИЙ ДИСКЛЕЙМЕР                                      -->
+<!-- (текст дословно из методички, стр. 13-19)                        -->
+<!-- ================================================================ -->
+<section class="slide">
+
+  <div class="waves waves-top-right">
+    <svg viewBox="0 0 460 280" fill="none">
+      <path d="M -20 60 C 60 20, 140 90, 220 50 S 380 110, 480 70"
+            stroke="#B1B0A9" stroke-width="0.9" stroke-linecap="round" opacity="0.55"/>
+      <path d="M -20 130 C 80 80, 180 160, 260 110 S 420 170, 480 130"
+            stroke="#D2C8B5" stroke-width="1.1" stroke-linecap="round" opacity="0.85"/>
+      <path d="M -20 200 C 100 140, 220 230, 300 180 S 440 230, 480 200"
+            stroke="#8A6646" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="corner-logo">
+    <svg><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="disclaimer-header">
+      <div class="shield-icon" style="color: var(--copper);">
+        <svg viewBox="0 0 100 100" width="72" height="72"><use href="#i-shield"/></svg>
+      </div>
+      <div>
+        <div class="eyebrow" style="margin-bottom: 16px;">Важно прочитать первым</div>
+        <h2 style="font-family: var(--ff-display); font-weight: 600; font-size: 56px; line-height: 1; letter-spacing: -1.5px; color: var(--graphite-dark);">
+          Медицинский дисклеймер
+        </h2>
+      </div>
+    </div>
+
+    <div class="disclaimer-list">
+      <div class="item">
+        <p>Материал носит <b>информационно-образовательный характер</b> и предназначен для специалистов сферы здоровья и подготовленных пользователей.</p>
+      </div>
+      <div class="item">
+        <p>Материал <b>не заменяет</b> очной консультации врача и не является инструкцией по самолечению.</p>
+      </div>
+      <div class="item">
+        <p>При заболеваниях, беременности, лактации, онкологических, психиатрических и эндокринных состояниях — применение возможно <b>только после очной оценки врачом</b>.</p>
+      </div>
+      <div class="item">
+        <p>Конкретная схема применения (форма, доза, кратность, длительность курса) определяется <b>инструкцией производителя</b> и/или назначением врача.</p>
+      </div>
+      <div class="item">
+        <p>Материал <b>не содержит гарантий</b> полного излечения, 100% результата или замены стандартной медицинской терапии.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Дисклеймер</span>
+  </div>
+  <div class="slide-counter">02 / 28</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 03 — СОДЕРЖАНИЕ                                                  -->
+<!-- (8 разделов методички: стр. 9 + структура из стр. 21-1412)       -->
+<!-- ================================================================ -->
+<section class="slide">
+
+  <div class="waves waves-bottom-left">
+    <svg viewBox="0 0 460 280" fill="none">
+      <path d="M -20 60 C 60 20, 140 90, 220 50 S 380 110, 480 70"
+            stroke="#B1B0A9" stroke-width="0.9" stroke-linecap="round" opacity="0.55"/>
+      <path d="M -20 130 C 80 80, 180 160, 260 110 S 420 170, 480 130"
+            stroke="#D2C8B5" stroke-width="1.1" stroke-linecap="round" opacity="0.85"/>
+      <path d="M -20 200 C 100 140, 220 230, 300 180 S 440 230, 480 200"
+            stroke="#8A6646" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="corner-logo">
+    <svg><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="eyebrow">Содержание</div>
+    <h2 class="display-m" style="max-width: 1100px;">
+      Восемь разделов<br><em style="font-style: italic; font-weight: 300;" class="copper-fill">от теории до кейсов</em>
+    </h2>
+
+    <div class="toc-grid">
+      <div class="toc-row">
+        <div class="num-block">
+          <svg class="mol" viewBox="0 0 100 100"><use href="#mol-divider"/></svg>
+          <span class="num">01</span>
+        </div>
+        <div class="info">
+          <div class="ttl">Базовая теория</div>
+          <div class="desc">Что такое пептиды, принцип «ключ-замок», важное для клиента.</div>
+        </div>
+      </div>
+      <div class="toc-row">
+        <div class="num-block"><svg class="mol" viewBox="0 0 100 100"><use href="#mol-divider"/></svg><span class="num">02</span></div>
+        <div class="info">
+          <div class="ttl">Быстрый выбор комплекса</div>
+          <div class="desc">Таблица «запрос клиента → приоритетный комплекс».</div>
+        </div>
+      </div>
+      <div class="toc-row">
+        <div class="num-block"><svg class="mol" viewBox="0 0 100 100"><use href="#mol-divider"/></svg><span class="num">03</span></div>
+        <div class="info">
+          <div class="ttl">Алгоритм клиентского визита</div>
+          <div class="desc">9 шагов работы со специалистом и красные флаги.</div>
+        </div>
+      </div>
+      <div class="toc-row">
+        <div class="num-block"><svg class="mol" viewBox="0 0 100 100"><use href="#mol-divider"/></svg><span class="num">04</span></div>
+        <div class="info">
+          <div class="ttl">Каталог 10 комплексов</div>
+          <div class="desc">Карточки AMORE, ACTIVEBRAIN, IMMUNACTIV и других.</div>
+        </div>
+      </div>
+      <div class="toc-row">
+        <div class="num-block"><svg class="mol" viewBox="0 0 100 100"><use href="#mol-divider"/></svg><span class="num">05</span></div>
+        <div class="info">
+          <div class="ttl">Протоколы работы</div>
+          <div class="desc">Подбор · старт · комбинирование · контрольная точка.</div>
+        </div>
+      </div>
+      <div class="toc-row">
+        <div class="num-block"><svg class="mol" viewBox="0 0 100 100"><use href="#mol-divider"/></svg><span class="num">06</span></div>
+        <div class="info">
+          <div class="ttl">Сценарии продаж</div>
+          <div class="desc">Готовые формулировки и работа с возражениями.</div>
+        </div>
+      </div>
+      <div class="toc-row">
+        <div class="num-block"><svg class="mol" viewBox="0 0 100 100"><use href="#mol-divider"/></svg><span class="num">07</span></div>
+        <div class="info">
+          <div class="ttl">Ошибки и риски</div>
+          <div class="desc">Диагностические · коммуникационные · юридические.</div>
+        </div>
+      </div>
+      <div class="toc-row">
+        <div class="num-block"><svg class="mol" viewBox="0 0 100 100"><use href="#mol-divider"/></svg><span class="num">08</span></div>
+        <div class="info">
+          <div class="ttl">Учебные кейсы и FAQ</div>
+          <div class="desc">8 типовых ситуаций и ответы на 10 вопросов клиента.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Содержание</span>
+  </div>
+  <div class="slide-counter">03 / 28</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 04 — ЧТО ТАКОЕ ПЕПТИДЫ — ПРОСТЫМИ СЛОВАМИ                        -->
+<!-- (методичка стр. 23-25 и 43-49)                                   -->
+<!-- split-композиция: текст слева, AI-картинка справа                -->
+<!-- ================================================================ -->
+<section class="slide cover-split">
+
+  <!-- Картинка справа во всю высоту -->
+  <div class="cover-image">
+    <img src="ai-visuals/04-signal.png" alt="Молекулярная структура — белок и пептидная цепочка"/>
+    <div class="cover-divider"></div>
+  </div>
+
+  <!-- Текст слева -->
+  <div class="cover-text">
+
+    <!-- TOP -->
+    <div>
+      <div class="cover-text-logo">
+        <svg viewBox="0 0 292.756 279.033" width="60" height="57" style="color: var(--copper);">
+          <use href="#logo-mark"/>
+        </svg>
+        <span class="cover-text-wm">GENELINE</span>
+      </div>
+
+      <div class="cover-text-sublabel">— Базовая теория · 01 —</div>
+
+      <h1 class="cover-text-title cover-text-title--md">Не&nbsp;строитель,<br><span class="copper-fill">а&nbsp;сигнал</span></h1>
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="cover-text-body">
+      <p>Наш организм во многом построен из белков — длинных цепочек аминокислот. Если белок «разрезать» на короткие фрагменты, получим пептиды.</p>
+      <p>Короткие пептиды — <b style="color: var(--copper-dark);">не строительный материал, а сигнальные молекулы.</b> Они подают команды клеткам — как работать.</p>
+    </div>
+  </div>
+
+  <div class="footer-tag" style="z-index: 20;">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Раздел 01 · Базовая теория</span>
+  </div>
+  <div class="slide-counter" style="z-index: 20;">04 / 28</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 05 — КЛЮЧ-ЗАМОК                                                  -->
+<!-- (методичка стр. 28, 51 — принцип действия)                       -->
+<!-- split-композиция: текст слева, AI-картинка справа                -->
+<!-- ================================================================ -->
+<section class="slide cover-split">
+
+  <!-- Картинка справа во всю высоту -->
+  <div class="cover-image">
+    <img src="ai-visuals/peptide-receptor-visual.png" alt="Пептид связывается с рецептором клетки"/>
+    <div class="cover-divider"></div>
+  </div>
+
+  <!-- Текст слева -->
+  <div class="cover-text">
+
+    <!-- TOP -->
+    <div>
+      <div class="cover-text-logo">
+        <svg viewBox="0 0 292.756 279.033" width="60" height="57" style="color: var(--copper);">
+          <use href="#logo-mark"/>
+        </svg>
+        <span class="cover-text-wm">GENELINE</span>
+      </div>
+
+      <div class="cover-text-sublabel">— Базовая теория · 02 —</div>
+
+      <h1 class="cover-text-title cover-text-title--md">Ключ<br><span class="copper-fill">к&nbsp;замку</span></h1>
+    </div>
+
+    <!-- BOTTOM: текст -->
+    <div class="cover-text-body">
+      <p>У каждой клетки на поверхности есть рецепторы, рассчитанные на конкретные пептиды.</p>
+      <p>Когда пептид связывается со своим рецептором, клетка получает чёткий сигнал — усилить или замедлить нужный процесс.</p>
+      <p class="cover-text-body-em">Точно. Адресно. Без давления.</p>
+    </div>
+  </div>
+
+  <div class="footer-tag" style="z-index: 20;">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Раздел 01 · Принцип действия</span>
+  </div>
+  <div class="slide-counter" style="z-index: 20;">05 / 28</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 10 — РАЗДЕЛИТЕЛЬ: КАТАЛОГ 10 КОМПЛЕКСОВ                          -->
+<!-- (переход от теории к продуктам; split-композиция как обложка)    -->
+<!-- ================================================================ -->
+<section class="slide cover-split">
+
+  <!-- Картинка справа во всю высоту -->
+  <div class="cover-image">
+    <img src="ai-visuals/10-catalogue-divider.png" alt="Каталог 10 комплексов Royal Peptides"/>
+    <div class="cover-divider"></div>
+  </div>
+
+  <!-- Текст слева -->
+  <div class="cover-text">
+
+    <!-- TOP: логотип + sublabel + title + eyebrow -->
+    <div>
+      <div class="cover-text-logo">
+        <svg viewBox="0 0 292.756 279.033" width="60" height="57" style="color: var(--copper);">
+          <use href="#logo-mark"/>
+        </svg>
+        <span class="cover-text-wm">GENELINE</span>
+      </div>
+
+      <div class="cover-text-sublabel">— Раздел 02 —</div>
+
+      <h1 class="cover-text-title cover-text-title--md">Каталог<br><span class="copper-fill">10&nbsp;комплексов</span></h1>
+
+      <p class="cover-text-eyebrow">Royal Peptides · готовые формулы для системной поддержки</p>
+    </div>
+
+    <!-- BOTTOM: список 10 -->
+    <div class="catalogue-list">
+      <div class="catalogue-col">
+        <div class="catalogue-item"><span class="num">01</span><span class="name">AMORE</span></div>
+        <div class="catalogue-item"><span class="num">02</span><span class="name">ACTIVEBRAIN</span></div>
+        <div class="catalogue-item"><span class="num">03</span><span class="name">IMMUNACTIV</span></div>
+        <div class="catalogue-item"><span class="num">04</span><span class="name">NO STRESS</span></div>
+        <div class="catalogue-item"><span class="num">05</span><span class="name">OXYGEN</span></div>
+      </div>
+      <div class="catalogue-col">
+        <div class="catalogue-item"><span class="num">06</span><span class="name">RECOVERY</span></div>
+        <div class="catalogue-item"><span class="num">07</span><span class="name">RELIEF</span></div>
+        <div class="catalogue-item"><span class="num">08</span><span class="name">STOPBACTERIA</span></div>
+        <div class="catalogue-item"><span class="num">09</span><span class="name">STRESSRELIEF</span></div>
+        <div class="catalogue-item"><span class="num">10</span><span class="name">TESTOBOOSTER</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-tag" style="z-index: 20;">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Раздел 02 · Каталог комплексов</span>
+  </div>
+  <div class="slide-counter" style="z-index: 20;">10 / 28</div>
+</section>
+
+
+</main>
+</body>
+</html>

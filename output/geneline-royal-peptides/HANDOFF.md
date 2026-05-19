@@ -1,288 +1,258 @@
-# HANDOFF — Geneline Royal Peptides
+# HANDOFF — Geneline Royal Peptides (v3.0)
 
 > Если ты новая сессия Claude и продолжаешь этот проект — прочитай этот файл целиком.
-> Дата последнего обновления: **2026-05-18**, конец сессии #22.
+> **Дата последнего обновления:** 2026-05-19, конец сессии #23.
+> Старый HANDOFF от утра 2026-05-19 (план перезапуска v2.0) → `HANDOFF-2026-05-19.md`
 
 ---
 
 ## TL;DR (за 30 секунд)
 
 - **Клиент:** Geneline, продуктовая линия Royal Peptides
-- **Задача:** Обучающий курс для дистрибьюторов-врачей (10 пептидных комплексов)
-- **Статус:** ✅ Готов v1.2, отдан клиенту через ZIP. Ждём фидбэк.
-- **Что отдано:** HTML-презентация 36 слайдов + PDF + 36 PNG + README → ZIP 8.2 MB
-- **Стиль:** в фирстиле Geneline (айвори+медь, Manrope), не тёмный sci-fi NotebookLM
-- **Git:** всё закоммичено и запушено в `master` (commit `e8f1b34`)
+- **Задача:** Премиальная обучающая презентация для дистрибьюторов-врачей. 28 слайдов. Single-HTML.
+- **Статус:** Собрано **6 из 28 слайдов** в v3.0. Юрий показал обложку клиенту, ждёт реакцию.
+- **Работаем конвейером:** Юрий генерит картинки в Midjourney → я вставляю в слайд → собираем структуру.
+- **Главный файл:** `output/geneline-royal-peptides/presentation-v3.html`
+- **Промпты MJ:** `output/geneline-royal-peptides/mj-prompts.md` — 13 hero-картинок, единый style guide
 
 ---
 
-## Файлы проекта (где что лежит)
+## Что готово в v3.0 (6 слайдов)
 
-### Исходники (под git)
+Все в едином **split-формате** (текст слева, картинка справа во всю высоту):
 
+| № | Слайд | Контент | Картинка |
+|---|---|---|---|
+| 01 | Обложка | Royal Peptides · by Doctor Gusarova · куратор + контакты | `ai-visuals/01-cover.png` (MJ) |
+| 02 | Дисклеймер | 5 пунктов медицинского дисклеймера (текст дословно из методички, стр. 13-19) | — (SVG-волны) |
+| 03 | Оглавление | 8 разделов с описаниями | — (молекулярные иконки) |
+| 04 | Не строитель, а сигнал | Базовая теория 01 — что такое пептиды | `ai-visuals/04-signal.png` (MJ) |
+| 05 | Ключ к замку | Базовая теория 02 — как работают | `ai-visuals/peptide-receptor-visual.png` (старая, можно заменить на MJ) |
+| 10 | Каталог 10 комплексов | Разделитель раздела 02. Список 10 пептидов в 2 колонки. | `ai-visuals/10-catalogue-divider.png` (MJ) |
+
+**Пропуски в нумерации (6-9, 11-28):** в v3 не сделаны. Слайды 6-9 пойдут когда дойдём (SVG, без MJ).
+
+---
+
+## Конвейер работы Юрий ↔ Claude
+
+Юрий **сам гонит Midjourney** (веб-версия, аккаунт есть). Claude **описывает** слайд + **выдаёт промпт**.
+
+**Цикл для каждого AI-слайда:**
+
+1. Claude: «следующий слайд N — тема X, концепция Y. Промпт: ...»
+2. Юрий: копирует промпт в MJ → правит `--sref <URL>` со ссылками на готовые эталоны → генерит
+3. Юрий: сохраняет PNG в `ai-visuals/` (можно с любым именем, Claude переименует)
+4. Юрий: пишет «смотри» / «давай» / кидает PNG
+5. Claude: переименовывает, переделывает слайд в split-формат, делает скриншот, показывает
+6. Юрий: фидбэк → правки или «дальше»
+
+**Ключ к единству стиля — `--sref`:**
+
+```
+--sref URL_ОБЛОЖКИ URL_СЛАЙДА_4 URL_СЛАЙДА_10 --sw 250
+```
+
+Чем больше URL-эталонов в `--sref` (через пробел) — тем стабильнее серия. Сейчас 3 эталона в стиле: обложка, 04 сигнал, 10 каталог.
+
+---
+
+## Что дальше (план до 28 слайдов)
+
+### AI-слайды (нужна MJ-картинка)
+
+Промпты — все в `mj-prompts.md`. Метафоры из **методички**, не выдуманные.
+
+- [ ] **Слайд 11 — AMORE** — «Оркестр и дирижёр» (гормональный баланс)
+- [ ] **Слайд 12 — ACTIVEBRAIN** — «Мозг как процессор с охлаждением»
+- [ ] **Слайд 13 — IMMUNACTIV** — «Вовремя и точно, а не много/мало»
+- [ ] **Слайд 14 — NO STRESS** — «Педаль тормоза, которую заело»
+- [ ] **Слайд 15 — OXYGEN** — «Датчики безопасности, мост между людьми»
+- [ ] **Слайд 16 — RECOVERY** — «Архитектура сна, дельта-волны»
+- [ ] **Слайд 17 — RELIEF** — «Расшумить нервную систему»
+- [ ] **Слайд 18 — STOPBACTERIA** — «Передовая линия защиты слизистых»
+- [ ] **Слайд 19 — STRESSRELIEF** — «Помощь нейронам выжить и восстановить связи»
+- [ ] **Слайд 20 — TESTOBOOSTER** — «Желание начинается в мозге, не виагра»
+- [ ] **Слайд 28 — Финал** — куратор + контакты, копперные флаконы
+
+### SVG-слайды (без AI, я делаю параллельно)
+
+- [ ] Слайд 06 — Системы организма
+- [ ] Слайд 07 — Таблица быстрого выбора
+- [ ] Слайд 08 — Алгоритм визита (9-шаговая блок-схема)
+- [ ] Слайд 09 — Красные флаги
+- [ ] Слайды 21-26 — Сценарии продаж, возражения, ошибки, FAQ
+
+### Доставка клиенту
+
+- **PDF файлом:** `Royal-Peptides-preview-v3.pdf` (6.5 MB сейчас)
+- **PNG-альбом для Telegram mobile:** `for-telegram/` — 6 PNG (на iPhone Telegram PDF режет края, PNG-альбом — единственный надёжный путь для mobile)
+- **Финальный ZIP:** через `/deliver geneline-royal-peptides` когда будет готово
+
+---
+
+## Правила работы (из этой сессии)
+
+### ✅ Делать
+
+- **Один split-формат для всех концептуальных слайдов** (обложка, разделители, теория) — текст слева 50%, картинка справа 50% во всю высоту
+- **Брать метафоры строго из методички** (`file-1_edited 2.docx`) — оркестр, процессор, тормоз, и т.д.
+- **Использовать `--sref` от уже сделанных эталонов** — серия будет в одном стиле
+- **`cover-text-title--md`** = 96px для длинных заголовков («10 комплексов», «Не строитель»). Дефолтный 124px — только для коротких слов (Royal/Peptides)
+- **z-index: 20 на footer-tag и slide-counter** в split-слайдах — иначе утонут под картинкой
+
+### ❌ НЕ делать
+
+- **Не выдумывать контент** — не пиши описания пептидов одной строкой если в методичке этого нет (на разделителе каталога — только названия)
+- **Не отправлять PDF в Telegram mobile как превью-картинку** — режет. Только PNG-альбом или PDF как файл (через скрепку «Файл»)
+- **Не использовать DOCX** — Word ломает шрифты в Telegram
+- **Не возвращаться к старым придуманным метафорам** (петля Мёбиуса для AMORE, спираль для STRESSRELIEF и т.д.) — это всё **выдумки из v1.2**, отвергнутые клиентом
+- **Не делать слайды до того как пришла картинка от Юрия** — конвейер работает по очереди
+
+---
+
+## Файлы (где что лежит)
+
+### Под git
 ```
 output/geneline-royal-peptides/
-├── presentation.html              ← главный HTML-файл, 36 слайдов
-├── Royal-Peptides-by-Geneline-Training.pdf   ← PDF 1.5 MB для рассылки
-├── brand.json                     ← палитра/шрифты/контакты по нашему стандарту
-├── brand-strategy.md              ← стиль бренда, антипаттерны, применение
-├── brief-response.json            ← бриф клиента и контекст работы
-├── slides/                        ← 36 PNG 1600×900 (по 1 на слайд)
-└── HANDOFF.md                     ← этот файл
+├── presentation-v3.html              ← ГЛАВНЫЙ файл, 6 слайдов
+├── mj-prompts.md                     ← 13 промптов MJ, единый style guide
+├── brand-strategy.md                 ← обновлена (Lover+Sage, контакты, доктор Gusarova)
+├── brand.json
+├── brief-response.json
+├── HANDOFF.md                        ← этот файл
+├── HANDOFF-2026-05-19.md             ← старый план перезапуска v2.0 (для контекста)
+├── Royal-Peptides-preview-v3.pdf     ← последний экспорт для пересылки
+├── for-telegram/                     ← 6 PNG для mobile-альбома в Telegram
+└── ai-visuals/                       ← AI-картинки от Юрия
+    ├── 01-cover.png                  (MJ)
+    ├── 04-signal.png                 (MJ)
+    ├── 10-catalogue-divider.png      (MJ)
+    ├── peptide-receptor-visual.png   (старая, на слайде 05)
+    ├── body-systems-visual.png       (старая, для слайда 06)
+    └── ключ.png                      (резерв)
 
 assets/logos/geneline/
-├── logo-mark.svg                  ← знак (4-элементная молекула G)
-└── logo-full.svg                  ← знак + GENELINE wordmark
-
-delivery/geneline-royal-peptides/
-├── Royal-Peptides-Training-Package.zip    ← ГЛАВНЫЙ ZIP клиенту (8.2 MB)
-└── Geneline-Royal-Peptides-Brand-Kit.zip  ← вспомогательный (524 KB, от deliver-v2)
+├── logo-mark-official.svg            ← OFFICIAL знак (currentColor) — на слайдах
+├── logo-full-official.svg            ← OFFICIAL знак+wordmark
+└── sources/                          ← 15 SVG + 15 PDF (5 цветов × 3 формы) из Dropbox
 ```
 
-### Исходные материалы клиента (под `пептиды преза/`, НЕ в git)
-
+### НЕ под git (методичка от клиента)
 ```
 /Users/apple/Documents/WORK/AI-Design-Studio/пептиды преза/
-├── Geneline_guideline.pdf               (152 MB) — брендбук клиента 40 стр.
-├── file-1_edited 2.docx                 (71 KB) — методичка 92K знаков (КОНТЕНТ)
-├── Royal-Peptides-Training (1).pdf      (6.7 MB) — работа другого Claude (НЕ использовать, только референс структуры)
-└── Peptide_Specialist_Playbook (1).pdf  (17 MB) — версия от NotebookLM (НЕ использовать, тёмный sci-fi стиль, нарушает брендбук)
+└── file-1_edited 2.docx              ← ИСТОЧНИК всего контента. Юрий сказал: «читай только его»
 ```
 
-### Memory (всегда подгружается)
-
+### Memory
 ```
 ~/.claude/projects/-Users-apple-Documents-WORK-AI-Design-Studio/memory/
-├── MEMORY.md                                  ← Geneline в начале списка клиентов
-└── project_geneline_royal_peptides.md          ← полная инфо по бренду
+├── project_geneline_royal_peptides.md   ← общий контекст клиента
+├── project_geneline_brandbook.md         ← 40 страниц брендбука (постранично)
+└── feedback-geneline-overstep.md         ← урок не опережать клиента
 ```
 
 ---
 
-## Бренд (всё что нужно знать)
+## Бренд (фиксы из этой сессии)
 
-### Палитра
-- **Айвори** `#F8F6EB` — фон всех слайдов (НЕ менять на тёмный!)
-- **Горький шоколад / медь** `#8A6646` — основной акцент
-- **Тёмный графит** `#3D3A37` — основной текст
-- **Графит** `#5D5D5B`, **Латте** `#D2C8B5`, **Тёплый бетон** `#B1B0A9`, **Песочный беж** `#D3B489` — вспомогательные
-- **Семантические:** `#2E7D32` (зелёный «ОК»), `#B07A0E` (охра «корректировать»), `#B33A2F` (красный «стоп») — только для медицинской визуализации
+### Палитра (без изменений)
+- Айвори `#F8F6EB` (фон)
+- Медь / горький шоколад `#8A6646` (акцент)
+- Графит-тёмный `#3D3A37` (текст)
+- Графит `#5D5D5B`, Латте `#D2C8B5` (вспом)
 
 ### Шрифты
-- **Manrope** (Google Fonts, weights 300-800) — substitute для платного TT Norms из брендбука
-- **PT Sans Narrow** (Google Fonts, weights 400/700) — для технических подписей, eyebrow
+- **Display:** Cormorant Garamond (заголовки) — был Inter, поменялось
+- **Body:** Inter (текст)
+- **Narrow:** PT Sans Narrow (eyebrow, технические подписи)
 
-### Логотип Geneline (КРИТИЧНО!)
-**4-элементная молекулярная композиция:**
-1. Большой круг с буквой G
-2. Средний круг сверху-справа + точка-сателлит
-3. Маленький круг слева
-4. Точка снизу-справа
+Все Google Fonts, подключены через `<link>` в `<head>`.
 
-Все 4 элемента ОБЯЗАТЕЛЬНЫ. Упрощение запрещено (по стр. 14 брендбука).
-SVG: `assets/logos/geneline/logo-mark.svg`, используется inline через `<symbol id="logo-mark">` в `presentation.html`.
+### Логотип
+- `<symbol id="logo-mark" viewBox="0 0 292.756 279.033">` встроен в `presentation-v3.html`
+- Использовать через `<use href="#logo-mark"/>` + `style="color: var(--copper)"` (currentColor)
+- Источник: `assets/logos/geneline/sources/Symbol_Red_Gold.svg`
 
-### Графический язык
-- Молекулярные кружки на фоне (декоративные градиенты в углах слайдов)
-- Тонкие волнистые линии — НЕ использованы пока, можно добавить
-- НЕ использовать эмодзи как иконки — только SVG в фирстиле
-
----
-
-## Структура презентации (36 слайдов)
-
-| № | Слайд | Что особенного |
-|---|---|---|
-| 01 | Обложка | Огромный медный заголовок «ПЕПТИДНЫЕ КОМПЛЕКСЫ», pill-теги |
-| 02 | Структура курса | 6 модулей карточками с номерами |
-| 03 | Дисклеймер | 5 пунктов + блоки «для кого» и «как использовать» |
-| 04 | Модуль 01 title | |
-| 05 | Что такое пептиды | **Большая SVG-иллюстрация** механизма (ДНК → пептид → клетка) |
-| 06 | Что регулируют пептиды | 5 пиктограмм систем организма |
-| 07 | Принцип «ключ → замок» | **Большая SVG-иллюстрация** ключа и замка (НОВЫЙ слайд v1.2) |
-| 08 | Пептиды vs препараты | Таблица сравнения |
-| 09 | Модуль 02 title | |
-| 10 | Таблица быстрого выбора | Запрос → комплекс (pill-таблица) |
-| 11 | Карта 10 комплексов | **Силуэт человека** + иконки-метафоры по группам |
-| 12 | Модуль 03 title | |
-| 13–22 | 10 карточек комплексов | Hero-блок медный + иконка-метафора + 4 секции справа. STOPBACTERIA (20) — с иллюстрацией мембраны клетки |
-| 23 | Модуль 04 title | |
-| 24 | Алгоритм визита | **Блок-схема 8 шагов** с акцентом на «красные флаги» (4) |
-| 25 | Красные флаги | 2 колонки противопоказаний |
-| 26 | Контрольная точка | **Горизонтальный таймлайн** + 3 цветных решения |
-| 27 | Модуль 05 title | |
-| 28 | Готовые формулировки | 6 скриптов |
-| 29 | Возражения | 5 ответов |
-| 30 | Ошибки и юр.риски | 5 ошибок |
-| 31 | Модуль 06 title | |
-| 32 | Кейсы 1-2 | Стресс / туман в голове |
-| 33 | Кейсы 3-4 | ОРВИ / снижение либидо |
-| 34 | FAQ | 8 вопросов в 2 колонки |
-| 35 | Чек-лист специалиста | 4 секции с галочками |
-| 36 | Финал | Большой логотип + контакты + слоган |
+### Контакты (на обложке)
+- Doctor Elena Gusarova
+- @doctor__gusarova (ДВА подчёркивания!)
+- geneline.ru
+- +8 (965) 341-28-64
 
 ---
 
-## Контакты клиента Geneline (по работе)
+## Технические заметки
 
-- **Тел:** +7 (916) 568-27-01
-- **Telegram / Instagram:** @geneline.clinic
-- **Сайт:** geneline.clinic
-- **Слоган:** «Ваша лучшая генетическая линия»
+### Запуск пересборки PDF + PNG-альбома
 
----
-
-## Технический стек
-
-### Как пересобрать всё с нуля
 ```bash
-cd /Users/apple/Documents/WORK/AI-Design-Studio
-node /tmp/build-all.mjs            # 36 PNG + PDF
-# Скрипт лежит в /tmp/ — если потеряется, см. ниже как воссоздать
+# PDF (для рассылки файлом)
+node /tmp/make-pdf.mjs
+
+# PNG-альбом для Telegram mobile
+node /tmp/make-png-album.mjs
 ```
 
-### Содержимое `/tmp/build-all.mjs` (если потеряется)
+Скрипты лежат в `/tmp/` — могут пропасть. Если что — см. содержимое команд в этом HANDOFF (раздел «как пересобрать»).
+
+### Скрипт `/tmp/make-pdf.mjs` (восстановить если потерян)
+
 ```javascript
 import { chromium } from '/Users/apple/Documents/WORK/AI-Design-Studio/node_modules/playwright/index.mjs';
-import { mkdirSync, existsSync } from 'fs';
-const file = 'file:///Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides/presentation.html';
-const outDir = '/Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides';
-const pngDir = `${outDir}/slides`;
-if (!existsSync(pngDir)) mkdirSync(pngDir, { recursive: true });
-const b = await chromium.launch({
+const browser = await chromium.launch({
   executablePath: '/Users/apple/Library/Caches/ms-playwright/chromium-1208/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing'
 });
-const p = await b.newPage({ viewport: { width: 1600, height: 900 }});
-await p.goto(file, { waitUntil: 'networkidle' });
-await p.waitForTimeout(1500);
-const slides = await p.locator('section.slide').all();
+const ctx = await browser.newContext({ viewport: { width: 1600, height: 900 }, deviceScaleFactor: 1 });
+const page = await ctx.newPage();
+await page.goto('file:///Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides/presentation-v3.html', { waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+await page.pdf({
+  path: '/Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides/Royal-Peptides-preview-v3.pdf',
+  width: '1600px', height: '900px',
+  printBackground: true,
+  margin: { top: 0, right: 0, bottom: 0, left: 0 }
+});
+await browser.close();
+```
+
+### Скрипт `/tmp/make-png-album.mjs` (восстановить если потерян)
+
+```javascript
+import { chromium } from '/Users/apple/Documents/WORK/AI-Design-Studio/node_modules/playwright/index.mjs';
+const browser = await chromium.launch({
+  executablePath: '/Users/apple/Library/Caches/ms-playwright/chromium-1208/chrome-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing'
+});
+const ctx = await browser.newContext({ viewport: { width: 1600, height: 900 }, deviceScaleFactor: 2 });
+const page = await ctx.newPage();
+await page.goto('file:///Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides/presentation-v3.html', { waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+const slides = await page.$$('section.slide');
+const outDir = '/Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides/for-telegram';
 for (let i = 0; i < slides.length; i++) {
-  await slides[i].screenshot({ path: `${pngDir}/slide_${String(i+1).padStart(2,'0')}.png` });
+  await slides[i].scrollIntoViewIfNeeded();
+  await page.waitForTimeout(300);
+  await slides[i].screenshot({ path: `${outDir}/${String(i+1).padStart(2,'0')}_slide.png` });
 }
-await p.emulateMedia({ media: 'print' });
-await p.pdf({ path: `${outDir}/Royal-Peptides-by-Geneline-Training.pdf`, width: '1600px', height: '900px', printBackground: true, margin: { top:0, right:0, bottom:0, left:0 }});
-await b.close();
+await browser.close();
 ```
-
-### Как пересобрать ZIP
-```bash
-rm -rf /tmp/genepak && mkdir -p /tmp/genepak/Interactive /tmp/genepak/Slides-PNG
-cp /Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides/Royal-Peptides-by-Geneline-Training.pdf /tmp/genepak/
-cp /Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides/presentation.html /tmp/genepak/Interactive/
-cp /Users/apple/Documents/WORK/AI-Design-Studio/output/geneline-royal-peptides/slides/*.png /tmp/genepak/Slides-PNG/
-# README.txt — взять из последнего ZIP или см. ниже
-cd /tmp/genepak && zip -r /Users/apple/Documents/WORK/AI-Design-Studio/delivery/geneline-royal-peptides/Royal-Peptides-Training-Package.zip . -x ".*"
-```
-
-### Откат к предыдущей версии (если новый эксперимент не зайдёт)
-```bash
-# Версии:
-# fe9087a — v1.0 (34 слайда, без визуализации)
-# 01a6baa — v1.1 (35 слайдов, базовые SVG-иллюстрации)
-# 2b47f98 — v1.2 (36 слайдов, премиум-иллюстрации в фирстиле, крупный шрифт)  ← АКТУАЛЬНАЯ
-# e8f1b34 — audit (документация: brand-strategy.md, brief-response.json)
-
-git reset --hard 2b47f98   # откатить к рабочей v1.2 без аудит-доков
-git reset --hard 01a6baa   # откатить к v1.1
-git reset --hard fe9087a   # откатить к v1.0
-```
-
----
-
-## История изменений
-
-### v1.0 (commit `fe9087a`)
-- 34 слайда базовые
-- Простые SVG-иконки, без больших иллюстраций
-- Логотип правильный (4 элемента)
-
-### v1.1 (commit `01a6baa`)
-- + Слайд «Что регулируют пептиды» с 5 пиктограммами систем
-- + Слайд «Карта 10 комплексов» с силуэтом человека
-- + 10 иконок-метафор в hero-блоках комплексов
-- + Таймлайн контрольной точки
-- 35 слайдов
-
-### v1.2 (commit `2b47f98`)
-- Глобальное увеличение шрифтов на ~20% (фидбэк «мелкий шрифт»)
-- Улучшенная иллюстрация механизма пептидов (ДНК + ножницы + клетка с рецепторами)
-- НОВЫЙ слайд «Принцип ключ → замок» с большой иллюстрацией
-- Детальная иллюстрация мембраны клетки в hero-блоке STOPBACTERIA
-- 36 слайдов
-
-### audit (commit `e8f1b34`)
-- Создан brand-strategy.md (правила фирстиля)
-- Создан brief-response.json (бриф клиента)
-- В brand.json добавлены семантические цвета (зелёный/охра/красный)
-- В README ZIP добавлен EN-блок
-
----
-
-## Что НЕ сделано (возможные следующие шаги)
-
-### Если клиент попросит улучшить визуализацию ещё:
-1. **9 оставшихся комплексов без больших иллюстраций** (как STOPBACTERIA имеет мембрану): можно добавить
-   - AMORE → иллюстрация оркестра/дирижёра-гипоталамуса
-   - ACTIVEBRAIN → нейроны-почтальоны передают сигналы
-   - IMMUNACTIV → щит с молекулами обороны
-   - NO STRESS → переключатель тревоги-спокойствия
-   - OXYGEN → мост между двумя силуэтами людей
-   - RECOVERY → фазы сна графиком (REM/NREM)
-   - RELIEF → нервный путь с затухающими волнами
-   - STRESSRELIEF → батарейка-мозг разряжен → заряжен
-   - TESTOBOOSTER → пламя/искра в мозге
-
-2. **Графический язык бренда** (волнистые линии — чешуя/пульс/солнце) НЕ использован — можно добавить как декор на 5-7 ключевых слайдов
-
-3. **Анимации** в HTML-версии (fade-in между слайдами, hover-эффекты)
-
-### Если клиент попросит изменить шрифт:
-TT Norms из брендбука **платный** ($199/family). Если клиент готов купить:
-```css
-@font-face { font-family: 'TT Norms'; src: url('...'); }
-:root { --font: 'TT Norms', 'Manrope', sans-serif; }
-```
-
-### Если клиент попросит другой формат:
-- **PowerPoint .pptx** — наш deliver-v2 пока этого не умеет. Нужно: открыть HTML в Pages/Keynote, экспортнуть PPTX. Или написать конвертер html2pptx
-- **Видеоверсия** — можно через Playwright запись + speaker notes
-
----
-
-## Антипаттерны (что НЕ делать)
-
-❌ Не использовать тёмный фон — нарушение брендбука (см. NotebookLM-версию для антипримера)
-❌ Не упрощать логотип — 4 элемента обязательны
-❌ Не использовать эмодзи как иконки — только SVG
-❌ Не использовать стоковые AI-картинки тёмного sci-fi стиля
-❌ Не таскать иллюстрации из NotebookLM PDF напрямую — стиль другой
-❌ Не уменьшать шрифт (клиент жаловался на мелкий)
-❌ Не вкладывать в HTML встроенные base64 шрифты — нагружает файл, используем Google Fonts
-
-✅ Использовать палитру Geneline (айвори+медь+графит)
-✅ Manrope как substitute для TT Norms
-✅ Inline SVG-иконки в фирменной палитре
-✅ 4-элементный логотип Geneline через `<symbol id="logo-mark">`
-✅ @media print с page-break-after на каждом slide
-
----
-
-## Связанные документы
-
-- [refs/AUDIT_CHECKLIST.md](../../refs/AUDIT_CHECKLIST.md) — чек-лист аудита (пройден)
-- [CLAUDE.md](../../CLAUDE.md) — общие правила AI Design Studio
-- [BRAND-ALGORITHM.md](../../BRAND-ALGORITHM.md) — общий пайплайн (Geneline — особый случай, у клиента уже есть свой брендбук)
-- Memory: `project_geneline_royal_peptides.md` — резерв на случай обрыва сессии
 
 ---
 
 ## Точка входа для новой сессии Claude
 
-Если Юрий говорит «продолжи geneline» / «у клиента правки» — сделай:
-1. `git log --oneline -5` — посмотреть последние коммиты
-2. Прочитать этот HANDOFF.md целиком
-3. Прочитать memory `project_geneline_royal_peptides.md`
-4. Открыть `presentation.html` в браузере (`open path/to/file.html`)
-5. Спросить Юрия: какие именно правки нужны от клиента?
+Если Юрий говорит «продолжаем geneline»:
 
-**Не начинать переделку с нуля** — версия 1.2 это рабочее состояние.
+1. **`git log --oneline -5`** — посмотреть последние коммиты
+2. **Прочитать этот HANDOFF.md целиком**
+3. **Прочитать memory:**
+   - `project_geneline_royal_peptides.md`
+   - `project_geneline_brandbook.md`
+   - `feedback-geneline-overstep.md` — урок про опережение клиента!
+4. **Открыть `presentation-v3.html`** — посмотреть текущие 6 слайдов
+5. **Спросить Юрия**: «фидбэк от клиента по обложке пришёл? какой следующий слайд гоним в MJ?»
+
+**Не начинать сначала.** Версия v3.0 — рабочая, 6 слайдов готовы и согласованы по формату.
+
+**Конвейер активен** — Юрий гонит MJ, я вставляю.
