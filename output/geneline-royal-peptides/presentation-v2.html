@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Peptides by Geneline — Обучающий курс v2.0</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================== */
+/* GENELINE ROYAL PEPTIDES — v2.0 premium                             */
+/* Архетип: Lover + Sage  |  Шрифт: Inter + PT Sans Narrow            */
+/* ================================================================== */
+
+:root {
+  /* Брендбук, стр. 17 */
+  --ivory:        #F8F6EB;
+  --copper:       #8A6646;
+  --copper-light: #B88A5C;
+  --copper-dark:  #6D4F36;
+  --graphite-dark:#3D3A37;
+  --graphite:     #5D5D5B;
+  --black:        #1F1D1C;
+  --latte:        #D2C8B5;
+  --warm-concrete:#B1B0A9;
+  --sand:         #D3B489;
+  --white:        #FFFFFF;
+
+  /* Премиум-расширения */
+  --copper-gradient: linear-gradient(135deg, #6D4F36 0%, #B88A5C 50%, #8A6646 100%);
+  --copper-gradient-soft: linear-gradient(135deg, rgba(109,79,54,.08) 0%, rgba(184,138,92,.04) 100%);
+
+  /* Семантика для алгоритмов */
+  --green-safe:  #2E7D32;
+  --ochre-warn:  #B07A0E;
+  --red-stop:    #B33A2F;
+
+  /* Типографика */
+  --ff-display: 'Inter', system-ui, sans-serif;
+  --ff-body:    'Inter', system-ui, sans-serif;
+  --ff-narrow:  'PT Sans Narrow', sans-serif;
+
+  /* Spacing 8px grid */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 48px;
+  --sp-6: 64px;
+  --sp-7: 96px;
+  --sp-8: 128px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #2a2a2a;
+  font-family: var(--ff-body);
+  color: var(--graphite-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern", "liga", "ss01";
+}
+
+/* === SLIDE FRAME === */
+.deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 0;
+}
+
+.slide {
+  width: 1600px;
+  height: 900px;
+  position: relative;
+  overflow: hidden;
+  background: var(--ivory);
+  color: var(--graphite-dark);
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+}
+
+.slide--dark {
+  background: var(--black);
+  color: var(--ivory);
+}
+
+.slide--graphite {
+  background: var(--graphite-dark);
+  color: var(--ivory);
+}
+
+/* === MOLECULAR BACKGROUND === */
+/* 12 кругов разных размеров, opacity 3-12%. Брендбук стр. 27+ */
+.mol-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mol-bg circle {
+  fill: var(--copper);
+}
+
+.slide--dark .mol-bg circle,
+.slide--graphite .mol-bg circle {
+  fill: var(--copper-light);
+}
+
+/* === CORNER LOGO === */
+.corner-logo {
+  position: absolute;
+  top: 48px;
+  right: 64px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 10;
+  color: var(--copper);
+}
+
+.slide--dark .corner-logo,
+.slide--graphite .corner-logo {
+  color: var(--copper-light);
+}
+
+.corner-logo svg {
+  width: 44px;
+  height: 42px;
+}
+
+.corner-logo .wm {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 6px;
+  color: currentColor;
+}
+
+/* === FOOTER TAG === */
+.footer-tag {
+  position: absolute;
+  bottom: 48px;
+  left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--graphite);
+  z-index: 10;
+}
+
+.slide--dark .footer-tag,
+.slide--graphite .footer-tag {
+  color: var(--warm-concrete);
+}
+
+.footer-tag .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .5;
+}
+
+/* === SLIDE COUNTER === */
+.slide-counter {
+  position: absolute;
+  bottom: 48px;
+  right: 64px;
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--graphite);
+  z-index: 10;
+}
+
+.slide--dark .slide-counter,
+.slide--graphite .slide-counter {
+  color: var(--warm-concrete);
+}
+
+/* === EYEBROW (метка над заголовком) === */
+.eyebrow {
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 32px;
+}
+
+.slide--dark .eyebrow,
+.slide--graphite .eyebrow {
+  color: var(--copper-light);
+}
+
+/* === ТИПОГРАФИКА === */
+.display-xl {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 144px;
+  line-height: .9;
+  letter-spacing: -4px;
+}
+
+.display-l {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 108px;
+  line-height: .95;
+  letter-spacing: -3px;
+}
+
+.display-m {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.display-s {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.lede {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.45;
+  color: var(--graphite);
+  max-width: 1100px;
+}
+
+.slide--dark .lede,
+.slide--graphite .lede {
+  color: var(--latte);
+}
+
+.body-l {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--graphite);
+}
+
+.slide--dark .body-l,
+.slide--graphite .body-l {
+  color: var(--latte);
+}
+
+/* === МЕДНЫЙ ГРАДИЕНТ В ТЕКСТЕ === */
+.copper-fill {
+  background: var(--copper-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* === CONTENT GRID === */
+.slide-body {
+  position: absolute;
+  inset: 160px 120px 160px 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 5;
+}
+
+.slide-body--bottom {
+  justify-content: flex-end;
+  padding-bottom: 60px;
+}
+
+.slide-body--center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* ================================================================== */
+/* SLIDE-SPECIFIC                                                     */
+/* ================================================================== */
+
+/* === COVER === */
+.cover .royal-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--copper-light);
+  margin-bottom: 48px;
+}
+
+.cover .royal-mark .line {
+  width: 60px;
+  height: 1px;
+  background: var(--copper-light);
+}
+
+.cover .doctor-line {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--latte);
+}
+
+.cover .doctor-line strong {
+  font-weight: 500;
+  color: var(--ivory);
+}
+
+.cover .doctor-line .ig {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--copper-light);
+}
+
+/* === TOC / СОДЕРЖАНИЕ === */
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.toc-card {
+  padding: 40px 32px;
+  background: var(--white);
+  border: 1px solid rgba(138,102,70,.15);
+  position: relative;
+}
+
+.toc-card .num {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 48px;
+  background: var(--copper-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.toc-card .ttl {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--graphite-dark);
+  margin-bottom: 12px;
+}
+
+.toc-card .desc {
+  font-family: var(--ff-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--graphite);
+}
+
+/* === MODULE TITLE SLIDE === */
+.module-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.module-stack .mod-num {
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  color: var(--copper-light);
+}
+
+.module-stack h1 {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 120px;
+  line-height: .95;
+  letter-spacing: -4px;
+  color: var(--ivory);
+  max-width: 1200px;
+}
+
+.module-stack .lede {
+  font-size: 26px;
+  max-width: 900px;
+  color: var(--latte);
+}
+
+/* === PEPTIDE HERO CARD === */
+.peptide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  height: 100%;
+  align-items: center;
+}
+
+.peptide .left {
+  display: flex;
+  flex-direction: column;
+}
+
+.peptide .label {
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 24px;
+}
+
+.peptide .name {
+  font-family: var(--ff-display);
+  font-weight: 900;
+  font-size: 96px;
+  line-height: .95;
+  letter-spacing: -3px;
+  background: var(--copper-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 24px;
+}
+
+.peptide .tagline {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.35;
+  color: var(--graphite-dark);
+  margin-bottom: 48px;
+}
+
+.peptide .meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: auto;
+}
+
+.peptide .meta .item {
+  border-top: 1px solid var(--latte);
+  padding-top: 16px;
+}
+
+.peptide .meta .item .k {
+  font-family: var(--ff-narrow);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 6px;
+}
+
+.peptide .meta .item .v {
+  font-family: var(--ff-body);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--graphite-dark);
+}
+
+.peptide .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 580px;
+}
+
+.peptide .right svg {
+  width: 100%;
+  height: 100%;
+  max-width: 580px;
+  max-height: 580px;
+}
+
+/* === CONTENT SLIDE — ONE-THOUGHT === */
+.thought {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 100px;
+  align-items: center;
+  height: 100%;
+}
+
+.thought .text h2 {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--graphite-dark);
+  margin-bottom: 32px;
+}
+
+.thought .text p {
+  font-family: var(--ff-body);
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.55;
+  color: var(--graphite);
+  max-width: 580px;
+}
+
+.thought .visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thought .visual svg {
+  width: 100%;
+  height: auto;
+  max-width: 520px;
+}
+
+/* === FINAL SLIDE === */
+.final-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  text-align: center;
+}
+
+.final-stack .thanks {
+  font-family: var(--ff-display);
+  font-weight: 200;
+  font-size: 96px;
+  line-height: 1;
+  letter-spacing: -3px;
+  color: var(--ivory);
+}
+
+.final-stack .thanks em {
+  font-style: italic;
+  font-weight: 300;
+  background: var(--copper-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.final-stack .doctor-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.final-stack .doctor-block .label {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--copper-light);
+}
+
+.final-stack .doctor-block .name {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--ivory);
+}
+
+.final-stack .doctor-block .ig {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: var(--copper-light);
+}
+
+.final-stack .contacts {
+  display: flex;
+  gap: 80px;
+  margin-top: 64px;
+  border-top: 1px solid rgba(184,138,92,.3);
+  padding-top: 48px;
+}
+
+.final-stack .contacts .item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.final-stack .contacts .item .k {
+  font-family: var(--ff-narrow);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--warm-concrete);
+}
+
+.final-stack .contacts .item .v {
+  font-family: var(--ff-body);
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--ivory);
+}
+
+/* === PRINT === */
+@media print {
+  html, body { background: white; }
+  .deck { gap: 0; padding: 0; }
+  .slide {
+    box-shadow: none;
+    page-break-after: always;
+    margin: 0;
+  }
+  .slide:last-child {
+    page-break-after: avoid;
+  }
+}
+
+@page {
+  size: 1600px 900px;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================== -->
+<!-- SVG DEFS (logo + molecular bg + peptide metaphors)             -->
+<!-- ============================================================== -->
+<svg width="0" height="0" style="position:absolute;visibility:hidden;" aria-hidden="true">
+  <defs>
+    <!-- === GENELINE LOGO (официальный из брендбука Brand Packers 2023) === -->
+    <!-- Источник: Symbol_Red_Gold.pdf → SVG. fill: currentColor (медь/графит/белый). -->
+    <symbol id="logo-mark" viewBox="0 0 292.756 279.033">
+      <path transform="matrix(1,0,0,-1,53.1682,155.55609)" d="M0 0C0-11.882-9.632-21.514-21.514-21.514-33.397-21.514-43.029-11.882-43.029 0-43.029 11.882-33.397 21.514-21.514 21.514-9.632 21.514 0 11.882 0 0" fill="currentColor"/>
+      <path transform="matrix(1,0,0,-1,281.4988,257.1561)" d="M0 0C0-7.364-5.97-13.334-13.334-13.334-20.699-13.334-26.669-7.364-26.669 0-26.669 7.364-20.699 13.334-13.334 13.334-5.97 13.334 0 7.364 0 0" fill="currentColor"/>
+      <path transform="matrix(1,0,0,-1,152.7035,214.58618)" d="M0 0C-.291 0-.572-.016-.86-.013-29.817 .611-50.715 21.965-50.715 51.24-50.715 80.436-29.817 101.718-.86 102.34-.567 102.344-.323 102.35-.027 102.35 18.462 102.35 33.746 93.963 42.655 80.469L21.145 72.804C16.182 78.782 8.875 82.569-.277 82.569-.483 82.569-.657 82.571-.86 82.568-17.785 81.746-28.054 67.62-28.054 51.24-28.054 34.724-19.146 20.867-.86 20.098-.668 20.096-.492 20.098-.299 20.098 15.347 20.098 24.469 29.311 27.411 41.816H-1.735V59.038H50.556C50.897 56.502 51.131 53.918 51.131 51.24 51.131 21.527 29.633 0 0 0M103.428 171.688C103.428 191.364 87.42 207.315 67.672 207.315 47.925 207.315 32.388 191.358 31.916 171.688 31.744 164.502 36.381 154.943 37.284 152.99 38.537 150.279 39.516 144.453 35.842 139.319 33.148 135.554 29.309 133.823 25.942 133.453 22.328 133.056 19.176 134.034 18.144 134.248L18.171 134.232C12.488 135.423 6.599 136.06 .559 136.06-46.46 136.06-84.577 98.08-84.577 51.229-84.577 4.379-46.46-33.601 .559-33.601 47.579-33.601 85.695 4.379 85.695 51.229 85.695 72.538 77.792 91.996 64.771 106.896L64.836 106.858C64.836 106.858 64.674 107.024 64.418 107.302 64.099 107.662 63.79 108.032 63.464 108.387 62.003 109.892 60.221 111.772 58.758 113.847 56.387 117.208 55.289 122.528 57.197 127.172 61.008 136.446 70.901 136.203 70.901 136.203L70.865 136.22C89.114 137.832 103.428 153.085 103.428 171.688" fill="currentColor"/>
+    </symbol>
+
+    <!-- === МОЛЕКУЛЯРНЫЙ ФОН (12 кругов) === -->
+    <symbol id="mol-pattern" viewBox="0 0 1600 900">
+      <circle cx="120"  cy="180" r="140" opacity=".06"/>
+      <circle cx="320"  cy="80"  r="35"  opacity=".10"/>
+      <circle cx="1440" cy="120" r="180" opacity=".05"/>
+      <circle cx="1280" cy="240" r="40"  opacity=".09"/>
+      <circle cx="100"  cy="620" r="60"  opacity=".08"/>
+      <circle cx="240"  cy="780" r="90"  opacity=".05"/>
+      <circle cx="1380" cy="700" r="120" opacity=".06"/>
+      <circle cx="1180" cy="820" r="28"  opacity=".11"/>
+      <circle cx="780"  cy="60"  r="22"  opacity=".09"/>
+      <circle cx="800"  cy="840" r="50"  opacity=".06"/>
+      <circle cx="50"   cy="400" r="20"  opacity=".10"/>
+      <circle cx="1560" cy="450" r="32"  opacity=".07"/>
+    </symbol>
+
+    <!-- === АЛЬТЕРНАТИВНЫЙ ПЛОТНЫЙ ПАТТЕРН (для обложек модулей) === -->
+    <symbol id="mol-pattern-dense" viewBox="0 0 1600 900">
+      <circle cx="200"  cy="200" r="200" opacity=".06"/>
+      <circle cx="380"  cy="100" r="45"  opacity=".09"/>
+      <circle cx="60"   cy="500" r="28"  opacity=".10"/>
+      <circle cx="1400" cy="160" r="220" opacity=".05"/>
+      <circle cx="1250" cy="280" r="55"  opacity=".08"/>
+      <circle cx="1560" cy="380" r="22"  opacity=".11"/>
+      <circle cx="180"  cy="780" r="110" opacity=".05"/>
+      <circle cx="400"  cy="820" r="32"  opacity=".09"/>
+      <circle cx="1320" cy="760" r="160" opacity=".06"/>
+      <circle cx="1500" cy="860" r="28"  opacity=".10"/>
+      <circle cx="900"  cy="80"  r="38"  opacity=".07"/>
+      <circle cx="780"  cy="860" r="60"  opacity=".05"/>
+    </symbol>
+
+    <!-- === ПЕПТИДНЫЕ МЕТАФОРЫ (линейные, медь) === -->
+
+    <!-- AMORE — петля Мёбиуса / двойная синусоида -->
+    <symbol id="m-amore" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M 100 250 C 100 150, 200 150, 250 250 C 300 350, 400 350, 400 250 C 400 150, 300 150, 250 250 C 200 350, 100 350, 100 250 Z" />
+        <circle cx="100" cy="250" r="6" fill="currentColor"/>
+        <circle cx="400" cy="250" r="6" fill="currentColor"/>
+        <circle cx="250" cy="250" r="4" fill="currentColor"/>
+        <path d="M 80 250 L 50 250" opacity=".4"/>
+        <path d="M 420 250 L 450 250" opacity=".4"/>
+      </g>
+    </symbol>
+
+    <!-- ACTIVEBRAIN — мозговая волна -->
+    <symbol id="m-activebrain" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M 50 250
+                 Q 90 230, 110 250 T 150 250
+                 Q 180 200, 210 250 T 250 250
+                 Q 270 320, 310 250 T 360 250
+                 Q 390 220, 420 250 T 460 250"/>
+        <path d="M 50 320
+                 Q 100 310, 130 320 T 200 320
+                 Q 250 290, 300 320 T 400 320
+                 Q 440 315, 460 320" opacity=".4"/>
+        <path d="M 50 180
+                 Q 100 170, 130 180 T 200 180
+                 Q 250 150, 300 180 T 400 180
+                 Q 440 175, 460 180" opacity=".4"/>
+        <circle cx="50"  cy="250" r="5" fill="currentColor"/>
+        <circle cx="460" cy="250" r="5" fill="currentColor"/>
+      </g>
+    </symbol>
+
+    <!-- IMMUNACTIV — щит из переплетённых линий -->
+    <symbol id="m-immunactiv" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M 250 80 L 380 140 L 380 280 Q 380 380, 250 440 Q 120 380, 120 280 L 120 140 Z"/>
+        <path d="M 250 130 L 330 165 L 330 280 Q 330 350, 250 395 Q 170 350, 170 280 L 170 165 Z" opacity=".5"/>
+        <path d="M 250 180 L 290 200 L 290 280 Q 290 320, 250 345 Q 210 320, 210 280 L 210 200 Z" opacity=".3"/>
+        <circle cx="250" cy="260" r="6" fill="currentColor"/>
+      </g>
+    </symbol>
+
+    <!-- NO STRESS — затухающая волна -->
+    <symbol id="m-nostress" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M 30 250
+                 Q 60 130, 100 250 T 180 250
+                 Q 215 190, 250 250 T 320 250
+                 Q 345 220, 370 250 T 420 250 L 470 250"/>
+        <circle cx="30"  cy="250" r="5" fill="currentColor"/>
+        <circle cx="470" cy="250" r="5" fill="currentColor" opacity=".5"/>
+        <line x1="30" y1="280" x2="470" y2="280" opacity=".2" stroke-dasharray="2 6"/>
+      </g>
+    </symbol>
+
+    <!-- OXYGEN — два круга соединённые мостом-линией (близость, эмпатия) -->
+    <symbol id="m-oxygen" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="150" cy="250" r="80"/>
+        <circle cx="350" cy="250" r="80"/>
+        <circle cx="150" cy="250" r="8" fill="currentColor"/>
+        <circle cx="350" cy="250" r="8" fill="currentColor"/>
+        <path d="M 230 250 Q 250 200, 270 250 T 320 250" opacity=".6"/>
+        <path d="M 230 250 Q 250 300, 270 250 T 320 250" opacity=".6"/>
+        <line x1="80" y1="250" x2="50" y2="250" opacity=".4"/>
+        <line x1="420" y1="250" x2="450" y2="250" opacity=".4"/>
+      </g>
+    </symbol>
+
+    <!-- RECOVERY — фазы сна (волна с пиками REM) -->
+    <symbol id="m-recovery" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M 40 250
+                 L 100 250
+                 Q 130 250, 130 290 L 130 340 Q 130 380, 160 380
+                 Q 190 380, 190 340 L 190 250 L 240 250
+                 Q 260 250, 260 200 L 260 150 Q 260 130, 290 130
+                 Q 320 130, 320 150 L 320 250 L 370 250
+                 Q 390 250, 390 290 L 390 320 Q 390 350, 410 350
+                 Q 430 350, 430 320 L 430 250 L 460 250" opacity=".8"/>
+        <circle cx="40"  cy="250" r="5" fill="currentColor"/>
+        <circle cx="460" cy="250" r="5" fill="currentColor"/>
+        <text x="290" y="115" font-family="PT Sans Narrow, sans-serif" font-size="14" fill="currentColor" text-anchor="middle" opacity=".5" letter-spacing="2">REM</text>
+        <text x="160" y="405" font-family="PT Sans Narrow, sans-serif" font-size="14" fill="currentColor" text-anchor="middle" opacity=".5" letter-spacing="2">DEEP</text>
+      </g>
+    </symbol>
+
+    <!-- RELIEF — затухающие волны (постепенное снижение боли) -->
+    <symbol id="m-relief" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M 30 250
+                 Q 60 100, 100 250 T 180 250
+                 Q 215 160, 250 250 T 320 250
+                 Q 345 215, 370 250 T 420 250 L 470 250"/>
+        <line x1="30" y1="320" x2="470" y2="320" opacity=".15" stroke-dasharray="2 6"/>
+        <line x1="30" y1="180" x2="470" y2="180" opacity=".15" stroke-dasharray="2 6"/>
+        <circle cx="30"  cy="250" r="5" fill="currentColor"/>
+        <circle cx="470" cy="250" r="4" fill="currentColor" opacity=".4"/>
+      </g>
+    </symbol>
+
+    <!-- STOPBACTERIA — барьер из переплетённых линий -->
+    <symbol id="m-stopbacteria" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M 80 200 Q 130 230, 80 260 Q 130 290, 80 320"/>
+        <path d="M 130 200 Q 180 230, 130 260 Q 180 290, 130 320"/>
+        <path d="M 180 200 Q 230 230, 180 260 Q 230 290, 180 320"/>
+        <path d="M 230 200 Q 280 230, 230 260 Q 280 290, 230 320"/>
+        <path d="M 280 200 Q 330 230, 280 260 Q 330 290, 280 320"/>
+        <path d="M 330 200 Q 380 230, 330 260 Q 380 290, 330 320"/>
+        <path d="M 380 200 Q 430 230, 380 260 Q 430 290, 380 320"/>
+        <line x1="60"  y1="180" x2="450" y2="180" opacity=".4"/>
+        <line x1="60"  y1="340" x2="450" y2="340" opacity=".4"/>
+        <!-- бактерии-точки, остановленные барьером -->
+        <circle cx="50" cy="150" r="6" fill="currentColor" opacity=".5"/>
+        <circle cx="80" cy="120" r="4" fill="currentColor" opacity=".4"/>
+        <circle cx="40" cy="380" r="5" fill="currentColor" opacity=".4"/>
+      </g>
+    </symbol>
+
+    <!-- STRESSRELIEF — спираль восстановления -->
+    <symbol id="m-stressrelief" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M 250 250
+                 m 0 -10
+                 a 10 10 0 1 1 0 20 a 20 20 0 1 1 0 -40
+                 a 30 30 0 1 1 0 60 a 40 40 0 1 1 0 -80
+                 a 50 50 0 1 1 0 100 a 60 60 0 1 1 0 -120
+                 a 70 70 0 1 1 0 140 a 80 80 0 1 1 0 -160
+                 a 90 90 0 1 1 0 180 a 100 100 0 1 1 0 -200"/>
+        <circle cx="250" cy="250" r="6" fill="currentColor"/>
+        <line x1="250" y1="50" x2="290" y2="50" opacity=".4"/>
+        <circle cx="295" cy="50" r="4" fill="currentColor" opacity=".5"/>
+      </g>
+    </symbol>
+
+    <!-- TESTOBOOSTER — стрелка-пламя (мотивация, желание) -->
+    <symbol id="m-testobooster" viewBox="0 0 500 500">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <!-- Пламя -->
+        <path d="M 250 380
+                 C 200 350, 180 290, 220 240
+                 C 200 220, 210 180, 240 160
+                 C 235 140, 250 100, 280 80
+                 C 270 130, 290 150, 290 190
+                 C 320 200, 320 250, 290 270
+                 C 320 300, 310 360, 250 380 Z"/>
+        <path d="M 250 350
+                 C 220 330, 210 290, 240 260
+                 C 240 240, 255 220, 270 220
+                 C 270 250, 280 270, 280 290
+                 C 280 320, 270 345, 250 350 Z" opacity=".5"/>
+        <!-- Стрелка вверх -->
+        <line x1="100" y1="350" x2="100" y2="150" stroke-width="3"/>
+        <path d="M 80 180 L 100 150 L 120 180"/>
+        <circle cx="100" cy="380" r="6" fill="currentColor"/>
+      </g>
+    </symbol>
+
+    <!-- ИКОНКА «ДНК / КЛЮЧ-ЗАМОК» — для модуля Основ -->
+    <symbol id="m-keylock" viewBox="60 170 380 160">
+      <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+        <!-- Ключ (пептид) -->
+        <circle cx="140" cy="250" r="50"/>
+        <line x1="190" y1="250" x2="290" y2="250"/>
+        <line x1="220" y1="250" x2="220" y2="285"/>
+        <line x1="250" y1="250" x2="250" y2="295"/>
+        <line x1="280" y1="250" x2="280" y2="280"/>
+        <circle cx="140" cy="250" r="15" fill="currentColor"/>
+        <!-- Замок (рецептор) -->
+        <path d="M 320 200 L 320 300 L 370 300 L 370 280 L 400 280 L 400 270 L 420 270 L 420 230 L 400 230 L 400 220 L 370 220 L 370 200 Z" opacity=".55"/>
+        <!-- Тонкая связь -->
+        <line x1="290" y1="250" x2="320" y2="250" stroke-dasharray="4 5" opacity=".5"/>
+      </g>
+    </symbol>
+
+  </defs>
+</svg>
+
+
+<main class="deck">
+
+<!-- ================================================================ -->
+<!-- 01 — COVER (premium dark)                                        -->
+<!-- ================================================================ -->
+<section class="slide slide--dark cover">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <use href="#mol-pattern-dense"/>
+  </svg>
+
+  <div class="corner-logo">
+    <svg style="--bg-fill: #1F1D1C"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body slide-body--bottom">
+    <div class="royal-mark">
+      <span class="line"></span>
+      <span>Royal Peptides by Geneline</span>
+    </div>
+
+    <h1 class="display-l copper-fill" style="margin-bottom: 24px;">
+      Royal<br>Peptides
+    </h1>
+
+    <div class="lede" style="font-size: 26px; max-width: 900px;">
+      Обучающий курс для дистрибьюторской сети.<br>
+      10 пептидных комплексов · алгоритмы подбора · сценарии продаж.
+    </div>
+
+    <div class="doctor-line">
+      <span>Под кураторством</span>
+      <strong>Doctor Elena Gusarova</strong>
+      <span class="ig">@DOCTOR_GUSAROVA</span>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>2026</span>
+  </div>
+  <div class="slide-counter">01 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 02 — TOC (структура курса, айвори)                               -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <use href="#mol-pattern"/>
+  </svg>
+
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="eyebrow">Структура курса</div>
+    <h2 class="display-m" style="max-width: 1100px;">
+      Шесть модулей<br>от основ до кейсов
+    </h2>
+
+    <div class="toc-grid">
+      <div class="toc-card">
+        <span class="num">01</span>
+        <div class="ttl">Основы пептидной терапии</div>
+        <div class="desc">Что такое пептиды, принцип «ключ-замок», отличие от препаратов и гормонов.</div>
+      </div>
+      <div class="toc-card">
+        <span class="num">02</span>
+        <div class="ttl">Как выбрать комплекс</div>
+        <div class="desc">Таблица быстрого подбора по запросу клиента и карта 10 комплексов.</div>
+      </div>
+      <div class="toc-card">
+        <span class="num">03</span>
+        <div class="ttl">10 комплексов</div>
+        <div class="desc">Карточка каждого: для кого, как работает, ожидаемый эффект.</div>
+      </div>
+      <div class="toc-card">
+        <span class="num">04</span>
+        <div class="ttl">Алгоритмы работы</div>
+        <div class="desc">Визит клиента, красные флаги, безопасный старт, контрольные точки.</div>
+      </div>
+      <div class="toc-card">
+        <span class="num">05</span>
+        <div class="ttl">Продажи и коммуникация</div>
+        <div class="desc">Готовые формулировки, работа с возражениями, юридические рамки.</div>
+      </div>
+      <div class="toc-card">
+        <span class="num">06</span>
+        <div class="ttl">Учебные кейсы</div>
+        <div class="desc">Четыре типовые ситуации: задача → логика выбора → контрольная точка.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Структура курса</span>
+  </div>
+  <div class="slide-counter">02 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 04 — MODULE 01 TITLE (premium dark)                              -->
+<!-- ================================================================ -->
+<section class="slide slide--dark">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <use href="#mol-pattern-dense"/>
+  </svg>
+
+  <div class="corner-logo">
+    <svg style="--bg-fill: #1F1D1C"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="module-stack">
+      <div class="mod-num">МОДУЛЬ 01</div>
+      <h1>Основы<br>пептидной<br>терапии</h1>
+      <div class="lede">
+        Что такое пептиды, как они работают и чем отличаются от препаратов и гормонов.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Модуль 01</span>
+  </div>
+  <div class="slide-counter">04 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 05 — CONTENT: Что такое пептиды? (one-thought + visual)          -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <use href="#mol-pattern"/>
+  </svg>
+
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="thought">
+      <div class="text">
+        <div class="eyebrow">Принцип действия</div>
+        <h2>Ключ к замку,<br>а не молот.</h2>
+        <p>
+          Пептид — это короткая аминокислотная последовательность, точно совпадающая
+          с рецептором клетки. Он не «давит» процессы, как гормон,
+          а <em>включает</em> те, что природой уже заложены.
+        </p>
+        <p style="margin-top: 24px;">
+          Поэтому курс пептидов — это <em>тонкая настройка</em>, а не лечение.
+        </p>
+      </div>
+      <div class="visual" style="color: var(--copper);">
+        <svg><use href="#m-keylock"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Модуль 01 · Основы</span>
+  </div>
+  <div class="slide-counter">05 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 12 — MODULE 03 TITLE: 10 комплексов (premium dark)               -->
+<!-- ================================================================ -->
+<section class="slide slide--dark">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <use href="#mol-pattern-dense"/>
+  </svg>
+
+  <div class="corner-logo">
+    <svg style="--bg-fill: #1F1D1C"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="module-stack">
+      <div class="mod-num">МОДУЛЬ 03</div>
+      <h1 class="copper-fill">10<br>комплексов</h1>
+      <div class="lede">
+        Карточка каждого комплекса: для кого, как работает,
+        ожидаемый эффект и алгоритм подбора.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Модуль 03</span>
+  </div>
+  <div class="slide-counter">12 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 13 — AMORE hero card                                             -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <use href="#mol-pattern"/>
+  </svg>
+
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 01 · Royal Peptides</div>
+        <div class="name">AMORE</div>
+        <div class="tagline">
+          Поддержка репродуктивной системы,
+          гормональный баланс, женское либидо.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Женщины 25-55 при снижении либидо, дисбалансе цикла, после стресса</div>
+          </div>
+          <div class="item">
+            <div class="k">Курс</div>
+            <div class="v">10 дней приёма ✕ 3 цикла, перерыв 1 месяц</div>
+          </div>
+          <div class="item">
+            <div class="k">Ожидаемый эффект</div>
+            <div class="v">К 4-6 неделе — стабилизация цикла, восстановление чувствительности</div>
+          </div>
+          <div class="item">
+            <div class="k">Не сочетать с</div>
+            <div class="v">Гормональной терапией без согласования с врачом</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-amore"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>AMORE · 01 / 10</span>
+  </div>
+  <div class="slide-counter">13 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 14 — ACTIVEBRAIN hero card                                       -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <use href="#mol-pattern"/>
+  </svg>
+
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 02 · Royal Peptides</div>
+        <div class="name">ACTIVEBRAIN</div>
+        <div class="tagline">
+          Когнитивная поддержка: память, концентрация,
+          скорость мышления при нагрузках.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Менеджеры, студенты в сессию, после COVID, при возрастном снижении памяти</div>
+          </div>
+          <div class="item">
+            <div class="k">Курс</div>
+            <div class="v">15 дней приёма ✕ 2 курса, перерыв 1 месяц</div>
+          </div>
+          <div class="item">
+            <div class="k">Ожидаемый эффект</div>
+            <div class="v">К 2-3 неделе — улучшение концентрации, через месяц — памяти</div>
+          </div>
+          <div class="item">
+            <div class="k">Не сочетать с</div>
+            <div class="v">Стимуляторами ЦНС, ноотропами без согласования</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-activebrain"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>ACTIVEBRAIN · 02 / 10</span>
+  </div>
+  <div class="slide-counter">14 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 15 — IMMUNACTIV                                                  -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><use href="#mol-pattern"/></svg>
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 03 · Royal Peptides</div>
+        <div class="name">IMMUNACTIV</div>
+        <div class="tagline">
+          Нейроиммунный регулятор: возвращает иммунитет
+          в норму, а не «бустит» его.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Часто болеющие, длительное восстановление после инфекций, хронический стресс</div>
+          </div>
+          <div class="item">
+            <div class="k">Как работает</div>
+            <div class="v">Помогает клеткам выйти из режима хронического напряжения, успокаивает нервную систему</div>
+          </div>
+          <div class="item">
+            <div class="k">Эффект</div>
+            <div class="v">Реже простуды, лёгкое течение болезни, ощущение устойчивости</div>
+          </div>
+          <div class="item">
+            <div class="k">Сигнал риска</div>
+            <div class="v">Зелёный · базовая поддержка иммунитета</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-immunactiv"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag"><span>Geneline</span><span class="dot"></span><span>Royal Peptides</span><span class="dot"></span><span>IMMUNACTIV · 03 / 10</span></div>
+  <div class="slide-counter">15 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 16 — NO STRESS                                                   -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><use href="#mol-pattern"/></svg>
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 04 · Royal Peptides</div>
+        <div class="name">NO STRESS</div>
+        <div class="tagline">
+          Мягкий переключатель — с тревоги на спокойствие,
+          без седации и зависимости.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Острый стресс, тревожная бессонница, эмоциональная перегрузка</div>
+          </div>
+          <div class="item">
+            <div class="k">Как работает</div>
+            <div class="v">Снижает «шум» тревоги, не выключая систему. Не седатив, не транквилизатор</div>
+          </div>
+          <div class="item">
+            <div class="k">Эффект</div>
+            <div class="v">Лёгкое засыпание, снижение реактивности, ощущение «выдохнул»</div>
+          </div>
+          <div class="item">
+            <div class="k">Сигнал риска</div>
+            <div class="v">Зелёный · безопасен при острых стрессовых эпизодах</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-nostress"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag"><span>Geneline</span><span class="dot"></span><span>Royal Peptides</span><span class="dot"></span><span>NO STRESS · 04 / 10</span></div>
+  <div class="slide-counter">16 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 17 — OXYGEN                                                      -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><use href="#mol-pattern"/></svg>
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 05 · Royal Peptides</div>
+        <div class="name">OXYGEN</div>
+        <div class="tagline">
+          Восстановление способности к эмоциональной близости.
+          Окситоциновая система — «мост» между людьми.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Социальная тревога, эмоциональная отстранённость, «стена» между собой и другими</div>
+          </div>
+          <div class="item">
+            <div class="k">Как работает</div>
+            <div class="v">Модулирует окситоциновую систему, снижает защитную реакцию в социуме</div>
+          </div>
+          <div class="item">
+            <div class="k">Эффект</div>
+            <div class="v">Меньше тревоги в общении, тепло, открытость, лёгкий контакт</div>
+          </div>
+          <div class="item">
+            <div class="k">Сигнал риска</div>
+            <div class="v">Охра · оценить психо-эмоциональный фон перед курсом</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-oxygen"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag"><span>Geneline</span><span class="dot"></span><span>Royal Peptides</span><span class="dot"></span><span>OXYGEN · 05 / 10</span></div>
+  <div class="slide-counter">17 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 18 — RECOVERY                                                    -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><use href="#mol-pattern"/></svg>
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 06 · Royal Peptides</div>
+        <div class="name">RECOVERY</div>
+        <div class="tagline">
+          Помогает сну стать по-настоящему восстанавливающим.
+          Не снотворное — нейропептидный регулятор дельта-сна.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Поверхностный сон, частые пробуждения, нарушение суточного ритма</div>
+          </div>
+          <div class="item">
+            <div class="k">Как работает</div>
+            <div class="v">Настраивает фазы глубокого сна. Не действует на бензодиазепиновые рецепторы</div>
+          </div>
+          <div class="item">
+            <div class="k">Эффект</div>
+            <div class="v">Глубже сон, утром — реальное восстановление, лучшая переносимость нагрузок</div>
+          </div>
+          <div class="item">
+            <div class="k">Сигнал риска</div>
+            <div class="v">Зелёный · без риска зависимости</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-recovery"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag"><span>Geneline</span><span class="dot"></span><span>Royal Peptides</span><span class="dot"></span><span>RECOVERY · 06 / 10</span></div>
+  <div class="slide-counter">18 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 19 — RELIEF                                                      -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><use href="#mol-pattern"/></svg>
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 07 · Royal Peptides</div>
+        <div class="name">RELIEF</div>
+        <div class="tagline">
+          Снижает чувствительность нервных путей к боли,
+          не маскируя сигнал.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Хроническая боль под ведением врача, центральная гиперчувствительность</div>
+          </div>
+          <div class="item">
+            <div class="k">Как работает</div>
+            <div class="v">Влияет на эндогенную опиоидную систему. Не НПВС, не опиат</div>
+          </div>
+          <div class="item">
+            <div class="k">Эффект</div>
+            <div class="v">Снижение интенсивности боли, лучшая переносимость нагрузок, улучшение сна</div>
+          </div>
+          <div class="item">
+            <div class="k">Сигнал риска</div>
+            <div class="v">Красный · только в составе комплексного подхода и по согласованию с врачом</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-relief"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag"><span>Geneline</span><span class="dot"></span><span>Royal Peptides</span><span class="dot"></span><span>RELIEF · 07 / 10</span></div>
+  <div class="slide-counter">19 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 20 — STOPBACTERIA                                                -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><use href="#mol-pattern"/></svg>
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 08 · Royal Peptides</div>
+        <div class="name">STOPBACTERIA</div>
+        <div class="tagline">
+          Усиливает первый барьер защиты —
+          слизистые оболочки.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Частые афты, герпес, медленное заживление слизистых, проблемы ЛОР</div>
+          </div>
+          <div class="item">
+            <div class="k">Как работает</div>
+            <div class="v">Катионный антимикробный пептид. Активирует защитные белки барьера</div>
+          </div>
+          <div class="item">
+            <div class="k">Эффект</div>
+            <div class="v">Быстрое заживление, меньше рецидивов герпеса, лучше местный иммунитет</div>
+          </div>
+          <div class="item">
+            <div class="k">Сигнал риска</div>
+            <div class="v">Зелёный · поддержка местного иммунитета слизистых</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-stopbacteria"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag"><span>Geneline</span><span class="dot"></span><span>Royal Peptides</span><span class="dot"></span><span>STOPBACTERIA · 08 / 10</span></div>
+  <div class="slide-counter">20 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 21 — STRESSRELIEF                                                -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><use href="#mol-pattern"/></svg>
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 09 · Royal Peptides</div>
+        <div class="name">STRESSRELIEF</div>
+        <div class="tagline">
+          Восстанавливает «топливо» мозга —
+          нейротрофические факторы, потерянные при выгорании.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Эмоциональное истощение, выгорание, «отдыхаю, но не восстанавливаюсь»</div>
+          </div>
+          <div class="item">
+            <div class="k">Как работает</div>
+            <div class="v">Стимулирует BDNF, NGF. Восстанавливает синаптическую пластичность</div>
+          </div>
+          <div class="item">
+            <div class="k">Эффект</div>
+            <div class="v">Эмоциональная ровность, лучшая концентрация, стрессоустойчивость</div>
+          </div>
+          <div class="item">
+            <div class="k">Сигнал риска</div>
+            <div class="v">Охра · оценить степень выгорания и сопутствующие состояния</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-stressrelief"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag"><span>Geneline</span><span class="dot"></span><span>Royal Peptides</span><span class="dot"></span><span>STRESSRELIEF · 09 / 10</span></div>
+  <div class="slide-counter">21 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 22 — TESTOBOOSTER                                                -->
+<!-- ================================================================ -->
+<section class="slide">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice"><use href="#mol-pattern"/></svg>
+  <div class="corner-logo">
+    <svg style="--bg-fill: #F8F6EB"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+  <div class="slide-body">
+    <div class="peptide">
+      <div class="left">
+        <div class="label">Комплекс 10 · Royal Peptides</div>
+        <div class="name">TESTOBOOSTER</div>
+        <div class="tagline">
+          Работает не через гормоны и сосуды,
+          а через центральные нейронные сети желания.
+        </div>
+        <div class="meta">
+          <div class="item">
+            <div class="k">Для кого</div>
+            <div class="v">Снижение либидо при сохранных гормонах, стресс-астения, «погас интерес»</div>
+          </div>
+          <div class="item">
+            <div class="k">Как работает</div>
+            <div class="v">Циклический гептапептид. «Будит» нейронные сети мотивации и желания</div>
+          </div>
+          <div class="item">
+            <div class="k">Эффект</div>
+            <div class="v">Возвращение интереса, повышение мотивации, ощущение «вернулась искра»</div>
+          </div>
+          <div class="item">
+            <div class="k">Сигнал риска</div>
+            <div class="v">Охра · проверить гормональный фон перед стартом</div>
+          </div>
+        </div>
+      </div>
+      <div class="right" style="color: var(--copper);">
+        <svg><use href="#m-testobooster"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag"><span>Geneline</span><span class="dot"></span><span>Royal Peptides</span><span class="dot"></span><span>TESTOBOOSTER · 10 / 10</span></div>
+  <div class="slide-counter">22 / 36</div>
+</section>
+
+
+<!-- ================================================================ -->
+<!-- 36 — FINAL (premium dark, контакты, Doctor Gusarova)             -->
+<!-- ================================================================ -->
+<section class="slide slide--dark">
+  <svg class="mol-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <use href="#mol-pattern-dense"/>
+  </svg>
+
+  <div class="corner-logo">
+    <svg style="--bg-fill: #1F1D1C"><use href="#logo-mark"/></svg>
+    <span class="wm">GENELINE</span>
+  </div>
+
+  <div class="slide-body slide-body--center">
+    <div class="final-stack">
+      <div class="thanks">
+        Спасибо <em>за обучение</em>
+      </div>
+
+      <div class="lede" style="text-align:center; max-width: 800px; margin-top: 16px;">
+        Royal Peptides by Geneline — наука о красоте,<br>
+        упакованная в 10 точных формул.
+      </div>
+
+      <div class="doctor-block">
+        <div class="label">Куратор курса</div>
+        <div class="name">Doctor Elena Gusarova</div>
+        <div class="ig">@DOCTOR_GUSAROVA</div>
+      </div>
+
+      <div class="contacts">
+        <div class="item">
+          <div class="k">Сайт</div>
+          <div class="v">geneline.ru</div>
+        </div>
+        <div class="item">
+          <div class="k">Телефон</div>
+          <div class="v">+8 (965) 341-28-64</div>
+        </div>
+        <div class="item">
+          <div class="k">Instagram</div>
+          <div class="v">@geneline.clinic</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-tag">
+    <span>Geneline</span><span class="dot"></span>
+    <span>Royal Peptides</span><span class="dot"></span>
+    <span>Финал</span>
+  </div>
+  <div class="slide-counter">36 / 36</div>
+</section>
+
+
+</main>
+</body>
+</html>
